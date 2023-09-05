@@ -1,0 +1,25 @@
+load("@rules_foreign_cc//foreign_cc:defs.bzl", "cmake")
+
+filegroup(
+    name = "lib_sockcanpp-srcs",
+    srcs = glob(["libsockcanpp/**"]),
+    visibility = ["//visibility:public"],
+)
+
+cmake(
+    name = "libsockcanpp",
+    # Probably this variable should be set by default.
+    # Apparently, it needs to be set for shared libraries on Mac OS
+    cache_entries = {
+        "CMAKE_MACOSX_RPATH": "True",
+        "CMAKE_TOOLCHAIN_FILE": "$HURON_DIR/third_party/libsockcanpp/toolchains/x86_64-toolchain.cmake"
+    },
+    build_args = [
+        "--verbose",
+        "--",  # <- Pass remaining options to the native tool.
+    ],
+    lib_source = ":lib_sockcanpp-srcs",
+    out_interface_libs = [],
+    out_static_libs = ["libsockcanpp.a"],
+)
+
