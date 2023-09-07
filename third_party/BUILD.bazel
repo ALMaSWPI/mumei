@@ -6,6 +6,12 @@ filegroup(
     visibility = ["//visibility:public"],
 )
 
+filegroup(
+    name = "lib_sockcanpp-incl",
+    srcs = glob(["libsockcanpp/include/**"]),
+    visibility = ["//visibility:public"],
+)
+
 cmake(
     name = "libsockcanpp",
     # Probably this variable should be set by default.
@@ -18,8 +24,10 @@ cmake(
         "--verbose",
         "--",  # <- Pass remaining options to the native tool.
     ],
+    copts = ["-Ilibsockcanpp/include"],
     lib_source = ":lib_sockcanpp-srcs",
     out_interface_libs = [],
     out_static_libs = ["libsockcanpp.a"],
+    visibility = ["//visibility:public"],
 )
 
