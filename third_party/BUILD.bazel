@@ -24,9 +24,9 @@ cmake(
         "--verbose",
         "--",  # <- Pass remaining options to the native tool.
     ],
-    copts = ["-Ilibsockcanpp/include"],
+    # copts = ["-Ilibsockcanpp/include"],
     lib_source = ":lib_sockcanpp-srcs",
-    out_interface_libs = [],
+    out_include_dir = "include",
     out_static_libs = ["libsockcanpp.a"],
     visibility = ["//visibility:public"],
 )
