@@ -1,7 +1,10 @@
 cc_library(
     name = "can",
-    srcs = ["can_simple_master.cc", "huron_canbus.cc"],
-    hdrs = ["ODriveEnums.h", "can_helpers.h", "canbus.h", "can_simple_master.h", "huron_canbus.h"],
-    deps = ["//huron_driver/config:config"],
+    srcs = ["huron_odrive_can.cc", "huron_canbus.cc"],
+    hdrs = ["ODriveEnums.h", "can_helpers.h", "canbus.h", "huron_odrive_can.h", "huron_canbus.h"],
+    deps = [
+        "//huron_driver/config:config",
+        "//third_party:libsockcanpp"
+    ],
     visibility = ["//examples/test_can:__pkg__"]
 )

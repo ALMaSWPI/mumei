@@ -4,8 +4,8 @@
 #include <cmsis_os.h>
 
 #include "canbus.hpp"
-#include "can_simple.hpp"
-#include <autogen/interfaces.hpp>
+#include "can_simple.h"
+#include <autogen/interfaces.h>
 
 #define CAN_CLK_HZ (42000000)
 #define CAN_CLK_MHZ (42)

@@ -1,8 +1,8 @@
 #ifndef __HURON_CANBUS_H_
 #define __HURON_CANBUS_H_
 
+#include "sockcanpp/CanDriver.hpp"
 #include "canbus.h"
-#include "can_simple_master.h"
 
 #define CAN_CLK_HZ (16000000)
 #define CAN_CLK_MHZ (16)
@@ -18,20 +18,20 @@ enum {
 
 class HURONCanBus : public CanBusBase {
 public:
-	struct Config_t {
-		uint32_t baud_rate = CAN_BAUD_250K;
-		Protocol protocol = PROTOCOL_SIMPLE;
+	// struct Config_t {
+	// 	uint32_t baud_rate = CAN_BAUD_250K;
+	// 	Protocol protocol = PROTOCOL_SIMPLE;
+	//
+	// 	HURONCanBus* parent = nullptr; // set in apply_config()
+	// 	void set_baud_rate(uint32_t value) { parent->set_baud_rate(value); }
+	// };
 
-		HURONCanBus* parent = nullptr; // set in apply_config()
-		void set_baud_rate(uint32_t value) { parent->set_baud_rate(value); }
-	};
+	HURONCanBus(std::string can_id, uint32_t axis_id)
+		: can_id_(can_id), axis_id_(axis_id) {}
 
-	HURONCanBus() {}
-
-	Error error_ = ERROR_NONE;
-
-	Config_t config_;
-	CANSimpleMaster can_simple_master_{this};
+	std::string can_id_;
+	uint32_t axis_id_;
+	sockcanpp::CanDriver can_driver_{can_id_, CAN_RAW};
 
 
 private:
