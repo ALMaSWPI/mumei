@@ -18,7 +18,7 @@ cmake(
     # Apparently, it needs to be set for shared libraries on Mac OS
     cache_entries = {
         "CMAKE_MACOSX_RPATH": "True",
-        "CMAKE_TOOLCHAIN_FILE": "$HURON_DIR/third_party/libsockcanpp/toolchains/x86_64-toolchain.cmake"
+        "CMAKE_TOOLCHAIN_FILE": "$HURON_DIR/third_party/libsockcanpp/toolchains/$LIBSOCKCANPP_TOOLCHAIN"
     },
     build_args = [
         "--verbose",
