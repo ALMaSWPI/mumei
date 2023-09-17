@@ -1,5 +1,5 @@
 #include <iostream>
-#include "sockcanpp/CanDriver.hpp"
+#include "CanDriver.hpp"
 
 void receiveCanFramesExample() {
     sockcanpp::CanDriver canDriver("can1", CAN_RAW);
