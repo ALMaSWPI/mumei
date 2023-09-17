@@ -1,7 +1,7 @@
 #ifndef __HURON_CANBUS_H_
 #define __HURON_CANBUS_H_
 
-#include "sockcanpp/CanDriver.hpp"
+#include "CanDriver.hpp"
 #include "canbus.h"
 
 #define CAN_CLK_HZ (16000000)
@@ -18,6 +18,7 @@ enum {
 
 class HURONCanBus : public CanBusBase {
 public:
+	static constexpr sockcanpp::milliseconds kRecvTimeout{1000};
 	// struct Config_t {
 	// 	uint32_t baud_rate = CAN_BAUD_250K;
 	// 	Protocol protocol = PROTOCOL_SIMPLE;
@@ -27,10 +28,11 @@ public:
 	// };
 
 	HURONCanBus(std::string can_id, uint32_t axis_id)
-		: can_id_(can_id), axis_id_(axis_id) {}
+		: can_id_(can_id), axis_id_(axis_id), recv_timeout_(kRecvTimeout) {}
 
 	std::string can_id_;
 	uint32_t axis_id_;
+	sockcanpp::milliseconds recv_timeout_;
 	sockcanpp::CanDriver can_driver_{can_id_, CAN_RAW};
 
 
@@ -43,11 +45,8 @@ private:
 				void* ctx;
 		};
 
-		bool reinit();
-		void can_server_thread();
-		bool set_baud_rate(uint32_t baud_rate);
-		void process_rx_fifo(uint32_t fifo);
 		bool send_message(const can_Message_t& message) final;
+		bool recv_message(can_Message_t& message);
 		bool subscribe(const MsgIdFilterSpecs& filter, on_can_message_cb_t callback, void* ctx, CanSubscription** handle) final;
 		bool unsubscribe(CanSubscription* handle) final;
 

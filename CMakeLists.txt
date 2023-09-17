@@ -16,7 +16,7 @@ endif()
 
 project (huron)
 
-add_subdirectory(examples/test_can)
-# add_subdirectory(huron_driver/can)
+add_subdirectory(examples)
+add_subdirectory(huron_driver)
 add_subdirectory(third_party/libsockcanpp)
 
