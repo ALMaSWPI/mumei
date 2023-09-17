@@ -7,7 +7,7 @@ bool HURONCanBus::send_message(const can_Message_t &tx_msg) {
 
 	struct can_frame raw_frame;
 	raw_frame.can_id = tx_msg.id;
-	raw_frame.len = tx_msg.len;
+	raw_frame.can_dlc = tx_msg.len;
 	memcpy(raw_frame.data, tx_msg.buf, tx_msg.len);
 	
 	sockcanpp::CanMessage msg_to_send(raw_frame);
@@ -25,7 +25,7 @@ bool HURONCanBus::recv_message(can_Message_t& message) {
 		message.id = uint32_t(rx_msg.getCanId());
 		message.isExt = rx_msg.getCanId().isExtendedFrameId();
 		message.rtr = rx_msg.getCanId().hasRtrFrameFlag();
-		message.len = rx_msg.getRawFrame().len;
+		message.len = rx_msg.getRawFrame().can_dlc;
 		memcpy(message.buf, rx_msg.getRawFrame().data, message.len); 
 		return true;
 	}
