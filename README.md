@@ -3,14 +3,29 @@ Clone the main repo and all submodules:
 git clone git@github.com:wpi-huron/huron.git --recurse-submodules
 ```
 
-Build:
-1. Make sure you are in the root of this repo (`huron/`)
-2. Build the repo
+Prerequisites:
+
+1. ARM toolchains:
 ```
-bazel build <target> [--verbose_failures] [--config=<config_name>] --action_env=HURON_DIR=$(pwd)
+sudo apt update
+sudo apt install gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf
+```
+
+Build:
+
+1. Make sure you are in the root of this repo (`huron/`)
+2. Create `build` folder
+```
+mkdir build
+```
+3. Build the project
+```
+cd build
+cmake .. [-DBUILD_TYPE=<build-type>]
 ```
 
 Notes: 
 
-- `HURON_DIR` needs to be set to the root of this repo - that's why `--action_env=HURON_DIR=$(pwd)` is important.
-- To build on Linux x86_64 machines, set `--config=x86_64`. To build on arm64 machines like the Raspberry Pi, set `--config=arm64`.
+- Currently, the project can be built on Linux only
+- By default, the project builds for Raspberry Pi (armv7l). To change platform,
+`BUILD_TYPE` needs to be changed. For example, on Linux x86_64: `-DBUILD_TYPE=x86_64`
