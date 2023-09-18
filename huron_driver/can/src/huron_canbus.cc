@@ -14,7 +14,7 @@ bool HURONCanBus::send_message(const can_Message_t &tx_msg) {
 
 	auto sent_byte_count = can_driver_.sendMessage(msg_to_send);
 	
-	return true;
+	return sent_byte_count;
 }
 
 bool HURONCanBus::recv_message(can_Message_t& message) {
