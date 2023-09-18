@@ -45,7 +45,7 @@ class HuronODriveCAN {
 		bool init();
 		uint32_t ServiceStack();
 
-	private:
+	// private:
 
 		void HandleCanMessage(const can_Message_t& msg);
 
