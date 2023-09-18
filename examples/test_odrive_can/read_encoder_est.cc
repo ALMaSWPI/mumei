@@ -6,10 +6,10 @@
 int main(int argc, char* argv[]) { 
   HURONCanBus hcb{"can0", 0};
   HuronODriveCAN hoc{&hcb, 0};
-  int32_t shadow_cnt = 0, cnt_cpr = 0;
-  hoc.GetEncoderCount(shadow_cnt, cnt_cpr);
-  std::cout << "Shadow count: " << shadow_cnt
-            << "\tCount in CPR: " << cnt_cpr << std::endl;
+  float pos = 0.0, vel = 0.0;
+  hoc.GetEncoderEstimates(pos, vel);
+  std::cout << "Pos: " << pos
+            << "\tVel: " << vel << std::endl;
   return 0;
 }
 
