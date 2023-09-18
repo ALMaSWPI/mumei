@@ -1,3 +1,6 @@
+/*
+ * Original source from: https://github.com/odriverobotics/ODrive/tree/master
+ * */
 #ifndef __CANBUS_H_
 #define __CANBUS_H_
 
@@ -21,6 +24,14 @@ public:
      * full).
      */
     virtual bool send_message(const can_Message_t& message) = 0;
+
+    /**
+     * @brief Receives a CAN message with the same \p id as \p message.
+     * 
+     * @returns: true on success or false otherwise (e.g. if the receive queue is
+     * empty).
+     */
+    virtual bool recv_message(can_Message_t& message, uint32_t timeout=UINT32_MAX) = 0;
 
     /**
      * @brief Registers a callback that will be invoked for every incoming CAN

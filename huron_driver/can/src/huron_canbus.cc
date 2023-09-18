@@ -1,5 +1,6 @@
 #include "CanDriver.hpp"
 #include "huron_driver/can/huron_canbus.h"
+#include "huron/utils/time.h"
 
 
 // Send a CAN message on the bus
@@ -17,17 +18,26 @@ bool HURONCanBus::send_message(const can_Message_t &tx_msg) {
 	return sent_byte_count;
 }
 
-bool HURONCanBus::recv_message(can_Message_t& message) {
-	if (can_driver_.waitForMessages(recv_timeout_)) {
-		// read a single message
-		sockcanpp::CanMessage rx_msg = can_driver_.readMessage();
-		// convert and save into [message]
-		message.id = uint32_t(rx_msg.getCanId());
-		message.isExt = rx_msg.getCanId().isExtendedFrameId();
-		message.rtr = rx_msg.getCanId().hasRtrFrameFlag();
-		message.len = rx_msg.getRawFrame().can_dlc;
-		memcpy(message.buf, rx_msg.getRawFrame().data, message.len); 
-		return true;
+bool HURONCanBus::recv_message(can_Message_t& message, uint32_t timeout) {
+	auto start = std::chrono::steady_clock::now();
+	sockcanpp::milliseconds actual_timeout{std::min(timeout, uint32_t(recv_timeout_.count()))};
+	while (true) {
+		if (timeout && since(start).count() > timeout)
+			break;
+		if (can_driver_.waitForMessages(actual_timeout)) {
+			// read a single message
+			sockcanpp::CanMessage rx_msg = can_driver_.readMessage();
+			uint32_t msg_can_id = uint32_t(rx_msg.getCanId());
+			if (msg_can_id == message.id) {
+				// convert and save into [message]
+				message.id = msg_can_id;
+				message.isExt = rx_msg.getCanId().isExtendedFrameId();
+				message.rtr = rx_msg.getCanId().hasRtrFrameFlag();
+				message.len = rx_msg.getRawFrame().can_dlc;
+				memcpy(message.buf, rx_msg.getRawFrame().data, message.len); 
+				return true;
+			}
+		}
 	}
 	return false;
 }

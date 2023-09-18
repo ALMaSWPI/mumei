@@ -45,10 +45,10 @@ public:
 				void* ctx;
 		};
 
-		bool send_message(const can_Message_t& message) final;
-		bool recv_message(can_Message_t& message);
-		bool subscribe(const MsgIdFilterSpecs& filter, on_can_message_cb_t callback, void* ctx, CanSubscription** handle) final;
-		bool unsubscribe(CanSubscription* handle) final;
+		bool send_message(const can_Message_t& message) override final;
+		bool recv_message(can_Message_t& message, uint32_t timeout = UINT32_MAX) override final;
+		bool subscribe(const MsgIdFilterSpecs& filter, on_can_message_cb_t callback, void* ctx, CanSubscription** handle) override final;
+		bool unsubscribe(CanSubscription* handle) override final;
 
 };
 
