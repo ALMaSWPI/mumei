@@ -13,29 +13,36 @@ auto since(std::chrono::time_point<clock_t, duration_t> const& start)
 }
 
 void ReadMessage(uint32_t target_id) {
-  sockcanpp::CanDriver canDriver("can0", CAN_RAW);
-  std::cout << "CanDriver initialized successfully. Waiting for message...\n";
+  HURONCanBus hcb{"can0", 0};
+  std::cout << "HURONCanBus initialized successfully. Waiting for message...\n";
 
-  // Measure time for reading a message
+  // Measure time for reading a message for 3 trials
+  uint32_t n_trials = 5;
+  uint32_t sum_latency = 0;
   auto start = std::chrono::steady_clock::now();
-  while (1) {
-    if (canDriver.waitForMessages(sockcanpp::milliseconds(3000))) {
-      // read a single message
-      sockcanpp::CanMessage receivedMessage = canDriver.readMessage();
-
-      uint32_t id = uint32_t(receivedMessage.getCanId());
-      if (id == target_id) {
+  for (size_t i = 0; i < n_trials; ++i) {
+    std::cout << "Trial #" << i << std::endl;
+    while (1) {
+      can_Message_t msg;
+      hcb.recv_message(msg);
+      if (msg.id == target_id) {
         // handle CAN frames
+        // msg val startBit length isIntel
+        float pos = can_getSignal<float>(msg, 0, 32, true);
+        float vel = can_getSignal<float>(msg, 32, 32, true);
         std::cout << "Message data:" << std::endl;
         std::cout << "\tCAN ID: "
-                  << id << std::endl;
-        std::cout <<  "\tFrame Data: " 
-                  << receivedMessage.getFrameData() << std::endl;
-        std::cout << "Time: " << since(start).count() << std::endl;
+                  << msg.id << std::endl;
+        std::cout << "\tPos: " << pos
+                  << "\tVel: " << vel << std::endl;
+        uint32_t latency = since(start).count();
+        std::cout << "Time: " << latency << " ms.\n\n";
+        sum_latency += latency;
         break;
       }
     }
   }
+  std::cout << "Average latency: " << float(sum_latency)/n_trials << std::endl;
 }
 
 int main(int argc, char* argv[]) { 

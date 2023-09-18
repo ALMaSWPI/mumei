@@ -27,16 +27,16 @@ public:
 	// 	void set_baud_rate(uint32_t value) { parent->set_baud_rate(value); }
 	// };
 
-	HURONCanBus(std::string can_id, uint32_t axis_id)
-		: can_id_(can_id), axis_id_(axis_id), recv_timeout_(kRecvTimeout) {}
+	HURONCanBus(std::string can_if, uint32_t axis_id)
+		: can_if_(can_if), axis_id_(axis_id), recv_timeout_(kRecvTimeout) {}
 
-	std::string can_id_;
+	std::string can_if_;
 	uint32_t axis_id_;
 	sockcanpp::milliseconds recv_timeout_;
-	sockcanpp::CanDriver can_driver_{can_id_, CAN_RAW};
+	sockcanpp::CanDriver can_driver_{can_if_, CAN_RAW};
 
 
-private:
+// private:
 		static const uint8_t kCanFifoNone = 0xff;
 
 		struct ODriveCanSubscription : CanSubscription {
