@@ -20,9 +20,8 @@ bool HURONCanBus::send_message(const can_Message_t &tx_msg) {
 
 bool HURONCanBus::recv_message(can_Message_t& message, uint32_t timeout) {
 	auto start = std::chrono::steady_clock::now();
-	sockcanpp::milliseconds actual_timeout{std::min(timeout, uint32_t(recv_timeout_.count()))};
 	while (true) {
-		if (can_driver_.waitForMessages(actual_timeout)) {
+		if (can_driver_.waitForMessages(recv_timeout_)) {
 			// read a single message
 			sockcanpp::CanMessage rx_msg = can_driver_.readMessage();
 			uint32_t msg_can_id = uint32_t(rx_msg.getCanId());
