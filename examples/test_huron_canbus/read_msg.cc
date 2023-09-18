@@ -19,9 +19,9 @@ void ReadMessage(uint32_t target_id) {
   // Measure time for reading a message for 3 trials
   uint32_t n_trials = 5;
   uint32_t sum_latency = 0;
-  auto start = std::chrono::steady_clock::now();
   for (size_t i = 0; i < n_trials; ++i) {
     std::cout << "Trial #" << i << std::endl;
+    auto start = std::chrono::steady_clock::now();
     while (1) {
       can_Message_t msg;
       hcb.recv_message(msg);
