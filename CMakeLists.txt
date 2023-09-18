@@ -18,5 +18,6 @@ project (huron)
 
 add_subdirectory(examples)
 add_subdirectory(huron_driver)
+add_subdirectory(utils)
 add_subdirectory(third_party/libsockcanpp)
 
