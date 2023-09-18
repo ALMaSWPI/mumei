@@ -19,6 +19,7 @@ int main(int argc, char* argv[]) {
   msg.isExt = false;
   msg.len = 8;
   can_setSignal<uint32_t>(msg, AXIS_STATE_IDLE, 0, 32, true);
+  hcb.send_message(msg);
 
   std::this_thread::sleep_for(2s);
 
@@ -52,6 +53,7 @@ int main(int argc, char* argv[]) {
   msg.isExt = false;
   msg.len = 8;
   can_setSignal<uint32_t>(msg, AXIS_STATE_FULL_CALIBRATION_SEQUENCE, 0, 32, true);
+  hcb.send_message(msg);
 
   std::this_thread::sleep_for(2s);
 
@@ -61,6 +63,7 @@ int main(int argc, char* argv[]) {
   msg.isExt = false;
   msg.len = 8;
   can_setSignal<uint32_t>(msg, AXIS_STATE_CLOSED_LOOP_CONTROL, 0, 32, true);
+  hcb.send_message(msg);
 
   std::this_thread::sleep_for(25s);
 
@@ -86,6 +89,7 @@ int main(int argc, char* argv[]) {
   msg.isExt = false;
   msg.len = 8;
   can_setSignal<uint32_t>(msg, AXIS_STATE_IDLE, 0, 32, true);
+  hcb.send_message(msg);
 
   std::this_thread::sleep_for(2s);
   return 0;
