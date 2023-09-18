@@ -55,7 +55,7 @@ int main(int argc, char* argv[]) {
   can_setSignal<uint32_t>(msg, AXIS_STATE_FULL_CALIBRATION_SEQUENCE, 0, 32, true);
   hcb.send_message(msg);
 
-  std::this_thread::sleep_for(2s);
+  std::this_thread::sleep_for(25s);
 
   // Set axis state CLOSEDLOOP
   msg.id = hcb.axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
@@ -65,7 +65,7 @@ int main(int argc, char* argv[]) {
   can_setSignal<uint32_t>(msg, AXIS_STATE_CLOSED_LOOP_CONTROL, 0, 32, true);
   hcb.send_message(msg);
 
-  std::this_thread::sleep_for(25s);
+  std::this_thread::sleep_for(2s);
 
   // Move motor
   msg.id = hcb.axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
