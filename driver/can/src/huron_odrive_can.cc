@@ -6,7 +6,7 @@ bool HuronODriveCAN::init() {
 	return true;
 }
 
-bool HuronODriveCAN::GetMotorError(uint64_t& motor_error) {
+bool HuronODriveCAN::GetMotorError(uint64_t& motor_error, uint32_t timeout) {
 	can_Message_t msg;
 	msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
 	msg.id += HuronODriveCAN::MSG_GET_MOTOR_ERROR;
@@ -15,13 +15,13 @@ bool HuronODriveCAN::GetMotorError(uint64_t& motor_error) {
 	msg.len = 8;
 	// Sends message with RTR on
 	canbus_->send_message(msg);
-	if (!canbus_->recv_message(msg)) {
+	if (!canbus_->recv_message(msg, timeout)) {
 		return false;
 	}
 	motor_error = can_getSignal<uint64_t>(msg, 0, 64, true);
 	return true;
 }
-bool HuronODriveCAN::GetEncoderError(uint32_t& encoder_error) {
+bool HuronODriveCAN::GetEncoderError(uint32_t& encoder_error, uint32_t timeout) {
 	can_Message_t msg;
 	msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
 	msg.id += HuronODriveCAN::MSG_GET_ENCODER_ERROR;
@@ -30,14 +30,14 @@ bool HuronODriveCAN::GetEncoderError(uint32_t& encoder_error) {
 	msg.len = 8;
 	// Sends message with RTR on
 	canbus_->send_message(msg);
-	if (!canbus_->recv_message(msg)) {
+	if (!canbus_->recv_message(msg, timeout)) {
 		return false;
 	}
 	encoder_error = can_getSignal<uint32_t>(msg, 0, 32, true);
 	return true;
 }
 
-bool HuronODriveCAN::GetControllerError(uint32_t& controller_error) {
+bool HuronODriveCAN::GetControllerError(uint32_t& controller_error, uint32_t timeout) {
 	can_Message_t msg;
 	msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
 	msg.id += HuronODriveCAN::MSG_GET_CONTROLLER_ERROR;
@@ -46,14 +46,14 @@ bool HuronODriveCAN::GetControllerError(uint32_t& controller_error) {
 	msg.len = 8;
 	// Sends message with RTR on
 	canbus_->send_message(msg);
-	if (!canbus_->recv_message(msg)) {
+	if (!canbus_->recv_message(msg, timeout)) {
 		return false;
 	}
 	controller_error = can_getSignal<uint32_t>(msg, 0, 32, true);
 	return true;
 }
 
-bool HuronODriveCAN::GetSensorlessError(uint32_t& sensorless_error) {
+bool HuronODriveCAN::GetSensorlessError(uint32_t& sensorless_error, uint32_t timeout) {
 	can_Message_t msg;
 	msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
 	msg.id += HuronODriveCAN::MSG_GET_SENSORLESS_ERROR;
@@ -62,14 +62,14 @@ bool HuronODriveCAN::GetSensorlessError(uint32_t& sensorless_error) {
 	msg.len = 8;
 	// Sends message with RTR on
 	canbus_->send_message(msg);
-	if (!canbus_->recv_message(msg)) {
+	if (!canbus_->recv_message(msg, timeout)) {
 		return false;
 	}
 	sensorless_error = can_getSignal<uint32_t>(msg, 0, 32, true);
 	return true;
 }
 
-bool HuronODriveCAN::GetEncoderEstimates(float& pos, float& vel) {
+bool HuronODriveCAN::GetEncoderEstimates(float& pos, float& vel, uint32_t timeout) {
 	can_Message_t msg;
 	msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
 	msg.id += HuronODriveCAN::MSG_GET_ENCODER_ESTIMATES;
@@ -78,7 +78,7 @@ bool HuronODriveCAN::GetEncoderEstimates(float& pos, float& vel) {
 	msg.len = 8;
 	// Sends message with RTR on
 	canbus_->send_message(msg);
-	if (!canbus_->recv_message(msg)) {
+	if (!canbus_->recv_message(msg, timeout)) {
 		return false;
 	}
 	pos = can_getSignal<float>(msg, 0, 32, true);
@@ -86,7 +86,7 @@ bool HuronODriveCAN::GetEncoderEstimates(float& pos, float& vel) {
 	return true;
 }
 
-bool HuronODriveCAN::GetEncoderCount(int32_t& shadow_cnt, int32_t& cnt_cpr) {
+bool HuronODriveCAN::GetEncoderCount(int32_t& shadow_cnt, int32_t& cnt_cpr, uint32_t timeout) {
 	can_Message_t msg;
 	msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
 	msg.id += HuronODriveCAN::MSG_GET_ENCODER_COUNT;
@@ -95,7 +95,7 @@ bool HuronODriveCAN::GetEncoderCount(int32_t& shadow_cnt, int32_t& cnt_cpr) {
 	msg.len = 8;
 	// Sends message with RTR on
 	canbus_->send_message(msg);
-	if (!canbus_->recv_message(msg)) {
+	if (!canbus_->recv_message(msg, timeout)) {
 		return false;
 	}
 	shadow_cnt = can_getSignal<int32_t>(msg, 0, 32, true);
@@ -103,7 +103,7 @@ bool HuronODriveCAN::GetEncoderCount(int32_t& shadow_cnt, int32_t& cnt_cpr) {
 	return true;
 }
 
-bool HuronODriveCAN::GetIq(float& iq_setpoint, float& iq_measured) {
+bool HuronODriveCAN::GetIq(float& iq_setpoint, float& iq_measured, uint32_t timeout) {
 	can_Message_t msg;
 	msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
 	msg.id += HuronODriveCAN::MSG_GET_IQ;
@@ -112,7 +112,7 @@ bool HuronODriveCAN::GetIq(float& iq_setpoint, float& iq_measured) {
 	msg.len = 8;
 	// Sends message with RTR on
 	canbus_->send_message(msg);
-	if (!canbus_->recv_message(msg)) {
+	if (!canbus_->recv_message(msg, timeout)) {
 		return false;
 	}
 	iq_setpoint = can_getSignal<float>(msg, 0, 32, true);
@@ -120,7 +120,7 @@ bool HuronODriveCAN::GetIq(float& iq_setpoint, float& iq_measured) {
 	return true;
 }
 
-bool HuronODriveCAN::GetSensorlessEstimates(float& pos, float& vel) {
+bool HuronODriveCAN::GetSensorlessEstimates(float& pos, float& vel, uint32_t timeout) {
 	can_Message_t msg;
 	msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
 	msg.id += HuronODriveCAN::MSG_GET_SENSORLESS_ESTIMATES;
@@ -129,7 +129,7 @@ bool HuronODriveCAN::GetSensorlessEstimates(float& pos, float& vel) {
 	msg.len = 8;
 	// Sends message with RTR on
 	canbus_->send_message(msg);
-	if (!canbus_->recv_message(msg)) {
+	if (!canbus_->recv_message(msg, timeout)) {
 		return false;
 	}
 	pos = can_getSignal<float>(msg, 0, 32, true);
@@ -137,7 +137,7 @@ bool HuronODriveCAN::GetSensorlessEstimates(float& pos, float& vel) {
 	return true;
 }
 
-bool HuronODriveCAN::GetBusVoltageCurrent(float& bus_voltage, float& bus_current) {
+bool HuronODriveCAN::GetBusVoltageCurrent(float& bus_voltage, float& bus_current, uint32_t timeout) {
 	can_Message_t msg;
 	msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
 	msg.id += HuronODriveCAN::MSG_GET_BUS_VOLTAGE_CURRENT;
@@ -146,7 +146,7 @@ bool HuronODriveCAN::GetBusVoltageCurrent(float& bus_voltage, float& bus_current
 	msg.len = 8;
 	// Sends message with RTR on
 	canbus_->send_message(msg);
-	if (!canbus_->recv_message(msg)) {
+	if (!canbus_->recv_message(msg, timeout)) {
 		return false;
 	}
 	bus_voltage = can_getSignal<float>(msg, 0, 32, true);
@@ -154,7 +154,7 @@ bool HuronODriveCAN::GetBusVoltageCurrent(float& bus_voltage, float& bus_current
 	return true;
 }
 
-bool HuronODriveCAN::GetAdcVoltage(float& adc_voltage) {
+bool HuronODriveCAN::GetAdcVoltage(float& adc_voltage, uint32_t timeout) {
 	can_Message_t msg;
 	msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
 	msg.id += HuronODriveCAN::MSG_GET_ADC_VOLTAGE;
@@ -163,7 +163,7 @@ bool HuronODriveCAN::GetAdcVoltage(float& adc_voltage) {
 	msg.len = 8;
 	// Sends message with RTR on
 	canbus_->send_message(msg);
-	if (!canbus_->recv_message(msg)) {
+	if (!canbus_->recv_message(msg, timeout)) {
 		return false;
 	}
 	adc_voltage = can_getSignal<float>(msg, 0, 32, true);
