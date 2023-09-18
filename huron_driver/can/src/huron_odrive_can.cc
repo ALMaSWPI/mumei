@@ -1,245 +1,333 @@
-#include "huron_odrive_can.h"
-
 #include <functional>
+#include "huron_driver/can/huron_odrive_can.h"
+
 
 bool HuronODriveCAN::init() {
 	return true;
 }
 
-void HuronODriveCAN::HandleCanMessage(const can_Message_t& msg) {
-	//		 Frame
-	// nodeID | CMD
-	// 6 bits | 5 bits
-	uint32_t nodeID = GetNodeId(msg.id);
-
-	for (auto& axis : axes) {
-		if ((axis.config_.can.node_id == nodeID) && (axis.config_.can.is_extended == msg.isExt)) {
-			DoCommand(axis, msg);
-			return;
-		}
-	}
-}
-
-void HuronODriveCAN::Nmt(const can_Message_t& msg) {
-	// Not implemented
-}
-
-void HuronODriveCAN::Estop(const can_Message_t& msg) {
-	// TODO
-}
-
-bool HuronODriveCAN::GetMotorError() {
-	can_Message_t txmsg;
-
-	txmsg.id = axis_id_;
-
-	txmsg.id = node_id_ << NUM_CMD_ID_BITS;
-	txmsg.id += MSG_GET_MOTOR_ERROR;	// heartbeat ID
-	txmsg.isExt = false;
-	txmsg.len = 8;
-
-	can_setSignal(txmsg, axis.motor_.error_, 0, 64, true);
-
-	return canbus_->send_message(txmsg);
-}
-
-bool HuronODriveCAN::GetEncoderError() {
-	can_Message_t txmsg;
-	txmsg.id = axis_id_ << NUM_CMD_ID_BITS;
-	txmsg.id += MSG_GET_ENCODER_ERROR;	// heartbeat ID
-	txmsg.isExt = is_ext_;
-	txmsg.len = 8;
-
-	can_setSignal(txmsg, axis.encoder_.error_, 0, 32, true);
-
-	return canbus_->send_message(txmsg);
-}
-
-bool HuronODriveCAN::GetSensorlessError() {
-	can_Message_t txmsg;
-	txmsg.id = axis.config_.can.node_id << NUM_CMD_ID_BITS;
-	txmsg.id += MSG_GET_SENSORLESS_ERROR;  // heartbeat ID
-	txmsg.isExt = axis.config_.can.is_extended;
-	txmsg.len = 8;
-
-	can_setSignal(txmsg, axis.sensorless_estimator_.error_, 0, 32, true);
-
-	return canbus_->send_message(txmsg);
-}
-
-bool HuronODriveCAN::GetControllerError() {
-	can_Message_t txmsg;
-	txmsg.id = axis.config_.can.node_id << NUM_CMD_ID_BITS;
-	txmsg.id += MSG_GET_CONTROLLER_ERROR;  // heartbeat ID
-	txmsg.isExt = axis.config_.can.is_extended;
-	txmsg.len = 8;
-
-	can_setSignal(txmsg, axis.controller_.error_, 0, 32, true);
-
-	return canbus_->send_message(txmsg);
-}
-
-void HuronODriveCAN::SetAxisNodeid(const can_Message_t& msg) {
-	axis.config_.can.node_id = can_getSignal<uint32_t>(msg, 0, 32, true);
-}
-
-void HuronODriveCAN::SetAxisRequestedState(const can_Message_t& msg) {
-	axis.requested_state_ = static_cast<Axis::AxisState>(can_getSignal<int32_t>(msg, 0, 32, true));
-}
-
-void HuronODriveCAN::SetAxisStartupConfig(const can_Message_t& msg) {
-// Not Implemented
-}
-
-bool HuronODriveCAN::GetEncoderEstimates() {
-	can_Message_t txmsg;
-	txmsg.id = axis.config_.can.node_id << NUM_CMD_ID_BITS;
-	txmsg.id += MSG_GET_ENCODER_ESTIMATES;	// heartbeat ID
-	txmsg.isExt = axis.config_.can.is_extended;
-	txmsg.len = 8;
-
-	can_setSignal<float>(txmsg, axis.controller_.pos_estimate_linear_src_.any().value_or(0.0f), 0, 32, true);
-	can_setSignal<float>(txmsg, axis.controller_.vel_estimate_src_.any().value_or(0.0f), 32, 32, true);
-
-	return canbus_->send_message(txmsg);
-}
-
-bool HuronODriveCAN::GetSensorlessEstimates() {
-	can_Message_t txmsg;
-	txmsg.id = axis.config_.can.node_id << NUM_CMD_ID_BITS;
-	txmsg.id += MSG_GET_SENSORLESS_ESTIMATES;  // heartbeat ID
-	txmsg.isExt = axis.config_.can.is_extended;
-	txmsg.len = 8;
-
-	static_assert(sizeof(float) == sizeof(axis.sensorless_estimator_.pll_pos_));
-
-	can_setSignal<float>(txmsg, axis.sensorless_estimator_.pll_pos_, 0, 32, true);
-	can_setSignal<float>(txmsg, axis.sensorless_estimator_.vel_estimate_.any().value_or(0.0f), 32, 32, true);
-
-	return canbus_->send_message(txmsg);
-}
-
-bool HuronODriveCAN::GetEncoderCount() {
-	can_Message_t txmsg;
-	txmsg.id = axis.config_.can.node_id << NUM_CMD_ID_BITS;
-	txmsg.id += MSG_GET_ENCODER_COUNT;
-	txmsg.isExt = axis.config_.can.is_extended;
-	txmsg.len = 8;
-
-	can_setSignal<int32_t>(txmsg, axis.encoder_.shadow_count_, 0, 32, true);
-	can_setSignal<int32_t>(txmsg, axis.encoder_.count_in_cpr_, 32, 32, true);
-	return canbus_->send_message(txmsg);
-}
-
-void HuronODriveCAN::SetInputPos(const can_Message_t& msg) {
-	axis.controller_.set_input_pos_and_steps(can_getSignal<float>(msg, 0, 32, true));
-	axis.controller_.input_vel_ = can_getSignal<int16_t>(msg, 32, 16, true, 0.001f, 0);
-	axis.controller_.input_torque_ = can_getSignal<int16_t>(msg, 48, 16, true, 0.001f, 0);
-	axis.controller_.input_pos_updated();
-}
-
-void HuronODriveCAN::SetInputVel(const can_Message_t& msg) {
-	axis.controller_.input_vel_ = can_getSignal<float>(msg, 0, 32, true);
-	axis.controller_.input_torque_ = can_getSignal<float>(msg, 32, 32, true);
-}
-
-void HuronODriveCAN::SetInputTorque(const can_Message_t& msg) {
-axis.controller_.input_torque_ = can_getSignal<float>(msg, 0, 32, true);
-}
-
-void HuronODriveCAN::SetControllerModes(const can_Message_t& msg) {
-Controller::ControlMode const mode = static_cast<Controller::ControlMode>(can_getSignal<int32_t>(msg, 0, 32, true));
-axis.controller_.config_.control_mode = static_cast<Controller::ControlMode>(mode);
-axis.controller_.config_.input_mode = static_cast<Controller::InputMode>(can_getSignal<int32_t>(msg, 32, 32, true));
-axis.controller_.control_mode_updated();
-}
-
-void HuronODriveCAN::SetLimits(const can_Message_t& msg) {
-axis.controller_.config_.vel_limit = can_getSignal<float>(msg, 0, 32, true);
-axis.motor_.config_.current_lim = can_getSignal<float>(msg, 32, 32, true);
-}
-
-void HuronODriveCAN::StartAnticogging(const can_Message_t& msg) {
-axis.controller_.start_anticogging_calibration();
-}
-
-void HuronODriveCAN::SetTrajVelLimit(const can_Message_t& msg) {
-axis.trap_traj_.config_.vel_limit = can_getSignal<float>(msg, 0, 32, true);
-}
-
-void HuronODriveCAN::SetTrajAccelLimits(const can_Message_t& msg) {
-	axis.trap_traj_.config_.accel_limit = can_getSignal<float>(msg, 0, 32, true);
-	axis.trap_traj_.config_.decel_limit = can_getSignal<float>(msg, 32, 32, true);
-}
-
-void HuronODriveCAN::SetTrajInertia(const can_Message_t& msg) {
-	axis.controller_.config_.inertia = can_getSignal<float>(msg, 0, 32, true);
-}
-
-void HuronODriveCAN::SetLinearCount(const can_Message_t& msg) {
-	axis.encoder_.set_linear_count(can_getSignal<int32_t>(msg, 0, 32, true));
-}
-
-void HuronODriveCAN::SetPosGain(const can_Message_t& msg) {
-	axis.controller_.config_.pos_gain = can_getSignal<float>(msg, 0, 32, true);
-}
-
-void HuronODriveCAN::SetVelGains(const can_Message_t& msg) {
-	axis.controller_.config_.vel_gain = can_getSignal<float>(msg, 0, 32, true);
-	axis.controller_.config_.vel_integrator_gain = can_getSignal<float>(msg, 32, 32, true);
-}
-
-bool HuronODriveCAN::GetIq() {
-	can_Message_t txmsg;
-	txmsg.id = axis.config_.can.node_id << NUM_CMD_ID_BITS;
-	txmsg.id += MSG_GET_IQ;
-	txmsg.isExt = axis.config_.can.is_extended;
-	txmsg.len = 8;
-
-	std::optional<float2D> Idq_setpoint = axis.motor_.current_control_.Idq_setpoint_;
-	if (!Idq_setpoint.has_value()) {
-	Idq_setpoint = {0.0f, 0.0f};
-}
-
-static_assert(sizeof(float) == sizeof(Idq_setpoint->second));
-static_assert(sizeof(float) == sizeof(axis.motor_.current_control_.Iq_measured_));
-can_setSignal<float>(txmsg, Idq_setpoint->second, 0, 32, true);
-can_setSignal<float>(txmsg, axis.motor_.current_control_.Iq_measured_, 32, 32, true);
-
-return canbus_->send_message(txmsg);
-}
-
-bool HuronODriveCAN::GetBusVoltageCurrent() {
-can_Message_t txmsg;
-
-txmsg.id = axis.config_.can.node_id << NUM_CMD_ID_BITS;
-txmsg.id += MSG_GET_BUS_VOLTAGE_CURRENT;
-txmsg.isExt = axis.config_.can.is_extended;
-txmsg.len = 8;
-
-static_assert(sizeof(float) == sizeof(vbus_voltage));
-static_assert(sizeof(float) == sizeof(ibus_));
-can_setSignal<float>(txmsg, vbus_voltage, 0, 32, true);
-can_setSignal<float>(txmsg, ibus_, 32, 32, true);
-
-return canbus_->send_message(txmsg);
-}
-
-bool HuronODriveCAN::GetAdcVoltage(const can_Message_t& msg) {
-	can_Message_t txmsg;
-
-	txmsg.id = axis.config_.can.node_id << NUM_CMD_ID_BITS;
-	txmsg.id += MSG_GET_ADC_VOLTAGE;
-	txmsg.isExt = axis.config_.can.is_extended;
-	txmsg.len = 8;
-
-	auto gpio_num = can_getSignal<uint8_t>(msg, 0, 8, true);
-	if (gpio_num < GPIO_COUNT) {
-		auto voltage = GetAdcVoltage(get_gpio(gpio_num));
-		can_setSignal<float>(txmsg, voltage, 0, 32, true);
-		return canbus_->send_message(txmsg);
-	} else {
+bool HuronODriveCAN::GetMotorError(uint64_t& motor_error) {
+	can_Message_t msg;
+  msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
+  msg.id += HuronODriveCAN::MSG_GET_MOTOR_ERROR;
+	msg.rtr = true;
+  msg.isExt = false;
+  msg.len = 8;
+	// Sends message with RTR on
+	canbus_->send_message(msg);
+	if (!canbus_->recv_message(msg)) {
 		return false;
 	}
+  motor_error = can_getSignal<uint64_t>(msg, 0, 64, true);
+  return true;
+}
+bool HuronODriveCAN::GetEncoderError(uint32_t& encoder_error) {
+	can_Message_t msg;
+  msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
+  msg.id += HuronODriveCAN::MSG_GET_ENCODER_ERROR;
+	msg.rtr = true;
+  msg.isExt = false;
+  msg.len = 8;
+	// Sends message with RTR on
+	canbus_->send_message(msg);
+	if (!canbus_->recv_message(msg)) {
+		return false;
+	}
+  encoder_error = can_getSignal<uint32_t>(msg, 0, 32, true);
+  return true;
+}
+
+bool HuronODriveCAN::GetControllerError(uint32_t& controller_error) {
+	can_Message_t msg;
+  msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
+  msg.id += HuronODriveCAN::MSG_GET_CONTROLLER_ERROR;
+	msg.rtr = true;
+  msg.isExt = false;
+  msg.len = 8;
+	// Sends message with RTR on
+	canbus_->send_message(msg);
+	if (!canbus_->recv_message(msg)) {
+		return false;
+	}
+  controller_error = can_getSignal<uint32_t>(msg, 0, 32, true);
+  return true;
+}
+
+bool HuronODriveCAN::GetSensorlessError(uint32_t& sensorless_error) {
+	can_Message_t msg;
+  msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
+  msg.id += HuronODriveCAN::MSG_GET_SENSORLESS_ERROR;
+	msg.rtr = true;
+  msg.isExt = false;
+  msg.len = 8;
+	// Sends message with RTR on
+	canbus_->send_message(msg);
+	if (!canbus_->recv_message(msg)) {
+		return false;
+	}
+  sensorless_error = can_getSignal<uint32_t>(msg, 0, 32, true);
+  return true;
+}
+
+bool HuronODriveCAN::GetEncoderEstimates(float& pos, float& vel) {
+	can_Message_t msg;
+  msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
+  msg.id += HuronODriveCAN::MSG_GET_ENCODER_ESTIMATES;
+	msg.rtr = true;
+  msg.isExt = false;
+  msg.len = 8;
+	// Sends message with RTR on
+	canbus_->send_message(msg);
+	if (!canbus_->recv_message(msg)) {
+		return false;
+	}
+  pos = can_getSignal<float>(msg, 0, 32, true);
+  vel = can_getSignal<float>(msg, 32, 32, true);
+  return true;
+}
+
+bool HuronODriveCAN::GetEncoderCount(int32_t& shadow_cnt, int32_t& cnt_cpr) {
+	can_Message_t msg;
+  msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
+  msg.id += HuronODriveCAN::MSG_GET_ENCODER_COUNT;
+	msg.rtr = true;
+  msg.isExt = false;
+  msg.len = 8;
+	// Sends message with RTR on
+	canbus_->send_message(msg);
+	if (!canbus_->recv_message(msg)) {
+		return false;
+	}
+  shadow_cnt = can_getSignal<int32_t>(msg, 0, 32, true);
+  cnt_cpr = can_getSignal<int32_t>(msg, 32, 32, true);
+  return true;
+}
+
+bool HuronODriveCAN::GetIq(float& iq_setpoint, float& iq_measured) {
+	can_Message_t msg;
+  msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
+  msg.id += HuronODriveCAN::MSG_GET_IQ;
+	msg.rtr = true;
+  msg.isExt = false;
+  msg.len = 8;
+	// Sends message with RTR on
+	canbus_->send_message(msg);
+	if (!canbus_->recv_message(msg)) {
+		return false;
+	}
+  iq_setpoint = can_getSignal<float>(msg, 0, 32, true);
+  iq_measured = can_getSignal<float>(msg, 32, 32, true);
+  return true;
+}
+
+bool HuronODriveCAN::GetSensorlessEstimates(float& pos, float& vel) {
+	can_Message_t msg;
+  msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
+  msg.id += HuronODriveCAN::MSG_GET_SENSORLESS_ESTIMATES;
+	msg.rtr = true;
+  msg.isExt = false;
+  msg.len = 8;
+	// Sends message with RTR on
+	canbus_->send_message(msg);
+	if (!canbus_->recv_message(msg)) {
+		return false;
+	}
+  pos = can_getSignal<float>(msg, 0, 32, true);
+  vel = can_getSignal<float>(msg, 32, 32, true);
+  return true;
+}
+
+bool HuronODriveCAN::GetBusVoltageCurrent(float& bus_voltage, float& bus_current) {
+	can_Message_t msg;
+  msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
+  msg.id += HuronODriveCAN::MSG_GET_BUS_VOLTAGE_CURRENT;
+	msg.rtr = true;
+  msg.isExt = false;
+  msg.len = 8;
+	// Sends message with RTR on
+	canbus_->send_message(msg);
+	if (!canbus_->recv_message(msg)) {
+		return false;
+	}
+  bus_voltage = can_getSignal<float>(msg, 0, 32, true);
+  bus_current = can_getSignal<float>(msg, 32, 32, true);
+  return true;
+}
+
+bool HuronODriveCAN::GetAdcVoltage(float& adc_voltage) {
+	can_Message_t msg;
+  msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
+  msg.id += HuronODriveCAN::MSG_GET_ADC_VOLTAGE;
+	msg.rtr = false;
+  msg.isExt = false;
+  msg.len = 8;
+	// Sends message with RTR on
+	canbus_->send_message(msg);
+	if (!canbus_->recv_message(msg)) {
+		return false;
+	}
+  adc_voltage = can_getSignal<float>(msg, 0, 32, true);
+  return true;
+}
+
+bool HuronODriveCAN::SetAxisNodeid(uint32_t axis_id) {
+	can_Message_t msg;
+  msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
+  msg.id += HuronODriveCAN::MSG_SET_AXIS_NODE_ID;
+  msg.isExt = false;
+  msg.len = 8;
+  can_setSignal<uint32_t>(msg, axis_id, 0, 32, true);
+  return canbus_->send_message(msg);
+}
+
+bool HuronODriveCAN::SetAxisRequestedState(uint32_t state) {
+	can_Message_t msg;
+  msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
+  msg.id += HuronODriveCAN::MSG_SET_AXIS_REQUESTED_STATE;
+  msg.isExt = false;
+  msg.len = 8;
+  can_setSignal<uint32_t>(msg, state, 0, 32, true);
+  return canbus_->send_message(msg);
+}
+
+bool HuronODriveCAN::SetAxisStartupConfig() {
+	// Not Implemented
+	return false;
+}
+
+bool HuronODriveCAN::SetInputPos(float input_pos, int16_t vel_ff, int16_t torque_ff) {
+	can_Message_t msg;
+  msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
+  msg.id += HuronODriveCAN::MSG_SET_INPUT_POS;
+  msg.isExt = false;
+  msg.len = 8;
+  can_setSignal<float>(msg, input_pos, 0, 32, true);
+  can_setSignal<int16_t>(msg, input_pos, 32, 16, true, 0.001, 0);
+  can_setSignal<int16_t>(msg, input_pos, 48, 16, true, 0.001, 0);
+  return canbus_->send_message(msg);
+}
+
+bool HuronODriveCAN::SetInputVel(float input_vel, float torque_ff) {
+	can_Message_t msg;
+  msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
+  msg.id += HuronODriveCAN::MSG_SET_INPUT_VEL;
+  msg.isExt = false;
+  msg.len = 8;
+  can_setSignal<float>(msg, input_vel, 0, 32, true);
+  can_setSignal<float>(msg, torque_ff, 32, 32, true);
+  return canbus_->send_message(msg);
+}
+
+bool HuronODriveCAN::SetInputTorque(float input_torque) {
+	can_Message_t msg;
+  msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
+  msg.id += HuronODriveCAN::MSG_SET_INPUT_TORQUE;
+  msg.isExt = false;
+  msg.len = 8;
+  can_setSignal<float>(msg, input_torque, 0, 32, true);
+  return canbus_->send_message(msg);
+}
+
+bool HuronODriveCAN::SetControllerModes(int32_t control_mode, int32_t input_mode) {
+	can_Message_t msg;
+  msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
+  msg.id += HuronODriveCAN::MSG_SET_CONTROLLER_MODES;
+  msg.isExt = false;
+  msg.len = 8;
+  can_setSignal<int32_t>(msg, control_mode, 0, 32, true);
+  can_setSignal<int32_t>(msg, input_mode, 32, 32, true);
+  return canbus_->send_message(msg);
+}
+
+bool HuronODriveCAN::SetLimits(float velocity_limit, float current_limit) {
+	can_Message_t msg;
+  msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
+  msg.id += HuronODriveCAN::MSG_SET_LIMITS;
+  msg.isExt = false;
+  msg.len = 8;
+  can_setSignal<float>(msg, velocity_limit, 0, 32, true);
+  can_setSignal<float>(msg, current_limit, 32, 32, true);
+  return canbus_->send_message(msg);
+}
+
+bool HuronODriveCAN::SetTrajVelLimit(float traj_vel_limit) {
+	can_Message_t msg;
+  msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
+  msg.id += HuronODriveCAN::MSG_SET_TRAJ_VEL_LIMIT;
+  msg.isExt = false;
+  msg.len = 8;
+  can_setSignal<float>(msg, traj_vel_limit, 0, 32, true);
+  return canbus_->send_message(msg);
+}
+
+bool HuronODriveCAN::SetTrajAccelLimits(float traj_accel_limit, float traj_decel_limit) {
+	can_Message_t msg;
+  msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
+  msg.id += HuronODriveCAN::MSG_SET_TRAJ_ACCEL_LIMITS;
+  msg.isExt = false;
+  msg.len = 8;
+  can_setSignal<float>(msg, traj_accel_limit, 0, 32, true);
+  can_setSignal<float>(msg, traj_decel_limit, 32, 32, true);
+  return canbus_->send_message(msg);
+}
+
+bool HuronODriveCAN::SetTrajInertia(float traj_inertia) {
+	can_Message_t msg;
+  msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
+  msg.id += HuronODriveCAN::MSG_SET_TRAJ_INERTIA;
+  msg.isExt = false;
+  msg.len = 8;
+  can_setSignal<float>(msg, traj_inertia, 0, 32, true);
+  return canbus_->send_message(msg);
+}
+
+bool HuronODriveCAN::SetLinearCount(int32_t position) {
+	can_Message_t msg;
+  msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
+  msg.id += HuronODriveCAN::MSG_SET_LINEAR_COUNT;
+  msg.isExt = false;
+  msg.len = 8;
+  can_setSignal<int32_t>(msg, position, 0, 32, true);
+  return canbus_->send_message(msg);
+}
+
+bool HuronODriveCAN::SetPosGain(float pos_gain) {
+	can_Message_t msg;
+  msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
+  msg.id += HuronODriveCAN::MSG_SET_POS_GAIN;
+  msg.isExt = false;
+  msg.len = 8;
+  can_setSignal<float>(msg, pos_gain, 0, 32, true);
+  return canbus_->send_message(msg);
+}
+
+bool HuronODriveCAN::SetVelGains(float vel_gain, float vel_interator_gain) {
+	can_Message_t msg;
+  msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
+  msg.id += HuronODriveCAN::MSG_SET_VEL_GAINS;
+  msg.isExt = false;
+  msg.len = 8;
+  can_setSignal<float>(msg, vel_gain, 0, 32, true);
+  can_setSignal<float>(msg, vel_interator_gain, 32, 32, true);
+  return canbus_->send_message(msg);
+}
+
+bool HuronODriveCAN::Nmt() {
+	can_Message_t msg;
+  msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
+  msg.id += HuronODriveCAN::MSG_CO_NMT_CTRL;
+  msg.isExt = false;
+  msg.len = 8;
+  return canbus_->send_message(msg);
+}
+
+bool HuronODriveCAN::Estop() {
+	can_Message_t msg;
+  msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
+  msg.id += HuronODriveCAN::MSG_ODRIVE_ESTOP;
+  msg.isExt = false;
+  msg.len = 8;
+	// Sends message with RTR on
+	return canbus_->send_message(msg);
 }
 

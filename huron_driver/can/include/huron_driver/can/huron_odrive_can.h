@@ -1,6 +1,10 @@
 #ifndef __HURON_ODRIVE_CAN_H_
 #define __HURON_ODRIVE_CAN_H_
 
+/**
+* See https://docs.odriverobotics.com/v/0.5.6/can-protocol.html for more information about this CAN API.
+* */
+
 #include "canbus.h"
 
 class HuronODriveCAN {
@@ -43,48 +47,43 @@ class HuronODriveCAN {
 			: canbus_(canbus), axis_id_(axis_id) {}
 
 		bool init();
-		uint32_t ServiceStack();
 
 	// private:
 
-		void HandleCanMessage(const can_Message_t& msg);
-
-		void DoCommand(const can_Message_t& cmd);
-		
 		// Get functions (msg.rtr bit must be set)
-		bool GetMotorError();
-		bool GetEncoderError();
-		bool GetControllerError();
-		bool GetSensorlessError();
-		bool GetEncoderEstimates();
-		bool GetEncoderCount();
-		bool GetIq();
-		bool GetSensorlessEstimates();
-		bool GetBusVoltageCurrent();
+		bool GetMotorError(uint64_t& motor_error);
+		bool GetEncoderError(uint32_t& encoder_error);
+		bool GetControllerError(uint32_t& controller_error);
+		bool GetSensorlessError(uint32_t& sensorless_error);
+		bool GetEncoderEstimates(float& pos, float& vel);
+		bool GetEncoderCount(int32_t& shadow_cnt, int32_t& cnt_cpr);
+		bool GetIq(float& iq_setpoint, float& iq_measured);
+		bool GetSensorlessEstimates(float& pos, float& vel);
+		bool GetBusVoltageCurrent(float& bus_voltage, float& bus_current);
 		// msg.rtr bit must NOT be set
-		bool GetAdcVoltage(const can_Message_t& msg);
+		bool GetAdcVoltage(float& adc_voltage);
 
 		// Set functions
-		static void SetAxisNodeid(const can_Message_t& msg);
-		static void SetAxisRequestedState(const can_Message_t& msg);
-		static void SetAxisStartupConfig(const can_Message_t& msg);
-		static void SetInputPos(const can_Message_t& msg);
-		static void SetInputVel(const can_Message_t& msg);
-		static void SetInputTorque(const can_Message_t& msg);
-		static void SetControllerModes(const can_Message_t& msg);
-		static void SetLimits(const can_Message_t& msg);
-		static void SetTrajVelLimit(const can_Message_t& msg);
-		static void SetTrajAccelLimits(const can_Message_t& msg);
-		static void SetTrajInertia(const can_Message_t& msg);
-		static void SetLinearCount(const can_Message_t& msg);
-		static void SetPosGain(const can_Message_t& msg);
-		static void SetVelGains(const can_Message_t& msg);
+		bool SetAxisNodeid(uint32_t axis_id);
+		bool SetAxisRequestedState(uint32_t state);
+		bool SetAxisStartupConfig();
+		bool SetInputPos(float input_pos, int16_t vel_ff, int16_t torque_ff);
+		bool SetInputVel(float input_vel, float torque_ff);
+		bool SetInputTorque(float input_torque);
+		bool SetControllerModes(int32_t control_mode, int32_t input_mode);
+		bool SetLimits(float velocity_limit, float current_limit);
+		bool SetTrajVelLimit(float traj_vel_limit);
+		bool SetTrajAccelLimits(float traj_accel_limit, float traj_decel_limit);
+		bool SetTrajInertia(float traj_inertia);
+		bool SetLinearCount(int32_t position);
+		bool SetPosGain(float pos_gain);
+		bool SetVelGains(float vel_gain, float vel_interator_gain);
 
 		// Other functions
-		static void Nmt(const can_Message_t& msg);
-		static void Estop(const can_Message_t& msg);
-		static void ClearErrors(const can_Message_t& msg);
-		static void StartAnticogging(const can_Message_t& msg);
+		bool Nmt();
+		bool Estop();
+		bool ClearErrors();
+		bool StartAnticogging();
 
 		static constexpr uint8_t NUM_NODE_ID_BITS = 6;
 		static constexpr uint8_t NUM_CMD_ID_BITS = 11 - NUM_NODE_ID_BITS;
