@@ -2,7 +2,7 @@
 #include <huron_driver/can/huron_canbus.h>
 #include "huron/utils/time.h"
 
-void ReadMessage(uint32_t target_id) {
+void ReadMessage(can_Message_t& msg) {
   HURONCanBus hcb{"can0", 0};
   std::cout << "HURONCanBus initialized successfully. Waiting for message...\n";
 
@@ -13,9 +13,7 @@ void ReadMessage(uint32_t target_id) {
     std::cout << "Trial #" << i << std::endl;
     auto start = std::chrono::steady_clock::now();
     while (1) {
-      can_Message_t msg;
-      hcb.recv_message(msg);
-      if (msg.id == target_id) {
+      if (hcb.recv_message(msg)) {
         // handle CAN frames
         // msg val startBit length isIntel
         float pos = can_getSignal<float>(msg, 0, 32, true);
@@ -36,6 +34,8 @@ void ReadMessage(uint32_t target_id) {
 }
 
 int main(int argc, char* argv[]) { 
-  ReadMessage(9);
+  can_Message_t msg;
+  msg.id = 9;
+  ReadMessage(msg);
   return 0;
 }
