@@ -1,8 +1,8 @@
 #include <iostream>
-#include <huron_driver/can/huron_canbus.h>
-#include <huron_driver/can/huron_odrive_can.h>
-#include <huron_driver/can/ODriveEnums.h>
-#include <huron_driver/config/config.h>
+#include "huron/driver/can/huron_canbus.h"
+#include "huron/driver/can/huron_odrive_can.h"
+#include "huron/driver/can/ODriveEnums.h"
+#include "huron/driver/config/config.h"
 #include <chrono>
 #include <thread>
 

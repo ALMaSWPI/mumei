@@ -1,9 +1,10 @@
-project (test_can)
+project (test_odrive_can)
 
-add_executable(receive_sockcanpp receive_sockcanpp.cc)
+add_executable(move_motor move_motor.cc)
 # add_executable(send_sockcanpp receive_sockcanpp.cc)
 
-target_link_libraries(receive_sockcanpp
+target_link_libraries(move_motor
     PUBLIC
-        sockcanpp
+        huron::driver::can
+        huron::driver::config
 )

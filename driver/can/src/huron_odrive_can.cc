@@ -1,5 +1,5 @@
 #include <functional>
-#include "huron_driver/can/huron_odrive_can.h"
+#include "huron/driver/can/huron_odrive_can.h"
 
 
 bool HuronODriveCAN::init() {
