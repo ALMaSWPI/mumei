@@ -12,4 +12,5 @@ target_link_libraries(send_msg
 target_link_libraries(read_msg
     PUBLIC
         huron_driver::can
+        huron::utils
 )
