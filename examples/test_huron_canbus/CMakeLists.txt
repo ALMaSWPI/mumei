@@ -6,6 +6,7 @@ add_executable(read_msg read_msg.cc)
 target_link_libraries(send_msg
     PUBLIC
         huron_driver::can
+        huron_driver::config
 )
 
 target_link_libraries(read_msg
