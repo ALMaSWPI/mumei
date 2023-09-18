@@ -22,8 +22,6 @@ bool HURONCanBus::recv_message(can_Message_t& message, uint32_t timeout) {
 	auto start = std::chrono::steady_clock::now();
 	sockcanpp::milliseconds actual_timeout{std::min(timeout, uint32_t(recv_timeout_.count()))};
 	while (true) {
-		if (timeout && since(start).count() > timeout)
-			break;
 		if (can_driver_.waitForMessages(actual_timeout)) {
 			// read a single message
 			sockcanpp::CanMessage rx_msg = can_driver_.readMessage();
@@ -38,6 +36,8 @@ bool HURONCanBus::recv_message(can_Message_t& message, uint32_t timeout) {
 				return true;
 			}
 		}
+		if (since(start).count() > timeout)
+			break;
 	}
 	return false;
 }
