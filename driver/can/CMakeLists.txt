@@ -2,7 +2,7 @@ project(huron_driver_can)
 
 # Add a library
 add_library(${PROJECT_NAME} src/huron_canbus.cc src/huron_odrive_can.cc)
-add_library(huron_driver::can ALIAS ${PROJECT_NAME})
+add_library(huron::driver::can ALIAS ${PROJECT_NAME})
 
 target_include_directories( ${PROJECT_NAME}
     PUBLIC ${PROJECT_SOURCE_DIR}/include

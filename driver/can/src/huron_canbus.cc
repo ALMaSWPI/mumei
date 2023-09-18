@@ -1,5 +1,5 @@
 #include "CanDriver.hpp"
-#include "huron_driver/can/huron_canbus.h"
+#include "huron/driver/can/huron_canbus.h"
 #include "huron/utils/time.h"
 
 

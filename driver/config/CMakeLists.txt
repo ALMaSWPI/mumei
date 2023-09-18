@@ -1,7 +1,7 @@
 project(huron_driver_config)
 
 add_library(${PROJECT_NAME} INTERFACE)
-add_library(huron_driver::config ALIAS ${PROJECT_NAME})
+add_library(huron::driver::config ALIAS ${PROJECT_NAME})
 
 target_include_directories(${PROJECT_NAME}
     INTERFACE

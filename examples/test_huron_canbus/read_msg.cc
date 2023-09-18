@@ -1,5 +1,5 @@
 #include <iostream>
-#include <huron_driver/can/huron_canbus.h>
+#include "huron/driver/can/huron_canbus.h"
 #include "huron/utils/time.h"
 
 void ReadMessage(can_Message_t& msg) {
