@@ -3,8 +3,8 @@
 #include "huron/driver/can/huron_odrive_can.h"
 #include "huron/driver/can/ODriveEnums.h"
 #include "huron/driver/config/config.h"
-#include <chrono>
-#include <thread>
+#include <chrono> //NOLINT
+#include <thread> //NOLINT
 
 using namespace std::chrono_literals;
 

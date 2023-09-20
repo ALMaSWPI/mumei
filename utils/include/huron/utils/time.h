@@ -1,6 +1,8 @@
 #pragma once
+#ifndef __HURON_UTILS_TIME_H
+#define __HURON_UTILS_TIME_H
 
-#include <chrono>
+#include <chrono> //NOLINT
 
 // Source: https://stackoverflow.com/questions/2808398/easily-measure-elapsed-time
 template <
@@ -13,3 +15,4 @@ auto since(std::chrono::time_point<clock_t, duration_t> const& start)
     return std::chrono::duration_cast<result_t>(clock_t::now() - start);
 }
 
+#endif /* __HURON_UTILS_TIME_H */
