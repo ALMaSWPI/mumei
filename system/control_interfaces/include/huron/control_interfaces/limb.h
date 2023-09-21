@@ -9,7 +9,7 @@ namespace huron {
 class Limb : public MovingGroupComponent {
 public:
     void Init(std::vector<Joint> joints);
-    void AddJoint(Joint joint);
+    void AddJoint(Joint& joint);
 
 private:
     std::vector<Joint> joints_;
