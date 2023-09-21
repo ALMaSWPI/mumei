@@ -9,7 +9,7 @@
 #include <iterator>
 
 struct can_Message_t {
-  uint32_t id = 0x000;	// 11-bit max is 0x7ff, 29-bit max is 0x1FFFFFFF
+  uint32_t id = 0x000;  // 11-bit max is 0x7ff, 29-bit max is 0x1FFFFFFF
   bool isExt = false;
   bool rtr = false;
   uint8_t len = 8;

@@ -38,7 +38,8 @@ bool HuronODriveCAN::GetEncoderError(uint32_t& encoder_error, uint32_t timeout) 
   return true;
 }
 
-bool HuronODriveCAN::GetControllerError(uint32_t& controller_error, uint32_t timeout) {
+bool HuronODriveCAN::GetControllerError(uint32_t& controller_error,
+                                        uint32_t timeout) {
   can_Message_t msg;
   msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
   msg.id += HuronODriveCAN::MSG_GET_CONTROLLER_ERROR;
@@ -54,7 +55,8 @@ bool HuronODriveCAN::GetControllerError(uint32_t& controller_error, uint32_t tim
   return true;
 }
 
-bool HuronODriveCAN::GetSensorlessError(uint32_t& sensorless_error, uint32_t timeout) {
+bool HuronODriveCAN::GetSensorlessError(uint32_t& sensorless_error,
+                                        uint32_t timeout) {
   can_Message_t msg;
   msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
   msg.id += HuronODriveCAN::MSG_GET_SENSORLESS_ERROR;
@@ -70,7 +72,8 @@ bool HuronODriveCAN::GetSensorlessError(uint32_t& sensorless_error, uint32_t tim
   return true;
 }
 
-bool HuronODriveCAN::GetEncoderEstimates(float& pos, float& vel, uint32_t timeout) {
+bool HuronODriveCAN::GetEncoderEstimates(float& pos, float& vel,
+                                         uint32_t timeout) {
   can_Message_t msg;
   msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
   msg.id += HuronODriveCAN::MSG_GET_ENCODER_ESTIMATES;
@@ -87,7 +90,8 @@ bool HuronODriveCAN::GetEncoderEstimates(float& pos, float& vel, uint32_t timeou
   return true;
 }
 
-bool HuronODriveCAN::GetEncoderCount(int32_t& shadow_cnt, int32_t& cnt_cpr, uint32_t timeout) {
+bool HuronODriveCAN::GetEncoderCount(int32_t& shadow_cnt, int32_t& cnt_cpr,
+                                     uint32_t timeout) {
   can_Message_t msg;
   msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
   msg.id += HuronODriveCAN::MSG_GET_ENCODER_COUNT;
@@ -104,7 +108,8 @@ bool HuronODriveCAN::GetEncoderCount(int32_t& shadow_cnt, int32_t& cnt_cpr, uint
   return true;
 }
 
-bool HuronODriveCAN::GetIq(float& iq_setpoint, float& iq_measured, uint32_t timeout) {
+bool HuronODriveCAN::GetIq(float& iq_setpoint, float& iq_measured,
+                           uint32_t timeout) {
   can_Message_t msg;
   msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
   msg.id += HuronODriveCAN::MSG_GET_IQ;
@@ -121,7 +126,8 @@ bool HuronODriveCAN::GetIq(float& iq_setpoint, float& iq_measured, uint32_t time
   return true;
 }
 
-bool HuronODriveCAN::GetSensorlessEstimates(float& pos, float& vel, uint32_t timeout) {
+bool HuronODriveCAN::GetSensorlessEstimates(float& pos, float& vel,
+                                            uint32_t timeout) {
   can_Message_t msg;
   msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
   msg.id += HuronODriveCAN::MSG_GET_SENSORLESS_ESTIMATES;
@@ -138,7 +144,9 @@ bool HuronODriveCAN::GetSensorlessEstimates(float& pos, float& vel, uint32_t tim
   return true;
 }
 
-bool HuronODriveCAN::GetBusVoltageCurrent(float& bus_voltage, float& bus_current, uint32_t timeout) {
+bool HuronODriveCAN::GetBusVoltageCurrent(float& bus_voltage,
+                                          float& bus_current,
+                                          uint32_t timeout) {
   can_Message_t msg;
   msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
   msg.id += HuronODriveCAN::MSG_GET_BUS_VOLTAGE_CURRENT;
@@ -196,7 +204,8 @@ bool HuronODriveCAN::SetAxisStartupConfig() {
   return false;
 }
 
-bool HuronODriveCAN::SetInputPos(float input_pos, int16_t vel_ff, int16_t torque_ff) {
+bool HuronODriveCAN::SetInputPos(float input_pos, int16_t vel_ff,
+                                 int16_t torque_ff) {
   can_Message_t msg;
   msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
   msg.id += HuronODriveCAN::MSG_SET_INPUT_POS;
@@ -229,7 +238,8 @@ bool HuronODriveCAN::SetInputTorque(float input_torque) {
   return canbus_->send_message(msg);
 }
 
-bool HuronODriveCAN::SetControllerModes(int32_t control_mode, int32_t input_mode) {
+bool HuronODriveCAN::SetControllerModes(int32_t control_mode,
+                                        int32_t input_mode) {
   can_Message_t msg;
   msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
   msg.id += HuronODriveCAN::MSG_SET_CONTROLLER_MODES;
@@ -261,7 +271,8 @@ bool HuronODriveCAN::SetTrajVelLimit(float traj_vel_limit) {
   return canbus_->send_message(msg);
 }
 
-bool HuronODriveCAN::SetTrajAccelLimits(float traj_accel_limit, float traj_decel_limit) {
+bool HuronODriveCAN::SetTrajAccelLimits(float traj_accel_limit,
+                                        float traj_decel_limit) {
   can_Message_t msg;
   msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
   msg.id += HuronODriveCAN::MSG_SET_TRAJ_ACCEL_LIMITS;
