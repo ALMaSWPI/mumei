@@ -8,26 +8,18 @@
 namespace huron {
 
 class Joint : public MovingComponent{
-  enum JointType{
-    REVOLUTE = 1,
-    PRISMATIC = 2
-  };
-
 public:
-  float GetPosition();
-  float GetVelocity();
-  float GetAcceleration();
+  explicit Joint(std::unique_ptr<Motor> motor,
+                 std::unique_ptr<Encoder> encoder);
+  bool Move(float value) override;
+  bool Stop() override;
+  virtual float GetPosition() = 0;
+  virtual float GetVelocity() = 0;
+  virtual float GetAcceleration() = 0;
 
-private:
-  JointType joint_type_;
+protected:
   std::unique_ptr<Motor> motor_;
   std::unique_ptr<Encoder> encoder_;
-  float gear_ratio_1_ = 1.0;
-  float gear_ratio_2_ = 1.0;
-
-  float position_ = 0.0;
-  float velocity_ = 0.0;
-  float acceleration_ = 0.0;
 };
 
 }
