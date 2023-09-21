@@ -12,7 +12,7 @@ void ReceiveCanFramesExample() {
     std::cout << "Message data:" << std::endl;
     std::cout << "\tCAN ID: "
               << uint32_t(receivedMessage.getCanId()) << std::endl;
-    std::cout <<  "\tFrame Data: " 
+    std::cout <<  "\tFrame Data: "
               << receivedMessage.getFrameData() << std::endl;
   }
 }
