@@ -14,7 +14,7 @@ struct can_Message_t {
   bool rtr = false;
   uint8_t len = 8;
   uint8_t buf[8] = {0, 0, 0, 0, 0, 0, 0, 0};
-} ;
+};
 
 struct can_Signal_t {
   const uint8_t startBit;
@@ -29,7 +29,6 @@ struct can_Cyclic_t {
   uint32_t lastTime_ms;
 };
 
-#include <iterator>
 template <typename T>
 constexpr T can_getSignal(can_Message_t msg, const uint8_t startBit,
 			  const uint8_t length, const bool isIntel) {
