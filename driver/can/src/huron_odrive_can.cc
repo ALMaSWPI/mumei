@@ -22,7 +22,8 @@ bool HuronODriveCAN::GetMotorError(uint64_t& motor_error, uint32_t timeout) {
     return true;
 }
 
-bool HuronODriveCAN::GetEncoderError(uint32_t& encoder_error, uint32_t timeout) {
+bool HuronODriveCAN::GetEncoderError(uint32_t& encoder_error,
+                                     uint32_t timeout) {
   can_Message_t msg;
   msg.id = axis_id_ << HuronODriveCAN::NUM_CMD_ID_BITS;
   msg.id += HuronODriveCAN::MSG_GET_ENCODER_ERROR;

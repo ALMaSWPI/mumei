@@ -6,9 +6,9 @@
 #include <chrono> //NOLINT
 #include <thread> //NOLINT
 
-using namespace std::chrono_literals;
+using namespace std::chrono_literals; //NOLINT
 
-int main(int argc, char* argv[]) { 
+int main(int argc, char* argv[]) {
   HURONCanBus hcb{"can0", 0};
   std::cout << "HURONCanBus initialized successfully.\n";
   can_Message_t msg;
@@ -52,7 +52,8 @@ int main(int argc, char* argv[]) {
   msg.id += HuronODriveCAN::MSG_SET_AXIS_REQUESTED_STATE;
   msg.isExt = false;
   msg.len = 8;
-  can_setSignal<uint32_t>(msg, AXIS_STATE_FULL_CALIBRATION_SEQUENCE, 0, 32, true);
+  can_setSignal<uint32_t>(msg, AXIS_STATE_FULL_CALIBRATION_SEQUENCE, 0, 32,
+                          true);
   hcb.send_message(msg);
 
   std::this_thread::sleep_for(25s);

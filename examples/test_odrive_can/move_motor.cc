@@ -1,14 +1,13 @@
 #include <iostream>
-#include <chrono> //NOLINT
-#include <thread> //NOLINT
+#include <chrono>  //NOLINT
+#include <thread>  //NOLINT
 #include "huron/driver/can/huron_canbus.h"
 #include "huron/driver/can/huron_odrive_can.h"
 #include "huron/driver/can/ODriveEnums.h"
 
-using namespace std::chrono_literals;
+using namespace std::chrono_literals;  //NOLINT
 
-
-int main(int argc, char* argv[]) { 
+int main(int argc, char* argv[]) {
   HURONCanBus hcb{"can0", 0};
   HuronODriveCAN hoc{&hcb, 0};
 
