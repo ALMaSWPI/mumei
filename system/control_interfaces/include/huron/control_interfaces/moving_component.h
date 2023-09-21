@@ -1,11 +1,13 @@
-#include "control_interfaces/GenericComponent.h"
+#pragma once
 
-#ifndef __CI_MOVING_COMPONENT_H
-#define __CI_MOVING_COMPONENT_H
+#include "generic_component.h"
 
-class MovingComponent: GenericComponent{
-    virtual bool move(){} =0;
+namespace huron {
+
+class MovingComponent: public GenericComponent{
+    virtual bool Move(float val) = 0;
     
-    virtual bool stop(){} = 0;
+    virtual bool Stop() = 0;
+};
+
 }
-#endif

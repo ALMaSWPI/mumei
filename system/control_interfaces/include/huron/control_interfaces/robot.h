@@ -1,13 +1,14 @@
-#include "control_interfaces/Limb.h"
+#pragma once
 
-#ifndef __CI_ROBOT_H
-#define __CI_ROBOT_H
+#include "limb.h"
+
+namespace huron {
 
 class Robot {
 public:
-    void Init(Limb limb_list[]);
+    void Init(std::vector<Limb> limbs);
 private:
-    Limb limbs_;
-
+    std::vector<Limb> limbs_;
 };
-#endif
+
+}

@@ -1,36 +1,33 @@
-#ifndef __CI_JOINT_H
-#define __CI_JOINT_H
+#pragma once
 
-#include "control_interfaces/MovingComponent.h"
-#include "control_interfaces/Motor.h"
-#include "control_interfaces/Encoder.h"
+#include <memory>
+#include "moving_component.h"
+#include "motor.h"
+#include "encoder.h"
 
+namespace huron {
 
-enum JointType{
-  REVOLUTE = 1
-  PRISMATIC = 2
-}
+class Joint : public MovingComponent{
+  enum JointType{
+    REVOLUTE = 1,
+    PRISMATIC = 2
+  };
 
-class Joint : MovingComponent{
-    
 public:
-  void Init();
-  void Move(float value);
-  void Stop();
   float GetPosition();
   float GetVelocity();
   float GetAcceleration();
 
 private:
-  JointType joint_type_ = nullptr;
-  Motor motor_ = nullptr;
-  Encoder encoder_ = nullptr;
-  gear_ratio_1_ = 1;
-  gear_ratio_2_ = 1;
+  JointType joint_type_;
+  std::unique_ptr<Motor> motor_;
+  std::unique_ptr<Encoder> encoder_;
+  float gear_ratio_1_ = 1.0;
+  float gear_ratio_2_ = 1.0;
 
-  float position_ = 0;
-  float velocity_ = 0;
-  float acceleration_ = 0;
+  float position_ = 0.0;
+  float velocity_ = 0.0;
+  float acceleration_ = 0.0;
+};
 
 }
-#endif

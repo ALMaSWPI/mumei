@@ -1,18 +1,19 @@
-#include "control_interfaces/Joint.h"
-#include "control_interfaces/MovingComponent.h"
+#pragma once
 
-#ifndef __CI_LIMB_H
-#define __CI_LIMB_H
+#include <vector>
+#include "joint.h"
+#include "moving_group_component.h"
 
-class Limb : MovingComponent {
+namespace huron {
+
+class Limb : public MovingGroupComponent {
 public:
-    void Init(Joint joint_list[]);
+    void Init(std::vector<Joint> joints);
     void AddJoint(Joint joint);
-    bool Move(float values[]);
-    bool Stop();
 
 private:
-    std::vector<Joint> joints_[];
+    std::vector<Joint> joints_;
 
 };
-#endif
+
+}
