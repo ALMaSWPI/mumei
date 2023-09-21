@@ -33,7 +33,7 @@ public:
     }
 
     float GetAngleRadian() {
-        return count_ / cpr_ * 2.0 * M_PIf;
+        return count_ / cpr_ * 2.0 * M_PI;
     }
 
     float GetAngleDegree() {
@@ -43,7 +43,7 @@ public:
     virtual float GetVelocity() = 0;
 
     float GetVelocityRadian() {
-        return GetVelocity() / cpr_ * 2 * M_PIf;
+        return GetVelocity() / cpr_ * 2 * M_PI;
     }
 };
 
