@@ -1,5 +1,4 @@
-#ifndef __HURON_ODRIVE_CAN_H_
-#define __HURON_ODRIVE_CAN_H_
+#pragma once
 
 /**
 * See https://docs.odriverobotics.com/v/0.5.6/can-protocol.html for more information about this CAN API.
@@ -56,10 +55,12 @@ class HuronODriveCAN {
 		bool GetControllerError(uint32_t& controller_error, uint32_t timeout = 0);
 		bool GetSensorlessError(uint32_t& sensorless_error, uint32_t timeout = 0);
 		bool GetEncoderEstimates(float& pos, float& vel, uint32_t timeout = 0);
-		bool GetEncoderCount(int32_t& shadow_cnt, int32_t& cnt_cpr, uint32_t timeout = 0);
+		bool GetEncoderCount(int32_t& shadow_cnt, int32_t& cnt_cpr,
+											 uint32_t timeout = 0);
 		bool GetIq(float& iq_setpoint, float& iq_measured, uint32_t timeout = 0);
 		bool GetSensorlessEstimates(float& pos, float& vel, uint32_t timeout = 0);
-		bool GetBusVoltageCurrent(float& bus_voltage, float& bus_current, uint32_t timeout = 0);
+		bool GetBusVoltageCurrent(float& bus_voltage, float& bus_current,
+														uint32_t timeout = 0);
 		// msg.rtr bit must NOT be set
 		bool GetAdcVoltage(float& adc_voltage, uint32_t timeout = 0);
 
@@ -103,4 +104,3 @@ class HuronODriveCAN {
 		bool is_ext_ = false;
 };
 
-#endif	// __HURON_ODRIVE_CAN_H_

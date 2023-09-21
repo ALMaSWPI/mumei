@@ -1,3 +1,5 @@
+#pragma once
+
 #include "canbus.h"
 
 class CanBusMasterBase : public CanBusBase {

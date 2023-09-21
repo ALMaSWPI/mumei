@@ -1,5 +1,4 @@
-#ifndef __HURON_CANBUS_H_
-#define __HURON_CANBUS_H_
+#pragma once
 
 #include "CanDriver.hpp"
 #include "canbus.h"
@@ -52,4 +51,3 @@ public:
 
 };
 
-#endif	// __HURON_CANBUS_H_
