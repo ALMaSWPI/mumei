@@ -1,5 +1,7 @@
 #include "limb.h"
 
+namespace huron {
+
 void Limb::Init(Joint joint_list[]){
     for (std::size_t i = 0; auto& d : joint_list) {
         joints_.push_back(d);
@@ -22,4 +24,6 @@ bool Limb::Stop(){
         d.motor_.Stop();
     }
     return True;
+}
+
 }

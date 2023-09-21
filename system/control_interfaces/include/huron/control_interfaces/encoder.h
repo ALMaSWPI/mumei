@@ -12,18 +12,37 @@ private:
     float cpr_;
 
 public:
+    Encoder();
+    Encoder(const Encoder&) = delete;
+    Encoder& operator=(const Encoder&) = delete;
+    ~Encoder() = default;
+
     void  Reset() {
         count_ = 0.0;
         prev_count_ = 0.0;
     }
+
     virtual float GetCount() = 0;
-    virtual float GetPrevCount() = 0;
-    virtual float GetCPR() = 0;
-    virtual float GetAngleRadian() = 0;
-    virtual float GetAngleDegree() = 0;
+
+    float GetPrevCount() {
+        return prev_count_;
+    }
+
+    float GetCPR() {
+        return cpr_;
+    }
+
+    float GetAngleRadian() {
+        return count_ / cpr_ * 2.0 * M_PIf;
+    }
+
+    float GetAngleDegree() {
+      return count_ / cpr_ * 360.0;
+    }
 
     virtual float GetVelocity() = 0;
-    float GetVelocityRad() {
+
+    float GetVelocityRadian() {
         return GetVelocity() / cpr_ * 2 * M_PIf;
     }
 };
