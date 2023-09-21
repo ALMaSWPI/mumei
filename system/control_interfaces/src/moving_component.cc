@@ -1,1 +1,0 @@
-#include "moving_component.h"

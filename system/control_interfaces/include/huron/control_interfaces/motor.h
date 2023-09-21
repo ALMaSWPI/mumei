@@ -5,10 +5,16 @@
 namespace huron {
 
 class Motor : public MovingComponent{
+
 public:
-    float GetDesiredValue();
-    virtual bool Stop() = 0;
-    virtual bool Move(float value) = 0;
+    Motor();
+    Motor(const Motor&) = delete;
+    Motor& operator=(const Motor&) = delete;
+    ~Motor() = default;
+
+    float GetDesiredValue() {
+        return desired_value_;
+    }
     virtual bool HasReachGoal() = 0;
 
 private:
