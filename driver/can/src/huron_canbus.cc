@@ -9,11 +9,11 @@ bool HURONCanBus::send_message(const can_Message_t &tx_msg) {
   raw_frame.can_id = tx_msg.id;
   raw_frame.can_dlc = tx_msg.len;
   memcpy(raw_frame.data, tx_msg.buf, tx_msg.len);
-  
+
   sockcanpp::CanMessage msg_to_send(raw_frame);
-  
+
   auto sent_byte_count = can_driver_.sendMessage(msg_to_send);
-  
+
   return sent_byte_count;
 }
 
@@ -40,7 +40,9 @@ bool HURONCanBus::recv_message(can_Message_t& message, uint32_t timeout) {
   return false;
 }
 
-bool HURONCanBus::subscribe(const MsgIdFilterSpecs& filter, on_can_message_cb_t callback, void* ctx, CanSubscription** handle) {
+bool HURONCanBus::subscribe(const MsgIdFilterSpecs& filter,
+                            on_can_message_cb_t callback, void* ctx,
+                            CanSubscription** handle) {
   return false;
 }
 

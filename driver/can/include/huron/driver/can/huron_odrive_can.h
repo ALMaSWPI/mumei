@@ -9,10 +9,10 @@
 class HuronODriveCAN {
 	 public:
 		enum {
-				MSG_CO_NMT_CTRL = 0x000,	// CANOpen NMT Message REC
+				MSG_CO_NMT_CTRL = 0x000,  // CANOpen NMT Message REC
 				MSG_ODRIVE_HEARTBEAT,
 				MSG_ODRIVE_ESTOP,
-				MSG_GET_MOTOR_ERROR,	// Errors
+				MSG_GET_MOTOR_ERROR,  // Errors
 				MSG_GET_ENCODER_ERROR,
 				MSG_GET_SENSORLESS_ERROR,
 				MSG_SET_AXIS_NODE_ID,
@@ -92,7 +92,7 @@ class HuronODriveCAN {
 		// Utility functions
 		static constexpr uint32_t GetNodeId(uint32_t msgID) {
 				return (msgID >> NUM_CMD_ID_BITS);	// Upper 6 or more bits
-		};
+		}
 
 		static constexpr uint8_t GetCmdId(uint32_t msgID) {
 				return (msgID & 0x01F);  // Bottom 5 bits
