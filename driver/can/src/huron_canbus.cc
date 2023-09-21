@@ -30,7 +30,7 @@ bool HURONCanBus::recv_message(can_Message_t& message, uint32_t timeout) {
         message.isExt = rx_msg.getCanId().isExtendedFrameId();
         message.rtr = rx_msg.getCanId().hasRtrFrameFlag();
         message.len = rx_msg.getRawFrame().can_dlc;
-        memcpy(message.buf, rx_msg.getRawFrame().data, message.len); 
+        memcpy(message.buf, rx_msg.getRawFrame().data, message.len);
         return true;
       }
     }

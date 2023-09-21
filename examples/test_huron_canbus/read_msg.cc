@@ -33,7 +33,7 @@ void ReadMessage(can_Message_t& msg) {
   std::cout << "Average latency: " << float(sum_latency)/n_trials << std::endl;
 }
 
-int main(int argc, char* argv[]) { 
+int main(int argc, char* argv[]) {
   can_Message_t msg;
   msg.id = 9;
   ReadMessage(msg);
