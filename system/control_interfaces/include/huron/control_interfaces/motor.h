@@ -1,18 +1,19 @@
-#include "control_interfaces/MovingComponent.h"
+#pragma once
 
-#ifndef __CI_MOTOR_H
-#define __CI_MOTOR_H
+#include "moving_component.h"
 
-class Motor : MovingComponent{
+namespace huron {
+
+class Motor : public MovingComponent{
 public:
     float GetDesiredValue();
     virtual bool Stop() = 0;
     virtual bool Move(float value) = 0;
-    virtual bool SetUp() = 0;
     virtual bool HasReachGoal() = 0;
 
 private:
-    float desired_value;
+    float desired_value_;
 
 };
-#endif
+
+}

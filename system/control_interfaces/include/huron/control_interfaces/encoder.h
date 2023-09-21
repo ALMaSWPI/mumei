@@ -1,25 +1,31 @@
-#include "control_interfaces/GenericComponent.h"
+#pragma once
 
-#ifndef __CI_ENCODER_H
-#define __CI_ENCODER_H
+#include <math.h>
+#include "generic_component.h"
 
-#include "control_interfaces/GenericComponent.h"
-class Encoder : GenericComponent {
+namespace huron {
+
+class Encoder : public GenericComponent {
 private:
     float count_;
     float prev_count_;
     float cpr_;
 
 public:
-    void  Reset();
-    float GetCount();
-    float GetPrevCount();
-    float GetCPR();
-    float GetAngleRadian();
-    float GetAngleDegree();
+    void  Reset() {
+        count_ = 0.0;
+        prev_count_ = 0.0;
+    }
+    virtual float GetCount() = 0;
+    virtual float GetPrevCount() = 0;
+    virtual float GetCPR() = 0;
+    virtual float GetAngleRadian() = 0;
+    virtual float GetAngleDegree() = 0;
 
-    virtual float GetVelocity() = 0 ;
-    float GetVelocityRad(); 
+    virtual float GetVelocity() = 0;
+    float GetVelocityRad() {
+        return GetVelocity() / cpr_ * 2 * M_PIf;
+    }
+};
 
 }
-#endif

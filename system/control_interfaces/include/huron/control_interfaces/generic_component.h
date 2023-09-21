@@ -1,12 +1,13 @@
-#define __CI_GENERIC_COMPONENT_H
-#define __CI_GENERIC_COMPONENT_H
+#pragma once
+
+namespace huron {
 
 class GenericComponent{
     public:
-    void configure();
-    void initialize();
-    void setUp();
-    void terminate();
-
+    virtual void Configure() = 0;
+    virtual void Initialize() = 0;
+    virtual void SetUp() = 0;
+    virtual void Terminate() = 0;
 };
-#endif
+
+}
