@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "huron/exceptions/NotImplementedException.h"
 #include "huron/odrive/torque_motor.h"
 
