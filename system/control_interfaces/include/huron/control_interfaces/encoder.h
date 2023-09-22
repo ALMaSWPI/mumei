@@ -12,13 +12,15 @@ namespace huron {
  * @ingroup control_interfaces
  */
 class Encoder : public GenericComponent {
- private:
-  float count_;
-  float prev_count_;
+ protected:
+  float count_ = 0;
+  float prev_count_ = 0;
+  float velocity_ = 0;
+  float prev_velocity_ = 0;
   float cpr_;
 
  public:
-  Encoder();
+  Encoder(float cpr) : cpr_(cpr) {}
   Encoder(const Encoder&) = delete;
   Encoder& operator=(const Encoder&) = delete;
   ~Encoder() = default;

@@ -1,7 +1,7 @@
 project(huron_system_odrive)
 
-add_library(${PROJECT_NAME} src/huron_encoder.cc src/torque_motor.cc)
-add_library(huron::system::huron ALIAS ${PROJECT_NAME})
+add_library(${PROJECT_NAME} src/encoder.cc src/torque_motor.cc)
+add_library(huron::system::odrive ALIAS ${PROJECT_NAME})
 
 target_include_directories(${PROJECT_NAME}
         PUBLIC
