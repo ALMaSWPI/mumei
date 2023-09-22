@@ -1,24 +1,30 @@
 #pragma once
 
+#include <vector>
+
 #include "moving_component.h"
 
 namespace huron {
 
-  class Motor : public MovingComponent {
+/**
+ * Abstract class for a motor.
+ *
+ * A motor takes in input value(s) and actuates accordingly. It does not
+ * need to know its position or velocity; that is the job of encoders
+ * and other sensors.
+ *
+ * @ingroup control_interfaces
+ */
+class Motor : public MovingComponent {
 
-   public:
-    Motor();
-    Motor(const Motor&) = delete;
-    Motor& operator=(const Motor&) = delete;
-    ~Motor() = default;
+ public:
+  Motor();
+  Motor(const Motor&) = delete;
+  Motor& operator=(const Motor&) = delete;
+  ~Motor() = default;
 
-    float GetDesiredValue() {
-      return desired_value_;
-    }
-    virtual bool HasReachGoal() = 0;
-
-   private:
-    float desired_value_;
-  };
+  virtual bool Move(float value) = 0;
+  virtual bool Move(std::vector<float> values) = 0;
+};
 
 }// namespace huron

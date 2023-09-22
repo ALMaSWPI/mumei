@@ -4,15 +4,15 @@
 
 namespace huron {
 
-  class TorqueMotor : public Motor {
+class TorqueMotor : public Motor {
 
-   public:
-    explicit TorqueMotor();
+ public:
+  explicit TorqueMotor();
 
-   private:
-    float current_limit_ = 0;
-    float velocity_limit_ = 0;
-    float desired_value_ = 0;
-  };
+ private:
+  float current_limit_ = 0;
+  float velocity_limit_ = 0;
+  float desired_value_ = 0;
+};
 
 }// namespace huron

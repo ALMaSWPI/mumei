@@ -6,10 +6,11 @@
 
 namespace huron {
 
-  class MovingGroupComponent : public GenericComponent {
-    virtual bool Move(std::vector<float> vals) = 0;
+class MovingGroupComponent : public GenericComponent {
+  virtual bool Move(std::vector<float> vals) = 0;
+  virtual bool Move(std::vector<std::vector<float>> vals) = 0;
 
-    virtual bool Stop() = 0;
-  };
+  virtual bool Stop() = 0;
+};
 
 }// namespace huron
