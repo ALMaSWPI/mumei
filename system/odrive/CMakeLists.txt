@@ -1,4 +1,4 @@
-project(huron_system_huron)
+project(huron_system_odrive)
 
 add_library(${PROJECT_NAME} src/huron_encoder.cc src/torque_motor.cc)
 add_library(huron::system::huron ALIAS ${PROJECT_NAME})
@@ -11,6 +11,7 @@ target_include_directories(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME}
         PUBLIC
         huron::system::ci
+        huron::system::exceptions
         huron::driver::can
         huron::utils
 )
