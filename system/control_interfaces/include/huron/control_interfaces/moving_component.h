@@ -4,11 +4,11 @@
 
 namespace huron {
 
-class MovingComponent: public GenericComponent{
-public:
+  class MovingComponent : public GenericComponent {
+   public:
     virtual bool Move(float val) = 0;
-    
-    virtual bool Stop() = 0;
-};
 
-}
+    virtual bool Stop() = 0;
+  };
+
+}// namespace huron

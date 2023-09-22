@@ -4,22 +4,21 @@
 
 namespace huron {
 
-class Motor : public MovingComponent{
+  class Motor : public MovingComponent {
 
-public:
+   public:
     Motor();
     Motor(const Motor&) = delete;
     Motor& operator=(const Motor&) = delete;
     ~Motor() = default;
 
     float GetDesiredValue() {
-        return desired_value_;
+      return desired_value_;
     }
     virtual bool HasReachGoal() = 0;
 
-private:
+   private:
     float desired_value_;
+  };
 
-};
-
-}
+}// namespace huron
