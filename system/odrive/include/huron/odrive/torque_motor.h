@@ -16,8 +16,14 @@ class TorqueMotor : public huron::TorqueMotor {
   TorqueMotor& operator=(const TorqueMotor&) = delete;
   ~TorqueMotor() = default;
 
+  void Configure() override;
+  void Initialize() override;
+  void SetUp() override;
+  void Terminate() override;
+
   bool Move(float value) override;
   bool Move(std::vector<float> values) override;
+  bool Stop() override;
 
  private:
   std::shared_ptr<HuronODriveCAN> odrive_;
