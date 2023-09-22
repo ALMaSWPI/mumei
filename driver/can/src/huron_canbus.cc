@@ -8,12 +8,12 @@ bool HURONCanBus::send_message(const can_Message_t &tx_msg) {
   struct can_frame raw_frame;
   raw_frame.can_id = tx_msg.id;
   raw_frame.can_dlc = tx_msg.len;
-  memcpy(raw_frame.data, tx_msg.buf, tx_msg.len);
-
+  std::memcpy(raw_frame.data, tx_msg.buf, tx_msg.len);
+  
   sockcanpp::CanMessage msg_to_send(raw_frame);
-
+  
   auto sent_byte_count = can_driver_.sendMessage(msg_to_send);
-
+  
   return sent_byte_count;
 }
 
@@ -30,19 +30,17 @@ bool HURONCanBus::recv_message(can_Message_t& message, uint32_t timeout) {
         message.isExt = rx_msg.getCanId().isExtendedFrameId();
         message.rtr = rx_msg.getCanId().hasRtrFrameFlag();
         message.len = rx_msg.getRawFrame().can_dlc;
-        memcpy(message.buf, rx_msg.getRawFrame().data, message.len);
+        std::memcpy(message.buf, rx_msg.getRawFrame().data, message.len); 
         return true;
       }
     }
-    if (since(start).count() > timeout)
-      break;
+  if (since(start).count() > timeout)
+    break;
   }
   return false;
 }
 
-bool HURONCanBus::subscribe(const MsgIdFilterSpecs& filter,
-                            on_can_message_cb_t callback, void* ctx,
-                            CanSubscription** handle) {
+bool HURONCanBus::subscribe(const MsgIdFilterSpecs& filter, on_can_message_cb_t callback, void* ctx, CanSubscription** handle) {
   return false;
 }
 
