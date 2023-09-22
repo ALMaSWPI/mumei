@@ -9,3 +9,11 @@ target_link_libraries(test_encoder
         huron::system::ci
 )
 
+add_executable(test_torque_motor test_torque_motor.cc)
+
+target_link_libraries(test_torque_motor
+        PUBLIC
+        huron::system::odrive
+        huron::driver::config
+        huron::system::ci
+)
