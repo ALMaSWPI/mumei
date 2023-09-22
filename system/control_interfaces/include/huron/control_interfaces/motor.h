@@ -18,7 +18,7 @@ namespace huron {
 class Motor : public MovingComponent {
 
  public:
-  Motor();
+  Motor() = default;
   Motor(const Motor&) = delete;
   Motor& operator=(const Motor&) = delete;
   ~Motor() = default;
