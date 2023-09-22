@@ -15,3 +15,5 @@ target_link_libraries(${PROJECT_NAME}
         huron::driver::can
         huron::utils
 )
+
+add_subdirectory(test)
