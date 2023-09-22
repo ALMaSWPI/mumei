@@ -16,6 +16,11 @@ class Encoder : public huron::Encoder {
   Encoder& operator=(const Encoder&) = delete;
   ~Encoder() = default;
 
+  void Configure() override;
+  void Initialize() override;
+  void SetUp() override;
+  void Terminate() override;
+
   float GetCount() override;
   float GetVelocity() override;
 
