@@ -4,11 +4,12 @@
 
 namespace huron {
 
-class Robot {
-public:
+  class Robot {
+   public:
     void Init(std::vector<Limb> limbs);
-private:
-    std::vector<Limb> limbs_;
-};
 
-}
+   private:
+    std::vector<Limb> limbs_;
+  };
+
+}// namespace huron
