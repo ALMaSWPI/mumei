@@ -16,6 +16,8 @@ namespace huron {
  *
  * By convention, gear ratios mentioned in this project refers to the ratio
  * of output torque over input torque.
+ *
+ * @ingroup control_interfaces
  */
 class RevoluteJoint : public Joint {
 
