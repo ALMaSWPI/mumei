@@ -1,6 +1,6 @@
 project(huron_system_huron)
 
-add_library(${PROJECT_NAME} src/huron_encoder.cc src/torque_encoder.cc)
+add_library(${PROJECT_NAME} src/huron_encoder.cc src/torque_motor.cc)
 add_library(huron::system::huron ALIAS ${PROJECT_NAME})
 
 target_include_directories(${PROJECT_NAME}
