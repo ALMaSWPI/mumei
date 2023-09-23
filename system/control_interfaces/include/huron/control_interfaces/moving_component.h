@@ -31,7 +31,7 @@ class MovingComponent : public GenericComponent {
    * @param value Input value vector.
    * @return true if the operation is successful, false otherwise.
    */
-  virtual bool Move(std::vector<float> values) = 0;
+  virtual bool Move(const std::vector<float>& values) = 0;
 
   /**
    * Stops the component from moving.
