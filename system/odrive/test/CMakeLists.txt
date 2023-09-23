@@ -17,3 +17,12 @@ target_link_libraries(test_torque_motor
         huron::driver::config
         huron::system::ci
 )
+
+add_executable(test_revolute_joint test_revolute_joint.cc)
+
+target_link_libraries(test_revolute_joint
+        PUBLIC
+        huron::system::odrive
+        huron::driver::config
+        huron::system::ci
+)
