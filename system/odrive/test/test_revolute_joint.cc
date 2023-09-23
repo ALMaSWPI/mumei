@@ -39,7 +39,7 @@ int main(int argc, char* argv[]) {
 
   std::cout << "Moving..." << std::endl;
   auto start_time = std::chrono::steady_clock::now();
-  left_knee_joint.Move(0.5);
+  left_knee_joint.Move(0.3);
 
   while (since(start_time).count() < 3 /* seconds */) {
     std::cout << "Current position: "
