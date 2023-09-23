@@ -45,6 +45,9 @@ int main(int argc, char* argv[]) {
     std::cout << "Current position: "
               << left_knee_joint.GetPosition()
               << std::endl;
+    std::cout << "Current velocity: "
+              << left_knee_joint.GetVelocity()
+              << std::endl;
   }
   std::this_thread::sleep_for(3s);
 
@@ -56,7 +59,7 @@ int main(int argc, char* argv[]) {
             << left_knee_joint.GetPosition()
             << std::endl;
 
-  std::this_thread::sleep_for(3s);
+  std::this_thread::sleep_for(5s);
 
   left_knee_joint.Terminate();
   std::cout << "Terminated." << std::endl;
