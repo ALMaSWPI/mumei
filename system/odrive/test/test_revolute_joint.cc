@@ -46,6 +46,8 @@ int main(int argc, char* argv[]) {
               << left_knee_joint.GetPosition()
               << std::endl;
   }
+  std::this_thread::sleep_for(3s);
+
 
   std::cout << "Stopping..." << std::endl;
   left_knee_joint.Stop();
