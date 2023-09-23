@@ -22,9 +22,6 @@ class Motor : public MovingComponent {
   Motor(const Motor&) = delete;
   Motor& operator=(const Motor&) = delete;
   ~Motor() = default;
-
-  virtual bool Move(float value) = 0;
-  virtual bool Move(std::vector<float> values) = 0;
 };
 
 }// namespace huron
