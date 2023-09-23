@@ -1,0 +1,62 @@
+#include <iostream>
+#include <memory>
+#include <chrono>
+#include <thread>
+
+#include "huron/control_interfaces/revolute_joint.h"
+#include "huron/driver/can/huron_canbus.h"
+#include "huron/odrive/torque_motor.h"
+#include "huron/odrive/encoder.h"
+#include "huron/utils/time.h"
+
+using namespace std::chrono_literals;
+
+const float kGearRatio1 = 2.0;
+const float kGearRatio2 = 40.0;
+const float kCPR = 4096.0;
+
+int main(int argc, char* argv[]) { 
+  // TODO: make pointer to hcb unique_ptr
+  HURONCanBus hcb{"can0", 0};
+  auto left_knee_odrive = std::make_shared<HuronODriveCAN>(
+    &hcb, 0);
+  huron::RevoluteJoint left_knee_joint{
+    std::make_unique<huron::odrive::TorqueMotor>(left_knee_odrive),
+    std::make_unique<huron::odrive::Encoder>(kCPR, left_knee_odrive),
+    kGearRatio1, kGearRatio2};
+
+  std::cout << "Initializing..." << std::endl;
+  left_knee_joint.Initialize();
+  std::cout << "Initialization completed." << std::endl;
+
+  std::cout << "Enabling motor..." << std::endl;
+  left_knee_joint.SetUp();
+  std::cout << "Motor enabled." << std::endl;
+
+  std::cout << "Initial position: "
+            << left_knee_joint.GetPosition()
+            << std::endl;
+
+  std::cout << "Moving..." << std::endl;
+  auto start_time = std::chrono::steady_clock::now();
+  left_knee_joint.Move(0.5);
+
+  while (since(start_time).count() < 3 /* seconds */) {
+    std::cout << "Current position: "
+              << left_knee_joint.GetPosition()
+              << std::endl;
+  }
+
+  std::cout << "Stopping..." << std::endl;
+  left_knee_joint.Stop();
+
+  std::cout << "Final position: "
+            << left_knee_joint.GetPosition()
+            << std::endl;
+
+  std::this_thread::sleep_for(3s);
+
+  left_knee_joint.Terminate();
+  std::cout << "Terminated." << std::endl;
+
+}
