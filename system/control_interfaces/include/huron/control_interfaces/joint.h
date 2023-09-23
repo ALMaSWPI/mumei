@@ -23,9 +23,14 @@ class Joint : public MovingComponent {
   Joint& operator=(const Joint&) = delete;
   ~Joint() = default;
 
-  virtual bool Move(float value) override;
-  virtual bool Move(std::vector<float> value) override;
-  virtual bool Stop() override;
+  void Configure() override;
+  void Initialize() override;
+  void SetUp() override;
+  void Terminate() override;
+
+  bool Move(float value) override;
+  bool Move(const std::vector<float>& value) override;
+  bool Stop() override;
 
   /**
    * Gets the position of the joint.

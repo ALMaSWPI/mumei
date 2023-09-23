@@ -22,7 +22,7 @@ class TorqueMotor : public huron::TorqueMotor {
   void Terminate() override;
 
   bool Move(float value) override;
-  bool Move(std::vector<float> values) override;
+  bool Move(const std::vector<float>& values) override;
   bool Stop() override;
 
  private:

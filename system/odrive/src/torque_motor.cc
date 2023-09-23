@@ -49,7 +49,7 @@ bool TorqueMotor::Move(float value) {
   return odrive_->SetInputTorque(value);
 }
 
-bool TorqueMotor::Move(std::vector<float> values) {
+bool TorqueMotor::Move(const std::vector<float>& values) {
   throw NotImplementedException();
 }
 
