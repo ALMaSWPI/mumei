@@ -22,6 +22,7 @@ mkdir build
 ```
 cd build
 cmake .. [-DBUILD_TYPE=<build-type>]
+make
 ```
 
 Notes: 
