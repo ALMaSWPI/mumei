@@ -82,7 +82,7 @@ bool HuronODriveCAN::GetEncoderEstimates(float& pos, float& vel,
   msg.isExt = false;
   msg.len = 8;
   // Sends message with RTR on
-  canbus_->send_message(msg);
+  // canbus_->send_message(msg);
   if (!canbus_->recv_message(msg, timeout)) {
     return false;
   }
