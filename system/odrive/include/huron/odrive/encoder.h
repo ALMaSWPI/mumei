@@ -25,7 +25,6 @@ class Encoder : public huron::Encoder {
 
  private:
   std::shared_ptr<HuronODriveCAN> odrive_;
-
 };
 
 }  // namespace odrive
