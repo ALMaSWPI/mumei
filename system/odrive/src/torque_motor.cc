@@ -12,7 +12,6 @@ TorqueMotor::TorqueMotor(std::shared_ptr<HuronODriveCAN> odrive)
   : odrive_(std::move(odrive)) {}
 
 void TorqueMotor::Configure() {
-
 }
 
 void TorqueMotor::Initialize() {
@@ -54,7 +53,6 @@ bool TorqueMotor::Move(const std::vector<float>& values) {
 bool TorqueMotor::Stop() {
   return odrive_->SetInputTorque(0);
 }
-
 
 }  // namespace odrive
 }  // namespace huron
