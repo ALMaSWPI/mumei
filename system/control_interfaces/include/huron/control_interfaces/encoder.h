@@ -56,30 +56,30 @@ class Encoder : public GenericComponent {
      * Gets the current angle in radians.
      */
   float GetAngleRadian() {
-    return count_ / cpr_ * 2.0 * M_PI;
+    return GetCount() / cpr_ * 2.0 * M_PI;
   }
 
   /**
      * Gets the current angle in degrees.
      */
   float GetAngleDegree() {
-    return count_ / cpr_ * 360.0;
+    return GetCount() / cpr_ * 360.0;
   }
 
   /**
-     * Gets the current velocity in counts.
+     * Gets the current velocity in counts/second.
      */
   virtual float GetVelocity() = 0;
 
   /**
-     * Gets the current velocity in radians.
+     * Gets the current velocity in radians/second.
      */
   float GetVelocityRadian() {
     return GetVelocity() / cpr_ * 2 * M_PI;
   }
 
   /**
-     * Gets the current velocity in degrees.
+     * Gets the current velocity in degrees/second.
      */
   float GetVelocityDegree() {
     return GetVelocity() / cpr_ * 360.0;
