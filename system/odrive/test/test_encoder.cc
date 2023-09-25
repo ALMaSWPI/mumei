@@ -1,8 +1,10 @@
 #include <iostream>
 #include <memory>
+#include <chrono>
 
 #include "huron/driver/can/huron_canbus.h"
 #include "huron/odrive/encoder.h"
+#include "huron/utils/time.h"
 
 const float kCPR = 4096.0;
 
@@ -13,6 +15,9 @@ int main(int argc, char* argv[]) {
     &hcb, 0);
   huron::odrive::Encoder left_knee_encoder{kCPR,
     left_knee_odrive};
-  std::cout << "Encoder count: "
-            << left_knee_encoder.GetCount() << std::endl;
+  auto start_time = std::chrono::steady_clock::now();
+  while (since(start_time).count() < 3000 /* ms */) {
+    std::cout << "Encoder count: "
+              << left_knee_encoder.GetCount() << std::endl;
+  }
 }
