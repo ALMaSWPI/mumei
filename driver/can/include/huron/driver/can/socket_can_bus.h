@@ -7,6 +7,10 @@
 #define CAN_CLK_HZ (16000000)
 #define CAN_CLK_MHZ (16)
 
+namespace huron {
+namespace driver {
+namespace can {
+
 // Anonymous enum for defining the most common CAN baud rates
 enum {
   CAN_BAUD_125K = 125000,
@@ -16,19 +20,22 @@ enum {
   CAN_BAUD_1M = 1000000
 };
 
-class HURONCanBus : public CanBusBase {
+class SocketCanBus : public BusBase {
  public:
   static constexpr sockcanpp::milliseconds kRecvTimeout{1000};
   // struct Config_t {
   // 	uint32_t baud_rate = CAN_BAUD_250K;
   // 	Protocol protocol = PROTOCOL_SIMPLE;
   //
-  // 	HURONCanBus* parent = nullptr; // set in apply_config()
+  // 	Bus* parent = nullptr; // set in apply_config()
   // 	void set_baud_rate(uint32_t value) { parent->set_baud_rate(value); }
   // };
 
-  HURONCanBus(std::string can_if, uint32_t axis_id)
+  SocketCanBus(std::string can_if, uint32_t axis_id)
     : can_if_(can_if), axis_id_(axis_id), recv_timeout_(kRecvTimeout) {}
+  SocketCanBus(const SocketCanBus&) = delete;
+  SocketCanBus& operator=(const SocketCanBus&) = delete;
+  ~SocketCanBus() = default;
 
   std::string can_if_;
   uint32_t axis_id_;
@@ -52,3 +59,6 @@ class HURONCanBus : public CanBusBase {
   bool unsubscribe(CanSubscription* handle) final;
 };
 
+}  // namespace can
+}  // namespace driver
+}  // namespace huron
