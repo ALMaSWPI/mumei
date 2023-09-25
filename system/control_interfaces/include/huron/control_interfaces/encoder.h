@@ -23,7 +23,7 @@ class Encoder : public GenericComponent {
   explicit Encoder(float cpr) : cpr_(cpr) {}
   Encoder(const Encoder&) = delete;
   Encoder& operator=(const Encoder&) = delete;
-  ~Encoder() = default;
+  virtual ~Encoder() = default;
 
   /**
      * Resets the encoder count.

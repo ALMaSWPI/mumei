@@ -9,7 +9,7 @@ class TorqueMotor : public Motor {
   TorqueMotor() = default;
   TorqueMotor(const TorqueMotor&) = delete;
   TorqueMotor& operator=(const TorqueMotor&) = delete;
-  ~TorqueMotor() = default;
+  virtual ~TorqueMotor() = default;
 };
 
 }  // namespace huron

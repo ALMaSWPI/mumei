@@ -9,7 +9,7 @@ class VelocityMotor : public Motor {
   VelocityMotor() = default;
   VelocityMotor(const VelocityMotor&) = delete;
   VelocityMotor& operator=(const VelocityMotor&) = delete;
-  ~VelocityMotor() = default;
+  virtual ~VelocityMotor() = default;
 };
 
 }  // namespace huron
