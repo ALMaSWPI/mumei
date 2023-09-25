@@ -26,3 +26,12 @@ target_link_libraries(test_revolute_joint
         huron::driver::config
         huron::system::ci
 )
+
+add_executable(test_revolute_joint_encoder test_revolute_joint_encoder.cc)
+
+target_link_libraries(test_revolute_joint_encoder
+        PUBLIC
+        huron::system::odrive
+        huron::driver::config
+        huron::system::ci
+)
