@@ -39,7 +39,7 @@ int main(int argc, char* argv[]) {
   auto start_time = std::chrono::steady_clock::now();
   left_knee_joint.Move(0.3);
 
-  while (since(start_time).count() < 3 /* seconds */) {
+  while (since(start_time).count() < 3000 /* milliseconds */) {
     std::cout << "Current position: "
               << left_knee_joint.GetPosition()
               << std::endl;
@@ -47,7 +47,6 @@ int main(int argc, char* argv[]) {
               << left_knee_joint.GetVelocity()
               << std::endl;
   }
-  std::this_thread::sleep_for(std::chrono::seconds(3));
 
   std::cout << "Stopping..." << std::endl;
   left_knee_joint.Stop();

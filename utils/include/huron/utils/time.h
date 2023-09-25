@@ -2,7 +2,13 @@
 
 #include <chrono>  //NOLINT
 
-// Source: https://stackoverflow.com/questions/2808398/easily-measure-elapsed-time
+// Source: 
+/**
+ * @brief Gives time difference from @p start in std::chrono::milliseconds.
+ *
+ * Source:
+ * https://stackoverflow.com/questions/2808398/easily-measure-elapsed-time
+ */
 template <
     class result_t   = std::chrono::milliseconds,
     class clock_t    = std::chrono::steady_clock,
