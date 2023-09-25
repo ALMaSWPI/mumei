@@ -1,15 +1,15 @@
+#include <chrono>
 #include <iostream>
 #include <memory>
-#include <chrono>
 #include <thread>
 
-#include "huron/driver/can/huron_canbus.h"
+#include "huron/driver/can/socket_can_bus.h"
 #include "huron/odrive/torque_motor.h"
 
 int main(int argc, char* argv[]) {
   // TODO(dtbpkmte): make pointer to hcb unique_ptr
-  HURONCanBus hcb{"can0", 0};
-  auto left_knee_odrive = std::make_shared<HuronODriveCAN>(
+  huron::driver::can::SocketCanBus hcb{"can0", 0};
+  auto left_knee_odrive = std::make_shared<huron::odrive::can::ODrive>(
     &hcb, 0);
   huron::odrive::TorqueMotor left_knee_motor{left_knee_odrive};
 

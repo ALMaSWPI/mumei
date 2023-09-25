@@ -44,12 +44,6 @@ class SocketCanBus : public BusBase {
 
   static const uint8_t kCanFifoNone = 0xff;
 
-  struct ODriveCanSubscription : CanSubscription {
-    uint8_t fifo = kCanFifoNone;
-    on_can_message_cb_t callback;
-    void* ctx;
-  };
-
   bool send_message(const can_Message_t& message) final;
   bool recv_message(can_Message_t& message,
 		    uint32_t timeout = UINT32_MAX) final;

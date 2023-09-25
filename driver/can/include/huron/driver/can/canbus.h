@@ -6,20 +6,24 @@
 #include <variant>
 #include "can_helpers.h"
 
+namespace huron {
+namespace driver {
+namespace can {
+
 struct MsgIdFilterSpecs {
   std::variant<uint16_t, uint32_t> id;
   uint32_t mask;
 };
 
-class CanBusBase {
+class BusBase {
  public:
   typedef void(*on_can_message_cb_t)(void* ctx, const can_Message_t& message);
   struct CanSubscription {};
 
-  CanBusBase() = default;
-  CanBusBase(const CanBusBase&) = delete;
-  CanBusBase& operator=(const CanBusBase&) = delete;
-  virtual ~CanBusBase() = default;
+  BusBase() = default;
+  BusBase(const BusBase&) = delete;
+  BusBase& operator=(const BusBase&) = delete;
+  virtual ~BusBase() = default;
 
   /**
   * @brief Sends the specified CAN message.
@@ -58,3 +62,6 @@ class CanBusBase {
   virtual bool unsubscribe(CanSubscription* handle) = 0;
 };
 
+}  // namespace can
+}  // namespace driver
+}  // namespace huron

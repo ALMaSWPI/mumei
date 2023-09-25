@@ -5,8 +5,8 @@
 
 int main(int argc, char* argv[]) {
   can_Message_t msg;
-  msg.id = 0 << HuronODriveCAN::NUM_CMD_ID_BITS;
-  msg.id += HuronODriveCAN::MSG_GET_ENCODER_COUNT;
+  msg.id = 0 << huron::odrive::can::ODrive::NUM_CMD_ID_BITS;
+  msg.id += huron::odrive::can::MSG_GET_ENCODER_COUNT;
   msg.rtr = true;
   msg.isExt = false;
   msg.len = 8;

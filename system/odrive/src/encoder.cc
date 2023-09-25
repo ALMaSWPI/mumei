@@ -4,7 +4,7 @@ namespace huron {
 namespace odrive {
 
 Encoder::Encoder(float cpr,
-                 std::shared_ptr<HuronODriveCAN> odrive)
+                 std::shared_ptr<can::ODrive> odrive)
   : huron::Encoder(cpr), odrive_(std::move(odrive)) {}
 
 void Encoder::Configure() {

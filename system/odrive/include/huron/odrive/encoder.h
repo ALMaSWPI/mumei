@@ -10,7 +10,7 @@ namespace odrive {
 
 class Encoder : public huron::Encoder {
  public:
-  explicit Encoder(float cpr, std::shared_ptr<HuronODriveCAN> odrive);
+  explicit Encoder(float cpr, std::shared_ptr<can::ODrive> odrive);
   Encoder(const Encoder&) = delete;
   Encoder& operator=(const Encoder&) = delete;
   ~Encoder() = default;
@@ -24,7 +24,7 @@ class Encoder : public huron::Encoder {
   float GetVelocity() override;
 
  private:
-  std::shared_ptr<HuronODriveCAN> odrive_;
+  std::shared_ptr<can::ODrive> odrive_;
 };
 
 }  // namespace odrive

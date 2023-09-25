@@ -1,10 +1,14 @@
+#include "huron/driver/can/socket_can_bus.h"
+
 #include "CanDriver.hpp"
-#include "huron/driver/can/huron_canbus.h"
 #include "huron/utils/time.h"
 
+namespace huron {
+namespace driver {
+namespace can {
 
 // Send a CAN message on the bus
-bool HURONCanBus::send_message(const can_Message_t &tx_msg) {
+bool SocketCanBus::send_message(const can_Message_t &tx_msg) {
   struct can_frame raw_frame;
   raw_frame.can_id = tx_msg.id;
   // Handle RTR bit for 11-bit ID
@@ -18,7 +22,7 @@ bool HURONCanBus::send_message(const can_Message_t &tx_msg) {
   return sent_byte_count;
 }
 
-bool HURONCanBus::recv_message(can_Message_t& message, uint32_t timeout) {
+bool SocketCanBus::recv_message(can_Message_t& message, uint32_t timeout) {
   auto start = std::chrono::steady_clock::now();
   while (true) {
     if (can_driver_.waitForMessages(recv_timeout_)) {
@@ -41,13 +45,16 @@ bool HURONCanBus::recv_message(can_Message_t& message, uint32_t timeout) {
   return false;
 }
 
-bool HURONCanBus::subscribe(const MsgIdFilterSpecs& filter,
+bool SocketCanBus::subscribe(const MsgIdFilterSpecs& filter,
                             on_can_message_cb_t callback,
                             void* ctx, CanSubscription** handle) {
   return false;
 }
 
-bool HURONCanBus::unsubscribe(CanSubscription* handle) {
+bool SocketCanBus::unsubscribe(CanSubscription* handle) {
   return false;
 }
 
+}  // namespace can
+}  // namespace driver
+}  // namespace huron

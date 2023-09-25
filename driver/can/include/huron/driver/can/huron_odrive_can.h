@@ -6,46 +6,50 @@
 
 #include "canbus.h"
 
-class HuronODriveCAN {
+namespace huron {
+namespace odrive {
+namespace can {
+
+enum {
+  MSG_CO_NMT_CTRL = 0x000,  // CANOpen NMT Message REC
+  MSG_ODRIVE_HEARTBEAT,
+  MSG_ODRIVE_ESTOP,
+  MSG_GET_MOTOR_ERROR,  // Errors
+  MSG_GET_ENCODER_ERROR,
+  MSG_GET_SENSORLESS_ERROR,
+  MSG_SET_AXIS_NODE_ID,
+  MSG_SET_AXIS_REQUESTED_STATE,
+  MSG_SET_AXIS_STARTUP_CONFIG,
+  MSG_GET_ENCODER_ESTIMATES,
+  MSG_GET_ENCODER_COUNT,
+  MSG_SET_CONTROLLER_MODES,
+  MSG_SET_INPUT_POS,
+  MSG_SET_INPUT_VEL,
+  MSG_SET_INPUT_TORQUE,
+  MSG_SET_LIMITS,
+  MSG_START_ANTICOGGING,
+  MSG_SET_TRAJ_VEL_LIMIT,
+  MSG_SET_TRAJ_ACCEL_LIMITS,
+  MSG_SET_TRAJ_INERTIA,
+  MSG_GET_IQ,
+  MSG_GET_SENSORLESS_ESTIMATES,
+  MSG_RESET_ODRIVE,
+  MSG_GET_BUS_VOLTAGE_CURRENT,
+  MSG_CLEAR_ERRORS,
+  MSG_SET_LINEAR_COUNT,
+  MSG_SET_POS_GAIN,
+  MSG_SET_VEL_GAINS,
+  MSG_GET_ADC_VOLTAGE,
+  MSG_GET_CONTROLLER_ERROR,
+  MSG_CO_HEARTBEAT_CMD = 0x700,  // CANOpen NMT Heartbeat  SEND
+};
+
+class ODrive {
  private:
   static const uint32_t kRecvTimeout = 100;  // ms
 
  public:
-  enum {
-    MSG_CO_NMT_CTRL = 0x000,  // CANOpen NMT Message REC
-    MSG_ODRIVE_HEARTBEAT,
-    MSG_ODRIVE_ESTOP,
-    MSG_GET_MOTOR_ERROR,  // Errors
-    MSG_GET_ENCODER_ERROR,
-    MSG_GET_SENSORLESS_ERROR,
-    MSG_SET_AXIS_NODE_ID,
-    MSG_SET_AXIS_REQUESTED_STATE,
-    MSG_SET_AXIS_STARTUP_CONFIG,
-    MSG_GET_ENCODER_ESTIMATES,
-    MSG_GET_ENCODER_COUNT,
-    MSG_SET_CONTROLLER_MODES,
-    MSG_SET_INPUT_POS,
-    MSG_SET_INPUT_VEL,
-    MSG_SET_INPUT_TORQUE,
-    MSG_SET_LIMITS,
-    MSG_START_ANTICOGGING,
-    MSG_SET_TRAJ_VEL_LIMIT,
-    MSG_SET_TRAJ_ACCEL_LIMITS,
-    MSG_SET_TRAJ_INERTIA,
-    MSG_GET_IQ,
-    MSG_GET_SENSORLESS_ESTIMATES,
-    MSG_RESET_ODRIVE,
-    MSG_GET_BUS_VOLTAGE_CURRENT,
-    MSG_CLEAR_ERRORS,
-    MSG_SET_LINEAR_COUNT,
-    MSG_SET_POS_GAIN,
-    MSG_SET_VEL_GAINS,
-    MSG_GET_ADC_VOLTAGE,
-    MSG_GET_CONTROLLER_ERROR,
-    MSG_CO_HEARTBEAT_CMD = 0x700,  // CANOpen NMT Heartbeat  SEND
-  };
-
-  HuronODriveCAN(CanBusBase* canbus, uint32_t axis_id)
+  ODrive(huron::driver::can::BusBase* canbus, uint32_t axis_id)
     : canbus_(canbus), axis_id_(axis_id) {}
 
   bool init();
@@ -106,9 +110,12 @@ class HuronODriveCAN {
   }
 
  private:
-  CanBusBase* canbus_;
+  huron::driver::can::BusBase* canbus_;
   uint32_t can_id_;
   uint32_t axis_id_;
   bool is_ext_ = false;
 };
 
+}  // namespace can
+}  // namespace odrive
+}  // namespace huron

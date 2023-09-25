@@ -11,7 +11,7 @@ namespace odrive {
 
 class TorqueMotor : public huron::TorqueMotor {
  public:
-  explicit TorqueMotor(std::shared_ptr<HuronODriveCAN> odrive);
+  explicit TorqueMotor(std::shared_ptr<can::ODrive> odrive);
   TorqueMotor(const TorqueMotor&) = delete;
   TorqueMotor& operator=(const TorqueMotor&) = delete;
   ~TorqueMotor() = default;
@@ -26,7 +26,7 @@ class TorqueMotor : public huron::TorqueMotor {
   bool Stop() override;
 
  private:
-  std::shared_ptr<HuronODriveCAN> odrive_;
+  std::shared_ptr<can::ODrive> odrive_;
 };
 
 }  // namespace odrive

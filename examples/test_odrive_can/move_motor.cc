@@ -1,15 +1,16 @@
+#include <chrono>//NOLINT
 #include <iostream>
-#include <chrono>  //NOLINT
-#include <thread>  //NOLINT
-#include "huron/driver/can/huron_canbus.h"
-#include "huron/driver/can/huron_odrive_can.h"
+#include <thread>//NOLINT
+
 #include "huron/driver/can/ODriveEnums.h"
+#include "huron/driver/can/huron_odrive_can.h"
+#include "huron/driver/can/socket_can_bus.h"
 
 using namespace std::chrono_literals;  //NOLINT
 
 int main(int argc, char* argv[]) {
-  HURONCanBus hcb{"can0", 0};
-  HuronODriveCAN hoc{&hcb, 0};
+  huron::driver::can::SocketCanBus hcb{"can0", 0};
+  huron::odrive::can::ODrive hoc{&hcb, 0};
 
   hoc.SetAxisRequestedState(AXIS_STATE_CLOSED_LOOP_CONTROL);
 
