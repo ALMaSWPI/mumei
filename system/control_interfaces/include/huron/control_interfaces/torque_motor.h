@@ -5,7 +5,6 @@
 namespace huron {
 
 class TorqueMotor : public Motor {
-
  public:
   TorqueMotor() = default;
   TorqueMotor(const TorqueMotor&) = delete;
@@ -14,4 +13,4 @@ class TorqueMotor : public Motor {
 
 };
 
-}//namespace huron
+}  //namespace huron

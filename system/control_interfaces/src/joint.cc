@@ -39,4 +39,4 @@ bool Joint::Stop() {
   return motor_->Stop();
 }
 
-}// namespace huron
+}  // namespace huron

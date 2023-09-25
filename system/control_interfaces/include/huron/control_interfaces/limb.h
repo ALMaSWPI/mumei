@@ -16,4 +16,4 @@ class Limb : public MovingGroupComponent {
   std::vector<Joint> joints_;
 };
 
-}// namespace huron
+}  // namespace huron

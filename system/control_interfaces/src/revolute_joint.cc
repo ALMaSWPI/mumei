@@ -22,4 +22,4 @@ float RevoluteJoint::GetAcceleration() {
   return -1.0;
 }
 
-}// namespace huron
+}  // namespace huron

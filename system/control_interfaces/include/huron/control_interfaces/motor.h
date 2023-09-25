@@ -16,7 +16,6 @@ namespace huron {
  * @ingroup control_interfaces
  */
 class Motor : public MovingComponent {
-
  public:
   Motor() = default;
   Motor(const Motor&) = delete;
@@ -24,4 +23,4 @@ class Motor : public MovingComponent {
   ~Motor() = default;
 };
 
-}// namespace huron
+}  // namespace huron

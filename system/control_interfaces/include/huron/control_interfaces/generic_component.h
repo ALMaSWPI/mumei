@@ -15,4 +15,4 @@ class GenericComponent {
   virtual void Terminate() = 0;
 };
 
-}// namespace huron
+}  // namespace huron

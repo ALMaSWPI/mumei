@@ -58,5 +58,5 @@ bool TorqueMotor::Stop() {
 }
 
 
-}// namespace odrive
-}// namespace huron
+}  // namespace odrive
+}  // namespace huron

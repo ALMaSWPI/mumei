@@ -35,5 +35,5 @@ float Encoder::GetVelocity() {
   return velocity_;
 }
 
-}// namespace odrive
-}// namespace huron
+}  // namespace odrive
+}  // namespace huron

@@ -20,7 +20,7 @@ class Encoder : public GenericComponent {
   float cpr_;
 
  public:
-  Encoder(float cpr) : cpr_(cpr) {}
+  explicit Encoder(float cpr) : cpr_(cpr) {}
   Encoder(const Encoder&) = delete;
   Encoder& operator=(const Encoder&) = delete;
   ~Encoder() = default;
@@ -86,4 +86,4 @@ class Encoder : public GenericComponent {
   }
 };
 
-}// namespace huron
+}  // namespace huron
