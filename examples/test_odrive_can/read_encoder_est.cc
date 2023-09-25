@@ -1,11 +1,11 @@
 #include <iostream>
-#include "huron/driver/can/huron_canbus.h"
+
 #include "huron/driver/can/huron_odrive_can.h"
+#include "huron/driver/can/socket_can_bus.h"
 
-
-int main(int argc, char* argv[]) { 
-  HURONCanBus hcb{"can0", 0};
-  HuronODriveCAN hoc{&hcb, 0};
+int main(int argc, char* argv[]) {
+  huron::driver::can::SocketCanBus hcb{"can0", 0};
+  huron::odrive::can::ODrive hoc{&hcb, 0};
   float pos = 0.0, vel = 0.0;
   bool success = hoc.GetEncoderEstimates(pos, vel);
   if (!success)

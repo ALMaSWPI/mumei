@@ -1,9 +1,10 @@
 #include <iostream>
-#include "huron/driver/can/huron_canbus.h"
+
+#include "huron/driver/can/socket_can_bus.h"
 #include "huron/utils/time.h"
 
 void ReadMessage(can_Message_t& msg) {
-  HURONCanBus hcb{"can0", 0};
+  huron::driver::can::SocketCanBus hcb{"can0", 0};
   std::cout << "HURONCanBus initialized successfully. Waiting for message...\n";
 
   // Measure time for reading a message for 3 trials
@@ -33,7 +34,7 @@ void ReadMessage(can_Message_t& msg) {
   std::cout << "Average latency: " << float(sum_latency)/n_trials << std::endl;
 }
 
-int main(int argc, char* argv[]) { 
+int main(int argc, char* argv[]) {
   can_Message_t msg;
   msg.id = 9;
   ReadMessage(msg);
