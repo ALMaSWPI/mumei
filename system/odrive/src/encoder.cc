@@ -22,7 +22,10 @@ void Encoder::Terminate() {
 
 float Encoder::GetCount() {
   prev_count_ = count_;
-  odrive_->GetEncoderEstimates(count_, velocity_);
+  float pos, vel;
+  odrive_->GetEncoderEstimates(pos, vel);
+  count_ = pos * cpr_;
+  velocity_ = vel * cpr_;
   return count_;
 }
 
