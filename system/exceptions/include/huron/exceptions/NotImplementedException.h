@@ -10,7 +10,6 @@ namespace huron {
 
 class NotImplementedException : public std::logic_error {
  private:
-
   std::string _text;
 
   NotImplementedException(const char* message, const char* function)
@@ -18,14 +17,13 @@ class NotImplementedException : public std::logic_error {
     _text = message;
     _text += " : ";
     _text += function;
-  };
+  }
 
  public:
-
   NotImplementedException()
       : NotImplementedException("Not Implememented", __FUNCTION__) {}
 
-  NotImplementedException(const char* message)
+  explicit NotImplementedException(const char* message)
       : NotImplementedException(message, __FUNCTION__) {}
 
   virtual const char *what() const throw() {
@@ -33,4 +31,4 @@ class NotImplementedException : public std::logic_error {
   }
 };
 
-}  //namespace huron
+}  // namespace huron

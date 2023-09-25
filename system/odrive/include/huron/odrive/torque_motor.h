@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+#include <vector>
 
 #include "huron/control_interfaces/torque_motor.h"
 #include "huron/driver/can/huron_odrive_can.h"

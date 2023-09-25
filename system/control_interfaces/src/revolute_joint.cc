@@ -18,7 +18,7 @@ float RevoluteJoint::GetVelocity() {
 }
 
 float RevoluteJoint::GetAcceleration() {
-  //Update later
+  // Update later
   return -1.0;
 }
 

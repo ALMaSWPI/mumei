@@ -10,7 +10,6 @@ class VelocityMotor : public Motor {
   VelocityMotor(const VelocityMotor&) = delete;
   VelocityMotor& operator=(const VelocityMotor&) = delete;
   ~VelocityMotor() = default;
-
 };
 
-}  //namespace huron
+}  // namespace huron

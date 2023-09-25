@@ -1,5 +1,7 @@
 #pragma once
 
+#include <vector>
+
 #include "limb.h"
 
 namespace huron {
