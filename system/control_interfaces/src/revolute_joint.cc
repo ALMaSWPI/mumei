@@ -10,11 +10,11 @@ RevoluteJoint::RevoluteJoint(std::unique_ptr<Motor> motor,
       gear_ratio_2_(gear_ratio_2) {}
 
 float RevoluteJoint::GetPosition() {
-  return encoder_->GetAngleRadian() / (gear_ratio_1_ / gear_ratio_2_);
+  return encoder_->GetAngleRadian() / gear_ratio_2_;
 }
 
 float RevoluteJoint::GetVelocity() {
-  return encoder_->GetVelocityRadian() / (gear_ratio_1_ / gear_ratio_2_);
+  return encoder_->GetVelocityRadian() / gear_ratio_2_;
 }
 
 float RevoluteJoint::GetAcceleration() {
