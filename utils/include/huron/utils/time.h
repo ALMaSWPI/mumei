@@ -2,7 +2,6 @@
 
 #include <chrono>  //NOLINT
 
-// Source: 
 /**
  * @brief Gives time difference from @p start in std::chrono::milliseconds.
  *
