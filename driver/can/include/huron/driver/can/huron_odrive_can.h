@@ -9,6 +9,7 @@
 class HuronODriveCAN {
  private:
   static const uint32_t kRecvTimeout = 100;  // ms
+
  public:
   enum {
     MSG_CO_NMT_CTRL = 0x000,  // CANOpen NMT Message REC
