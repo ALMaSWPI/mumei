@@ -31,8 +31,8 @@ bool HURONCanBus::recv_message(can_Message_t& message, uint32_t timeout) {
         return true;
       }
     }
-  if (since(start).count() > timeout)
-    break;
+    if (since(start).count() > timeout)
+      break;
   }
   return false;
 }

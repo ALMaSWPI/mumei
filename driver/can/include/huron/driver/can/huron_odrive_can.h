@@ -7,6 +7,8 @@
 #include "canbus.h"
 
 class HuronODriveCAN {
+ private:
+  static const uint32_t kRecvTimeout = 100;  // ms
  public:
   enum {
     MSG_CO_NMT_CTRL = 0x000,  // CANOpen NMT Message REC
@@ -48,19 +50,19 @@ class HuronODriveCAN {
   bool init();
 
   // Get functions (msg.rtr bit must be set)
-  bool GetMotorError(uint64_t& motor_error, uint32_t timeout = 0);
-  bool GetEncoderError(uint32_t& encoder_error, uint32_t timeout = 0);
-  bool GetControllerError(uint32_t& controller_error, uint32_t timeout = 0);
-  bool GetSensorlessError(uint32_t& sensorless_error, uint32_t timeout = 0);
-  bool GetEncoderEstimates(float& pos, float& vel, uint32_t timeout = 0);
+  bool GetMotorError(uint64_t& motor_error, uint32_t timeout = kRecvTimeout);
+  bool GetEncoderError(uint32_t& encoder_error, uint32_t timeout = kRecvTimeout);
+  bool GetControllerError(uint32_t& controller_error, uint32_t timeout = kRecvTimeout);
+  bool GetSensorlessError(uint32_t& sensorless_error, uint32_t timeout = kRecvTimeout);
+  bool GetEncoderEstimates(float& pos, float& vel, uint32_t timeout = kRecvTimeout);
   bool GetEncoderCount(int32_t& shadow_cnt, int32_t& cnt_cpr,
-		       uint32_t timeout = 0);
-  bool GetIq(float& iq_setpoint, float& iq_measured, uint32_t timeout = 0);
-  bool GetSensorlessEstimates(float& pos, float& vel, uint32_t timeout = 0);
+		       uint32_t timeout = kRecvTimeout);
+  bool GetIq(float& iq_setpoint, float& iq_measured, uint32_t timeout = kRecvTimeout);
+  bool GetSensorlessEstimates(float& pos, float& vel, uint32_t timeout = kRecvTimeout);
   bool GetBusVoltageCurrent(float& bus_voltage, float& bus_current,
-			    uint32_t timeout = 0);
+			    uint32_t timeout = kRecvTimeout);
   // msg.rtr bit must NOT be set
-  bool GetAdcVoltage(float& adc_voltage, uint32_t timeout = 0);
+  bool GetAdcVoltage(float& adc_voltage, uint32_t timeout = kRecvTimeout);
 
   // Set functions
   bool SetAxisNodeid(uint32_t axis_id);
