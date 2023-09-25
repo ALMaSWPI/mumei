@@ -12,7 +12,6 @@ namespace huron {
  */
 class MovingComponent : public GenericComponent {
  public:
-
   /**
    * Moves the component by the specified input.
    *

@@ -9,14 +9,12 @@
 #include "huron/odrive/encoder.h"
 #include "huron/utils/time.h"
 
-using namespace std::chrono_literals;
-
 const float kGearRatio1 = 2.0;
 const float kGearRatio2 = 40.0;
 const float kCPR = 4096.0;
 
-int main(int argc, char* argv[]) { 
-  // TODO: make pointer to hcb unique_ptr
+int main(int argc, char* argv[]) {
+  // TODO(dtbpkmte): make pointer to hcb unique_ptr
   HURONCanBus hcb{"can0", 0};
   auto left_knee_odrive = std::make_shared<HuronODriveCAN>(
     &hcb, 0);
@@ -49,8 +47,7 @@ int main(int argc, char* argv[]) {
               << left_knee_joint.GetVelocity()
               << std::endl;
   }
-  std::this_thread::sleep_for(3s);
-
+  std::this_thread::sleep_for(std::chrono::seconds(3));
 
   std::cout << "Stopping..." << std::endl;
   left_knee_joint.Stop();
@@ -59,9 +56,8 @@ int main(int argc, char* argv[]) {
             << left_knee_joint.GetPosition()
             << std::endl;
 
-  std::this_thread::sleep_for(5s);
+  std::this_thread::sleep_for(std::chrono::seconds(5));
 
   left_knee_joint.Terminate();
   std::cout << "Terminated." << std::endl;
-
 }

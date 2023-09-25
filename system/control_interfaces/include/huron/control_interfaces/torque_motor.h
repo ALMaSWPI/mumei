@@ -10,7 +10,6 @@ class TorqueMotor : public Motor {
   TorqueMotor(const TorqueMotor&) = delete;
   TorqueMotor& operator=(const TorqueMotor&) = delete;
   ~TorqueMotor() = default;
-
 };
 
-}  //namespace huron
+}  // namespace huron

@@ -6,8 +6,8 @@
 
 const float kCPR = 4096.0;
 
-int main(int argc, char* argv[]) { 
-  // TODO: make pointer to hcb unique_ptr
+int main(int argc, char* argv[]) {
+  // TODO(dtbpkmte): make pointer to hcb unique_ptr
   HURONCanBus hcb{"can0", 0};
   auto left_knee_odrive = std::make_shared<HuronODriveCAN>(
     &hcb, 0);

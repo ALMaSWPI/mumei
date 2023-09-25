@@ -10,7 +10,6 @@ class PositionMotor : public Motor {
   PositionMotor(const PositionMotor&) = delete;
   PositionMotor& operator=(const PositionMotor&) = delete;
   ~PositionMotor() = default;
-
 };
 
-}  //namespace huron
+}  // namespace huron

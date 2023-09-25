@@ -8,19 +8,15 @@ Encoder::Encoder(float cpr,
   : huron::Encoder(cpr), odrive_(std::move(odrive)) {}
 
 void Encoder::Configure() {
-
 }
 
 void Encoder::Initialize() {
-
 }
 
 void Encoder::SetUp() {
-
 }
 
 void Encoder::Terminate() {
-
 }
 
 

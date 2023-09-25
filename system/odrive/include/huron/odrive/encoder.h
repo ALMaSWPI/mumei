@@ -5,8 +5,8 @@
 #include "huron/control_interfaces/encoder.h"
 #include "huron/driver/can/huron_odrive_can.h"
 
-namespace huron{
-namespace odrive{
+namespace huron {
+namespace odrive {
 
 class Encoder : public huron::Encoder {
  public:
@@ -28,5 +28,5 @@ class Encoder : public huron::Encoder {
 
 };
 
-}  //namespace odrive
-}  //namespace huron
+}  // namespace odrive
+}  // namespace huron
