@@ -23,23 +23,8 @@ int main(int argc, char* argv[]) {
     std::make_unique<huron::odrive::Encoder>(kCPR, left_knee_odrive),
     kGearRatio1, kGearRatio2};
 
-  std::cout << "Initializing..." << std::endl;
-  left_knee_joint.Initialize();
-  std::cout << "Initialization completed." << std::endl;
-
-  std::cout << "Enabling motor..." << std::endl;
-  left_knee_joint.SetUp();
-  std::cout << "Motor enabled." << std::endl;
-
-  std::cout << "Initial position: "
-            << left_knee_joint.GetPosition()
-            << std::endl;
-
-  std::cout << "Moving..." << std::endl;
   auto start_time = std::chrono::steady_clock::now();
-  left_knee_joint.Move(0.3);
-
-  while (since(start_time).count() < 3 /* seconds */) {
+  while (since(start_time).count() < 3000 /* ms */) {
     std::cout << "Current position: "
               << left_knee_joint.GetPosition()
               << std::endl;
@@ -47,17 +32,4 @@ int main(int argc, char* argv[]) {
               << left_knee_joint.GetVelocity()
               << std::endl;
   }
-  std::this_thread::sleep_for(std::chrono::seconds(3));
-
-  std::cout << "Stopping..." << std::endl;
-  left_knee_joint.Stop();
-
-  std::cout << "Final position: "
-            << left_knee_joint.GetPosition()
-            << std::endl;
-
-  std::this_thread::sleep_for(std::chrono::seconds(5));
-
-  left_knee_joint.Terminate();
-  std::cout << "Terminated." << std::endl;
 }
