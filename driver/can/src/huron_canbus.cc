@@ -7,9 +7,9 @@
 bool HURONCanBus::send_message(const can_Message_t &tx_msg) {
   struct can_frame raw_frame;
   raw_frame.can_id = tx_msg.id;
-  // Handle RTR bit
+  // Handle RTR bit for 11-bit ID
   if (tx_msg.rtr) {
-    raw_frame.can_id |= CAN_RTR_FLAG;
+    raw_frame.can_id |= 0x800;
   }
   raw_frame.can_dlc = tx_msg.len;
   std::memcpy(raw_frame.data, tx_msg.buf, tx_msg.len);
