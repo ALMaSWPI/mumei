@@ -50,4 +50,4 @@ class Joint : public MovingComponent {
   std::unique_ptr<Encoder> encoder_;
 };
 
-}// namespace huron
+}  // namespace huron

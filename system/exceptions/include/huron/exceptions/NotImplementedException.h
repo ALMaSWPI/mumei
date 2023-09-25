@@ -4,11 +4,11 @@
 #pragma once
 
 #include <stdexcept>
+#include <string>
 
 namespace huron {
 
-class NotImplementedException : public std::logic_error
-{
+class NotImplementedException : public std::logic_error {
  private:
 
   std::string _text;
@@ -33,4 +33,4 @@ class NotImplementedException : public std::logic_error
   }
 };
 
-}//namespace huron
+}  //namespace huron

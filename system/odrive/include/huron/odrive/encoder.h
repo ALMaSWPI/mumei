@@ -9,7 +9,6 @@ namespace huron{
 namespace odrive{
 
 class Encoder : public huron::Encoder {
-
  public:
   explicit Encoder(float cpr, std::shared_ptr<HuronODriveCAN> odrive);
   Encoder(const Encoder&) = delete;
@@ -29,5 +28,5 @@ class Encoder : public huron::Encoder {
 
 };
 
-}//namespace odrive
-}//namespace huron
+}  //namespace odrive
+}  //namespace huron

@@ -20,7 +20,6 @@ namespace huron {
  * @ingroup control_interfaces
  */
 class RevoluteJoint : public Joint {
-
  public:
   /**
    * Constructs a revolute joint.
@@ -57,4 +56,4 @@ class RevoluteJoint : public Joint {
   float gear_ratio_2_ = 1.0;
 };
 
-}// namespace huron
+}  // namespace huron

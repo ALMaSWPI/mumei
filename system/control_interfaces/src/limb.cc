@@ -26,4 +26,4 @@ bool Limb::Stop() {
   return True;
 }
 
-}// namespace huron
+}  // namespace huron

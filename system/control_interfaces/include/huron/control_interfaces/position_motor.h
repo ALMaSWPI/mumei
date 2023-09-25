@@ -5,7 +5,6 @@
 namespace huron {
 
 class PositionMotor : public Motor {
-
  public:
   PositionMotor() = default;
   PositionMotor(const PositionMotor&) = delete;
@@ -14,4 +13,4 @@ class PositionMotor : public Motor {
 
 };
 
-}//namespace huron
+}  //namespace huron

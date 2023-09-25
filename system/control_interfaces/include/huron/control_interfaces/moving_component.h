@@ -41,4 +41,4 @@ class MovingComponent : public GenericComponent {
   virtual bool Stop() = 0;
 };
 
-}// namespace huron
+}  // namespace huron

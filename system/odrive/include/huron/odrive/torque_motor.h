@@ -9,7 +9,6 @@ namespace huron {
 namespace odrive {
 
 class TorqueMotor : public huron::TorqueMotor {
-
  public:
   explicit TorqueMotor(std::shared_ptr<HuronODriveCAN> odrive);
   TorqueMotor(const TorqueMotor&) = delete;
@@ -29,5 +28,5 @@ class TorqueMotor : public huron::TorqueMotor {
   std::shared_ptr<HuronODriveCAN> odrive_;
 };
 
-}// namespace odrive
-}// namespace huron
+}  // namespace odrive
+}  // namespace huron
