@@ -22,7 +22,7 @@ class Joint : public MovingComponent {
                  std::unique_ptr<Encoder> encoder);
   Joint(const Joint&) = delete;
   Joint& operator=(const Joint&) = delete;
-  ~Joint() = default;
+  virtual ~Joint() = default;
 
   void Configure() override;
   void Initialize() override;

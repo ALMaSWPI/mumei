@@ -9,7 +9,7 @@ class PositionMotor : public Motor {
   PositionMotor() = default;
   PositionMotor(const PositionMotor&) = delete;
   PositionMotor& operator=(const PositionMotor&) = delete;
-  ~PositionMotor() = default;
+  virtual ~PositionMotor() = default;
 };
 
 }  // namespace huron

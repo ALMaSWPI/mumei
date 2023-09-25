@@ -16,6 +16,11 @@ class CanBusBase {
   typedef void(*on_can_message_cb_t)(void* ctx, const can_Message_t& message);
   struct CanSubscription {};
 
+  CanBusBase() = default;
+  CanBusBase(const CanBusBase&) = delete;
+  CanBusBase& operator=(const CanBusBase&) = delete;
+  virtual ~CanBusBase() = default;
+
   /**
   * @brief Sends the specified CAN message.
   * 
