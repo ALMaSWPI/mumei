@@ -51,14 +51,20 @@ class HuronODriveCAN {
 
   // Get functions (msg.rtr bit must be set)
   bool GetMotorError(uint64_t& motor_error, uint32_t timeout = kRecvTimeout);
-  bool GetEncoderError(uint32_t& encoder_error, uint32_t timeout = kRecvTimeout);
-  bool GetControllerError(uint32_t& controller_error, uint32_t timeout = kRecvTimeout);
-  bool GetSensorlessError(uint32_t& sensorless_error, uint32_t timeout = kRecvTimeout);
-  bool GetEncoderEstimates(float& pos, float& vel, uint32_t timeout = kRecvTimeout);
+  bool GetEncoderError(uint32_t& encoder_error,
+		       uint32_t timeout = kRecvTimeout);
+  bool GetControllerError(uint32_t& controller_error,
+			  uint32_t timeout = kRecvTimeout);
+  bool GetSensorlessError(uint32_t& sensorless_error,
+			  uint32_t timeout = kRecvTimeout);
+  bool GetEncoderEstimates(float& pos, float& vel,
+			   uint32_t timeout = kRecvTimeout);
   bool GetEncoderCount(int32_t& shadow_cnt, int32_t& cnt_cpr,
 		       uint32_t timeout = kRecvTimeout);
-  bool GetIq(float& iq_setpoint, float& iq_measured, uint32_t timeout = kRecvTimeout);
-  bool GetSensorlessEstimates(float& pos, float& vel, uint32_t timeout = kRecvTimeout);
+  bool GetIq(float& iq_setpoint, float& iq_measured,
+	     uint32_t timeout = kRecvTimeout);
+  bool GetSensorlessEstimates(float& pos, float& vel,
+			      uint32_t timeout = kRecvTimeout);
   bool GetBusVoltageCurrent(float& bus_voltage, float& bus_current,
 			    uint32_t timeout = kRecvTimeout);
   // msg.rtr bit must NOT be set
