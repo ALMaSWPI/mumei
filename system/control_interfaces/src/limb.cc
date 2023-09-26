@@ -1,11 +1,10 @@
-#include "huron/control_interfaces/limb.h"
-#include "huron/control_interfaces/joint.h"
+#include "limb.h"
 
 namespace huron {
 
-void Limb::Init(std::vector<Joint> joint_list) {
-  for (int i =0; i < joint_list.size(); i++) {
-    joints_.push_back(joint_list.at(i));
+void Limb::Init(Joint joint_list[]) {
+  for (std::size_t i = 0; auto& d : joint_list) {
+    joints_.push_back(d);
   }
 }
 
