@@ -3,6 +3,7 @@
 #include <memory>
 
 #include "joint.h"
+#include "rotary_encoder.h"
 
 namespace huron {
 
