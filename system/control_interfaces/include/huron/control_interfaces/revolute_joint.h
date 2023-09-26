@@ -35,7 +35,7 @@ class RevoluteJoint : public Joint {
                          float gear_ratio_1, float gear_ratio_2);
   RevoluteJoint(const RevoluteJoint&) = delete;
   RevoluteJoint& operator=(const RevoluteJoint&) = delete;
-  virtual ~RevoluteJoint() = default;
+  ~RevoluteJoint() override = default;
 
   /**
    * Gets the joint angle in radians.

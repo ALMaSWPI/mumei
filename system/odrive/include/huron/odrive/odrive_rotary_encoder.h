@@ -19,8 +19,8 @@ class ODriveEncoder : public huron::RotaryEncoder {
   void SetUp() override;
   void Terminate() override;
 
-  float GetPosition() override;
-  float GetVelocity() override;
+  float GetCount() override;
+  float GetVelocityCount() override;
  private:
   std::shared_ptr<ODrive> odrive_;
 };
