@@ -1,15 +1,23 @@
 #include <functional>
-#include "huron/driver/can/huron_odrive_can.h"
+#include "huron/odrive/odrive_can.h"
 
 namespace huron {
 namespace odrive {
-namespace can {
 
-bool ODrive::init() {
+ODriveCAN::ODriveCAN(huron::driver::can::BusBase* canbus, uint32_t axis_id)
+  : ODrive(), canbus_(canbus), axis_id_(axis_id) {
+}
+
+ODriveCAN::ODriveCAN(huron::driver::can::BusBase* canbus, uint32_t axis_id,
+                     uint32_t get_timeout)
+  : ODrive(get_timeout), canbus_(canbus), axis_id_(axis_id) {
+}
+
+bool ODriveCAN::Init() {
   return true;
 }
 
-bool ODrive::GetMotorError(uint64_t& motor_error, uint32_t timeout) {
+bool ODriveCAN::GetMotorError(uint64_t& motor_error) {
   can_Message_t msg;
   msg.id = axis_id_ << NUM_CMD_ID_BITS;
   msg.id += MSG_GET_MOTOR_ERROR;
@@ -18,15 +26,14 @@ bool ODrive::GetMotorError(uint64_t& motor_error, uint32_t timeout) {
   msg.len = 8;
   // Sends message with RTR on
   canbus_->send_message(msg);
-  if (!canbus_->recv_message(msg, timeout)) {
+  if (!canbus_->recv_message(msg, get_timeout_)) {
     return false;
   }
   motor_error = can_getSignal<uint64_t>(msg, 0, 64, true);
     return true;
 }
 
-bool ODrive::GetEncoderError(uint32_t& encoder_error,
-                                     uint32_t timeout) {
+bool ODriveCAN::GetEncoderError(uint32_t& encoder_error) {
   can_Message_t msg;
   msg.id = axis_id_ << NUM_CMD_ID_BITS;
   msg.id += MSG_GET_ENCODER_ERROR;
@@ -35,15 +42,14 @@ bool ODrive::GetEncoderError(uint32_t& encoder_error,
   msg.len = 8;
   // Sends message with RTR on
   canbus_->send_message(msg);
-  if (!canbus_->recv_message(msg, timeout)) {
+  if (!canbus_->recv_message(msg, get_timeout_)) {
     return false;
   }
   encoder_error = can_getSignal<uint32_t>(msg, 0, 32, true);
   return true;
 }
 
-bool ODrive::GetControllerError(uint32_t& controller_error,
-                                        uint32_t timeout) {
+bool ODriveCAN::GetControllerError(uint32_t& controller_error) {
   can_Message_t msg;
   msg.id = axis_id_ << NUM_CMD_ID_BITS;
   msg.id += MSG_GET_CONTROLLER_ERROR;
@@ -52,15 +58,14 @@ bool ODrive::GetControllerError(uint32_t& controller_error,
   msg.len = 8;
   // Sends message with RTR on
   canbus_->send_message(msg);
-  if (!canbus_->recv_message(msg, timeout)) {
+  if (!canbus_->recv_message(msg, get_timeout_)) {
     return false;
   }
   controller_error = can_getSignal<uint32_t>(msg, 0, 32, true);
   return true;
 }
 
-bool ODrive::GetSensorlessError(uint32_t& sensorless_error,
-                                        uint32_t timeout) {
+bool ODriveCAN::GetSensorlessError(uint32_t& sensorless_error) {
   can_Message_t msg;
   msg.id = axis_id_ << NUM_CMD_ID_BITS;
   msg.id += MSG_GET_SENSORLESS_ERROR;
@@ -69,15 +74,14 @@ bool ODrive::GetSensorlessError(uint32_t& sensorless_error,
   msg.len = 8;
   // Sends message with RTR on
   canbus_->send_message(msg);
-  if (!canbus_->recv_message(msg, timeout)) {
+  if (!canbus_->recv_message(msg, get_timeout_)) {
     return false;
   }
   sensorless_error = can_getSignal<uint32_t>(msg, 0, 32, true);
   return true;
 }
 
-bool ODrive::GetEncoderEstimates(float& pos, float& vel,
-                                         uint32_t timeout) {
+bool ODriveCAN::GetEncoderEstimates(float& pos, float& vel) {
   can_Message_t msg;
   msg.id = axis_id_ << NUM_CMD_ID_BITS;
   msg.id += MSG_GET_ENCODER_ESTIMATES;
@@ -86,7 +90,7 @@ bool ODrive::GetEncoderEstimates(float& pos, float& vel,
   msg.len = 8;
   // Sends message with RTR on
   // canbus_->send_message(msg);
-  if (!canbus_->recv_message(msg, timeout)) {
+  if (!canbus_->recv_message(msg, get_timeout_)) {
     return false;
   }
   pos = can_getSignal<float>(msg, 0, 32, true);
@@ -94,8 +98,7 @@ bool ODrive::GetEncoderEstimates(float& pos, float& vel,
   return true;
 }
 
-bool ODrive::GetEncoderCount(int32_t& shadow_cnt, int32_t& cnt_cpr,
-                                     uint32_t timeout) {
+bool ODriveCAN::GetEncoderCount(int32_t& shadow_cnt, int32_t& cnt_cpr) {
   can_Message_t msg;
   msg.id = axis_id_ << NUM_CMD_ID_BITS;
   msg.id += MSG_GET_ENCODER_COUNT;
@@ -104,7 +107,7 @@ bool ODrive::GetEncoderCount(int32_t& shadow_cnt, int32_t& cnt_cpr,
   msg.len = 8;
   // Sends message with RTR on
   canbus_->send_message(msg);
-  if (!canbus_->recv_message(msg, timeout)) {
+  if (!canbus_->recv_message(msg, get_timeout_)) {
     return false;
   }
   shadow_cnt = can_getSignal<int32_t>(msg, 0, 32, true);
@@ -112,8 +115,7 @@ bool ODrive::GetEncoderCount(int32_t& shadow_cnt, int32_t& cnt_cpr,
   return true;
 }
 
-bool ODrive::GetIq(float& iq_setpoint, float& iq_measured,
-                           uint32_t timeout) {
+bool ODriveCAN::GetIq(float& iq_setpoint, float& iq_measured) {
   can_Message_t msg;
   msg.id = axis_id_ << NUM_CMD_ID_BITS;
   msg.id += MSG_GET_IQ;
@@ -122,7 +124,7 @@ bool ODrive::GetIq(float& iq_setpoint, float& iq_measured,
   msg.len = 8;
   // Sends message with RTR on
   canbus_->send_message(msg);
-  if (!canbus_->recv_message(msg, timeout)) {
+  if (!canbus_->recv_message(msg, get_timeout_)) {
     return false;
   }
   iq_setpoint = can_getSignal<float>(msg, 0, 32, true);
@@ -130,8 +132,7 @@ bool ODrive::GetIq(float& iq_setpoint, float& iq_measured,
   return true;
 }
 
-bool ODrive::GetSensorlessEstimates(float& pos, float& vel,
-                                            uint32_t timeout) {
+bool ODriveCAN::GetSensorlessEstimates(float& pos, float& vel) {
   can_Message_t msg;
   msg.id = axis_id_ << NUM_CMD_ID_BITS;
   msg.id += MSG_GET_SENSORLESS_ESTIMATES;
@@ -140,7 +141,7 @@ bool ODrive::GetSensorlessEstimates(float& pos, float& vel,
   msg.len = 8;
   // Sends message with RTR on
   canbus_->send_message(msg);
-  if (!canbus_->recv_message(msg, timeout)) {
+  if (!canbus_->recv_message(msg, get_timeout_)) {
     return false;
   }
   pos = can_getSignal<float>(msg, 0, 32, true);
@@ -148,9 +149,7 @@ bool ODrive::GetSensorlessEstimates(float& pos, float& vel,
   return true;
 }
 
-bool ODrive::GetBusVoltageCurrent(float& bus_voltage,
-                                          float& bus_current,
-                                          uint32_t timeout) {
+bool ODriveCAN::GetBusVoltageCurrent(float& bus_voltage, float& bus_current) {
   can_Message_t msg;
   msg.id = axis_id_ << NUM_CMD_ID_BITS;
   msg.id += MSG_GET_BUS_VOLTAGE_CURRENT;
@@ -159,7 +158,7 @@ bool ODrive::GetBusVoltageCurrent(float& bus_voltage,
   msg.len = 8;
   // Sends message with RTR on
   canbus_->send_message(msg);
-  if (!canbus_->recv_message(msg, timeout)) {
+  if (!canbus_->recv_message(msg, get_timeout_)) {
     return false;
   }
   bus_voltage = can_getSignal<float>(msg, 0, 32, true);
@@ -167,7 +166,7 @@ bool ODrive::GetBusVoltageCurrent(float& bus_voltage,
   return true;
 }
 
-bool ODrive::GetAdcVoltage(float& adc_voltage, uint32_t timeout) {
+bool ODriveCAN::GetAdcVoltage(float& adc_voltage) {
   can_Message_t msg;
   msg.id = axis_id_ << NUM_CMD_ID_BITS;
   msg.id += MSG_GET_ADC_VOLTAGE;
@@ -176,14 +175,14 @@ bool ODrive::GetAdcVoltage(float& adc_voltage, uint32_t timeout) {
   msg.len = 8;
   // Sends message with RTR on
   canbus_->send_message(msg);
-  if (!canbus_->recv_message(msg, timeout)) {
+  if (!canbus_->recv_message(msg, get_timeout_)) {
     return false;
   }
   adc_voltage = can_getSignal<float>(msg, 0, 32, true);
   return true;
 }
 
-bool ODrive::SetAxisNodeid(uint32_t axis_id) {
+bool ODriveCAN::SetAxisNodeid(uint32_t axis_id) {
   can_Message_t msg;
   msg.id = axis_id_ << NUM_CMD_ID_BITS;
   msg.id += MSG_SET_AXIS_NODE_ID;
@@ -193,7 +192,7 @@ bool ODrive::SetAxisNodeid(uint32_t axis_id) {
   return canbus_->send_message(msg);
 }
 
-bool ODrive::SetAxisRequestedState(uint32_t state) {
+bool ODriveCAN::SetAxisRequestedState(uint32_t state) {
   can_Message_t msg;
   msg.id = axis_id_ << NUM_CMD_ID_BITS;
   msg.id += MSG_SET_AXIS_REQUESTED_STATE;
@@ -203,13 +202,13 @@ bool ODrive::SetAxisRequestedState(uint32_t state) {
   return canbus_->send_message(msg);
 }
 
-bool ODrive::SetAxisStartupConfig() {
+bool ODriveCAN::SetAxisStartupConfig() {
   // Not Implemented
   return false;
 }
 
-bool ODrive::SetInputPos(float input_pos, int16_t vel_ff,
-                                 int16_t torque_ff) {
+bool ODriveCAN::SetInputPos(float input_pos, int16_t vel_ff,
+                            int16_t torque_ff) {
   can_Message_t msg;
   msg.id = axis_id_ << NUM_CMD_ID_BITS;
   msg.id += MSG_SET_INPUT_POS;
@@ -221,7 +220,7 @@ bool ODrive::SetInputPos(float input_pos, int16_t vel_ff,
   return canbus_->send_message(msg);
 }
 
-bool ODrive::SetInputVel(float input_vel, float torque_ff) {
+bool ODriveCAN::SetInputVel(float input_vel, float torque_ff) {
   can_Message_t msg;
   msg.id = axis_id_ << NUM_CMD_ID_BITS;
   msg.id += MSG_SET_INPUT_VEL;
@@ -232,7 +231,7 @@ bool ODrive::SetInputVel(float input_vel, float torque_ff) {
   return canbus_->send_message(msg);
 }
 
-bool ODrive::SetInputTorque(float input_torque) {
+bool ODriveCAN::SetInputTorque(float input_torque) {
   can_Message_t msg;
   msg.id = axis_id_ << NUM_CMD_ID_BITS;
   msg.id += MSG_SET_INPUT_TORQUE;
@@ -242,8 +241,8 @@ bool ODrive::SetInputTorque(float input_torque) {
   return canbus_->send_message(msg);
 }
 
-bool ODrive::SetControllerModes(int32_t control_mode,
-                                        int32_t input_mode) {
+bool ODriveCAN::SetControllerModes(int32_t control_mode,
+                                   int32_t input_mode) {
   can_Message_t msg;
   msg.id = axis_id_ << NUM_CMD_ID_BITS;
   msg.id += MSG_SET_CONTROLLER_MODES;
@@ -254,7 +253,7 @@ bool ODrive::SetControllerModes(int32_t control_mode,
   return canbus_->send_message(msg);
 }
 
-bool ODrive::SetLimits(float velocity_limit, float current_limit) {
+bool ODriveCAN::SetLimits(float velocity_limit, float current_limit) {
   can_Message_t msg;
   msg.id = axis_id_ << NUM_CMD_ID_BITS;
   msg.id += MSG_SET_LIMITS;
@@ -265,7 +264,7 @@ bool ODrive::SetLimits(float velocity_limit, float current_limit) {
   return canbus_->send_message(msg);
 }
 
-bool ODrive::SetTrajVelLimit(float traj_vel_limit) {
+bool ODriveCAN::SetTrajVelLimit(float traj_vel_limit) {
   can_Message_t msg;
   msg.id = axis_id_ << NUM_CMD_ID_BITS;
   msg.id += MSG_SET_TRAJ_VEL_LIMIT;
@@ -275,8 +274,8 @@ bool ODrive::SetTrajVelLimit(float traj_vel_limit) {
   return canbus_->send_message(msg);
 }
 
-bool ODrive::SetTrajAccelLimits(float traj_accel_limit,
-                                        float traj_decel_limit) {
+bool ODriveCAN::SetTrajAccelLimits(float traj_accel_limit,
+                                   float traj_decel_limit) {
   can_Message_t msg;
   msg.id = axis_id_ << NUM_CMD_ID_BITS;
   msg.id += MSG_SET_TRAJ_ACCEL_LIMITS;
@@ -287,7 +286,7 @@ bool ODrive::SetTrajAccelLimits(float traj_accel_limit,
   return canbus_->send_message(msg);
 }
 
-bool ODrive::SetTrajInertia(float traj_inertia) {
+bool ODriveCAN::SetTrajInertia(float traj_inertia) {
   can_Message_t msg;
   msg.id = axis_id_ << NUM_CMD_ID_BITS;
   msg.id += MSG_SET_TRAJ_INERTIA;
@@ -297,7 +296,7 @@ bool ODrive::SetTrajInertia(float traj_inertia) {
   return canbus_->send_message(msg);
 }
 
-bool ODrive::SetLinearCount(int32_t position) {
+bool ODriveCAN::SetLinearCount(int32_t position) {
   can_Message_t msg;
   msg.id = axis_id_ << NUM_CMD_ID_BITS;
   msg.id += MSG_SET_LINEAR_COUNT;
@@ -307,7 +306,7 @@ bool ODrive::SetLinearCount(int32_t position) {
   return canbus_->send_message(msg);
 }
 
-bool ODrive::SetPosGain(float pos_gain) {
+bool ODriveCAN::SetPosGain(float pos_gain) {
   can_Message_t msg;
   msg.id = axis_id_ << NUM_CMD_ID_BITS;
   msg.id += MSG_SET_POS_GAIN;
@@ -317,7 +316,7 @@ bool ODrive::SetPosGain(float pos_gain) {
   return canbus_->send_message(msg);
 }
 
-bool ODrive::SetVelGains(float vel_gain, float vel_interator_gain) {
+bool ODriveCAN::SetVelGains(float vel_gain, float vel_interator_gain) {
   can_Message_t msg;
   msg.id = axis_id_ << NUM_CMD_ID_BITS;
   msg.id += MSG_SET_VEL_GAINS;
@@ -328,7 +327,7 @@ bool ODrive::SetVelGains(float vel_gain, float vel_interator_gain) {
   return canbus_->send_message(msg);
 }
 
-bool ODrive::Nmt() {
+bool ODriveCAN::Nmt() {
   can_Message_t msg;
   msg.id = axis_id_ << NUM_CMD_ID_BITS;
   msg.id += MSG_CO_NMT_CTRL;
@@ -337,7 +336,7 @@ bool ODrive::Nmt() {
   return canbus_->send_message(msg);
 }
 
-bool ODrive::Estop() {
+bool ODriveCAN::Estop() {
   can_Message_t msg;
   msg.id = axis_id_ << NUM_CMD_ID_BITS;
   msg.id += MSG_ODRIVE_ESTOP;
@@ -347,6 +346,13 @@ bool ODrive::Estop() {
   return canbus_->send_message(msg);
 }
 
-}  // namespace can
+bool ODriveCAN::ClearErrors() {
+  return false;
+}
+
+bool ODriveCAN::StartAnticogging() {
+  return false;
+}
+
 }  // namespace odrive
 }  // namespace huron

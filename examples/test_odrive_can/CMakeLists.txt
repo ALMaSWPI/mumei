@@ -8,16 +8,19 @@ target_link_libraries(move_motor
     PUBLIC
         huron::driver::can
         huron::driver::config
+        huron::system::odrive
 )
 
 target_link_libraries(read_encoder
     PUBLIC
         huron::driver::can
         huron::driver::config
+        huron::system::odrive
 )
 
 target_link_libraries(read_encoder_est
     PUBLIC
         huron::driver::can
         huron::driver::config
+        huron::system::odrive
 )

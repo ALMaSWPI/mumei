@@ -3,14 +3,14 @@
 #include <thread>//NOLINT
 
 #include "huron/driver/can/ODriveEnums.h"
-#include "huron/driver/can/huron_odrive_can.h"
 #include "huron/driver/can/socket_can_bus.h"
+#include "huron/odrive/odrive_can.h"
 
 using namespace std::chrono_literals;  //NOLINT
 
 int main(int argc, char* argv[]) {
   huron::driver::can::SocketCanBus hcb{"can0", 0};
-  huron::odrive::can::ODrive hoc{&hcb, 0};
+  huron::odrive::ODriveCAN hoc{&hcb, 0};
 
   hoc.SetAxisRequestedState(AXIS_STATE_CLOSED_LOOP_CONTROL);
 
