@@ -22,6 +22,16 @@ class RotaryEncoder : public Encoder {
   RotaryEncoder& operator=(const RotaryEncoder&) = delete;
 
   /**
+     * Gets the current encoder count.
+     */
+  virtual float GetCount() = 0;
+
+  /**
+     * Gets the current encoder velocity in count.
+     */
+  virtual float GetVelocityCount() = 0;
+
+  /**
      * Gets the previous encoder count.
      */
   float GetPrevCount() {
@@ -38,29 +48,29 @@ class RotaryEncoder : public Encoder {
   /**
      * Gets the current angle in radians.
      */
-  float GetAngleRadian() {
-    return GetPosition() / cpr_ * 2.0 * M_PI;
+  float GetPosition() override {
+    return GetCount() / cpr_ * 2.0 * M_PI;
   }
 
   /**
      * Gets the current angle in degrees.
      */
   float GetAngleDegree() {
-    return GetPosition() / cpr_ * 360.0;
+    return GetCount() / cpr_ * 360.0;
   }
 
   /**
      * Gets the current velocity in radians/second.
      */
-  float GetVelocityRadian() {
-    return GetVelocity() / cpr_ * 2 * M_PI;
+  float GetVelocity() override {
+    return GetVelocityCount() / cpr_ * 2 * M_PI;
   }
 
   /**
      * Gets the current velocity in degrees/second.
      */
   float GetVelocityDegree() {
-    return GetVelocity() / cpr_ * 360.0;
+    return GetVelocityCount() / cpr_ * 360.0;
   }
 
   /**

@@ -19,7 +19,7 @@ void ODriveEncoder::Terminate() {
 }
 
 
-float ODriveEncoder::GetPosition() {
+float ODriveEncoder::GetCount() {
   prev_count_ = count_;
   float pos, vel;
   odrive_->GetEncoderEstimates(pos, vel);
@@ -28,7 +28,7 @@ float ODriveEncoder::GetPosition() {
   return count_;
 }
 
-float ODriveEncoder::GetVelocity() {
+float ODriveEncoder::GetVelocityCount() {
   GetPosition();
   return velocity_;
 }
