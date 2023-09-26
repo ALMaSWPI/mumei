@@ -2,10 +2,10 @@
 #include <iostream>
 #include <thread>//NOLINT
 
-#include "huron/driver/can/ODriveEnums.h"
 #include "huron/driver/can/socket_can_bus.h"
 #include "huron/driver/config/config.h"
 #include "huron/odrive/odrive_can.h"
+#include "huron/odrive/odrive_enums.h"
 
 using namespace std::chrono_literals; //NOLINT
 
