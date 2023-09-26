@@ -13,6 +13,7 @@ class ODrive {
   static const uint32_t kGetTimeout = 100;  // ms
 
   uint32_t get_timeout_;
+
  public:
   explicit ODrive(uint32_t get_timeout = kGetTimeout)
     : get_timeout_(get_timeout) {}
