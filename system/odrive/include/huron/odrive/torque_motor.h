@@ -4,14 +4,14 @@
 #include <vector>
 
 #include "huron/control_interfaces/torque_motor.h"
-#include "huron/driver/can/huron_odrive_can.h"
+#include "huron/odrive/odrive_can.h"
 
 namespace huron {
 namespace odrive {
 
 class TorqueMotor : public huron::TorqueMotor {
  public:
-  explicit TorqueMotor(std::shared_ptr<can::ODrive> odrive);
+  explicit TorqueMotor(std::shared_ptr<ODrive> odrive);
   TorqueMotor(const TorqueMotor&) = delete;
   TorqueMotor& operator=(const TorqueMotor&) = delete;
   ~TorqueMotor() = default;
@@ -26,7 +26,7 @@ class TorqueMotor : public huron::TorqueMotor {
   bool Stop() override;
 
  private:
-  std::shared_ptr<can::ODrive> odrive_;
+  std::shared_ptr<ODrive> odrive_;
 };
 
 }  // namespace odrive

@@ -3,14 +3,14 @@
 #include <memory>
 
 #include "huron/control_interfaces/encoder.h"
-#include "huron/driver/can/huron_odrive_can.h"
+#include "huron/odrive/odrive.h"
 
 namespace huron {
 namespace odrive {
 
 class Encoder : public huron::Encoder {
  public:
-  explicit Encoder(float cpr, std::shared_ptr<can::ODrive> odrive);
+  explicit Encoder(float cpr, std::shared_ptr<ODrive> odrive);
   Encoder(const Encoder&) = delete;
   Encoder& operator=(const Encoder&) = delete;
   ~Encoder() = default;
@@ -24,7 +24,7 @@ class Encoder : public huron::Encoder {
   float GetVelocity() override;
 
  private:
-  std::shared_ptr<can::ODrive> odrive_;
+  std::shared_ptr<ODrive> odrive_;
 };
 
 }  // namespace odrive

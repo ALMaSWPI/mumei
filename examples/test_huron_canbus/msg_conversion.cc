@@ -1,12 +1,12 @@
 #include <iostream>
 #include "CanDriver.hpp"
-#include "huron/driver/can/huron_odrive_can.h"
+#include "huron/odrive/odrive_can.h"
 
 
 int main(int argc, char* argv[]) {
   can_Message_t msg;
-  msg.id = 0 << huron::odrive::can::ODrive::NUM_CMD_ID_BITS;
-  msg.id += huron::odrive::can::MSG_GET_ENCODER_COUNT;
+  msg.id = 0 << huron::odrive::ODriveCAN::NUM_CMD_ID_BITS;
+  msg.id += huron::odrive::ODriveCAN::MSG_GET_ENCODER_COUNT;
   msg.rtr = true;
   msg.isExt = false;
   msg.len = 8;

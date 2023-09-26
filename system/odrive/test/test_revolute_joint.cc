@@ -7,6 +7,7 @@
 #include "huron/driver/can/socket_can_bus.h"
 #include "huron/odrive/encoder.h"
 #include "huron/odrive/torque_motor.h"
+#include "huron/odrive/odrive_can.h"
 #include "huron/utils/time.h"
 
 const float kGearRatio1 = 1.0;
@@ -16,7 +17,7 @@ const float kCPR = 4096.0;
 int main(int argc, char* argv[]) {
   // TODO(dtbpkmte): make pointer to hcb unique_ptr
   huron::driver::can::SocketCanBus hcb{"can0", 0};
-  auto left_knee_odrive = std::make_shared<huron::odrive::can::ODrive>(
+  auto left_knee_odrive = std::make_shared<huron::odrive::ODriveCAN>(
     &hcb, 0);
   huron::RevoluteJoint left_knee_joint{
     std::make_unique<huron::odrive::TorqueMotor>(left_knee_odrive),

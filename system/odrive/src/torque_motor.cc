@@ -8,7 +8,7 @@
 namespace huron {
 namespace odrive {
 
-TorqueMotor::TorqueMotor(std::shared_ptr<can::ODrive> odrive)
+TorqueMotor::TorqueMotor(std::shared_ptr<ODrive> odrive)
   : odrive_(std::move(odrive)) {}
 
 void TorqueMotor::Configure() {
