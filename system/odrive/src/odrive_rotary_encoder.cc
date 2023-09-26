@@ -3,7 +3,7 @@ namespace huron {
 namespace odrive {
 
 ODriveEncoder::ODriveEncoder(float cpr,
-                 std::shared_ptr<can::ODrive> odrive)
+                 std::shared_ptr<ODrive> odrive)
   : huron::RotaryEncoder(cpr), odrive_(std::move(odrive)) {}
 
 void ODriveEncoder::Configure() {

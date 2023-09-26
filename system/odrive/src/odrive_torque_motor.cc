@@ -1,7 +1,7 @@
 #include <chrono>
 #include <thread>
 
-#include "huron/driver/can/ODriveEnums.h"
+#include "huron/odrive/odrive_enums.h"
 #include "huron/exceptions/not_implemented_exception.h"
 #include "huron/odrive/odrive_torque_motor.h"
 
