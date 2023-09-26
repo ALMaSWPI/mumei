@@ -25,12 +25,12 @@ class RevoluteJoint : public Joint {
    * Constructs a revolute joint.
    *
    * @param motor unique_ptr of a @see Motor.
-   * @param encoder unique_ptr of a @see Encoder.
+   * @param encoder unique_ptr of a @see RotaryEncoder.
    * @param gear_ratio_1 Reduction from motor axis to encoder axis.
    * @param gear_ratio_2 Reduction from encoder axis to joint axis.
    */
   explicit RevoluteJoint(std::unique_ptr<Motor> motor,
-                         std::unique_ptr<Encoder> encoder,
+                         std::unique_ptr<RotaryEncoder> encoder,
                          float gear_ratio_1, float gear_ratio_2);
   RevoluteJoint(const RevoluteJoint&) = delete;
   RevoluteJoint& operator=(const RevoluteJoint&) = delete;

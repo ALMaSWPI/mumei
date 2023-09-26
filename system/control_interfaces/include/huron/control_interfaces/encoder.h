@@ -1,8 +1,23 @@
-//
-// Created by nhinguyencmt8 on 9/26/23.
-//
+#pragma once
+#include "generic_component.h"
 
-#ifndef HURON_ENCODER_H
-#define HURON_ENCODER_H
+namespace huron{
+/**
+ * Abstract class for encoder
+ * A generic encoder has count and velocity.
+ *
+ * @ingroup control_interface
+ */
+ class Encoder : public GenericComponent {
+  public:
+   Encoder() = default;
+   Encoder(const Encoder&) = delete;
+   Encoder& operator=(const Encoder&) = delete;
+   virtual ~Encoder() = default;
 
-#endif //HURON_ENCODER_H
+   virtual float GetPosition() = 0;
+   virtual float GetVelocity() = 0;
+   virtual void Reset() = 0;
+ };
+
+}

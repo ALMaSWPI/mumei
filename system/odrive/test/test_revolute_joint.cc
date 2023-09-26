@@ -5,9 +5,9 @@
 
 #include "huron/control_interfaces/revolute_joint.h"
 #include "huron/driver/can/socket_can_bus.h"
-#include "huron/odrive/encoder.h"
-#include "huron/odrive/torque_motor.h"
-#include "huron/odrive/odrive_can.h"
+
+#include "huron/odrive/odrive_rotary_encoder.h"
+#include "huron/odrive/odrive_torque_motor.h"
 #include "huron/utils/time.h"
 
 const float kGearRatio1 = 1.0;
@@ -21,7 +21,7 @@ int main(int argc, char* argv[]) {
     &hcb, 0);
   huron::RevoluteJoint left_knee_joint{
     std::make_unique<huron::odrive::TorqueMotor>(left_knee_odrive),
-    std::make_unique<huron::odrive::Encoder>(kCPR, left_knee_odrive),
+    std::make_unique<huron::odrive::ODriveEncoder>(kCPR, left_knee_odrive),
     kGearRatio1, kGearRatio2};
 
   std::cout << "Initializing..." << std::endl;

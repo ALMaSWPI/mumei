@@ -1,42 +1,25 @@
 #pragma once
-
 #include <cmath>
-
-#include "generic_component.h"
+#include "encoder.h"
 
 namespace huron {
-
 /**
  * Abstract class for using an encoder.
  *
  * @ingroup control_interfaces
  */
-class Encoder : public GenericComponent {
+class RotaryEncoder : public Encoder {
  protected:
-  float count_ = 0;
-  float prev_count_ = 0;
   float velocity_ = 0;
   float prev_velocity_ = 0;
+  float count_ = 0;
+  float prev_count_ = 0;
   float cpr_;
 
  public:
-  explicit Encoder(float cpr) : cpr_(cpr) {}
-  Encoder(const Encoder&) = delete;
-  Encoder& operator=(const Encoder&) = delete;
-  virtual ~Encoder() = default;
-
-  /**
-     * Resets the encoder count.
-     */
-  void Reset() {
-    count_ = 0.0;
-    prev_count_ = 0.0;
-  }
-
-  /**
-     * Gets the current encoder count.
-     */
-  virtual float GetCount() = 0;
+  explicit RotaryEncoder(float cpr) : cpr_(cpr) {}
+  RotaryEncoder(const RotaryEncoder&) = delete;
+  RotaryEncoder& operator=(const RotaryEncoder&) = delete;
 
   /**
      * Gets the previous encoder count.
@@ -56,20 +39,15 @@ class Encoder : public GenericComponent {
      * Gets the current angle in radians.
      */
   float GetAngleRadian() {
-    return GetCount() / cpr_ * 2.0 * M_PI;
+    return GetPosition() / cpr_ * 2.0 * M_PI;
   }
 
   /**
      * Gets the current angle in degrees.
      */
   float GetAngleDegree() {
-    return GetCount() / cpr_ * 360.0;
+    return GetPosition() / cpr_ * 360.0;
   }
-
-  /**
-     * Gets the current velocity in counts/second.
-     */
-  virtual float GetVelocity() = 0;
 
   /**
      * Gets the current velocity in radians/second.
@@ -83,6 +61,14 @@ class Encoder : public GenericComponent {
      */
   float GetVelocityDegree() {
     return GetVelocity() / cpr_ * 360.0;
+  }
+
+  /**
+     * Resets the encoder count.
+     */
+  void Reset() override {
+    count_ = 0.0;
+    prev_count_ = 0.0;
   }
 };
 

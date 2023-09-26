@@ -3,7 +3,7 @@
 namespace huron {
 
 RevoluteJoint::RevoluteJoint(std::unique_ptr<Motor> motor,
-                             std::unique_ptr<Encoder> encoder,
+                             std::unique_ptr<RotaryEncoder> encoder,
                              float gear_ratio_1, float gear_ratio_2)
     : Joint(std::move(motor), std::move(encoder)),
       gear_ratio_1_(gear_ratio_1),
