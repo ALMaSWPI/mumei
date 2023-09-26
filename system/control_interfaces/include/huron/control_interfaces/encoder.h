@@ -2,6 +2,7 @@
 #include "generic_component.h"
 
 namespace huron {
+
 /**
  * Abstract class for encoder
  * A generic encoder has count and velocity.
