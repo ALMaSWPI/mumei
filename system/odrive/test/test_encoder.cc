@@ -3,6 +3,7 @@
 #include <memory>
 
 #include "huron/driver/can/socket_can_bus.h"
+#include "huron/odrive/odrive_can.h"
 #include "huron/odrive/odrive_rotary_encoder.h"
 #include "huron/utils/time.h"
 

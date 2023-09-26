@@ -2,14 +2,14 @@
 
 #include <memory>
 #include "huron/control_interfaces/rotary_encoder.h"
-#include "huron/driver/can/huron_odrive_can.h"
+#include "huron/odrive/odrive.h"
 
 namespace huron {
 namespace odrive {
 
 class ODriveEncoder : public huron::RotaryEncoder {
  public:
-  explicit ODriveEncoder(float cpr, std::shared_ptr<can::ODrive> odrive);
+  explicit ODriveEncoder(float cpr, std::shared_ptr<ODrive> odrive);
   ODriveEncoder(const ODriveEncoder&) = delete;
   ODriveEncoder& operator=(const ODriveEncoder&) = delete;
   ~ODriveEncoder() = default;
