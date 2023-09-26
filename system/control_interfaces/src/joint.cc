@@ -3,7 +3,7 @@
 namespace huron {
 
 Joint::Joint(std::unique_ptr<Motor> motor,
-             std::unique_ptr<RotaryEncoder> encoder)
+             std::unique_ptr<Encoder> encoder)
     : motor_(std::move(motor)),
       encoder_(std::move(encoder)) {}
 
