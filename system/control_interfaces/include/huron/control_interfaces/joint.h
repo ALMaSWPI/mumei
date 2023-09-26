@@ -3,9 +3,9 @@
 #include <memory>
 #include <vector>
 
-#include "encoder.h"
 #include "motor.h"
 #include "moving_component.h"
+#include "rotary_encoder.h"
 
 namespace huron {
 
@@ -19,7 +19,7 @@ namespace huron {
 class Joint : public MovingComponent {
  public:
   explicit Joint(std::unique_ptr<Motor> motor,
-                 std::unique_ptr<Encoder> encoder);
+                 std::unique_ptr<RotaryEncoder> encoder);
   Joint(const Joint&) = delete;
   Joint& operator=(const Joint&) = delete;
   virtual ~Joint() = default;
@@ -48,7 +48,7 @@ class Joint : public MovingComponent {
 
  protected:
   std::unique_ptr<Motor> motor_;
-  std::unique_ptr<Encoder> encoder_;
+  std::unique_ptr<RotaryEncoder> encoder_;
 };
 
 }  // namespace huron

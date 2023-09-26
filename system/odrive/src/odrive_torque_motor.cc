@@ -1,9 +1,9 @@
 #include <chrono>
 #include <thread>
 
+#include "huron/driver/can/ODriveEnums.h"
 #include "huron/exceptions/not_implemented_exception.h"
-#include "huron/odrive/torque_motor.h"
-#include "huron/odrive/odrive_enums.h"
+#include "huron/odrive/odrive_torque_motor.h"
 
 namespace huron {
 namespace odrive {
