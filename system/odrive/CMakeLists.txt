@@ -2,6 +2,7 @@ project(huron_system_odrive)
 
 
 add_library(${PROJECT_NAME}
+        src/odrive.cc
         src/odrive_can.cc
         src/odrive_rotary_encoder.cc
         src/odrive_torque_motor.cc)

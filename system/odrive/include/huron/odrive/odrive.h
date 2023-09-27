@@ -2,6 +2,8 @@
 
 #include <cstdint>
 
+#include "odrive_enums.h"
+
 namespace huron {
 namespace odrive {
 
@@ -13,6 +15,7 @@ class ODrive {
   static const uint32_t kGetTimeout = 100;  // ms
 
   uint32_t get_timeout_;
+  bool is_calibrated_ = false;
 
  public:
   explicit ODrive(uint32_t get_timeout = kGetTimeout)
@@ -21,7 +24,16 @@ class ODrive {
   ODrive& operator=(const ODrive&) = delete;
   virtual ~ODrive() = default;
 
-  virtual bool Init() = 0;
+  /**
+   * Puts the ODrive in IDLE state and, if not completed before, perform
+   * full calibration.
+   */
+  bool Initialize();
+
+  /**
+   * Performs full calibration of the ODrive.
+   */
+  bool Calibrate();
 
   // Get functions (msg.rtr bit must be set)
   virtual bool GetMotorError(uint64_t& motor_error) = 0;

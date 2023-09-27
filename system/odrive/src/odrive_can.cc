@@ -13,10 +13,6 @@ ODriveCAN::ODriveCAN(huron::driver::can::BusBase* canbus, uint32_t axis_id,
   : ODrive(get_timeout), canbus_(canbus), axis_id_(axis_id) {
 }
 
-bool ODriveCAN::Init() {
-  return true;
-}
-
 bool ODriveCAN::GetMotorError(uint64_t& motor_error) {
   can_Message_t msg;
   msg.id = axis_id_ << NUM_CMD_ID_BITS;
