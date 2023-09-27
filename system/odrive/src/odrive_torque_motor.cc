@@ -15,19 +15,11 @@ void TorqueMotor::Configure() {
 }
 
 void TorqueMotor::Initialize() {
-  // Set axis state IDLE
-  odrive_->SetAxisRequestedState(AXIS_STATE_IDLE);
-  std::this_thread::sleep_for(std::chrono::seconds(1));
-
+  odrive_->Initialize();
   // Set input & control modes
   odrive_->SetControllerModes(CONTROL_MODE_TORQUE_CONTROL,
                               INPUT_MODE_PASSTHROUGH);
   std::this_thread::sleep_for(std::chrono::seconds(1));
-
-  // Calibrate
-  odrive_->SetAxisRequestedState(
-      AXIS_STATE_FULL_CALIBRATION_SEQUENCE);
-  std::this_thread::sleep_for(std::chrono::seconds(25));
 }
 
 void TorqueMotor::SetUp() {

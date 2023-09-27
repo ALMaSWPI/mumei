@@ -55,8 +55,6 @@ class ODriveCAN : public ODrive {
   ODriveCAN& operator=(const ODriveCAN&) = delete;
   virtual ~ODriveCAN() = default;
 
-  bool Init() override;
-
   // Get functions (msg.rtr bit must be set)
   bool GetMotorError(uint64_t& motor_error) override;
   bool GetEncoderError(uint32_t& encoder_error) override;
