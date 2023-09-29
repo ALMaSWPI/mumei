@@ -8,23 +8,24 @@
 
 namespace huron {
 
-class NotImplementedException : public std::logic_error {
+class InvalidConfigurationException : public std::logic_error {
  private:
   std::string _text;
 
-  NotImplementedException(const char* message, const char* function)
-      : std::logic_error("Not Implemented") {
+  InvalidConfigurationException(const char* message, const char* function)
+      : std::logic_error("Invalid Configuration provided.") {
     _text = message;
     _text += " : ";
     _text += function;
   }
 
  public:
-  NotImplementedException()
-      : NotImplementedException("Not Implememented", __FUNCTION__) {}
+  InvalidConfigurationException()
+      : InvalidConfigurationException(
+            "Invalid Configuration provided.", __FUNCTION__) {}
 
-  explicit NotImplementedException(const char* message)
-      : NotImplementedException(message, __FUNCTION__) {}
+  explicit InvalidConfigurationException(const char* message)
+      : InvalidConfigurationException(message, __FUNCTION__) {}
 
   virtual const char *what() const throw() {
       return _text.c_str();
