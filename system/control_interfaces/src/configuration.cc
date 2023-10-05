@@ -6,7 +6,7 @@ namespace huron {
 Configuration::Configuration(ConfigMap config_map,
                              std::set<std::string> valid_keys)
   : valid_keys_(valid_keys),
-    config_map_(config_map) {};
+    config_map_(ValidateMap(config_map)) {};
 
 Configuration::Configuration(ConfigMap config_map)
   : Configuration(config_map, {}) {};

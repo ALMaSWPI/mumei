@@ -39,7 +39,6 @@ class Configuration {
  public:
   Configuration(ConfigMap config_map, std::set<std::string> valid_keys);
   explicit Configuration(ConfigMap config_map);
-  Configuration() = default;
   Configuration(const Configuration&) = delete;
   Configuration& operator=(const Configuration&) = delete;
   virtual ~Configuration() = default;

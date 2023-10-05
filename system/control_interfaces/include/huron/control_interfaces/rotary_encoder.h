@@ -17,9 +17,37 @@ class RotaryEncoder : public Encoder {
   float cpr_;
 
  public:
-  explicit RotaryEncoder(float cpr) : cpr_(cpr) {}
+  class RotaryEncoderConfiguration : public EncoderConfiguration {
+   public:
+    /**
+     * Supports further inheritance.
+     */
+    RotaryEncoderConfiguration(ConfigMap config_map,
+                               std::set<std::string> valid_keys)
+      : EncoderConfiguration(config_map,
+                             [&valid_keys]() {
+                               std::set<std::string> tmp(kRotEncValidKeys);
+                               tmp.merge(valid_keys);
+                               return tmp;
+                             }()) {}
+
+    RotaryEncoderConfiguration(float cpr)
+      : RotaryEncoderConfiguration(
+          ConfigMap({{"cpr", cpr}}), {}) {}
+
+   private:
+    static const inline std::set<std::string> kRotEncValidKeys{"cpr"};
+  };
+
+  explicit RotaryEncoder(std::unique_ptr<RotaryEncoderConfiguration> config)
+      : Encoder(std::move(config)) {
+    cpr_ = std::any_cast<float>(config_.get()->Get("cpr"));
+  }
+  explicit RotaryEncoder(float cpr)
+      : RotaryEncoder(std::make_unique<RotaryEncoderConfiguration>(cpr)) {}
   RotaryEncoder(const RotaryEncoder&) = delete;
   RotaryEncoder& operator=(const RotaryEncoder&) = delete;
+  ~RotaryEncoder() override = default;
 
   /**
      * Gets the current encoder count.
