@@ -41,7 +41,8 @@ class RevoluteJoint : public Joint {
       : RevoluteJointConfiguration(
           ConfigMap({{"gear_ratio_1", gear_ratio_1},
                      {"gear_ratio_2", gear_ratio_2}
-                    }), kRevJointValidKeys) {}
+                    }),
+                    {}) {}
 
     RevoluteJointConfiguration()
       : RevoluteJointConfiguration(1.0, 1.0) {}

@@ -6,8 +6,8 @@ RevoluteJoint::RevoluteJoint(std::unique_ptr<Motor> motor,
                              std::unique_ptr<RotaryEncoder> encoder,
                              std::unique_ptr<RevoluteJointConfiguration> conf)
     : Joint(std::move(motor), std::move(encoder), std::move(conf)) {
-  gear_ratio_1_ = std::any_cast<float>(conf.get()->Get("gear_ratio_1"));
-  gear_ratio_2_ = std::any_cast<float>(conf.get()->Get("gear_ratio_2"));
+  gear_ratio_1_ = std::any_cast<float>(config_.get()->Get("gear_ratio_1"));
+  gear_ratio_2_ = std::any_cast<float>(config_.get()->Get("gear_ratio_2"));
 }
 
 RevoluteJoint::RevoluteJoint(std::unique_ptr<Motor> motor,

@@ -23,9 +23,20 @@ class Joint : public MovingComponent {
     static const inline std::set<std::string> kJointValidKeys{};
 
    public:
-    JointConfiguration(ConfigMap config_map, std::set<std::string> valid_keys);
-    explicit JointConfiguration(ConfigMap config_map);
-    JointConfiguration();
+    JointConfiguration(ConfigMap config_map, std::set<std::string> valid_keys)
+        : Configuration(config_map,
+                        [&valid_keys]() {
+                          std::set<std::string> tmp(kJointValidKeys);
+                          tmp.merge(valid_keys);
+                          return tmp;
+                        }()) {}
+
+    JointConfiguration(ConfigMap config_map)
+        : JointConfiguration(config_map, {}) {}
+
+    JointConfiguration()
+        : JointConfiguration({}, {}) {}
+
   };
 
   Joint(std::unique_ptr<Motor> motor, std::unique_ptr<Encoder> encoder,

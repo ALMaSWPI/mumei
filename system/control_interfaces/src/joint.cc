@@ -2,20 +2,6 @@
 
 namespace huron {
 
-Joint::JointConfiguration::JointConfiguration(ConfigMap config_map,
-                                              std::set<std::string> valid_keys)
-    : Configuration(config_map, [&valid_keys]() {
-                      std::set<std::string> tmp(kJointValidKeys);
-                      tmp.merge(valid_keys);
-                      return tmp;
-                    }()) {}
-
-Joint::JointConfiguration::JointConfiguration(ConfigMap config_map)
-    : JointConfiguration(config_map, {}) {}
-
-Joint::JointConfiguration::JointConfiguration()
-    : JointConfiguration({}, {}) {}
-
 Joint::Joint(std::unique_ptr<Motor> motor,
              std::unique_ptr<Encoder> encoder,
              std::unique_ptr<JointConfiguration> config)

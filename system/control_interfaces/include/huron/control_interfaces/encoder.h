@@ -11,7 +11,29 @@ namespace huron {
  */
 class Encoder : public GenericComponent {
  public:
-  Encoder() = default;
+  class EncoderConfiguration : public Configuration {
+   private:
+    static const inline std::set<std::string> kEncoderValidKeys{};
+
+   public:
+    EncoderConfiguration(ConfigMap config_map,
+                         std::set<std::string> valid_keys)
+        : Configuration(config_map, [&valid_keys]() {
+                          std::set<std::string> tmp(kEncoderValidKeys);
+                          tmp.merge(valid_keys);
+                          return tmp;
+                        }()) {}
+
+    explicit EncoderConfiguration(ConfigMap config_map)
+        : EncoderConfiguration(config_map, {}) {}
+
+    EncoderConfiguration()
+        : EncoderConfiguration({}, {}) {}
+  };
+
+  explicit Encoder(std::unique_ptr<Configuration> config)
+    : GenericComponent(std::move(config)) {}
+  Encoder() : Encoder(std::make_unique<EncoderConfiguration>()) {}
   Encoder(const Encoder&) = delete;
   Encoder& operator=(const Encoder&) = delete;
   virtual ~Encoder() = default;
