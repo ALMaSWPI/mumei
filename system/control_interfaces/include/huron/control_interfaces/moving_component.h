@@ -12,6 +12,9 @@ namespace huron {
  */
 class MovingComponent : public GenericComponent {
  public:
+  explicit MovingComponent(std::unique_ptr<Configuration> config)
+    : GenericComponent(std::move(config)) {}
+
   /**
    * Moves the component by the specified input.
    *
