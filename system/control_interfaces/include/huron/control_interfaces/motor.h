@@ -17,10 +17,32 @@ namespace huron {
  */
 class Motor : public MovingComponent {
  public:
-  Motor() = default;
+  class MotorConfiguration : public Configuration {
+   private:
+    static const inline std::set<std::string> kMotorValidKeys{};
+
+   public:
+    MotorConfiguration(ConfigMap config_map,
+                       std::set<std::string> valid_keys)
+        : Configuration(config_map, [&valid_keys]() {
+                          std::set<std::string> tmp(kMotorValidKeys);
+                          tmp.merge(valid_keys);
+                          return tmp;
+                        }()) {}
+
+    explicit MotorConfiguration(ConfigMap config_map)
+        : MotorConfiguration(config_map, {}) {}
+
+    MotorConfiguration()
+        : MotorConfiguration({}, {}) {}
+  };
+
+  explicit Motor(std::unique_ptr<MotorConfiguration> config)
+      : MovingComponent(std::move(config)) {}
+  Motor() : Motor(std::make_unique<MotorConfiguration>()) {}
   Motor(const Motor&) = delete;
   Motor& operator=(const Motor&) = delete;
-  virtual ~Motor() = default;
+  ~Motor() override = default;
 };
 
 }  // namespace huron
