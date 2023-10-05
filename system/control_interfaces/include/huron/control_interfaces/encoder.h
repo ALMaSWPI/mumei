@@ -31,7 +31,7 @@ class Encoder : public GenericComponent {
         : EncoderConfiguration({}, {}) {}
   };
 
-  explicit Encoder(std::unique_ptr<Configuration> config)
+  explicit Encoder(std::unique_ptr<EncoderConfiguration> config)
     : GenericComponent(std::move(config)) {}
   Encoder() : Encoder(std::make_unique<EncoderConfiguration>()) {}
   Encoder(const Encoder&) = delete;
