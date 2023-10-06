@@ -48,12 +48,27 @@ class ODriveCAN : public ODrive {
     MSG_GET_CONTROLLER_ERROR,
     MSG_CO_HEARTBEAT_CMD = 0x700,  // CANOpen NMT Heartbeat  SEND
   };
-  ODriveCAN(huron::driver::can::BusBase* canbus, uint32_t axis_id);
-  ODriveCAN(huron::driver::can::BusBase* canbus, uint32_t axis_id,
-	    uint32_t get_timeout);
+  /**
+   * Constructor of ODriveCAN. As the CAN interface of ODrive v3.6 does not
+   * allow reading configuration from hardware, a default configuration matrix
+   * must be passed to the constructor.
+   *
+   * @pre The configuration is the same as on hardware component.
+   */
+  ODriveCAN(huron::driver::can::BusBase* canbus,
+	    uint32_t axis_id,
+	    std::unique_ptr<ODriveConfiguration> config,
+	    uint32_t get_timeout = kGetTimeout);
   ODriveCAN(const ODriveCAN&) = delete;
   ODriveCAN& operator=(const ODriveCAN&) = delete;
   virtual ~ODriveCAN() = default;
+
+  // GenericComponent interface
+  void Initialize() override;
+  void SetUp() override;
+  void Terminate() override;
+
+  void ConfigureKey(std::string config_key, std::any config_value) override;
 
   // Get functions (msg.rtr bit must be set)
   bool GetMotorError(uint64_t& motor_error) override;

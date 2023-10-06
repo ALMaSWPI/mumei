@@ -19,9 +19,9 @@ class GenericComponent {
    * Configure the hardware component with the specified key-value pair. This
    * method needs to be defined by the user.
    *
-   * @pre The configuration pair is valid.
+   * @pre The configuration pair is valid and stored into config_.
    */
-  virtual void ConfigureKey(std::string config_key, std::any config_value) = 0;
+  virtual void ConfigureKey(std::string config_key, std::any config_value) {}
 
   /**
    * Configure the hardware component with the specified configuration map.

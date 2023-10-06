@@ -12,15 +12,18 @@ class ODriveEncoder : public huron::RotaryEncoder {
   explicit ODriveEncoder(float cpr, std::shared_ptr<ODrive> odrive);
   ODriveEncoder(const ODriveEncoder&) = delete;
   ODriveEncoder& operator=(const ODriveEncoder&) = delete;
-  ~ODriveEncoder() = default;
+  ~ODriveEncoder() override = default;
 
-  void Configure() override;
   void Initialize() override;
   void SetUp() override;
   void Terminate() override;
 
   float GetCount() override;
   float GetVelocityCount() override;
+
+ protected:
+  void ConfigureKey(std::string config_key, std::any config_value) override;
+
  private:
   std::shared_ptr<ODrive> odrive_;
 };

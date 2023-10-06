@@ -3,6 +3,7 @@
 #include <cstdint>
 
 #include "odrive_enums.h"
+#include "huron/control_interfaces/generic_component.h"
 
 namespace huron {
 namespace odrive {
@@ -10,7 +11,7 @@ namespace odrive {
 /**
  * Interface for using ODrive motor controllers.
  */
-class ODrive {
+class ODrive : public huron::GenericComponent {
  protected:
   static const uint32_t kGetTimeout = 100;  // ms
 
@@ -18,11 +19,41 @@ class ODrive {
   bool is_calibrated_ = false;
 
  public:
+  class ODriveConfiguration : public Configuration {
+   public:
+    /**
+     * Supports further inheritance.
+     */
+    ODriveConfiguration(ConfigMap config_map,
+			std::set<std::string> valid_keys)
+	: Configuration(config_map,
+			[&valid_keys]() {
+			  std::set<std::string> tmp(kODriveKeys);
+			  tmp.merge(valid_keys);
+			  return tmp;
+			}()) {}
+
+    ODriveConfiguration()
+	: ODriveConfiguration({}, {}) {}
+
+   private:
+    static const inline std::set<std::string> kODriveKeys{
+      "velocity_limit",
+      "current_limit",
+      "traj_vel_limit",
+      "traj_accel_limit",
+      "traj_decel_limit",
+      "traj_inertia"};
+  };
+  ODrive(std::unique_ptr<ODriveConfiguration> config, uint32_t get_timeout)
+      : huron::GenericComponent(std::move(config)),
+	get_timeout_(get_timeout) {}
   explicit ODrive(uint32_t get_timeout = kGetTimeout)
-    : get_timeout_(get_timeout) {}
+      : ODrive(std::make_unique<ODriveConfiguration>(),
+	       get_timeout) {}
   ODrive(const ODrive&) = delete;
   ODrive& operator=(const ODrive&) = delete;
-  virtual ~ODrive() = default;
+  ~ODrive() override = default;
 
   /**
    * Puts the ODrive in IDLE state and, if not completed before, perform
