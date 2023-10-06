@@ -16,7 +16,7 @@ class TorqueMotor : public huron::TorqueMotor {
   TorqueMotor& operator=(const TorqueMotor&) = delete;
   ~TorqueMotor() = default;
 
-  void Configure() override;
+  // GenericComponent methods
   void Initialize() override;
   void SetUp() override;
   void Terminate() override;

@@ -6,8 +6,6 @@ ODriveEncoder::ODriveEncoder(float cpr,
                  std::shared_ptr<ODrive> odrive)
   : huron::RotaryEncoder(cpr), odrive_(std::move(odrive)) {}
 
-void ODriveEncoder::Configure() {
-}
 
 void ODriveEncoder::Initialize() {
 }
