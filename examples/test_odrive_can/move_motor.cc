@@ -10,7 +10,8 @@ using namespace std::chrono_literals;  //NOLINT
 
 int main(int argc, char* argv[]) {
   huron::driver::can::SocketCanBus hcb{"can0", 0};
-  huron::odrive::ODriveCAN hoc{&hcb, 0};
+  huron::odrive::ODriveCAN hoc{&hcb, 0,
+    std::make_unique<huron::odrive::ODrive::ODriveConfiguration>()};
 
   hoc.SetAxisRequestedState(AXIS_STATE_CLOSED_LOOP_CONTROL);
 
