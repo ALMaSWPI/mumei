@@ -5,7 +5,8 @@
 
 int main(int argc, char* argv[]) {
   huron::driver::can::SocketCanBus hcb{"can0", 0};
-  huron::odrive::ODriveCAN hoc{&hcb, 0};
+  huron::odrive::ODriveCAN hoc{&hcb, 0,
+    std::make_unique<huron::odrive::ODrive::ODriveConfiguration>()};
   float pos = 0.0, vel = 0.0;
   bool success = hoc.GetEncoderEstimates(pos, vel);
   if (!success)

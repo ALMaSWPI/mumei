@@ -11,6 +11,9 @@ namespace odrive {
 
 class TorqueMotor : public huron::TorqueMotor {
  public:
+  TorqueMotor(
+    std::unique_ptr<huron::TorqueMotor::TorqueMotorConfiguration> config,
+    std::shared_ptr<ODrive> odrive);
   explicit TorqueMotor(std::shared_ptr<ODrive> odrive);
   TorqueMotor(const TorqueMotor&) = delete;
   TorqueMotor& operator=(const TorqueMotor&) = delete;

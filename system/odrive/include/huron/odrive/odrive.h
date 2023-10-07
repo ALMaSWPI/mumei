@@ -19,19 +19,19 @@ class ODrive : public huron::GenericComponent {
   bool is_calibrated_ = false;
 
  public:
-  class ODriveConfiguration : public Configuration {
+  class ODriveConfiguration : public huron::Configuration {
    public:
     /**
      * Supports further inheritance.
      */
     ODriveConfiguration(ConfigMap config_map,
 			std::set<std::string> valid_keys)
-	: Configuration(config_map,
-			[&valid_keys]() {
-			  std::set<std::string> tmp(kODriveKeys);
-			  tmp.merge(valid_keys);
-			  return tmp;
-			}()) {}
+	: huron::Configuration(config_map,
+			       [&valid_keys]() {
+			         std::set<std::string> tmp(kODriveKeys);
+			         tmp.merge(valid_keys);
+			         return tmp;
+			       }()) {}
 
     ODriveConfiguration()
 	: ODriveConfiguration({}, {}) {}
