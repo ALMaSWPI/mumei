@@ -43,6 +43,11 @@ class Motor : public MovingComponent {
   Motor(const Motor&) = delete;
   Motor& operator=(const Motor&) = delete;
   ~Motor() override = default;
+
+  /**
+   * Gets a reference to the underlying driver.
+   */
+  virtual GenericComponent& GetDriver() = 0;
 };
 
 }  // namespace huron

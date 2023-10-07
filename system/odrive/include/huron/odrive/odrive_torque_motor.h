@@ -28,6 +28,10 @@ class TorqueMotor : public huron::TorqueMotor {
   bool Move(const std::vector<float>& values) override;
   bool Stop() override;
 
+  GenericComponent& GetDriver() override {
+    return *odrive_.get();
+  }
+
  private:
   std::shared_ptr<ODrive> odrive_;
 };

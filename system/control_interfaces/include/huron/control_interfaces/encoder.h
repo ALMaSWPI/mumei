@@ -41,6 +41,11 @@ class Encoder : public GenericComponent {
   virtual float GetPosition() = 0;
   virtual float GetVelocity() = 0;
   virtual void Reset() = 0;
+
+  /**
+   * Gets a reference to the underlying driver.
+   */
+  virtual GenericComponent& GetDriver() = 0;
 };
 
 }  // namespace huron

@@ -46,13 +46,23 @@ class Joint : public MovingComponent {
   Joint& operator=(const Joint&) = delete;
   virtual ~Joint() = default;
 
+  // GenericComponent interface
   void Initialize() override;
   void SetUp() override;
   void Terminate() override;
 
+  // MoveComponent interface
   bool Move(float value) override;
   bool Move(const std::vector<float>& value) override;
   bool Stop() override;
+
+  Motor& GetMotor() {
+    return *motor_.get();
+  }
+
+  Encoder& GetEncoder() {
+    return *encoder_.get();
+  }
 
   /**
    * Gets the position of the joint.
