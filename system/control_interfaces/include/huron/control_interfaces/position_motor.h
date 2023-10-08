@@ -1,5 +1,10 @@
 #pragma once
 
+#include <set>
+#include <string>
+#include <utility>
+#include <memory>
+
 #include "huron/control_interfaces/motor.h"
 
 namespace huron {
@@ -29,7 +34,8 @@ class PositionMotor : public Motor {
 
   explicit PositionMotor(std::unique_ptr<PositionMotorConfiguration> config)
       : Motor(std::move(config)) {}
-  PositionMotor() : PositionMotor(std::make_unique<PositionMotorConfiguration>()) {}
+  PositionMotor()
+      : PositionMotor(std::make_unique<PositionMotorConfiguration>()) {}
   PositionMotor(const PositionMotor&) = delete;
   PositionMotor& operator=(const PositionMotor&) = delete;
   virtual ~PositionMotor() = default;

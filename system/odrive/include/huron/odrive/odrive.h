@@ -1,6 +1,10 @@
 #pragma once
 
 #include <cstdint>
+#include <set>
+#include <string>
+#include <utility>
+#include <memory>
 
 #include "odrive_enums.h"
 #include "huron/control_interfaces/generic_component.h"

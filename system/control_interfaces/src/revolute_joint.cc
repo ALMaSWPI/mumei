@@ -22,7 +22,7 @@ RevoluteJoint::RevoluteJoint(std::unique_ptr<Motor> motor,
 
 RevoluteJoint::RevoluteJoint(std::unique_ptr<Motor> motor,
                              std::unique_ptr<RotaryEncoder> encoder)
-    : RevoluteJoint(std::move(motor), std::move(encoder), 
+    : RevoluteJoint(std::move(motor), std::move(encoder),
                     std::make_unique<RevoluteJointConfiguration>()) {}
 
 float RevoluteJoint::GetPosition() {

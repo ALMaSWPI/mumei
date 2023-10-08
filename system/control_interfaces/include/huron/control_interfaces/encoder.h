@@ -1,4 +1,10 @@
 #pragma once
+
+#include <set>
+#include <string>
+#include <utility>
+#include <memory>
+
 #include "generic_component.h"
 
 namespace huron {

@@ -1,5 +1,11 @@
 #pragma once
+
 #include <cmath>
+#include <set>
+#include <string>
+#include <utility>
+#include <memory>
+
 #include "encoder.h"
 
 namespace huron {
@@ -24,16 +30,16 @@ class RotaryEncoder : public Encoder {
      */
     RotaryEncoderConfiguration(ConfigMap config_map,
                                std::set<std::string> valid_keys)
-      : EncoderConfiguration(config_map,
-                             [&valid_keys]() {
-                               std::set<std::string> tmp(kRotEncValidKeys);
-                               tmp.merge(valid_keys);
-                               return tmp;
-                             }()) {}
+        : EncoderConfiguration(config_map,
+                               [&valid_keys]() {
+                                 std::set<std::string> tmp(kRotEncValidKeys);
+                                 tmp.merge(valid_keys);
+                                 return tmp;
+                               }()) {}
 
-    RotaryEncoderConfiguration(float cpr)
-      : RotaryEncoderConfiguration(
-          ConfigMap({{"cpr", cpr}}), {}) {}
+    explicit RotaryEncoderConfiguration(float cpr)
+        : RotaryEncoderConfiguration(
+            ConfigMap({{"cpr", cpr}}), {}) {}
 
    private:
     static const inline std::set<std::string> kRotEncValidKeys{"cpr"};

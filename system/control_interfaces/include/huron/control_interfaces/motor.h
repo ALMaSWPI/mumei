@@ -1,6 +1,10 @@
 #pragma once
 
 #include <vector>
+#include <set>
+#include <string>
+#include <utility>
+#include <memory>
 
 #include "moving_component.h"
 
