@@ -6,16 +6,15 @@
 namespace huron {
 namespace odrive {
 
-bool ODrive::Initialize() {
+void ODrive::Initialize() {
   // Set axis state IDLE
   SetAxisRequestedState(AXIS_STATE_IDLE);
   std::this_thread::sleep_for(std::chrono::seconds(1));
 
   // Calibrate
   if (!is_calibrated_) {
-    return Calibrate();
+    Calibrate();
   }
-  return true;
 }
 
 bool ODrive::Calibrate() {

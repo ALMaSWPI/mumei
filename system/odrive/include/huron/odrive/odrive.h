@@ -59,7 +59,7 @@ class ODrive : public huron::GenericComponent {
    * Puts the ODrive in IDLE state and, if not completed before, perform
    * full calibration.
    */
-  bool Initialize();
+  void Initialize() override;
 
   /**
    * Performs full calibration of the ODrive.
