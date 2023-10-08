@@ -33,7 +33,7 @@ std::any Configuration::Get(std::string config_key, bool renew) {
 
 bool Configuration::Set(std::string config_key, std::any config_value) {
   if (ValidateKey(config_key)) {
-    config_map_.insert_or_assign(config_key, config_value);
+    config_map_[config_key] = config_value;
     return true;
   }
   return false;
