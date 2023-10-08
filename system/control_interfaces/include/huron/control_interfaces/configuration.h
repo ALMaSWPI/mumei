@@ -52,7 +52,7 @@ class Configuration {
    *
    * @throw InvalidConfigurationException if @p config_key is invalid.
    */
-  std::any Get(std::string config_key, bool renew=false);
+  std::any Get(std::string config_key, bool renew = false);
   bool Set(std::string config_key, std::any config_value);
   bool Set(ConfigMap config_map);
 };

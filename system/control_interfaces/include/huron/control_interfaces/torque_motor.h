@@ -1,5 +1,10 @@
 #pragma once
 
+#include <set>
+#include <string>
+#include <utility>
+#include <memory>
+
 #include "huron/control_interfaces/motor.h"
 
 namespace huron {

@@ -2,6 +2,9 @@
 
 #include <memory>
 #include <unordered_map>
+#include <string>
+#include <utility>
+
 #include "configuration.h"
 
 namespace huron {

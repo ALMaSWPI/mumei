@@ -4,6 +4,9 @@
 * See https://docs.odriverobotics.com/v/0.5.6/can-protocol.html for more information about this CAN API.
 * */
 
+#include <memory>
+#include <string>
+
 #include "odrive.h"
 #include "huron/driver/can/canbus.h"
 

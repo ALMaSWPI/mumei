@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <set>
+#include <string>
 
 #include "joint.h"
 #include "rotary_encoder.h"

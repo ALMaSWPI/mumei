@@ -2,6 +2,8 @@
 
 #include <memory>
 #include <vector>
+#include <set>
+#include <string>
 
 #include "motor.h"
 #include "moving_component.h"
@@ -31,12 +33,11 @@ class Joint : public MovingComponent {
                           return tmp;
                         }()) {}
 
-    JointConfiguration(ConfigMap config_map)
+    explicit JointConfiguration(ConfigMap config_map)
         : JointConfiguration(config_map, {}) {}
 
     JointConfiguration()
         : JointConfiguration({}, {}) {}
-
   };
 
   Joint(std::unique_ptr<Motor> motor, std::unique_ptr<Encoder> encoder,
