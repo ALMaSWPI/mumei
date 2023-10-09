@@ -1,0 +1,24 @@
+@PACKAGE_INIT@
+
+include("${CMAKE_CURRENT_LIST_DIR}/huronTargets.cmake")
+
+set_and_check(huron_INCLUDE_DIRS
+    "${CMAKE_CURRENT_LIST_DIR}"
+)
+list(APPEND huron_INCLUDE_DIRS
+    "${CMAKE_CURRENT_SOURCE_DIR}/../../../system/control_interfaces/include"
+)
+list(APPEND huron_INCLUDE_DIRS
+    "${CMAKE_CURRENT_SOURCE_DIR}/../../../system/exceptions/include"
+)
+list(APPEND huron_INCLUDE_DIRS
+    "${CMAKE_CURRENT_SOURCE_DIR}/../../../system/odrive/include"
+)
+list(APPEND huron_INCLUDE_DIRS
+    "${CMAKE_CURRENT_SOURCE_DIR}/../../../driver/can/include"
+)
+list(APPEND huron_INCLUDE_DIRS
+    "${CMAKE_CURRENT_SOURCE_DIR}/../../../driver/config/include"
+)
+
+set(huron_LIBRARIES huron::huron)
