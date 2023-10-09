@@ -44,16 +44,26 @@ class GenericComponent {
   GenericComponent& operator=(const GenericComponent&) = delete;
   virtual ~GenericComponent() = default;
 
+  /**
+   * Configure using a key-value pair.
+   */
   void Configure(std::string config_key, std::any config_value) {
     if (config_->Set(config_key, config_value)) {
       return ConfigureKey(config_key, config_value);
     }
   }
+  /**
+   * Configure using a ConfigMap. A necessary condition for this operation
+   * is that all keys in the ConfigMap are valid.
+   */
   void Configure(ConfigMap config) {
     if (config_->Set(config)) {
       return ConfigureMap(config);
     }
   }
+  /**
+   * Replace the underlying Configuration object by a new one.
+   */
   void Configure(std::unique_ptr<Configuration> config_ptr) {
     config_ = std::move(config_ptr);
   }
