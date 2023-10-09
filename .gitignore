@@ -1,5 +1,7 @@
 bazel-*
 build
+install
+log
 .idea
 .vscode
 
