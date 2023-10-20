@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<robot 
+    xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:macro name="huron_misc">
+    <!-- Battery -->
+    <link name="battery_link">
+        <visual>
+            <xacro:insert_mesh_battery_link />
+        </visual>
+        <collision>
+            <xacro:insert_mesh_battery_link />
+        </collision>
+        <inertial>
+            <xacro:insert_inertia_battery_link />
+        </inertial>
+    </link>
+    <joint name="battery_fixed" type="fixed">
+        <origin xyz="0 0 0.0895" rpy="0 0 0"/>
+        <parent link="base_link"/>
+        <child link="battery_link"/>
+    </joint>
+
+    <!-- Upper body visualization -->
+    <link name="upper_body_link">
+        <visual>
+            <xacro:insert_mesh_upper_body_link />
+        </visual>
+        <collision>
+            <xacro:insert_mesh_upper_body_link />
+        </collision>
+        <inertial>
+            <xacro:insert_inertia_upper_body_link />
+        </inertial>
+    </link>
+    <joint name="upper_body_fixed" type="fixed">
+        <origin xyz="0 0 0.1505" rpy="0 0 0"/>
+        <parent link="battery_link"/>
+        <child link="upper_body_link"/>
+    </joint>
+
+    </xacro:macro>
+</robot>

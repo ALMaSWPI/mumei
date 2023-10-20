@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="huron_ros2_control" params="name prefix">
+
+    <ros2_control name="${name}" type="system">
+      <!-- <hardware>
+        <plugin>ros2_control_demo_hardware/RRBotSystemPositionOnlyHardware</plugin>
+        <param name="example_param_hw_start_duration_sec">0</param>
+        <param name="example_param_hw_stop_duration_sec">3.0</param>
+        <param name="example_param_hw_slowdown">100</param>
+      </hardware> -->
+      <hardware>
+          <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+      </hardware>
+      <joint name="${prefix}l_hip_yaw_joint">
+        <command_interface name="effort">
+          <param name="min">-100</param>
+          <param name="max">100</param>
+        </command_interface>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+      </joint>
+      <joint name="${prefix}l_hip_roll_joint">
+        <command_interface name="effort">
+          <param name="min">-100</param>
+          <param name="max">100</param>
+        </command_interface>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+      </joint>
+      <joint name="${prefix}l_hip_pitch_joint">
+        <command_interface name="effort">
+          <param name="min">-100</param>
+          <param name="max">100</param>
+        </command_interface>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+      </joint>
+      <joint name="${prefix}l_knee_pitch_joint">
+        <command_interface name="effort">
+          <param name="min">-100</param>
+          <param name="max">100</param>
+        </command_interface>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+      </joint>
+      <joint name="${prefix}l_ankle_pitch_joint">
+        <command_interface name="effort">
+          <param name="min">-100</param>
+          <param name="max">100</param>
+        </command_interface>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+      </joint>
+      <joint name="${prefix}l_ankle_roll_joint">
+        <command_interface name="effort">
+          <param name="min">-100</param>
+          <param name="max">100</param>
+        </command_interface>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+      </joint>
+      <joint name="${prefix}r_hip_yaw_joint">
+        <command_interface name="effort">
+          <param name="min">-100</param>
+          <param name="max">100</param>
+        </command_interface>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+      </joint>
+      <joint name="${prefix}r_hip_roll_joint">
+        <command_interface name="effort">
+          <param name="min">-100</param>
+          <param name="max">100</param>
+        </command_interface>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+      </joint>
+      <joint name="${prefix}r_hip_pitch_joint">
+        <command_interface name="effort">
+          <param name="min">-100</param>
+          <param name="max">100</param>
+        </command_interface>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+      </joint>
+      <joint name="${prefix}r_knee_pitch_joint">
+        <command_interface name="effort">
+          <param name="min">-100</param>
+          <param name="max">100</param>
+        </command_interface>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+      </joint>
+      <joint name="${prefix}r_ankle_pitch_joint">
+        <command_interface name="effort">
+          <param name="min">-100</param>
+          <param name="max">100</param>
+        </command_interface>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+      </joint>
+      <joint name="${prefix}r_ankle_roll_joint">
+        <command_interface name="effort">
+          <param name="min">-100</param>
+          <param name="max">100</param>
+        </command_interface>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+      </joint>
+    </ros2_control>
+
+    <gazebo>
+        <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
+          <parameters>$(find huron_control)/config/gazebo_controllers.yaml</parameters>
+        </plugin>
+      </gazebo>
+  </xacro:macro>
+
+</robot>
