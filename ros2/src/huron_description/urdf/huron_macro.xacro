@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+  <!--
+    Macro to generate a basic HURON robot.
+  --> 
+
+  <xacro:macro name="huron_base">
+  
+    <xacro:include filename="$(find huron_description)/urdf/materials.xacro" />
+    <xacro:include filename="$(find huron_description)/urdf/huron_visuals.xacro" />
+    <xacro:include filename="$(find huron_description)/urdf/huron_inertia.xacro" />
+    <xacro:include filename="$(find huron_description)/urdf/huron_right_leg.xacro" />
+    <xacro:include filename="$(find huron_description)/urdf/huron_left_leg.xacro" />
+    <xacro:include filename="$(find huron_description)/urdf/huron_misc.xacro" />
+    <xacro:include filename="$(find huron_description)/urdf/huron_transmissions.xacro" />
+  
+    <link name="dummy"></link>
+    <link name="base_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://huron_description/meshes/base_link.STL" scale="1 1 1" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://huron_description/meshes/base_link.STL" scale="1 1 1" />
+        </geometry>
+      </collision>
+      <inertial>
+        <origin
+          xyz="-1.3585E-07 5.07E-07 0.026975"
+          rpy="0 0 0" />
+        <mass
+          value="3.4072" />
+        <inertia
+          ixx="0.00319"
+          ixy="-1.7776E-09"
+          ixz="-1.7316E-09"
+          iyy="0.010531"
+          iyz="6.4623E-09"
+          izz="0.012315" />
+      </inertial>
+    </link>
+    <joint name="dummy_joint" type="fixed">
+      <parent link="dummy"/>
+      <child link="base_link"/>
+    </joint>
+
+    <!-- imu joint -->
+    <joint name="imu_fixed" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <parent link="base_link"/>
+      <child link="imu_link"/>
+    </joint>
+    <link name="imu_link"></link>
+    
+    <!-- leg link -->
+    <xacro:huron_right_leg parent="base_link" dxl_effort="1000000" dxl_speed="3000"/>
+    <xacro:huron_left_leg parent="base_link" dxl_effort="1000000" dxl_speed="3000"/>
+    <xacro:huron_misc />
+
+  </xacro:macro>
+</robot>
