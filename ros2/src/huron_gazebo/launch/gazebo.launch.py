@@ -11,7 +11,7 @@ from launch_ros.descriptions import ParameterValue
 
 
 def generate_launch_description():
-    pkg_dir = get_package_share_directory('huron_description')
+    pkg_dir = get_package_share_directory('huron_gazebo')
     world_path = os.path.join(
         pkg_dir,
         'worlds',
@@ -37,7 +37,7 @@ def generate_launch_description():
     #         description='Use simulation (Gazebo) clock if true'),
 
     robot_controllers = os.path.join(
-        get_package_share_directory("huron_control"),
+        get_package_share_directory("huron_gazebo"),
         "config",
         "gazebo_controllers.yaml")
 
@@ -58,7 +58,7 @@ def generate_launch_description():
 
     spawn_entity = Node(package='gazebo_ros', executable="spawn_entity.py",
                         arguments=['-topic', 'robot_description',
-                                   '-entity', 'huron',
+                                   '-entity', 'robot',
                                    '-z', '1.1227'],
                         output='both')
 

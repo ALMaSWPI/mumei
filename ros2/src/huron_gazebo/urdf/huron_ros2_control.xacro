@@ -4,12 +4,6 @@
   <xacro:macro name="huron_ros2_control" params="name prefix">
 
     <ros2_control name="${name}" type="system">
-      <!-- <hardware>
-        <plugin>ros2_control_demo_hardware/RRBotSystemPositionOnlyHardware</plugin>
-        <param name="example_param_hw_start_duration_sec">0</param>
-        <param name="example_param_hw_stop_duration_sec">3.0</param>
-        <param name="example_param_hw_slowdown">100</param>
-      </hardware> -->
       <hardware>
           <plugin>gazebo_ros2_control/GazeboSystem</plugin>
       </hardware>
@@ -125,7 +119,7 @@
 
     <gazebo>
         <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
-          <parameters>$(find huron_control)/config/gazebo_controllers.yaml</parameters>
+          <parameters>$(find huron_gazebo)/config/gazebo_controllers.yaml</parameters>
         </plugin>
       </gazebo>
   </xacro:macro>

@@ -1,12 +1,15 @@
 <?xml version="1.0"?>
-<robot 
-    xmlns:xacro="http://www.ros.org/wiki/xacro">
-    <!-- ros_control plugin -->
-    <gazebo>
-        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-            <robotNamespace>/huron</robotNamespace>
-         </plugin>
-    </gazebo>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="huron">
+    <!-- HURON model for use with Gazebo simulation -->
+    <xacro:include filename="$(find huron_description)/urdf/huron_macro.xacro" />
+    <xacro:include filename="$(find huron_gazebo)/urdf/huron_ros2_control.xacro" />
+
+    <!-- Add HURON Base -->
+    <xacro:huron_base />
+
+    <!-- ros2_control plugin -->
+    <xacro:huron_ros2_control name="huron" prefix="" />
+
     <gazebo>
         <plugin name="ground_truth" filename="libgazebo_ros_p3d.so">
             <frameName>map</frameName>
