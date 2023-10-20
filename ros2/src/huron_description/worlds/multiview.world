@@ -1,0 +1,199 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <world name="default">
+    <gravity>0.000000 0.000000 -9.810000</gravity>
+    <physics name="default_physics" default="0" type="ode">
+      <max_step_size>0.001</max_step_size>
+      <!-- <real_time_factor>0.5</real_time_factor> -->
+      <!-- <real_time_update_rate>1000</real_time_update_rate> -->
+      <ode>
+        <solver>
+          <type>quick</type>
+          <iters>2000</iters>
+          <sor>1.0</sor> 
+          <use_dynamic_moi_rescaling>false</use_dynamic_moi_rescaling>
+        </solver>
+      </ode>
+    </physics>
+    <!-- <include> -->
+    <!--   <uri>model://ground_plane</uri> -->
+    <!-- </include> -->
+    <model name='ground_plane'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>50</mu2>
+                <fdir1>1 0 0</fdir1>
+              </ode>
+            </friction>
+            <bounce/>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+          <!-- <max_contacts>12</max_contacts> -->
+        </collision>
+        <visual name='visual'>
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <velocity_decay>
+          <linear>0</linear>
+          <angular>0</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+    </model>
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <plugin name="gvm_multicamera_bootstrapper_plugin" filename="libgvm_multicamera_bootstrapper_plugin.so">
+      <sensor name="video_monitor_dual_camera" type="gvm_multicamera">
+        <update_rate>30</update_rate>
+        <!-- Uncomment only to... -->
+        <always_on>true</always_on>
+        <visualize>false</visualize>
+        <!-- configure the camera poses -->
+
+        <!-- top view -->
+        <!-- <camera name="camera_0"> -->
+        <!--   <pose>0 0 3 1.5708 1.5708 0</pose> -->
+        <!--   <horizontal_fov>1.5708</horizontal_fov> -->
+        <!--   <image> -->
+        <!--     <width>640</width> -->
+        <!--     <height>480</height> -->
+        <!--     <format>R8G8B8</format> -->
+        <!--   </image> -->
+        <!--   <clip> -->
+        <!--     <near>0.01</near> -->
+        <!--     <far>100</far> -->
+        <!--   </clip> -->
+        <!-- </camera> -->
+
+        <camera name="camera_1">
+          <pose>0.9 -0.9 1.5 0 0.6 2.3</pose>
+          <horizontal_fov>1.5708</horizontal_fov>
+          <image>
+            <width>640</width>
+            <height>480</height>
+            <format>R8G8B8</format>
+          </image>
+          <clip>
+            <near>0.01</near>
+            <far>100</far>
+          </clip>
+        </camera>
+
+        <!-- side view -->
+        <camera name="camera_2">
+          <pose>1 0 0.65 0 0 3.14159</pose>
+          <horizontal_fov>1.5708</horizontal_fov>
+          <image>
+            <width>640</width>
+            <height>480</height>
+            <format>R8G8B8</format>
+          </image>
+          <clip>
+            <near>0.01</near>
+            <far>100</far>
+          </clip>
+        </camera>
+
+        <!-- side foot view -->
+        <camera name="camera_3">
+          <pose>0.5 0 0.15 0 0 3.14159</pose>
+          <horizontal_fov>1.5708</horizontal_fov>
+          <image>
+            <width>640</width>
+            <height>480</height>
+            <format>R8G8B8</format>
+          </image>
+          <clip>
+            <near>0.01</near>
+            <far>100</far>
+          </clip>
+        </camera>
+
+        <!-- <camera name="camera_4"> -->
+        <!--   <pose>-0.02 0.02 0.6 0 0 2.72</pose> -->
+        <!--   <horizontal_fov>0.523599</horizontal_fov> -->
+        <!--   <image> -->
+        <!--     <width>640</width> -->
+        <!--     <height>480</height> -->
+        <!--     <format>R8G8B8</format> -->
+        <!--   </image> -->
+        <!--   <clip> -->
+        <!--     <near>0.01</near> -->
+        <!--     <far>100</far> -->
+        <!--   </clip> -->
+        <!-- </camera> -->
+
+        <plugin name="multi_view_monitor_plugin" filename="libgazebo_multi_view_monitor_plugin.so">
+          <setCameraService>gazebo/set_camera</setCameraService>
+          <startRecordingService>gazebo/start_recording</startRecordingService>
+          <stopRecordingService>gazebo/stop_recording</stopRecordingService>
+          <cameraSelectTopic>gazebo/camera_select</cameraSelectTopic>
+          <savePath>/var/tmp/gazebo_multi_view_monitor</savePath>
+          <recorder>
+            <width>640</width>
+            <height>480</height>
+            <!-- <bitRate>590000</bitRate> -->
+            <bitRate>3000000</bitRate>
+            <logMetadata>true</logMetadata>
+            <logWallTime>false</logWallTime>
+            <addTimestampInFilename>true</addTimestampInFilename>
+          </recorder>
+          <!-- <cameraReference name="camera_0"> -->
+          <!--   <model>ground_plane</model> -->
+          <!--   <link>link</link> -->
+          <!-- </cameraReference> -->
+          <cameraReference name="camera_1">
+            <model>ground_plane</model>
+            <link>link</link>
+          </cameraReference>
+          <cameraReference name="camera_2">
+            <model>ground_plane</model>
+            <link>link</link>
+          </cameraReference>
+          <cameraReference name="camera_3">
+            <model>ground_plane</model>
+            <link>link</link>
+          </cameraReference>
+          <!-- <cameraReference name="camera_4"> -->
+          <!--   <model>ground_plane</model> -->
+          <!--   <link>link</link> -->
+          <!-- </cameraReference> -->
+        </plugin>
+      </sensor>
+
+      <sensorReference>
+        <model>ground_plane</model>
+        <link>link</link>
+      </sensorReference>
+    </plugin>
+</world>
+</sdf>

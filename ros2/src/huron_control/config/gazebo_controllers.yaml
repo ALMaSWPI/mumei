@@ -1,0 +1,92 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 100  # Hz
+      
+     # Publish all joint states -----------------------------------
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    # # Effort Controllers ---------------------------------------
+    # # Left Leg -----
+    # l_hip_yaw_effort:
+    #   type: effort_controllers/JointEffortController
+    #   joint: l_hip_yaw_joint
+    #   pid: {p: 200.0, i: 2, d: 1}
+    #
+    # l_hip_roll_effort:
+    #   type: effort_controllers/JointEffortController
+    #   joint: l_hip_roll_joint
+    #   pid: {p: 200.0, i: 2, d: 1}
+    #
+    # l_hip_pitch_effort:
+    #   type: effort_controllers/JointEffortController
+    #   joint: l_hip_pitch_joint
+    #   pid: {p: 200.0, i: 2, d: 1}
+    #
+    # l_knee_pitch_effort:
+    #   type: effort_controllers/JointEffortController
+    #   joint: l_knee_pitch_joint
+    #   pid: {p: 200.0, i: 2, d: 1}
+    #
+    # l_ankle_pitch_effort:
+    #   type: effort_controllers/JointEffortController
+    #   joint: l_ankle_pitch_joint
+    #   pid: {p: 200.0, i: 2, d: 1}
+    #
+    # l_ankle_roll_effort:
+    #   type: effort_controllers/JointEffortController
+    #   joint: l_ankle_roll_joint
+    #   pid: {p: 200.0, i: 2, d: 1}
+    #
+    # # Right Leg -----
+    #
+    # r_hip_yaw_effort:
+    #   type: effort_controllers/JointEffortController
+    #   joint: r_hip_yaw_joint
+    #   pid: {p: 200.0, i: 2, d: 1}
+    #
+    # r_hip_roll_effort:
+    #   type: effort_controllers/JointEffortController
+    #   joint: r_hip_roll_joint
+    #   pid: {p: 200.0, i: 2, d: 1}
+    #
+    # r_hip_pitch_effort:
+    #   type: effort_controllers/JointEffortController
+    #   joint: r_hip_pitch_joint
+    #   pid: {p: 200.0, i: 2, d: 1}
+    #
+    # r_knee_pitch_effort:
+    #   type: effort_controllers/JointEffortController
+    #   joint: r_knee_pitch_joint
+    #   pid: {p: 200.0, i: 2, d: 1}
+    #
+    # r_ankle_pitch_effort:
+    #   type: effort_controllers/JointEffortController
+    #   joint: r_ankle_pitch_joint
+    #   pid: {p: 200.0, i: 2, d: 1}
+    #
+    # r_ankle_roll_effort:
+    #   type: effort_controllers/JointEffortController
+    #   joint: r_ankle_roll_joint
+    #   pid: {p: 200.0, i: 2, d: 1}
+        
+    # Effort Group Controller ---------------------------------------
+
+    joint_group_effort_controller:
+      type: effort_controllers/JointGroupEffortController
+
+joint_group_effort_controller:
+  ros__parameters:
+    joints:
+      - l_hip_yaw_joint 
+      - l_hip_roll_joint
+      - l_hip_pitch_joint
+      - l_knee_pitch_joint
+      - l_ankle_pitch_joint
+      - l_ankle_roll_joint
+      - r_hip_yaw_joint 
+      - r_hip_roll_joint
+      - r_hip_pitch_joint
+      - r_knee_pitch_joint
+      - r_ankle_pitch_joint
+      - r_ankle_roll_joint
