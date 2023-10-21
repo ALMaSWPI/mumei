@@ -44,13 +44,18 @@
     <gazebo reference ="r_ankle_roll_joint">
     	<provideFeedback>true</provideFeedback>
     </gazebo>
-    
+
     <gazebo>
     <plugin name="r1_ft_sensor" filename="libgazebo_ros_ft_sensor.so">
-        <updateRate>100.0</updateRate>
-        <topicName>/huron/sensor/r1_ft_sensor</topicName>
-        <jointName>r_ankle_roll_joint</jointName>
-        <gaussianNoise>0.0</gaussianNoise>
+      <ros>
+        <namespace>/huron/sensor</namespace>
+        <remapping>wrench:=r1_ft_sensor</remapping>
+      </ros>
+      <update_rate>100</update_rate>
+      <!-- <body_name>r_ankle_roll_link</body_name> -->
+      <!-- <frame_name>r_ankle_roll_link</frame_name> -->
+      <joint_name>r_ankle_roll_joint</joint_name>
+      <gaussian_noise>0.0</gaussian_noise>
     </plugin>
     </gazebo>
     
@@ -61,25 +66,30 @@
     
     <gazebo>
     <plugin name="l1_ft_sensor" filename="libgazebo_ros_ft_sensor.so">
-        <updateRate>100.0</updateRate>
-        <topicName>/huron/sensor/l1_ft_sensor</topicName>
-        <jointName>l_ankle_roll_joint</jointName>
-        <gaussianNoise>0.0</gaussianNoise>
+      <ros>
+        <namespace>/huron/sensor</namespace>
+        <remapping>wrench:=l1_ft_sensor</remapping>
+      </ros>
+      <update_rate>100</update_rate>
+      <!-- <body_name>l_ankle_roll_link</body_name> -->
+      <!-- <frame_name>l_ankle_roll_link</frame_name> -->
+      <joint_name>l_ankle_roll_joint</joint_name>
+      <gaussian_noise>0.0</gaussian_noise>
     </plugin>
     </gazebo>
     
-    <gazebo reference = "l_hip_yaw_joint">
-    	<preserveFixedJoint>true</preserveFixedJoint>
-    </gazebo>
-    <gazebo reference = "l_hip_roll_joint">
-    	<preserveFixedJoint>true</preserveFixedJoint>
-    </gazebo>
-    <gazebo reference = "r_hip_yaw_joint">
-    	<preserveFixedJoint>true</preserveFixedJoint>
-    </gazebo>
-    <gazebo reference = "r_hip_roll_joint">
-    	<preserveFixedJoint>true</preserveFixedJoint>
-    </gazebo>
+    <!-- <gazebo reference = "l_hip_yaw_joint"> -->
+    <!-- 	<preserveFixedJoint>true</preserveFixedJoint> -->
+    <!-- </gazebo> -->
+    <!-- <gazebo reference = "l_hip_roll_joint"> -->
+    <!-- 	<preserveFixedJoint>true</preserveFixedJoint> -->
+    <!-- </gazebo> -->
+    <!-- <gazebo reference = "r_hip_yaw_joint"> -->
+    <!-- 	<preserveFixedJoint>true</preserveFixedJoint> -->
+    <!-- </gazebo> -->
+    <!-- <gazebo reference = "r_hip_roll_joint"> -->
+    <!-- 	<preserveFixedJoint>true</preserveFixedJoint> -->
+    <!-- </gazebo> -->
     <!-- <gazebo reference = "dummy_joint"> -->
     <!-- 	<preserveFixedJoint>true</preserveFixedJoint> -->
     <!-- </gazebo> -->
