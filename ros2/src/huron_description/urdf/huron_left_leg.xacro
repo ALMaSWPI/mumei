@@ -4,9 +4,9 @@
     <!-- left leg -->
     <xacro:macro name="huron_left_leg" params="parent dxl_effort dxl_speed">
         <!-- left hip yaw joint -->
-        <joint name="l_hip_yaw_joint" type="fixed">
+        <joint name="l_hip_yaw_joint" type="revolute">
           <origin
-            xyz="-0.0775 0 -0.1451242"
+            xyz="-0.0775 0 -0.14512"
             rpy="0 0 0" />
           <parent link="${parent}" />
           <child link="l_hip_yaw_link" />
@@ -36,7 +36,7 @@
         <!-- left hip roll joint-->
         <joint
           name="l_hip_roll_joint"
-          type="fixed">
+          type="revolute">
           <origin
             xyz="0 0 0"
             rpy="${pi/2} 0 ${pi}" />
