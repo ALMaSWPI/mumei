@@ -6,6 +6,9 @@
 #include <utility>
 #include <memory>
 
+// For debug
+#include <iostream>
+
 #include "odrive_enums.h"
 #include "huron/control_interfaces/generic_component.h"
 
@@ -38,7 +41,14 @@ class ODrive : public huron::GenericComponent {
                              }()) {}
 
     explicit ODriveConfiguration(ConfigMap config_map)
-      : ODriveConfiguration(config_map, {}) {}
+      : ODriveConfiguration(config_map, {}) {
+      std::cout << "ODrive config:\n";
+      for (auto& pair : config_map_) {
+        std::cout << pair.first << " : " 
+                  << std::any_cast<float>(pair.second) << std::endl;
+      }
+      std::cout << std::endl;
+    }
 
     /**
      * Default constructor of ODriveConfiguration. This constructor is not
