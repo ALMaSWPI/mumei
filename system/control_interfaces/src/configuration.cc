@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "huron/control_interfaces/configuration.h"
 #include "huron/exceptions/invalid_configuration_exception.h"
 
@@ -36,14 +34,6 @@ std::any Configuration::Get(std::string config_key, bool renew) {
 bool Configuration::Set(std::string config_key, std::any config_value) {
   if (ValidateKey(config_key)) {
     config_map_[config_key] = config_value;
-
-    std::cout << "ODrive config:\n";
-    for (auto& pair : config_map_) {
-      std::cout << pair.first << " : " 
-                << std::any_cast<float>(pair.second) << std::endl;
-    }
-    std::cout << std::endl;
-
     return true;
   }
   return false;
