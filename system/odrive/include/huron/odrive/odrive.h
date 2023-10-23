@@ -70,6 +70,8 @@ class ODrive : public huron::GenericComponent {
    */
   bool Calibrate();
 
+  void ConfigureKey(std::string config_key, std::any config_value) override;
+
   // Get functions (msg.rtr bit must be set)
   virtual bool GetMotorError(uint64_t& motor_error) = 0;
   virtual bool GetEncoderError(uint32_t& encoder_error) = 0;

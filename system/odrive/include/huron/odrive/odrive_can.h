@@ -71,8 +71,6 @@ class ODriveCAN : public ODrive {
   void SetUp() override;
   void Terminate() override;
 
-  void ConfigureKey(std::string config_key, std::any config_value) override;
-
   // Get functions (msg.rtr bit must be set)
   bool GetMotorError(uint64_t& motor_error) override;
   bool GetEncoderError(uint32_t& encoder_error) override;

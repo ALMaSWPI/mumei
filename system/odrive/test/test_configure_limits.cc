@@ -24,9 +24,9 @@ int main(int argc, char* argv[]) {
     std::make_unique<huron::odrive::ODriveEncoder>(kCPR, left_knee_odrive),
     kGearRatio1, kGearRatio2};
 
-  left_knee_joint.GetMotor().GetDriver().Configure("velocity_limit", 15.0);
+  left_knee_joint.GetMotor().GetDriver().Configure("velocity_limit", 15.0f);
   std::cout << "Configured velocity_limit\n";
-  left_knee_joint.GetMotor().GetDriver().Configure("current_limit", 70.0);
+  left_knee_joint.GetMotor().GetDriver().Configure("current_limit", 70.0f);
   std::cout << "Configured curent_limit\n";
   left_knee_joint.GetEncoder().Configure("cpr", kCPR);
   std::cout << "Configured cpr\n";
