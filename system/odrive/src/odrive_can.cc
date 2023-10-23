@@ -21,24 +21,6 @@ void ODriveCAN::SetUp() {
 void ODriveCAN::Terminate() {
 }
 
-void ODriveCAN::ConfigureKey(std::string config_key, std::any config_value) {
-  float value = std::any_cast<float>(config_value);
-  if (config_key == "velocity_limit") {
-    SetLimits(value, std::any_cast<float>(config_->Get("current_limit")));
-  } else if (config_key == "current_limit") {
-    SetLimits(std::any_cast<float>(config_->Get("velocity_limit")), value);
-  } else if (config_key == "traj_vel_limit") {
-    SetTrajVelLimit(value);
-  } else if (config_key == "traj_accel_limit") {
-    SetTrajAccelLimits(value,
-                       std::any_cast<float>(config_->Get("traj_decel_limit")));
-  } else if (config_key == "traj_decel_limit") {
-    SetTrajAccelLimits(std::any_cast<float>(config_->Get("traj_decel_limit")),
-                       value);
-  } else if (config_key == "traj_inertia") {
-    SetTrajInertia(value);
-  }
-}
 
 bool ODriveCAN::GetMotorError(uint64_t& motor_error) {
   can_Message_t msg;
