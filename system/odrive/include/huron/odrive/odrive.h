@@ -68,6 +68,7 @@ class ODrive : public huron::GenericComponent {
       "traj_decel_limit",
       "traj_inertia"};
   };
+
   ODrive(std::unique_ptr<ODriveConfiguration> config, uint32_t get_timeout)
       : huron::GenericComponent(std::move(config)),
 	get_timeout_(get_timeout) {}
