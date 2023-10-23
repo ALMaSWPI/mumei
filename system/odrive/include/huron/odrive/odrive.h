@@ -29,14 +29,23 @@ class ODrive : public huron::GenericComponent {
      * Supports further inheritance.
      */
     ODriveConfiguration(ConfigMap config_map,
-			std::set<std::string> valid_keys)
-	: huron::Configuration(config_map,
-			       [&valid_keys]() {
-			         std::set<std::string> tmp(kODriveKeys);
-			         tmp.merge(valid_keys);
-			         return tmp;
-			       }()) {}
+			                  std::set<std::string> valid_keys)
+      : huron::Configuration(config_map,
+                             [&valid_keys]() {
+                               std::set<std::string> tmp(kODriveKeys);
+                               tmp.merge(valid_keys);
+                               return tmp;
+                             }()) {}
 
+    explicit ODriveConfiguration(ConfigMap config_map)
+      : ODriveConfiguration(config_map, {}) {}
+
+    /**
+     * Default constructor of ODriveConfiguration. This constructor is not
+     * recommended as for some protocols like CAN, ODrive cannot read the
+     * config values from hardware. The recommended way is to initialize the
+     * local config map with initial values.
+     */
     ODriveConfiguration()
 	: ODriveConfiguration({}, {}) {}
 
