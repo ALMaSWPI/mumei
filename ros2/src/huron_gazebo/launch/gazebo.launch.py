@@ -3,14 +3,21 @@ import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch_ros.actions import Node
-from launch.actions import ExecuteProcess, IncludeLaunchDescription, RegisterEventHandler, DeclareLaunchArgument
-from launch.event_handlers import OnProcessExit
+from launch.actions import ExecuteProcess, IncludeLaunchDescription, \
+        DeclareLaunchArgument
+# from launch.event_handlers import OnProcessExit
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import Command, LaunchConfiguration
 from launch_ros.descriptions import ParameterValue
 
 
 def generate_launch_description():
+    pause_gz = LaunchConfiguration('pause_gz')
+    # pause_gz_arg = DeclareLaunchArgument(
+    #         'pause_gz',
+    #         default_value='False',
+    #         description='Pause Gazebo at launch'),
+
     pkg_dir = get_package_share_directory('huron_gazebo')
     world_path = os.path.join(
         pkg_dir,
@@ -19,12 +26,15 @@ def generate_launch_description():
 
     gazebo = IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
-                    get_package_share_directory('gazebo_ros'),'launch'),'/gazebo.launch.py']),
-                launch_arguments={'world': world_path}.items(),
+                    get_package_share_directory('gazebo_ros'), 'launch'),
+                                               '/gazebo.launch.py']),
+                launch_arguments={'world': world_path,
+                                  'pause': pause_gz}.items(),
     )
 
     simulation_description_path = os.path.join(pkg_dir)
-    simulation_urdf_path = os.path.join(simulation_description_path,'urdf','huron.xacro')
+    simulation_urdf_path = os.path.join(simulation_description_path,
+                                        'urdf', 'huron.xacro')
     robot_description_config = ParameterValue(
             Command(['xacro ', str(simulation_urdf_path)]), value_type=str
         )
@@ -36,11 +46,6 @@ def generate_launch_description():
     #         default_value='true',
     #         description='Use simulation (Gazebo) clock if true'),
 
-    robot_controllers = os.path.join(
-        get_package_share_directory("huron_gazebo"),
-        "config",
-        "gazebo_controllers.yaml")
-
     node_robot_state_publisher = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
@@ -48,28 +53,11 @@ def generate_launch_description():
         parameters=[robot_description, {'use_sim_time': use_sim_time}]
     )
 
-    # controller_manager = Node(
-    #     package="controller_manager",
-    #     executable="ros2_control_node",
-    #     parameters=[
-    #             {"robot_description": robot_description_config}, robot_controllers],
-    #     output="both",
-    # )
-
     spawn_entity = Node(package='gazebo_ros', executable="spawn_entity.py",
                         arguments=['-topic', 'robot_description',
                                    '-entity', 'robot',
-                                   '-z', '1.1227'],
+                                   '-z', '1.1230'],
                         output='both')
-
-    # joint_state_broadcaster_spawner = Node(
-    #     package="controller_manager",
-    #     executable="spawner",
-    #     arguments=["joint_state_broadcaster",
-    #                "--controller-manager", "/controller_manager"],
-    #     remappings=[('/joint_states', '/huron/joint_states')],
-    #     output="both",
-    # )
 
     load_joint_state_controller = ExecuteProcess(
         cmd=['ros2', 'control', 'load_controller', '--set-state', 'active',
@@ -78,18 +66,22 @@ def generate_launch_description():
     )
 
     load_joint_group_effort_controller = ExecuteProcess(
-        cmd=['ros2', 'control', 'load_controller', '--set-state', 'active', 'joint_group_effort_controller'],
+        cmd=['ros2', 'control', 'load_controller',
+             '--set-state', 'active', 'joint_group_effort_controller'],
         output='screen'
     )
     nodes = [
-        # use_sim_time_decl,
+        # pause_gz_arg,
+        DeclareLaunchArgument(
+            'pause_gz',
+            default_value='true',
+            description='Pause Gazebo at launch'),
+
         gazebo,
         spawn_entity,
-        # controller_manager,
         node_robot_state_publisher,
         load_joint_state_controller,
         load_joint_group_effort_controller,
-        # joint_state_broadcaster_spawner
     ]
 
     return LaunchDescription(nodes)
