@@ -21,10 +21,10 @@ class NotImplementedException : public std::logic_error {
 
  public:
   NotImplementedException()
-      : NotImplementedException("Not Implememented", __FUNCTION__) {}
+      : NotImplementedException("Not Implemented", __FUNCTION__) {}
 
-  explicit NotImplementedException(const char* message)
-      : NotImplementedException(message, __FUNCTION__) {}
+  explicit NotImplementedException(const char* function)
+      : NotImplementedException("Not Implemented", function) {}
 
   virtual const char *what() const throw() {
       return _text.c_str();
