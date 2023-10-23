@@ -35,3 +35,12 @@ target_link_libraries(test_revolute_joint_encoder
         huron::driver::config
         huron::system::ci
 )
+
+add_executable(test_configure_limits test_configure_limits.cc)
+
+target_link_libraries(test_configure_limits
+        PUBLIC
+        huron::system::odrive
+        huron::driver::config
+        huron::system::ci
+)
