@@ -41,7 +41,7 @@ class ODrive : public huron::GenericComponent {
                              }()) {}
 
     explicit ODriveConfiguration(ConfigMap config_map)
-      : ODriveConfiguration(config_map, {}) {
+      : ODriveConfiguration(config_map, std::set<std::string>()) {
       std::cout << "ODrive config:\n";
       for (auto& pair : config_map_) {
         std::cout << pair.first << " : " 
@@ -57,7 +57,7 @@ class ODrive : public huron::GenericComponent {
      * local config map with initial values.
      */
     ODriveConfiguration()
-	: ODriveConfiguration({}, {}) {}
+      : ODriveConfiguration(ConfigMap(), std::set<std::string>()) {}
 
    private:
     static const inline std::set<std::string> kODriveKeys{

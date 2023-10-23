@@ -9,7 +9,7 @@ Configuration::Configuration(ConfigMap config_map,
     config_map_(ValidateMap(config_map)) {}
 
 Configuration::Configuration(ConfigMap config_map)
-  : Configuration(config_map, {}) {}
+  : Configuration(config_map, std::set<std::string>()) {}
 
 ConfigMap Configuration::ValidateMap(ConfigMap config_map) {
   for (auto& pair : config_map) {
