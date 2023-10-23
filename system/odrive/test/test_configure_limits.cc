@@ -33,10 +33,10 @@ int main(int argc, char* argv[]) {
 
   std::cout << "Configuration starting...\n";
   left_knee_joint.GetMotor().GetDriver().Configure("velocity_limit", 15.0f);
-  std::this_thread::sleep_for(0.5s);
+  std::this_thread::sleep_for(1s);
   std::cout << "Configured velocity_limit\n";
   left_knee_joint.GetMotor().GetDriver().Configure("current_limit", 70.0f);
-  std::this_thread::sleep_for(0.5s);
+  std::this_thread::sleep_for(1s);
   std::cout << "Configured curent_limit\n";
 
   // Manually check "velocity_limit" and "current_limit" in ODrive
