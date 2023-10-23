@@ -15,6 +15,10 @@ const float kGearRatio2 = 80.0;
 const float kCPR = 4096.0;
 
 int main(int argc, char* argv[]) {
+  huron::ConfigMap odrive_config{
+    {"velocity_limit", 20.0f},
+    {"current_limit", 50.0f},
+  };
   // TODO(dtbpkmte): make pointer to hcb unique_ptr
   huron::driver::can::SocketCanBus hcb{"can0", 0};
   auto left_knee_odrive = std::make_shared<huron::odrive::ODriveCAN>(
@@ -28,8 +32,6 @@ int main(int argc, char* argv[]) {
   std::cout << "Configured velocity_limit\n";
   left_knee_joint.GetMotor().GetDriver().Configure("current_limit", 70.0f);
   std::cout << "Configured curent_limit\n";
-  left_knee_joint.GetEncoder().Configure("cpr", kCPR);
-  std::cout << "Configured cpr\n";
 
-  // Manually check "velocity_limit" in ODrive
+  // Manually check "velocity_limit" and "current_limit" in ODrive
 }
