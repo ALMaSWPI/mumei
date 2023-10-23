@@ -33,7 +33,7 @@ class Configuration {
    * needs to be overriden by concrete configuration classes.
    */
   virtual std::any GetFromComponent(std::string config_key) {
-    throw NotImplementedException();
+    throw NotImplementedException(__func__);
   }
 
  public:
