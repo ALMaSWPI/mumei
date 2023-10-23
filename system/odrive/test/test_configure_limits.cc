@@ -25,8 +25,11 @@ int main(int argc, char* argv[]) {
     kGearRatio1, kGearRatio2};
 
   left_knee_joint.GetMotor().GetDriver().Configure("velocity_limit", 15.0);
+  std::cout << "Configured velocity_limit\n";
   left_knee_joint.GetMotor().GetDriver().Configure("current_limit", 70.0);
-  left_knee_joint.GetEncoder().Configure("cpr", 8192);
+  std::cout << "Configured curent_limit\n";
+  left_knee_joint.GetEncoder().Configure("cpr", kCPR);
+  std::cout << "Configured cpr\n";
 
   // Manually check "velocity_limit" in ODrive
 }
