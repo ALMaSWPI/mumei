@@ -67,7 +67,6 @@ class ODriveCAN : public ODrive {
   virtual ~ODriveCAN() = default;
 
   // GenericComponent interface
-  void Initialize() override;
   void SetUp() override;
   void Terminate() override;
 

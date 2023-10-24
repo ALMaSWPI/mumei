@@ -12,9 +12,6 @@ ODriveCAN::ODriveCAN(huron::driver::can::BusBase* canbus,
     canbus_(canbus),
     axis_id_(axis_id) {}
 
-void ODriveCAN::Initialize() {
-}
-
 void ODriveCAN::SetUp() {
 }
 
