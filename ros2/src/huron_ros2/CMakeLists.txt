@@ -8,6 +8,7 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(sensor_msgs REQUIRED)
 
 # huron dependencies
 list(APPEND CMAKE_PREFIX_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../../../build")
@@ -19,12 +20,17 @@ message(STATUS "huron_LIBRARIES: ${huron_LIBRARIES}")
 
 add_library(${PROJECT_NAME}
   src/revolute_joint.cc
+  src/robot.cc
 )
+
+target_link_libraries(${PROJECT_NAME} PUBLIC ${rclcpp_LIBRARIES} PUBLIC ${sensor_msgs_LIBRARIES} PUBLIC huron)
 
 target_include_directories(${PROJECT_NAME} PUBLIC
     $<BUILD_INTERFACE:${huron_INCLUDE_DIRS} include>
-    $<INSTALL_INTERFACE:include>)
-target_link_libraries(${PROJECT_NAME} PUBLIC huron)
+    $<INSTALL_INTERFACE:include>
+    ${rclcpp_INCLUDE_DIRS}
+    ${sensor_msgs_INCLUDE_DIRS})
+
 
 # include_directories(include)
 
@@ -56,5 +62,4 @@ if(BUILD_TESTING)
   set(ament_cmake_cpplint_FOUND TRUE)
   ament_lint_auto_find_test_dependencies()
 endif()
-
 ament_package()
