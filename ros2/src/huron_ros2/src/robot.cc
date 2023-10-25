@@ -17,45 +17,48 @@ bool Robot::Move(std::vector<float> values){
   // Publishing to the topic
   auto message = sensor_msgs::msg::JointState();
   for (int i = 0; i < 3; i++){
-    message->position[i] = values[i];
+    message.position[i] = values[i];
   }
-  RCLCPP_INFO(this->get_logger(), "Publishing Position: '%s'", message.data.c_str());
-  HuronNode.publisher_joints_->publish(message);
-  return True;
+  RCLCPP_INFO(this->node.get_logger(), "Publishing Position:");
+  //RCLCPP_INFO(message.position);
+  this->node.publisher_joints_->publish(message);
+  return true;
 }
 
 bool Robot::MoveVelocity(std::vector<float> values){
   // Publishing to the topic
   auto message = sensor_msgs::msg::JointState();
   for (int i = 0; i < 3; i++){
-    message->velocity[i] = values[i];
+    message.velocity[i] = values[i];
   }
-  RCLCPP_INFO(this->get_logger(), "Publishing Velocity: '%s'", message.data.c_str());
-  HuronNode.publisher_joints_->publish(message);
-  return True;
+  RCLCPP_INFO(this->node.get_logger(), "Publishing Velocity:");
+//  RCLCPP_INFO(message.velocity);
+  this->node.publisher_joints_->publish(message);
+  return true;
 }
 
 bool Robot::MoveTorque(std::vector<float> values){
   // Publishing to the topic
   auto message = sensor_msgs::msg::JointState();
   for (int i = 0; i < 3; i++){
-    message->effort[i] = values[i];
+    message.effort[i] = values[i];
   }
-  RCLCPP_INFO(this->get_logger(), "Publishing Torque: '%s'", message.data.c_str());
-  HuronNode.publisher_joints_->publish(message);
-  return True;
+  RCLCPP_INFO(this->node.get_logger(), "Publishing Torque");
+//  RCLCPP_INFO(message.effort);
+  this->node.publisher_joints_->publish(message);
+  return true;
 }
 
 bool Robot::Stop(){
   // Publishing to the topic
   auto message = sensor_msgs::msg::JointState();
   for (int i = 0; i < 3; i++){
-    message->effort[i] = 0;
-    message->velocity[i] = 0;
+    message.effort[i] = 0;
+    message.velocity[i] = 0;
   }
-  RCLCPP_INFO(this->get_logger(), "Terminated'", message.data.c_str());
-  HuronNode.publisher_joints_->publish(message);
-  return True;
+  RCLCPP_INFO(this->node.get_logger(), "Terminated'");
+  this->node.publisher_joints_->publish(message);
+  return true;
 }
 
 

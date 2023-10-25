@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 #include <vector>
 
 #include <rclcpp/rclcpp.hpp>
@@ -11,31 +13,29 @@
 
 namespace huron {
 namespace ros2 {
+class HuronNode : public rclcpp::Node {
+ public:// init
+  HuronNode() : Node("node_handler") {
+    //TODO: Correct the topics and their msg type here
+    //All the publisher(s)
+    publisher_joints_ = this->create_publisher<sensor_msgs::msg::JointState>("/joint_states", 10);
+    //All the subscriber(s)
+    subscription_joints_ = this->create_subscription<sensor_msgs::msg::JointState>(
+      "/joint_states", 10, std::bind(&HuronNode::topic_callback_subscription_joints, this, std::placeholders::_1));
+  };
+
+  void topic_callback_subscription_joints(const sensor_msgs::msg::JointState::SharedPtr msg) const
+  {
+    RCLCPP_INFO(this->get_logger(), "I heard something from joint states %s", msg->name);
+  }
+  rclcpp::Subscription<sensor_msgs::msg::JointState>::SharedPtr subscription_joints_;
+  rclcpp::Publisher<sensor_msgs::msg::JointState>::SharedPtr publisher_joints_;
+
+};
 
 class Robot : public huron::MovingGroupComponent {
  public:
-  class HuronNode : public rclcpp::Node {
-   public:// init
-    HuronNode() : Node("node_handler") {
-      //TODO: Correct the topics and their msg type here
-      //All the publisher(s)
-      publisher_joints_ = this->create_publisher<sensor_msgs::msg::JointState>("/joint_states", 10);
-      //All the subscriber(s)
-      subscription_joints_ = this->create_subscription<sensor_msgs::msg::JointState>(
-        "sub_topic", 10, std::bind(&HuronNode::topic_callback_subscription_joints, this, _1));
-    };
-
-   private:
-    void topic_callback_subscription_joints(const std_msgs::msg::String::SharedPtr msg) const
-    {
-      RCLCPP_INFO(this->get_logger(), "I heard: '%s' from encoder", msg->data.c_str());
-    }
-    rclcpp::Subscription<sensor_msgs::msg::JointState>::SharedPtr subscription_joints_;
-    rclcpp::Publisher<sensor_msgs::msg::JointState>::SharedPtr publisher_joints_;
-
-
-  };
-
+  HuronNode node;
   void Initialize();
   void Terminate();
 
@@ -47,6 +47,7 @@ class Robot : public huron::MovingGroupComponent {
 
  private:
 };
+
 
 
 }  // namespace huron
