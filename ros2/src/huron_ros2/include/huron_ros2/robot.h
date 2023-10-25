@@ -4,7 +4,7 @@
 
 #include <rclcpp/rclcpp.hpp>
 
-#include <sensor_msgs/JointState.hpp>
+#include <sensor_msgs/msg/joint_state.hpp>
 
 #include "huron/control_interfaces/moving_group_component.h"
 
