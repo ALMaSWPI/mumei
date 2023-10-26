@@ -2,12 +2,12 @@
 
 namespace huron {
 namespace ros2 {
-void Robot::Initialize(){
-  rclcpp::init(0, 0); // argc, argv but I just set them to 0 here
-  rclcpp::spin(std::make_shared<HuronNode>());
-  rclcpp::shutdown(); //TODO: verify if this should be here
-}
 
+void Robot::Configure(){
+  rclcpp::init(0, 0);
+  rclcpp::spin(std::make_shared<HuronNode>());
+  rclcpp::shutdown();
+}
 
 void Robot::Terminate(){
   rclcpp::shutdown();

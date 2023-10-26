@@ -7,21 +7,18 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
+find_package(rclcpp REQUIRED)
 list(APPEND CMAKE_PREFIX_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../../../../build")
 find_package(huron_ros2 REQUIRED)
-# uncomment the following section in order to fill in
-# further dependencies manually.
-# find_package(<dependency> REQUIRED)
 
-message(STATUS "huron_ros2_INCLUDE_DIRS: ${huron_ros2_INCLUDE_DIRS}")
-message(STATUS "huron_ros2_LIBRARIES: ${huron_ros2_LIBRARIES}")
-add_library(${PROJECT_NAME}
-        src/test_main.cc
-)
-target_link_libraries(${PROJECT_NAME}
-        PUBLIC
-        huron_ros2
-)
+add_executable(test1 src/test_main.cc)
+ament_target_dependencies(test1 rclcpp)
+#
+install(TARGETS
+        test1
+        DESTINATION lib/${PROJECT_NAME})
+
+
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   # the following line skips the linter which checks for copyrights
