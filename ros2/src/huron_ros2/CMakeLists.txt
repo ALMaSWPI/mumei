@@ -4,6 +4,10 @@ project(huron_ros2)
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
+list(APPEND CMAKE_PREFIX_PATH
+        "/usr/local"
+)
+
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
@@ -11,12 +15,12 @@ find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
 
 # huron dependencies
-list(APPEND CMAKE_PREFIX_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../../../build")
+#list(APPEND CMAKE_PREFIX_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../../../build")
 # set(huron_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../../build")
 find_package(huron REQUIRED)
 # for debugging
-message(STATUS "huron_INCLUDE_DIRS: ${huron_INCLUDE_DIRS}")
-message(STATUS "huron_LIBRARIES: ${huron_LIBRARIES}")
+#message(STATUS "huron_INCLUDE_DIRS: ${huron_INCLUDE_DIRS}")
+#message(STATUS "huron_LIBRARIES: ${huron_LIBRARIES}")
 
 add_library(${PROJECT_NAME}
   src/revolute_joint.cc
@@ -41,7 +45,7 @@ install(
   DIRECTORY include/${PROJECT_NAME}
   DESTINATION include
 )
- 
+
 install(
   TARGETS ${PROJECT_NAME}
   EXPORT ${PROJECT_NAME}

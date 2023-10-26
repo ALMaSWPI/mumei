@@ -8,6 +8,7 @@
 
 #include <sensor_msgs/msg/joint_state.hpp>
 
+#include "huron/control_interfaces/generic_component.h"
 #include "huron/control_interfaces/moving_group_component.h"
 
 
@@ -24,8 +25,12 @@ class HuronNode : public rclcpp::Node {
       "/joint_states", 10, std::bind(&HuronNode::topic_callback_subscription_joints, this, std::placeholders::_1));
   };
 
-  void topic_callback_subscription_joints(const sensor_msgs::msg::JointState::SharedPtr msg) const
+  void topic_callback_subscription_joints( std::shared_ptr<const sensor_msgs::msg::JointState> msg) const
   {
+//    char name[sizeof(msg->name)];
+//    for (int i = 0; i < sizeof(msg->name); i++) {
+//      name[i] = msg->name[i];
+//    }
     RCLCPP_INFO(this->get_logger(), "I heard something from joint states %s", msg->name);
   }
   rclcpp::Subscription<sensor_msgs::msg::JointState>::SharedPtr subscription_joints_;
