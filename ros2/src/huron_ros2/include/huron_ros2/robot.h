@@ -35,10 +35,11 @@ class HuronNode : public rclcpp::Node {
 
 class Robot : public huron::MovingGroupComponent {
  public:
+  Robot(){};
   HuronNode node;
-  void Initialize();
+  void Configure();
   void Terminate();
-
+  void SetUp(){};
   bool Move(std::vector<float> values);
   bool MoveVelocity(std::vector<float> values);
   bool MoveTorque(std::vector<float> values);
