@@ -1,24 +1,20 @@
 @PACKAGE_INIT@
 
+include(CMakeFindDependencyMacro)
+
+set(huron_INCLUDE_DIRS @CMAKE_INSTALL_PREFIX@/include)
+# set(huron_LIBRARIES huron::huron)
+
+# Create an imported target for "huron"
+# add_library(huron::huron INTERFACE IMPORTED)
+# set_target_properties(huron::huron PROPERTIES
+#     INTERFACE_INCLUDE_DIRECTORIES "${huron_INCLUDE_DIRS}"
+# )
+
+# Find dependencies (if any)
+# list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/Modules/")
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_LIST_DIR}/Modules/")
+find_dependency(sockcanpp REQUIRED)
+
 include("${CMAKE_CURRENT_LIST_DIR}/huronTargets.cmake")
 
-set_and_check(huron_INCLUDE_DIRS
-    "${CMAKE_CURRENT_LIST_DIR}"
-)
-list(APPEND huron_INCLUDE_DIRS
-    "${CMAKE_CURRENT_SOURCE_DIR}/../../../system/control_interfaces/include"
-)
-list(APPEND huron_INCLUDE_DIRS
-    "${CMAKE_CURRENT_SOURCE_DIR}/../../../system/exceptions/include"
-)
-list(APPEND huron_INCLUDE_DIRS
-    "${CMAKE_CURRENT_SOURCE_DIR}/../../../system/odrive/include"
-)
-list(APPEND huron_INCLUDE_DIRS
-    "${CMAKE_CURRENT_SOURCE_DIR}/../../../driver/can/include"
-)
-list(APPEND huron_INCLUDE_DIRS
-    "${CMAKE_CURRENT_SOURCE_DIR}/../../../driver/config/include"
-)
-
-set(huron_LIBRARIES huron::huron)
