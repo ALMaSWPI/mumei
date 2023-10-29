@@ -62,12 +62,7 @@ jobs:
         run: |
           cmake -DBUILD_TYPE=x86_64 -Bbuild
           sudo cmake --build build --parallel --target install
-      - name: Go to workspace
-        run: |
-          cd ros2/src
       - name: build and test ROS 2
-        uses: ros-tooling/action-ros-ci@v0.3
-        with:
-          package-name: huron_description huron_gazebo huron_ros2 examples
-          target-ros2-distro: humble
-          skip-tests: true
+        run: |
+          cd ros2/
+          colcon build
