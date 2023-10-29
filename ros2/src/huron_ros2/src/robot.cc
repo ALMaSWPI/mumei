@@ -3,17 +3,17 @@
 namespace huron {
 namespace ros2 {
 
-void Robot::Configure(){
+void Robot::Configure() {
   rclcpp::init(0, 0);
   rclcpp::spin(std::make_shared<HuronNode>());
   rclcpp::shutdown();
 }
 
-void Robot::Terminate(){
+void Robot::Terminate() {
   rclcpp::shutdown();
 }
 
-bool Robot::Move(std::vector<float> values){
+bool Robot::Move(std::vector<float> values) {
   // Publishing to the topic
   auto message = sensor_msgs::msg::JointState();
   for (int i = 0; i < 3; i++){
@@ -25,7 +25,7 @@ bool Robot::Move(std::vector<float> values){
   return true;
 }
 
-bool Robot::Stop(){
+bool Robot::Stop() {
   // Publishing to the topic
   auto message = sensor_msgs::msg::JointState();
   for (int i = 0; i < 3; i++){
@@ -37,6 +37,5 @@ bool Robot::Stop(){
   return true;
 }
 
-
-}
-}
+}  // namespace ros2
+}  // namespace huron
