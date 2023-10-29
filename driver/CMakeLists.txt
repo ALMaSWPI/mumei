@@ -3,18 +3,16 @@ project(huron_driver)
 add_subdirectory(can)
 add_subdirectory(config)
 
-add_library(${PROJECT_NAME}
+add_library(huron_driver
     INTERFACE
     can
     config)
-add_library(huron::driver ALIAS ${PROJECT_NAME})
+add_library(huron::driver ALIAS huron_driver)
 
-# Include directories for the "driver" subproject
-# target_include_directories(${PROJECT_NAME} PUBLIC
-#     ${CMAKE_CURRENT_SOURCE_DIR}/can/include/huron_driver
-#     ${CMAKE_CURRENT_SOURCE_DIR}/config/include/huron_driver
+# Expose the include files
+# set(huron_driver_INCLUDE_DIRS
+#     ${huron_driver_can_INCLUDE_DIRS}
+#     ${huron_driver_config_INCLUDE_DIRS}
 # )
+# target_include_directories(huron_driver PUBLIC ${huron_driver_INCLUDE_DIRS})
 
-# Link your "driver" subproject against the "can" library
-# target_link_libraries(${PROJECT_NAME}
-#     PUBLIC huron_driver::can huron_driver::config)
