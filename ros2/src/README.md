@@ -21,7 +21,7 @@ Note: the steps below assume you have ROS2 Humble installed.
 
 #### Building the ROS Workspace:
 1. Prerequisites:
-- You have built and installed the main `huron` project (instructions [here](../README.md)).
+- You have built and installed the main `huron` project (instructions [here](../README.md)). Note that `huron` needs to be built with x86_64 toolchain.
 - Make sure you are in `huron/ros2/`.
 2. Build the workspace:
 
