@@ -65,5 +65,5 @@ jobs:
       - name: build and test ROS 2
         run: |
           cd ros2/
-          . /opt/ros/humble/setup.bash
+          . /opt/ros/humble/setup.sh
           colcon build
