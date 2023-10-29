@@ -21,7 +21,7 @@ bool Robot::Move(std::vector<float> values){
   }
   RCLCPP_INFO(this->node.get_logger(), "Publishing Position:");
   //RCLCPP_INFO(message.position);
-  this->node.publisher_joints_->publish(message);
+  // this->node.publisher_joints_->publish(message);
   return true;
 }
 
@@ -31,9 +31,9 @@ bool Robot::MoveVelocity(std::vector<float> values){
   for (int i = 0; i < 3; i++){
     message.velocity[i] = values[i];
   }
-  RCLCPP_INFO(this->node.get_logger(), "Publishing Velocity:");
+  // RCLCPP_INFO(this->node.get_logger(), "Publishing Velocity:");
 //  RCLCPP_INFO(message.velocity);
-  this->node.publisher_joints_->publish(message);
+  // this->node.publisher_joints_->publish(message);
   return true;
 }
 
@@ -45,7 +45,7 @@ bool Robot::MoveTorque(std::vector<float> values){
   }
   RCLCPP_INFO(this->node.get_logger(), "Publishing Torque");
 //  RCLCPP_INFO(message.effort);
-  this->node.publisher_joints_->publish(message);
+  // this->node.publisher_joints_->publish(message);
   return true;
 }
 
@@ -57,7 +57,7 @@ bool Robot::Stop(){
     message.velocity[i] = 0;
   }
   RCLCPP_INFO(this->node.get_logger(), "Terminated'");
-  this->node.publisher_joints_->publish(message);
+  // this->node.publisher_joints_->publish(message);
   return true;
 }
 

@@ -8,22 +8,12 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
-find_package(geometry_msgs REQUIRED)
-#list(APPEND CMAKE_PREFIX_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../../../../build")
+find_package(sensor_msgs REQUIRED)
 find_package(huron_ros2 REQUIRED)
-#if(huron_ros2)
-#  target_link_libraries(examples PRIVATE huron_ros2)
-#  target_include_directories(${PROJECT_NAME} PUBLIC
-#          $<BUILD_INTERFACE:${huron_ros2_INCLUDE_DIRS} include>
-#          $<INSTALL_INTERFACE:include>)
-#else()
-#  message(FATAL_ERROR "huron_ros2 not found.")
-#endif()
-#include(huron_ros2 REQUIRED)
 
 add_executable(test1 src/test_main.cc)
-ament_target_dependencies(test1 rclcpp )
-target_link_libraries(test1 huron_ros2::huron_ros2)
+ament_target_dependencies(test1 rclcpp sensor_msgs huron_ros2)
+# target_link_libraries(test1 huron_ros2::huron_ros2)
 
 install(TARGETS
         test1
