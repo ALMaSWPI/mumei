@@ -25,9 +25,17 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf
+    - name: Build and install libsockcanpp
+      run: |
+        cd third_party/libsockcanpp
+        cmake --toolchain ../../tools/armhf-toolchain.cmake -Bbuild
+        sudo cmake --build build --parallel --target install
+        cd -
     - name: config
       run: >-
         cmake
         -Bbuild        
     - name: build
       run: cmake --build build --parallel
+    - name: install
+      run: cmake --install build
