@@ -10,11 +10,9 @@ void Robot::Configure() {
 }
 
 void Robot::Initialize() {
-
 }
 
 void Robot::SetUp() {
-
 }
 
 void Robot::Terminate() {
@@ -31,6 +29,10 @@ bool Robot::Move(std::vector<float> values) {
   // RCLCPP_INFO(message.position);
   // this->node.publisher_joints_->publish(message);
   return true;
+}
+
+bool Robot::Move(const std::vector<std::vector<float>>& values) {
+  return false;
 }
 
 bool Robot::Stop() {
