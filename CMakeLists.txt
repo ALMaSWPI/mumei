@@ -30,7 +30,7 @@ add_subdirectory(examples)
 add_subdirectory(driver)
 add_subdirectory(utils)
 add_subdirectory(system)
-
+# add_subdirectory(third_party)
 
 add_library(huron SHARED huron.cc)
 
