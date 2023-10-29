@@ -1,3 +1,4 @@
 [submodule "third_party/libsockcanpp"]
 	path = third_party/libsockcanpp
-	url = git@github.com:SimonCahill/libsockcanpp.git
+	; url = git@github.com:SimonCahill/libsockcanpp.git
+  url = https://github.com/SimonCahill/libsockcanpp.git
