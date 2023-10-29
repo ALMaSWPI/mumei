@@ -39,3 +39,39 @@ jobs:
       run: cmake --build build --parallel
     - name: install
       run: sudo cmake --install build
+
+  build_ros2:
+    runs-on: ubuntu-22.04
+    container:
+      image: ubuntu:jammy
+    steps:
+      - name: setup ROS environment
+        uses: ros-tooling/setup-ros@v0.7
+        with:
+          required-ros-distributions: humble
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Install ARM compilers
+        run: |
+          sudo apt-get update
+          sudo apt-get install build-essential
+      - name: Build and install libsockcanpp
+        run: |
+          cd third_party/libsockcanpp
+          cmake --toolchain ../../tools/x86_64-toolchain.cmake -Bbuild
+          sudo cmake --build build --parallel --target install
+          cd -
+      - name: Build and install huron
+        run: |
+          cmake -DBUILD_TYPE=x86_64 -Bbuild
+          sudo cmake --build build --parallel --target install
+      - name: Go to workspace
+        run: |
+          cd ros2/src
+      - name: build and test ROS 2
+        uses: ros-tooling/action-ros-ci@v0.3
+        with:
+          package-name: huron_description huron_gazebo huron_ros2 examples
+          target-ros2-distro: humble
+          skip-tests: true
