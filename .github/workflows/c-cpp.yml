@@ -38,4 +38,4 @@ jobs:
     - name: build
       run: cmake --build build --parallel
     - name: install
-      run: cmake --install build
+      run: sudo cmake --install build
