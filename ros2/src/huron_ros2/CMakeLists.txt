@@ -5,7 +5,7 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 list(APPEND CMAKE_PREFIX_PATH
-        "/usr/local"
+        "/usr/local/"
 )
 
 
@@ -27,19 +27,20 @@ add_library(${PROJECT_NAME}
   src/robot.cc
 )
 
-target_link_libraries(${PROJECT_NAME} PUBLIC ${rclcpp_LIBRARIES} PUBLIC ${sensor_msgs_LIBRARIES} PUBLIC huron)
+# target_link_libraries(${PROJECT_NAME} PUBLIC ${rclcpp_LIBRARIES} ${sensor_msgs_LIBRARIES} huron::huron)
+target_link_libraries(${PROJECT_NAME} PUBLIC huron::huron)
+ament_target_dependencies(${PROJECT_NAME} PUBLIC rclcpp sensor_msgs huron)
 
 target_include_directories(${PROJECT_NAME} PUBLIC
-    $<BUILD_INTERFACE:${huron_INCLUDE_DIRS} include>
-    $<INSTALL_INTERFACE:include>
-    ${rclcpp_INCLUDE_DIRS}
-    ${sensor_msgs_INCLUDE_DIRS})
+    "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
+    "$<INSTALL_INTERFACE:include/${PROJECT_NAME}>")
 
 
 # include_directories(include)
 
 
 ament_export_targets(${PROJECT_NAME} HAS_LIBRARY_TARGET)
+ament_export_dependencies(rclcpp sensor_msgs huron)
 
 install(
   DIRECTORY include/${PROJECT_NAME}

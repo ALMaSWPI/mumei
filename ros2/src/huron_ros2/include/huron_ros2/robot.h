@@ -1,11 +1,9 @@
 #pragma once
 
 #include <string>
-
 #include <vector>
 
 #include <rclcpp/rclcpp.hpp>
-
 #include <sensor_msgs/msg/joint_state.hpp>
 
 #include "huron/control_interfaces/generic_component.h"
@@ -18,24 +16,20 @@ class HuronNode : public rclcpp::Node {
  public:// init
   HuronNode() : Node("node_handler") {
     //TODO: Correct the topics and their msg type here
-    //All the publisher(s)
-    publisher_joints_ = this->create_publisher<sensor_msgs::msg::JointState>("/joint_states", 10);
     //All the subscriber(s)
     subscription_joints_ = this->create_subscription<sensor_msgs::msg::JointState>(
-      "/joint_states", 10, std::bind(&HuronNode::topic_callback_subscription_joints, this, std::placeholders::_1));
+      "joint_states", 10, std::bind(&HuronNode::topic_callback_subscription_joints, this, std::placeholders::_1));
   };
 
-  void topic_callback_subscription_joints( std::shared_ptr<const sensor_msgs::msg::JointState> msg) const
-  {
-//    char name[sizeof(msg->name)];
-//    for (int i = 0; i < sizeof(msg->name); i++) {
-//      name[i] = msg->name[i];
-//    }
-    RCLCPP_INFO(this->get_logger(), "I heard something from joint states %s", msg->name);
+  void topic_callback_subscription_joints(
+    std::shared_ptr<const sensor_msgs::msg::JointState> msg) const {
+    RCLCPP_INFO(this->get_logger(), "Joint positions:\n");
+    for (auto& p : msg->position) {
+      RCLCPP_INFO_STREAM(this->get_logger(), p << " ");
+    }
+    RCLCPP_INFO(this->get_logger(), "\n");
   }
   rclcpp::Subscription<sensor_msgs::msg::JointState>::SharedPtr subscription_joints_;
-  rclcpp::Publisher<sensor_msgs::msg::JointState>::SharedPtr publisher_joints_;
-
 };
 
 class Robot : public huron::MovingGroupComponent {
