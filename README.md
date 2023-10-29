@@ -10,6 +10,15 @@ Prerequisites:
 sudo apt update
 sudo apt install gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf
 ```
+2. Build and install third-party CAN library
+```
+cd third_party/libsockcanpp
+mkdir build
+cd build
+cmake .. -DCMAKE_TOOLCHAIN_FILE=../../../tools/<x86_64 or armhf>-toolchain.cmake
+make
+sudo make install
+```
 
 Build:
 
@@ -23,6 +32,10 @@ mkdir build
 cd build
 cmake .. [-DBUILD_TYPE=<build-type>]
 make
+```
+4. Install `huron`
+```
+sudo make install
 ```
 
 Notes: 
