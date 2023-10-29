@@ -9,6 +9,14 @@ void Robot::Configure() {
   rclcpp::shutdown();
 }
 
+void Robot::Initialize() {
+
+}
+
+void Robot::SetUp() {
+
+}
+
 void Robot::Terminate() {
   rclcpp::shutdown();
 }
@@ -16,11 +24,11 @@ void Robot::Terminate() {
 bool Robot::Move(std::vector<float> values) {
   // Publishing to the topic
   auto message = sensor_msgs::msg::JointState();
-  for (int i = 0; i < 3; i++){
+  for (int i = 0; i < 3; i++) {
     message.position[i] = values[i];
   }
   RCLCPP_INFO(this->node.get_logger(), "Publishing Position:");
-  //RCLCPP_INFO(message.position);
+  // RCLCPP_INFO(message.position);
   // this->node.publisher_joints_->publish(message);
   return true;
 }
@@ -28,7 +36,7 @@ bool Robot::Move(std::vector<float> values) {
 bool Robot::Stop() {
   // Publishing to the topic
   auto message = sensor_msgs::msg::JointState();
-  for (int i = 0; i < 3; i++){
+  for (int i = 0; i < 3; i++) {
     message.effort[i] = 0;
     message.velocity[i] = 0;
   }
