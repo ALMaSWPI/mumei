@@ -43,6 +43,7 @@ class HuronNode : public rclcpp::Node {
 class Robot : public huron::MovingGroupComponent {
  public:
   void Configure() override;
+  void Initialize() override;
   void Terminate() override;
   void SetUp() override;
 
