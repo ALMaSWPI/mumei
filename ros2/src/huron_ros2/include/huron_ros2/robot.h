@@ -48,6 +48,7 @@ class Robot : public huron::MovingGroupComponent {
   void SetUp() override;
 
   bool Move(std::vector<float> values) override;
+  bool Move(const std::vector<std::vector<float>>& values) override;
   bool Stop() override;
 
  private:
