@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include <memory>
 
 #include <rclcpp/rclcpp.hpp>
 #include <sensor_msgs/msg/joint_state.hpp>
@@ -52,7 +53,5 @@ class Robot : public huron::MovingGroupComponent {
   HuronNode node;
 };
 
-
-
+}  // namespace ros2
 }  // namespace huron
-}
