@@ -1,6 +1,12 @@
 #include <iostream>
-#include <rclcpp.h>
+#include <rclcpp/rclcpp.hpp>
+#include<eigen3/Eigen/Dense>
+
 using namespace std;
+using namespace Eigen;
+
+using Eigen::MatrixXd;
+using Eigen::VectorXd;
 
 class PushRecoveryControl{
  private:
@@ -237,5 +243,11 @@ class PushRecoveryControl{
 int main()
 {
   cout << "This is meant to use for testing" ;
+  MatrixXd m = MatrixXd::Random(3,3);
+  m = (m + MatrixXd::Constant(3,3,1.2)) * 50;
+  std::cout << "m =" << std::endl << m << std::endl;
+  VectorXd v(3);
+  v << 1, 2, 3;
+  std::cout << "m * v =" << std::endl << m * v << std::endl;
 
 }

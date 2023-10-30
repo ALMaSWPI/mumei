@@ -13,9 +13,9 @@ find_package(ament_cmake REQUIRED)
 
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
-
+find_package (Eigen3 3.4 REQUIRED)
 add_executable(test_pr src/control.cc)
-ament_target_dependencies(test_pr rclcpp std_msgs)
+ament_target_dependencies(test_pr rclcpp std_msgs Eigen3)
 
 install(TARGETS
         test_pr
