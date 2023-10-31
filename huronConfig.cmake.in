@@ -3,7 +3,7 @@
 include(CMakeFindDependencyMacro)
 
 set(huron_INCLUDE_DIRS @CMAKE_INSTALL_PREFIX@/include)
-# set(huron_LIBRARIES huron::huron)
+set(huron_LIBRARIES huron::huron)
 
 # Create an imported target for "huron"
 # add_library(huron::huron INTERFACE IMPORTED)

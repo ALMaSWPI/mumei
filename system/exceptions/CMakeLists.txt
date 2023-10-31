@@ -1,11 +1,19 @@
-project(huron_system_exceptions)
+set(dir "${CMAKE_CURRENT_SOURCE_DIR}")
 
-# Add a library
-add_library(${PROJECT_NAME} INTERFACE)
-add_library(huron::system::exceptions ALIAS ${PROJECT_NAME})
-
-set(huron_system_exceptions_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/include/")
-target_include_directories(huron_system_exceptions
-    INTERFACE ${huron_system_exceptions_INCLUDE_DIRS}
+FILE(GLOB_RECURSE HEADER_FILES
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/*.h
 )
-install(DIRECTORY ${huron_system_exceptions_INCLUDE_DIRS} DESTINATION include)
+
+set(INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/include/")
+
+# target_sources(huron
+#     PUBLIC
+#     ${HEADER_FILES}
+# )
+target_include_directories(huron
+    PUBLIC
+    $<BUILD_INTERFACE:${INCLUDE_DIRS}>
+    $<INSTALL_INTERFACE:include> 
+)
+
+install(DIRECTORY ${INCLUDE_DIRS} DESTINATION include)

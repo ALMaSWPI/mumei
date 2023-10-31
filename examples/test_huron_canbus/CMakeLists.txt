@@ -6,20 +6,15 @@ add_executable(msg_conversion msg_conversion.cc)
 
 target_link_libraries(send_msg
     PUBLIC
-        huron::driver::can
-        huron::driver::config
-        huron::system::odrive
+    huron
 )
 
 target_link_libraries(read_msg
     PUBLIC
-        huron::driver::can
-        huron::utils
+    huron
 )
 
 target_link_libraries(msg_conversion
     PUBLIC
-        huron::driver::can
-        huron::utils
-        huron::system::odrive
+    huron
 )

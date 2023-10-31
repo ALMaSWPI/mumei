@@ -1,6 +1,4 @@
 #include "huron/driver/can/socket_can_bus.h"
-
-#include "CanDriver.hpp"
 #include "huron/utils/time.h"
 
 namespace huron {

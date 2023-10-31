@@ -2,7 +2,7 @@
 find_path(sockcanpp_INCLUDE_DIRS NAMES CanDriver.hpp PATHS /usr/local/include/sockcanpp)
 
 # Check if the sockcanpp library is available
-find_library(sockcanpp_LIBRARIES NAMES libsockcanpp.a PATHS /usr/local/lib)
+find_library(sockcanpp_LIBRARIES NAMES libsockcanpp.so PATHS /usr/local/lib)
 
 # Set sockcanpp_FOUND to TRUE if both the include directory and library are found
 if (sockcanpp_INCLUDE_DIRS AND sockcanpp_LIBRARIES)

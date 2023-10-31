@@ -1,10 +1,19 @@
-project(huron_driver_config)
+set(dir "${CMAKE_CURRENT_SOURCE_DIR}")
 
-add_library(huron_driver_config INTERFACE)
-add_library(huron::driver::config ALIAS huron_driver_config)
-
-set(huron_driver_config_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/include/")
-target_include_directories(huron_driver_config
-    INTERFACE ${huron_driver_config_INCLUDE_DIRS}
+FILE(GLOB_RECURSE HEADER_FILES
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/*.h
 )
-install(DIRECTORY ${huron_driver_config_INCLUDE_DIRS} DESTINATION include)
+
+set(INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/include/")
+
+# target_sources(huron
+#     PUBLIC
+#     ${HEADER_FILES}
+# )
+target_include_directories(huron
+    PUBLIC
+    $<BUILD_INTERFACE:${INCLUDE_DIRS}>
+    $<INSTALL_INTERFACE:include> 
+)
+
+install(DIRECTORY ${INCLUDE_DIRS} DESTINATION include)
