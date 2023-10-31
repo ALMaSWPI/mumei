@@ -1,18 +1,23 @@
-project(huron_driver_can)
+set(dir "${CMAKE_CURRENT_SOURCE_DIR}")
 
-# Add a library
-add_library(huron_driver_can src/socket_can_bus.cc)
-add_library(huron::driver::can ALIAS huron_driver_can)
-
-set(huron_driver_can_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/include/")
-target_include_directories(huron_driver_can
-    PUBLIC ${huron_driver_can_INCLUDE_DIRS}
+list(APPEND SOURCE_FILES
+    "${dir}/src/socket_can_bus.cc")
+FILE(GLOB_RECURSE HEADER_FILES
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/*.h
 )
 
-target_link_libraries(huron_driver_can
+set(INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/include/")
+
+target_sources(huron
+    PRIVATE
+    ${SOURCE_FILES}
+    # PUBLIC
+    # ${HEADER_FILES}
+)
+target_include_directories(huron
     PUBLIC
-        sockcanpp
-        huron::utils
+    $<BUILD_INTERFACE:${INCLUDE_DIRS}>
+    $<INSTALL_INTERFACE:include> 
 )
 
-install(DIRECTORY ${huron_driver_can_INCLUDE_DIRS} DESTINATION include)
+install(DIRECTORY ${INCLUDE_DIRS} DESTINATION include)

@@ -1,4 +1,4 @@
-project (test_can)
+project(test_can)
 
 add_executable(receive_sockcanpp receive_sockcanpp.cc)
 add_executable(send_sockcanpp send_sockcanpp.cc)

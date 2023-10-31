@@ -28,7 +28,7 @@ jobs:
     - name: Build and install libsockcanpp
       run: |
         cd third_party/libsockcanpp
-        cmake --toolchain ../../tools/armhf-toolchain.cmake -Bbuild
+        cmake --toolchain ../../tools/armhf-toolchain.cmake -DBUILD_SHARED_LIBS=ON -Bbuild
         sudo cmake --build build --parallel --target install
         cd -
     - name: config
@@ -55,7 +55,7 @@ jobs:
       - name: Build and install libsockcanpp
         run: |
           cd third_party/libsockcanpp
-          cmake --toolchain ../../tools/x86_64-toolchain.cmake -Bbuild
+          cmake --toolchain ../../tools/x86_64-toolchain.cmake -DBUILD_SHARED_LIBS=ON -Bbuild
           sudo cmake --build build --parallel --target install
           cd -
       - name: Build and install huron

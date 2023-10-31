@@ -1,13 +1,19 @@
-project(huron_utils)
+set(dir "${CMAKE_CURRENT_SOURCE_DIR}")
 
-add_library(huron_utils INTERFACE)
-add_library(huron::utils ALIAS huron_utils)
-
-set(huron_utils_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/include/")
-target_include_directories(huron_utils
-    INTERFACE 
-    $<BUILD_INTERFACE:${huron_utils_INCLUDE_DIRS}>
-    $<INSTALL_INTERFACE:include>
+FILE(GLOB_RECURSE HEADER_FILES
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/*.h
 )
 
-install(DIRECTORY ${huron_utils_INCLUDE_DIRS} DESTINATION include)
+set(INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/include/")
+
+# target_sources(huron
+#     PUBLIC
+#     ${HEADER_FILES}
+# )
+target_include_directories(huron
+    PUBLIC
+    $<BUILD_INTERFACE:${INCLUDE_DIRS}>
+    $<INSTALL_INTERFACE:include> 
+)
+
+install(DIRECTORY ${INCLUDE_DIRS} DESTINATION include)

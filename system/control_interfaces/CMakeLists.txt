@@ -1,18 +1,26 @@
-project(huron_system_ci)
+set(dir "${CMAKE_CURRENT_SOURCE_DIR}")
 
-# Add a library
-add_library(${PROJECT_NAME} src/configuration.cc src/joint.cc src/revolute_joint.cc)
-add_library(huron::system::ci ALIAS ${PROJECT_NAME})
-
-set(huron_system_ci_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/include/")
-target_include_directories(huron_system_ci
-    PUBLIC ${huron_system_ci_INCLUDE_DIRS}
+list(APPEND SOURCE_FILES
+  "${dir}/src/configuration.cc"
+  "${dir}/src/joint.cc"
+  "${dir}/src/revolute_joint.cc"
+  "${dir}/src/robot.cc")
+FILE(GLOB_RECURSE HEADER_FILES
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/*.h
 )
 
-target_link_libraries(huron_system_ci
+set(INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/include/")
+
+target_sources(huron
+    PRIVATE
+    ${SOURCE_FILES}
+    # PUBLIC
+    # ${HEADER_FILES}
+)
+target_include_directories(huron
     PUBLIC
-        huron::utils
-        huron::system::exceptions
+    $<BUILD_INTERFACE:${INCLUDE_DIRS}>
+    $<INSTALL_INTERFACE:include> 
 )
 
-install(DIRECTORY ${huron_system_ci_INCLUDE_DIRS} DESTINATION include)
+install(DIRECTORY ${INCLUDE_DIRS} DESTINATION include)

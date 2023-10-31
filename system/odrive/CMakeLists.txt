@@ -1,26 +1,26 @@
-project(huron_system_odrive)
+set(dir "${CMAKE_CURRENT_SOURCE_DIR}")
 
-
-add_library(${PROJECT_NAME}
-        src/odrive.cc
-        src/odrive_can.cc
-        src/odrive_rotary_encoder.cc
-        src/odrive_torque_motor.cc)
-add_library(huron::system::odrive ALIAS ${PROJECT_NAME})
-
-set(huron_system_odrive_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/include/")
-target_include_directories(huron_system_odrive
-    PUBLIC ${huron_system_odrive_INCLUDE_DIRS}
+list(APPEND SOURCE_FILES
+    "${dir}/src/odrive.cc"
+    "${dir}/src/odrive_can.cc"
+    "${dir}/src/odrive_rotary_encoder.cc"
+    "${dir}/src/odrive_torque_motor.cc")
+FILE(GLOB_RECURSE HEADER_FILES
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/*.h
 )
 
-target_link_libraries(huron_system_odrive
-        PUBLIC
-        huron::system::ci
-        huron::system::exceptions
-        huron::driver::can
-        huron::utils
+set(INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/include/")
+
+target_sources(huron
+    PRIVATE
+    ${SOURCE_FILES}
+    # PUBLIC
+    # ${HEADER_FILES}
+)
+target_include_directories(huron
+    PUBLIC
+    $<BUILD_INTERFACE:${INCLUDE_DIRS}>
+    $<INSTALL_INTERFACE:include> 
 )
 
-install(DIRECTORY ${huron_system_odrive_INCLUDE_DIRS} DESTINATION include)
-
-add_subdirectory(test)
+install(DIRECTORY ${INCLUDE_DIRS} DESTINATION include)

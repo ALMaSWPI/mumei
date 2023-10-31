@@ -1,7 +1,8 @@
 #pragma once
 
 #include <string>
-#include "CanDriver.hpp"
+#include <sockcanpp/CanDriver.hpp>
+
 #include "canbus.h"
 
 #define CAN_CLK_HZ (16000000)

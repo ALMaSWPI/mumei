@@ -1,6 +1,7 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.13)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 # Configure target build platform. Defaults to building for Raspberry Pi (armv7l).
 set(BUILD_TYPE "armv7l" CACHE STRING "Choose the build type: x86_64 or armv7l")
@@ -25,32 +26,39 @@ if(sockcanpp_FOUND)
     # target_link_libraries(huron ${sockcanpp_LIBRARIES})
 endif()
 
+# Define sources and headers variables of the project
+set(${PROJECT_NAME}_SOURCES "" CACHE INTERNAL "List of source files of the project")
+set(${PROJECT_NAME}_HEADERS "" CACHE INTERNAL "List of header files of the project")
+set(${PROJECT_NAME}_INCLUDE_DIRS "" CACHE INTERNAL "List of include directories")
+
+add_library(huron SHARED huron.cc)
+set_target_properties(huron PROPERTIES LINKER_LANGUAGE CXX)
+
 # Add subpackages
-add_subdirectory(examples)
 add_subdirectory(driver)
 add_subdirectory(utils)
 add_subdirectory(system)
 # add_subdirectory(third_party)
 
-add_library(huron SHARED huron.cc)
+message("${PROJECT_NAME}_SOURCES: ${${PROJECT_NAME}_SOURCES}")
+message("${PROJECT_NAME}_HEADERS: ${${PROJECT_NAME}_HEADERS}")
+message("${PROJECT_NAME}_INCLUDE_DIRS: ${${PROJECT_NAME}_INCLUDE_DIRS}")
 
-set(huron_INCLUDE_DIRS 
-    ${huron_system_INCLUDE_DIRS}
-    ${huron_driver_INCLUDE_DIRS}
-    ${huron_utils_INCLUDE_DIRS})
+
+# set(huron_INCLUDE_DIRS 
+#     ${huron_system_INCLUDE_DIRS}
+#     ${huron_driver_INCLUDE_DIRS}
+#     ${huron_utils_INCLUDE_DIRS})
 target_link_libraries(huron
     PUBLIC
-    huron_system
-    huron_driver
-    huron_utils)
+    sockcanpp
+)
 # target_include_directories(huron
 #     PUBLIC
 #     ${huron_INCLUDE_DIRS})
 
-# Install header files
-
 # Install the "huronConfig.cmake" file and export the target
-install(TARGETS huron_system huron_driver huron_utils huron
+install(TARGETS huron
   EXPORT huronTargets
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
@@ -83,3 +91,6 @@ install(
     FILES Findsockcanpp.cmake
     DESTINATION lib/cmake/huron/Modules
 )
+
+# Build examples
+add_subdirectory(examples)
