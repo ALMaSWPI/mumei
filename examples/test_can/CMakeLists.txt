@@ -7,7 +7,14 @@ target_link_libraries(receive_sockcanpp
     PUBLIC
         sockcanpp
 )
+target_include_directories(receive_sockcanpp
+    PUBLIC
+    ${sockcanpp_INCLUDE_DIRS}/..)
+
 target_link_libraries(send_sockcanpp
     PUBLIC
         sockcanpp
 )
+target_include_directories(send_sockcanpp
+    PUBLIC
+    ${sockcanpp_INCLUDE_DIRS}/..)
