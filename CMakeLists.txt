@@ -26,11 +26,6 @@ if(sockcanpp_FOUND)
     # target_link_libraries(huron ${sockcanpp_LIBRARIES})
 endif()
 
-# Define sources and headers variables of the project
-set(${PROJECT_NAME}_SOURCES "" CACHE INTERNAL "List of source files of the project")
-set(${PROJECT_NAME}_HEADERS "" CACHE INTERNAL "List of header files of the project")
-set(${PROJECT_NAME}_INCLUDE_DIRS "" CACHE INTERNAL "List of include directories")
-
 add_library(huron SHARED huron.cc)
 set_target_properties(huron PROPERTIES LINKER_LANGUAGE CXX)
 
@@ -40,15 +35,6 @@ add_subdirectory(utils)
 add_subdirectory(system)
 # add_subdirectory(third_party)
 
-message("${PROJECT_NAME}_SOURCES: ${${PROJECT_NAME}_SOURCES}")
-message("${PROJECT_NAME}_HEADERS: ${${PROJECT_NAME}_HEADERS}")
-message("${PROJECT_NAME}_INCLUDE_DIRS: ${${PROJECT_NAME}_INCLUDE_DIRS}")
-
-
-# set(huron_INCLUDE_DIRS 
-#     ${huron_system_INCLUDE_DIRS}
-#     ${huron_driver_INCLUDE_DIRS}
-#     ${huron_utils_INCLUDE_DIRS})
 target_link_libraries(huron
     PUBLIC
     sockcanpp
