@@ -1,4 +1,4 @@
-#include "CanDriver.hpp"
+#include <sockcanpp/CanDriver.hpp>
 
 void SendCanFrameExample() {
   sockcanpp::CanDriver canDriver{"can0", CAN_RAW};

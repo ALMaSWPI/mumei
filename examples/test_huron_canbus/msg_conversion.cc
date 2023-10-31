@@ -1,6 +1,6 @@
 #include <iostream>
-#include "CanDriver.hpp"
-#include "huron/odrive/odrive_can.h"
+#include <sockcanpp/CanDriver.hpp>
+#include <huron/odrive/odrive_can.h>
 
 
 int main(int argc, char* argv[]) {

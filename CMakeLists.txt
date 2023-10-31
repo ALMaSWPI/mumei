@@ -20,11 +20,7 @@ project(huron)
 # Find sockcanpp
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR})
 find_package(sockcanpp REQUIRED)
-
-if(sockcanpp_FOUND)
-    include_directories(${sockcanpp_INCLUDE_DIRS})
-    # target_link_libraries(huron ${sockcanpp_LIBRARIES})
-endif()
+message(sockcanpp_INCLUDE_DIRS="${sockcanpp_INCLUDE_DIRS}")
 
 add_library(huron SHARED huron.cc)
 set_target_properties(huron PROPERTIES LINKER_LANGUAGE CXX)
@@ -39,9 +35,9 @@ target_link_libraries(huron
     PUBLIC
     sockcanpp
 )
-# target_include_directories(huron
-#     PUBLIC
-#     ${huron_INCLUDE_DIRS})
+target_include_directories(huron
+    PUBLIC
+    ${sockcanpp_INCLUDE_DIRS}/..)
 
 # Install the "huronConfig.cmake" file and export the target
 install(TARGETS huron
