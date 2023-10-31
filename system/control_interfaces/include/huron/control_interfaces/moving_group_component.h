@@ -8,8 +8,13 @@ namespace huron {
 
 class MovingGroupComponent : public GenericComponent {
  public:
-  virtual bool Move(std::vector<float> values) = 0;
-  virtual bool Move(const std::vector<std::vector<float>>& values) = 0;
+  explicit MovingGroupComponent(std::unique_ptr<Configuration> config)
+    : GenericComponent(std::move(config)) {}
+  MovingGroupComponent(const MovingGroupComponent&) = delete;
+  MovingGroupComponent& operator=(const MovingGroupComponent&) = delete;
+  ~MovingGroupComponent() = default;
+
+  virtual bool Move(const std::vector<double>& values) = 0;
 
   virtual bool Stop() = 0;
 };
