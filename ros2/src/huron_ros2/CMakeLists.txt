@@ -14,33 +14,20 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
 
-# huron dependencies
-#list(APPEND CMAKE_PREFIX_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../../../build")
-# set(huron_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../../build")
 find_package(huron REQUIRED)
-# for debugging
-#message(STATUS "huron_INCLUDE_DIRS: ${huron_INCLUDE_DIRS}")
-#message(STATUS "huron_LIBRARIES: ${huron_LIBRARIES}")
 
 add_library(${PROJECT_NAME}
-  src/revolute_joint.cc
-  src/robot.cc
+  SHARED
+  src/huron.cc
 )
 
 # target_link_libraries(${PROJECT_NAME} PUBLIC ${rclcpp_LIBRARIES} ${sensor_msgs_LIBRARIES} huron::huron)
-target_link_libraries(${PROJECT_NAME} PUBLIC huron::huron)
-ament_target_dependencies(${PROJECT_NAME} PUBLIC rclcpp sensor_msgs huron)
+ament_target_dependencies(${PROJECT_NAME} PUBLIC rclcpp sensor_msgs)
+target_link_libraries(${PROJECT_NAME} PUBLIC huron)
 
 target_include_directories(${PROJECT_NAME} PUBLIC
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
     "$<INSTALL_INTERFACE:include/${PROJECT_NAME}>")
-
-
-# include_directories(include)
-
-
-ament_export_targets(${PROJECT_NAME} HAS_LIBRARY_TARGET)
-ament_export_dependencies(rclcpp sensor_msgs huron)
 
 install(
   DIRECTORY include/${PROJECT_NAME}
@@ -49,12 +36,18 @@ install(
 
 install(
   TARGETS ${PROJECT_NAME}
-  EXPORT ${PROJECT_NAME}
+  EXPORT export_${PROJECT_NAME}
   LIBRARY DESTINATION lib
   ARCHIVE DESTINATION lib
   RUNTIME DESTINATION bin
   INCLUDES DESTINATION include
 )
+
+ament_export_targets(export_${PROJECT_NAME} HAS_LIBRARY_TARGET)
+ament_export_dependencies(huron)
+
+# ament_export_libraries(${PROJECT_NAME})
+# ament_export_include_directories(include)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
