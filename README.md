@@ -15,7 +15,7 @@ sudo apt install gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf
 cd third_party/libsockcanpp
 mkdir build
 cd build
-cmake .. -DCMAKE_TOOLCHAIN_FILE=../../../tools/<x86_64 or armhf>-toolchain.cmake
+cmake .. -DCMAKE_TOOLCHAIN_FILE=../../../tools/<x86_64 or armhf>-toolchain.cmake -DBUILD_SHARED_LIBS=ON
 make
 sudo make install
 ```
