@@ -12,6 +12,7 @@ class PushRecoveryControl{
  private:
 // EOM of 3 DOF model
 // Mass in kg, length in meter
+  float alpha = 0.7;
   float m1=5.9117,
         m2=4.2554,
         m3=10.19329;
@@ -71,38 +72,76 @@ class PushRecoveryControl{
      */
   }
 
-  void CalculateCOP(){
+  float CalculateXCOP(float r1_ft_torque[], float l1_ft_torque[], float r1_ft_force[], float l1_ft_force[]) {
     /**
-     * COP(end+1)=calcCOP(r1_ft, l1_ft) ;
+     * Outputs:
+     * cop_x: x coordinate of COP
+     */
+    /**
+
       COP_filtered(end+1)=COP_filtered(end)*alpha + (1-alpha)*COP(end);
       cop = COP_filtered(end);
      */
+    // Vertical distance from the load cell to bottom of the foot
+    float d = 0.0983224252792114;
+    // Position of left sensor
+    RowVectorXf p1(3);
+    p1 << 0, 0.0775, d;
+    //Position of right sensor
+    RowVectorXf p2(3);
+    p2 << 0, -0.0775, d;
+
+    RowVectorXf tau_right(3);
+    tau_right << r1_ft_torque[0], r1_ft_torque[1], r1_ft_torque[2];
+    tau_right = tau_right.transpose();//Convert from Row to column vector
+
+    RowVectorXf tau_left(3);
+    tau_left << l1_ft_torque[0], l1_ft_torque[1], l1_ft_torque[2];
+    tau_left = tau_left.transpose();
+
+    RowVectorXf f_right(3);
+    f_right << r1_ft_force[0], r1_ft_force[1], r1_ft_force[2];
+    f_right = f_right.transpose();
+
+    RowVectorXf f_left(3);
+    f_left << l1_ft_force[0], l1_ft_force[1], l1_ft_force[2];
+    f_left = f_left.transpose();
+
+    return (tau_left(1) + d*f_left(2) + tau_right(1) + d*f_right(2)) / (f_left(0) + f_right(0));
+
   }
 
-  //Note the assigning values:  q1 = theta1;
-  // q2 = theta2;
-  // q3 = theta3;
-  // q_dot1 = theta1_dot;
-  // q_dot2 = theta2_dot;
-  // q_dot3 = theta3_dot;
-  // r1 = lc1;
-  // r2 = lc2;
-  // r3 = lc3;
+  Eigen::MatrixXf ModelCalculation(){
+    //Note the assigning values:
+    float q1 = theta1;
+    float q2 = theta2;
+    float q3 = theta3;
+    float q_dot1 = theta1_dot;
+    float q_dot2 = theta2_dot;
+    float q_dot3 = theta3_dot;
+    float r1 = lc1;
+    float r2 = lc2;
+    float r3 = lc3;
 
-  void ModelCalculation(){
-    // M = [I1 + I2 + I3 + l1^2*m2 + l1^2*m3 + l2^2*m3 + m1*r1^2 + m2*r2^2 + m3*r3^2 + 2*l1*m3*r3*cos(q2 + q3) + 2*l1*l2*m3*cos(q2) + 2*l1*m2*r2*cos(q2) + 2*l2*m3*r3*cos(q3), m3*l2^2 + 2*m3*cos(q3)*l2*r3 + l1*m3*cos(q2)*l2 + m2*r2^2 + l1*m2*cos(q2)*r2 + m3*r3^2 + l1*m3*cos(q2 + q3)*r3 + I2 + I3, I3 + m3*r3^2 + l1*m3*r3*cos(q2 + q3) + l2*m3*r3*cos(q3);
-    //m3*l2^2 + 2*m3*cos(q3)*l2*r3 + l1*m3*cos(q2)*l2 + m2*r2^2 + l1*m2*cos(q2)*r2 + m3*r3^2 + l1*m3*cos(q2 + q3)*r3 + I2 + I3, m3*l2^2 + 2*m3*cos(q3)*l2*r3 + m2*r2^2 + m3*r3^2 + I2 + I3, m3*r3^2 + l2*m3*cos(q3)*r3 + I3;
-    //I3 + m3*r3^2 + l1*m3*r3*cos(q2 + q3) + l2*m3*r3*cos(q3), m3*r3^2 + l2*m3*cos(q3)*r3 + I3, m3*r3^2 + I3];
-    //
-    // C = [- l1*m3*q_dot2^2*r3*sin(q2 + q3) - l1*m3*q_dot3^2*r3*sin(q2 + q3) - l1*l2*m3*q_dot2^2*sin(q2) - l1*m2*q_dot2^2*r2*sin(q2) - l2*m3*q_dot3^2*r3*sin(q3) - 2*l1*m3*q_dot1*q_dot2*r3*sin(q2 + q3) - 2*l1*m3*q_dot1*q_dot3*r3*sin(q2 + q3) - 2*l1*m3*q_dot2*q_dot3*r3*sin(q2 + q3) - 2*l1*l2*m3*q_dot1*q_dot2*sin(q2) - 2*l1*m2*q_dot1*q_dot2*r2*sin(q2) - 2*l2*m3*q_dot1*q_dot3*r3*sin(q3) - 2*l2*m3*q_dot2*q_dot3*r3*sin(q3);
-    //    l1*m3*q_dot1^2*r3*sin(q2 + q3) + l1*l2*m3*q_dot1^2*sin(q2) + l1*m2*q_dot1^2*r2*sin(q2) - l2*m3*q_dot3^2*r3*sin(q3) - 2*l2*m3*q_dot1*q_dot3*r3*sin(q3) - 2*l2*m3*q_dot2*q_dot3*r3*sin(q3);
-    //    l1*m3*q_dot1^2*r3*sin(q2 + q3) + l2*m3*q_dot1^2*r3*sin(q3) + l2*m3*q_dot2^2*r3*sin(q3) + 2*l2*m3*q_dot1*q_dot2*r3*sin(q3)];
-    //
-    // G = [- g*l2*m3*sin(q1 + q2) - g*m2*r2*sin(q1 + q2) - g*l1*m2*sin(q1) - g*l1*m3*sin(q1) - g*m1*r1*sin(q1) - g*m3*r3*sin(q1 + q2 + q3);
-    //    - g*l2*m3*sin(q1 + q2) - g*m2*r2*sin(q1 + q2) - g*m3*r3*sin(q1 + q2 + q3);
-    //    -g*m3*r3*sin(q1 + q2 + q3)];
-    //
-    // N = C + G;
+    MatrixXf mat_m(3,1);
+    mat_m << I1 + I2 + I3 + pow(l1,2)*m2 + pow(l1,2)*m3 + pow(l2,2)*m3 + m1*pow(r1,2) + m2*pow(r2,2) + m3*pow(r3,2) + 2*l1*m3*r3*cos(q2 + q3) + 2*l1*l2*m3*cos(q2) + 2*l1*m2*r2*cos(q2) + 2*l2*m3*r3*cos(q3), m3*pow(l2,2) + 2*m3*cos(q3)*l2*r3 + l1*m3*cos(q2)*l2 + m2*pow(r2,2) + l1*m2*cos(q2)*r2 + m3*pow(r3,2) + l1*m3*cos(q2 + q3)*r3 + I2 + I3, I3 + m3*pow(r3,2) + l1*m3*r3*cos(q2 + q3) + l2*m3*r3*cos(q3),
+    m3*pow(l2,2) + 2*m3*cos(q3)*l2*r3 + l1*m3*cos(q2)*l2 + m2*pow(r2,2) + l1*m2*cos(q2)*r2 + m3*pow(r3,2) + l1*m3*cos(q2 + q3)*r3 + I2 + I3, m3*pow(l2,2) + 2*m3*cos(q3)*l2*r3 + m2*pow(r2,2) + m3*pow(r3,2) + I2 + I3, m3*pow(r3,2) + l2*m3*cos(q3)*r3 + I3,
+    I3 + m3*pow(r3,2) + l1*m3*r3*cos(q2 + q3) + l2*m3*r3*cos(q3), m3*pow(r3,2) + l2*m3*cos(q3)*r3 + I3, m3*pow(r3,2) + I3;
+
+
+    MatrixXf mat_c(3,1);
+    mat_c << - l1*m3*(pow(q_dot2,2))*r3*sin(q2 + q3) - l1*m3*pow(q_dot3,2)*r3*sin(q2 + q3) - l1*l2*m3*pow(q_dot2,2)*sin(q2) - l1*m2*pow(q_dot2,2)*r2*sin(q2) - l2*m3*pow(q_dot3,2)*r3*sin(q3) - 2*l1*m3*q_dot1*q_dot2*r3*sin(q2 + q3) - 2*l1*m3*q_dot1*q_dot3*r3*sin(q2 + q3) - 2*l1*m3*q_dot2*q_dot3*r3*sin(q2 + q3) - 2*l1*l2*m3*q_dot1*q_dot2*sin(q2) - 2*l1*m2*q_dot1*q_dot2*r2*sin(q2) - 2*l2*m3*q_dot1*q_dot3*r3*sin(q3) - 2*l2*m3*q_dot2*q_dot3*r3*sin(q3),
+      l1*m3*pow(q_dot1,2)*r3*sin(q2 + q3) + l1*l2*m3*pow(q_dot1,2)*sin(q2) + l1*m2*pow(q_dot1,2)*r2*sin(q2) - l2*m3*pow(q_dot3,2)*r3*sin(q3) - 2*l2*m3*q_dot1*q_dot3*r3*sin(q3) - 2*l2*m3*q_dot2*q_dot3*r3*sin(q3),
+      l1*m3*pow(q_dot1,2)*r3*sin(q2 + q3) + l2*m3*pow(q_dot1,2)*r3*sin(q3) + l2*m3*pow(q_dot2,2)*r3*sin(q3) + 2*l2*m3*q_dot1*q_dot2*r3*sin(q3);
+
+    MatrixXf mat_g(3,1);
+    mat_g << - g*l2*m3*sin(q1 + q2) - g*m2*r2*sin(q1 + q2) - g*l1*m2*sin(q1) - g*l1*m3*sin(q1) - g*m1*r1*sin(q1) - g*m3*r3*sin(q1 + q2 + q3),
+      - g*l2*m3*sin(q1 + q2) - g*m2*r2*sin(q1 + q2) - g*m3*r3*sin(q1 + q2 + q3),
+      -g*m3*r3*sin(q1 + q2 + q3);
+
+    MatrixXf result(3,3);
+    result << mat_m, mat_c, mat_g;
+    return result;
   }
   void CalculateCOM(){
     //X_COM= -1*((lc1*sin(theta1))*m1 + (l1*sin(theta1)+lc2*sin(theta1+theta2))*m2 + (l1*sin(theta1)+l2*sin(theta1+theta2)+lc3*sin(theta1+theta2+theta3))*m3) / (m1+m2+m3); % Center of Mass position in x_direction
@@ -223,7 +262,19 @@ class PushRecoveryControl{
     //Phi_N_of_q = (eye(3) - pinv( [ J_X_COM  ])*[ J_X_COM ])* q_double_dot; % second approach for angular momentum
     //T_posture_of_q = M* Phi_N_of_q  ;
   }
-  void GetTorque(){
+  float GetTorque(float r1_ft_torque[], float l1_ft_torque[], float r1_ft_force[], float l1_ft_force[]){
+
+    float x_cop = CalculateXCOP(r1_ft_torque, l1_ft_torque, r1_ft_force, l1_ft_force);
+//    RowVectorXf cop(2), filtered_cop(2);
+//    cop << 0, x_cop;
+//    filtered_cop<< 0, 0*alpha + (1-alpha)*cop(1);
+
+
+    return 1;
+
+
+
+
     //T = Torque_SMC_Linear_plus_angular_compensation + T_posture_of_q ;
     //
     //% if T(1) >= 30
@@ -243,11 +294,15 @@ class PushRecoveryControl{
 int main()
 {
   cout << "This is meant to use for testing" ;
-  MatrixXd m = MatrixXd::Random(3,3);
-  m = (m + MatrixXd::Constant(3,3,1.2)) * 50;
-  std::cout << "m =" << std::endl << m << std::endl;
+  PushRecoveryControl Ibrahim;
   VectorXd v(3);
   v << 1, 2, 3;
-  std::cout << "m * v =" << std::endl << m * v << std::endl;
+  std::cout << "v2 =" << std::endl << v(2) << std::endl;
+  float right[3] = {1, 2,3};
+  float left[3] = {5, 6,7};
+  MatrixXf result(3,3);
+  result << Ibrahim.GetTorque(right, left, right, left);
+  std::cout << "Prinitng =" << std::endl << result << std::endl;
+
 
 }
