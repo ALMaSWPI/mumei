@@ -19,6 +19,7 @@ find_package(huron REQUIRED)
 add_library(${PROJECT_NAME}
   SHARED
   src/huron.cc
+  src/huron_node.cc
 )
 
 # target_link_libraries(${PROJECT_NAME} PUBLIC ${rclcpp_LIBRARIES} ${sensor_msgs_LIBRARIES} huron::huron)

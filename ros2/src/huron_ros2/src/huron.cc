@@ -21,8 +21,7 @@ void Huron::Terminate() {
 }
 
 bool Huron::Move(const std::vector<double>& values) {
-  sensor_msgs::msg::JointState msg;
-  msg.set__effort(values);
+  node_->PublishJointEffort(values);
   return true;
 }
 
@@ -30,12 +29,16 @@ bool Huron::Stop() {
   return Move(std::vector<double>(12));
 }
 
-std::vector<double> Huron::GetPosition() {
+std::vector<double> Huron::GetJointPosition() {
   return node_->joint_position_;
 }
 
-std::vector<double> Huron::GetVelocity() {
+std::vector<double> Huron::GetJointVelocity() {
   return node_->joint_velocity_;
+}
+
+void Huron::Loop() {
+  rclcpp::spin_some(node_);
 }
 
 }  // namespace ros2
