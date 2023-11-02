@@ -36,6 +36,10 @@ class Robot : public MovingGroupComponent {
   Robot(const Robot&) = delete;
   Robot& operator=(const Robot&) = delete;
   ~Robot() override = default;
+
+  // Robot methods
+  virtual std::vector<double> GetJointPosition() = 0;
+  virtual std::vector<double> GetJointVelocity() = 0;
 };
 
 }  // namespace huron
