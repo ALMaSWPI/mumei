@@ -1,5 +1,5 @@
 #include <rclcpp/rclcpp.hpp>
-#include <huron/utils/time.h>
+#include "huron/utils/time.h"
 #include "huron_ros2/huron.h"
 
 int main(int argc, char* argv[]) {
@@ -10,7 +10,7 @@ int main(int argc, char* argv[]) {
 
   auto start = std::chrono::steady_clock::now();
   bool moved = false;
-  
+
   while (rclcpp::ok()) {
     // Prints out joint states
     auto joint_position = huron.GetJointPosition();
