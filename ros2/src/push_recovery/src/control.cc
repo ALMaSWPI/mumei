@@ -1,6 +1,6 @@
 #include <iostream>
 #include <rclcpp/rclcpp.hpp>
-#include<eigen3/Eigen/Dense>
+#include <eigen3/Eigen/Dense>
 #include <complex>
 
 using namespace std;
@@ -10,7 +10,7 @@ using Eigen::MatrixXd;
 using Eigen::VectorXd;
 std::complex<double> i(0.0, 1.0);
 
-class PushRecoveryControl{
+class PushRecoveryControl {
  private:
 // EOM of 3 DOF model
 // Mass in kg, length in meter
@@ -125,15 +125,24 @@ class PushRecoveryControl{
 
 
     MatrixXf mat_c(3, 1);
-    mat_c << - l1*m3*(pow(q_dot2, 2))*r3*sin(q2 + q3) - l1*m3*pow(q_dot3, 2)*r3*sin(q2 + q3)
-               - l1*l2*m3*pow(q_dot2, 2)*sin(q2) - l1*m2*pow(q_dot2, 2)*r2*sin(q2)
-               - l2*m3*pow(q_dot3, 2)*r3*sin(q3) - 2*l1*m3*q_dot1*q_dot2*r3*sin(q2 + q3)
-               - 2*l1*m3*q_dot1*q_dot3*r3*sin(q2 + q3) - 2*l1*m3*q_dot2*q_dot3*r3*sin(q2 + q3)
-               - 2*l1*l2*m3*q_dot1*q_dot2*sin(q2) - 2*l1*m2*q_dot1*q_dot2*r2*sin(q2)
-               - 2*l2*m3*q_dot1*q_dot3*r3*sin(q3) - 2*l2*m3*q_dot2*q_dot3*r3*sin(q3),
-      l1*m3*pow(q_dot1, 2)*r3*sin(q2 + q3) + l1*l2*m3*pow(q_dot1, 2)*sin(q2)
-        + l1*m2*pow(q_dot1, 2)*r2*sin(q2) - l2*m3*pow(q_dot3, 2)*r3*sin(q3)
-        - 2*l2*m3*q_dot1*q_dot3*r3*sin(q3) - 2*l2*m3*q_dot2*q_dot3*r3*sin(q3),
+    mat_c << - l1*m3*(pow(q_dot2, 2))*r3*sin(q2 + q3)
+               - l1*m3*pow(q_dot3, 2)*r3*sin(q2 + q3)
+               - l1*l2*m3*pow(q_dot2, 2)*sin(q2)
+               - l1*m2*pow(q_dot2, 2)*r2*sin(q2)
+               - l2*m3*pow(q_dot3, 2)*r3*sin(q3)
+               - 2*l1*m3*q_dot1*q_dot2*r3*sin(q2 + q3)
+               - 2*l1*m3*q_dot1*q_dot3*r3*sin(q2 + q3)
+               - 2*l1*m3*q_dot2*q_dot3*r3*sin(q2 + q3)
+               - 2*l1*l2*m3*q_dot1*q_dot2*sin(q2)
+               - 2*l1*m2*q_dot1*q_dot2*r2*sin(q2)
+               - 2*l2*m3*q_dot1*q_dot3*r3*sin(q3)
+               - 2*l2*m3*q_dot2*q_dot3*r3*sin(q3),
+      l1*m3*pow(q_dot1, 2)*r3*sin(q2 + q3)
+        + l1*l2*m3*pow(q_dot1, 2)*sin(q2)
+        + l1*m2*pow(q_dot1, 2)*r2*sin(q2)
+        - l2*m3*pow(q_dot3, 2)*r3*sin(q3)
+        - 2*l2*m3*q_dot1*q_dot3*r3*sin(q3)
+        - 2*l2*m3*q_dot2*q_dot3*r3*sin(q3),
       l1*m3*pow(q_dot1, 2)*r3*sin(q2 + q3) + l2*m3*pow(q_dot1, 2)*r3*sin(q3)
         + l2*m3*pow(q_dot2, 2)*r3*sin(q3) + 2*l2*m3*q_dot1*q_dot2*r3*sin(q3);
 
@@ -149,12 +158,17 @@ class PushRecoveryControl{
   }
 
   MatrixXf CalculateCOM() {
-    X_COM = -1*((lc1*sin(theta1))*m1 + (l1*sin(theta1)+lc2*sin(theta1+theta2))*m2
-                  + (l1*sin(theta1)+l2*sin(theta1+theta2)+lc3*sin(theta1+theta2+theta3))*m3) / (m1+m2+m3); // Center of Mass position in x_direction
-    X_dot_COM = -1* (m1*(theta1_dot*lc1*cos(theta1)) + m2*(theta1_dot*l1*cos(theta1)+(theta1_dot+theta2_dot)*lc2*cos(theta1+theta2))
-                      + m3*(theta1_dot*l1*cos(theta1)+(theta1_dot+theta2_dot)*l2*cos(theta1+theta2)
+    X_COM = -1*((lc1*sin(theta1))*m1
+                  + (l1*sin(theta1)+lc2*sin(theta1+theta2))*m2
+                  + (l1*sin(theta1)+l2*sin(theta1+theta2)
+                     +lc3*sin(theta1+theta2+theta3))*m3) / (m1+m2+m3);  // Center of Mass position in x_direction
+    X_dot_COM = -1* (m1*(theta1_dot*lc1*cos(theta1))
+                      + m2*(theta1_dot*l1*cos(theta1)
+                              +(theta1_dot+theta2_dot)*lc2*cos(theta1+theta2))
+                      + m3*(theta1_dot*l1*cos(theta1)
+                              +(theta1_dot+theta2_dot)*l2*cos(theta1+theta2)
                               + (theta1_dot+theta2_dot+theta3_dot)*lc3*cos(theta1+theta2+theta3)))
-                /(m1+m2+m3); //velocity of the COM in x_direction
+                /(m1+m2+m3);   // Velocity of the COM in x_direction
 
     MatrixXf J_X_COM(1, 3);
 
