@@ -13,7 +13,7 @@ HuronNode::HuronNode()
         &HuronNode::JointStatesCallback,
         this,
         std::placeholders::_1));
-  joint_effort_pub_ = 
+  joint_effort_pub_ =
     this->create_publisher<std_msgs::msg::Float64MultiArray>(
       "joint_group_effort_controller/commands", 10);
 }

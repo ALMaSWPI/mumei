@@ -1,7 +1,7 @@
 #include <iostream>
 
-#include <huron/driver/can/socket_can_bus.h>
-#include <huron/odrive/odrive_can.h>
+#include "huron/driver/can/socket_can_bus.h"
+#include "huron/odrive/odrive_can.h"
 
 int main(int argc, char* argv[]) {
   huron::driver::can::SocketCanBus hcb{"can0", 0};

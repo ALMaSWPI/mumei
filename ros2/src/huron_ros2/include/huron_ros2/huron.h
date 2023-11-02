@@ -1,12 +1,12 @@
 #pragma once
 
+#include "huron_node.h"
+
 #include <string>
 #include <vector>
 #include <memory>
 
-#include <huron/control_interfaces/robot.h>
-
-#include "huron_node.h"
+#include "huron/control_interfaces/robot.h"
 
 namespace huron {
 namespace ros2 {
