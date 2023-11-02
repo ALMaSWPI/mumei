@@ -14,12 +14,12 @@ find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(huron_ros2 REQUIRED)
 
-add_executable(test1 src/test_main.cc)
-ament_target_dependencies(test1 rclcpp sensor_msgs huron_ros2)
+add_executable(test_pub_sub src/test_pub_sub.cc)
+ament_target_dependencies(test_pub_sub rclcpp sensor_msgs huron_ros2)
 # target_link_libraries(test1 huron_ros2::huron_ros2)
 
 install(TARGETS
-        test1
+        test_pub_sub
         DESTINATION lib/${PROJECT_NAME})
 
 

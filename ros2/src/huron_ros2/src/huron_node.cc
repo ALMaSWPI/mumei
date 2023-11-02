@@ -30,7 +30,7 @@ void HuronNode::PublishJointEffort(const std::vector<double>& values) {
   msg.layout.dim[0].size = values.size();
   msg.layout.dim[0].stride = 1;
 
-  msg.set__data(values);
+  msg.data.insert(msg.data.end(), values.begin(), values.end());
   joint_effort_pub_->publish(msg);
 }
 
