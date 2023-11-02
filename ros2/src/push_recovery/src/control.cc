@@ -54,37 +54,15 @@ class PushRecoveryControl{
   float theta1, theta2, theta3 = 0;
   float theta1_dot, theta2_dot, theta3_dot = 0;
   float X_COM, X_dot_COM = 0;
+
  public:
-  void Init(){
-    //Reading values from the model -> Assign into the values
-        /**
-         * theta1=ankle_pitch_theta;
-          theta2=knee_pitch_theta;
-          theta3=hip_pitch_theta;
-          theta1_dot=ankle_pitch_theta_dot;
-          theta2_dot=knee_pitch_theta_dot;
-          theta3_dot=hip_pitch_theta_dot;
-         */
-  };
-  void ReadFSR(){
-    /**
-     * % read the force sensor readings right foot
-        r1_ft = receive(r1_ft_sensor);
-        % read the force sensor readings left foot
-        l1_ft = receive(l1_ft_sensor);
-     */
-  }
 
   float CalculateXCOP(float r1_ft_torque[], float l1_ft_torque[], float r1_ft_force[], float l1_ft_force[]) {
     /**
      * Outputs:
      * cop_x: x coordinate of COP
      */
-    /**
 
-      COP_filtered(end+1)=COP_filtered(end)*alpha + (1-alpha)*COP(end);
-      cop = COP_filtered(end);
-     */
     // Vertical distance from the load cell to bottom of the foot
     float d = 0.0983224252792114;
     // Position of left sensor
@@ -165,8 +143,7 @@ class PushRecoveryControl{
       ( m3*(-l2*(theta1_dot+theta2_dot)*sin(theta1+theta2) -lc3*(theta1_dot+theta2_dot+theta3_dot)*sin(theta1+theta2+theta3) ) -lc2*(theta1_dot+theta2_dot)*m2*sin(theta1+theta2) )/(m1+m2+m3),
       (-lc3*(theta1_dot+theta2_dot+theta3_dot)*m3*sin(theta1+theta2+theta3) )/(m1+m2+m3); // Time Derivative of Jacobian Matrix
     J_X_COM_dot = -1 * J_X_COM_dot;
-    MatrixXf Pseudo_J_X_COM(3,1);
-    Pseudo_J_X_COM=J_X_COM.completeOrthogonalDecomposition().pseudoInverse(); // Pseudo Inverse of J_X_COM
+
 
     float Z_COM =( (lc1*cos(theta1))*m1 + (l1*cos(theta1)+lc2*cos(theta1+theta2))*m2 + (l1*cos(theta1)+l2*cos(theta1+theta2)+lc3*cos(theta1+theta2+theta3))*m3  ) / (m1+m2+m3); // Center of Mass position in z_direction (desired is 0.6859)
     float Z_dot_COM=(  -m1*(theta1_dot*lc1*sin(theta1)) + m2*(-theta1_dot*l1*sin(theta1) - (theta1_dot+theta2_dot)*lc2*sin(theta1+theta2) ) + m3*(-theta1_dot*l1*sin(theta1) - (theta1_dot+theta2_dot)*l2*sin(theta1+theta2) - (theta1_dot+theta2_dot+theta3_dot)*lc3*sin(theta1+theta2+theta3)) )/(m1+m2+m3); // velocity of the COM in z_direction
@@ -256,11 +233,15 @@ class PushRecoveryControl{
     mat_smc << Desired_Theta_ddot(0,0) , Desired_Theta_ddot(1,0) , Desired_Theta_ddot(2,0);
     return mat_smc;
   }
-  void SMCPOstureCorrection(){
-    //theta = [theta1; theta2; theta3]; % 3x1
-    //theta_dot = [theta1_dot; theta2_dot; theta3_dot]; % 3x1
-    //error_in_q = theta  ;
-    //errordot_in_q = theta_dot ;
+  MatrixXf SMCPOstureCorrection(){
+    MatrixXf theta(3,1), error_in_q(3,1);
+    theta << theta1, theta2, theta3;
+
+    MatrixXf theta_dot(3,1), errordot_in_q(3,1);
+    theta_dot << theta1_dot, theta2_dot, theta3_dot;
+
+    error_in_q = theta  ;
+    errordot_in_q = theta_dot ;
     //
     //% % for 80 N force
     //% lamda_of_q =diag ( [6.1 6.1 6.1] ); % 3x3
@@ -268,50 +249,59 @@ class PushRecoveryControl{
     //% w1=1  ; w2=1 ; w3=1;
     //% %
     //
-    //% for above 80 N
-    //lamda_of_q =diag ( [2.8 2.8 2.8] ); % 3x3
-    //k_of_q =diag (     [3 3 3]); % 3x3
-    //w1=1  ; w2=1 ; w3=1;
-    //
-    //
-    //s_of_q = errordot_in_q + lamda_of_q * error_in_q ; % 3x1
-    //s_q1(end+1)=s_of_q(1,1);
-    //s_q2(end+1)=s_of_q(2,1);
-    //s_q3(end+1)=s_of_q(3,1);
-    //
-    //phi1 =0.002 ;
-    //phi2 =0.02 ;
-    //phi3 =0.02;
-    //
-    //if norm(s_of_q(1,1)) >= phi1
-    //    sat1 = sign(s_of_q(1,1));
-    //else
-    //    sat1 = s_of_q(1,1) / phi1;
-    //end
-    //
-    //if norm(s_of_q(2,1)) >= phi2
-    //    sat2 = sign(s_of_q(2,1));
-    //else
-    //    sat2 = s_of_q(2,1) / phi2;
-    //end
-    //
-    //if norm(s_of_q(3,1)) >= phi3
-    //    sat3 = sign(s_of_q(3,1));
-    //else
-    //    sat3 = s_of_q(3,1) / phi3;
-    //end
-    //
-    //saturation_function = [ sat1 ; sat2 ; sat3 ] ;
-    //q_double_dot1 =  (-k_of_q(1,1) * ( abs(s_of_q(1,1))^w1  ) * sat1 )  - (lamda_of_q(1,1) * errordot_in_q(1,1)) ; % constant power rate reaching law
-    //q_double_dot2 =  (-k_of_q(2,2) * ( abs(s_of_q(2,1))^w2  ) * sat2 )  - (lamda_of_q(2,1) * errordot_in_q(2,1)) ; % constant power rate reaching law
-    //q_double_dot3 =  (-k_of_q(3,3) * ( abs(s_of_q(3,1))^w3  ) * sat3 )  - (lamda_of_q(3,1) * errordot_in_q(3,1)) ; % constant power rate reaching law
-    //q_double_dot = [ q_double_dot1 ; q_double_dot2 ; q_double_dot3 ];
-    //
-    //Phi_N_of_q = (eye(3) - pinv( [ J_X_COM  ])*[ J_X_COM ])* q_double_dot; % second approach for angular momentum
-    //T_posture_of_q = M* Phi_N_of_q  ;
-    //T = Torque_SMC_Linear_plus_angular_compensation + T_posture_of_q ;
+
+    // for above 80 N
+    MatrixXf lamda_of_q(3,3), k_of_q(3,3);
+    lamda_of_q << 2.8, 0, 0,
+      0, 2.8, 0,
+      0, 0, 2.8;
+    k_of_q << 3, 0, 0,
+      0, 3, 0,
+      0, 0, 3;
+    float w1=1, w2=1, w3=1;
+
+    MatrixXf s_of_q(3,1);
+    s_of_q = errordot_in_q + lamda_of_q * error_in_q ;
+
+    float phi1 =0.002, phi2 =0.02, phi3 =0.02;
+    float sat1 = 0,sat2 = 0,sat3 = 0;
+
+    if (s_of_q(0,0) >= phi1) { //Note: norm was here
+        sat1 = sign(s_of_q(0,0));
+      }
+    else {
+      sat1 = s_of_q(0,0) / phi1;
+    }
+
+
+    if (s_of_q(1,0) >= phi2 ){
+        sat2 = sign(s_of_q(1,0));
+      }
+    else {
+      sat2 = s_of_q(1,0) / phi2;
+    }
+
+    if (s_of_q(2,0) >= phi3){
+      sat3 = sign(s_of_q(2,0));
+      }
+    else {
+      sat3 = s_of_q(2,0) / phi3;
+    }
+
+    MatrixXf saturation_function(3,1);
+    saturation_function <<  sat1 , sat2 , sat3;
+
+    float q_double_dot1 =  (-k_of_q(0,0) * ( pow(abs(s_of_q(0,0)),w1)  ) * sat1 )  - (lamda_of_q(0,0) * errordot_in_q(0,0)) ; // constant power rate reaching law
+    float q_double_dot2 =  (-k_of_q(1,1) * ( pow(abs(s_of_q(1,0)),w2)  ) * sat2 )  - (lamda_of_q(1,0) * errordot_in_q(1,0)) ; // constant power rate reaching law
+    float q_double_dot3 =  (-k_of_q(2,2) * ( pow(abs(s_of_q(2,0)),w3)  ) * sat3 )  - (lamda_of_q(2,0) * errordot_in_q(2,0)) ; // constant power rate reaching law
+
+    MatrixXf q_double_dot(3,1);
+    q_double_dot <<  q_double_dot1 , q_double_dot2 , q_double_dot3 ;
+
+    return q_double_dot;
+
   }
-  float GetTorque(float r1_ft_torque[], float l1_ft_torque[], float r1_ft_force[], float l1_ft_force[]){
+  MatrixXf GetTorque(float r1_ft_torque[], float l1_ft_torque[], float r1_ft_force[], float l1_ft_force[]){
 
     float x_cop = CalculateXCOP(r1_ft_torque, l1_ft_torque, r1_ft_force, l1_ft_force);
     RowVectorXf cop(2), filtered_cop(2);
@@ -345,23 +335,19 @@ class PushRecoveryControl{
     mat_smc << SMCController(cop, J_X_COM, J_X_COM_dot);
     Torque_SMC_Linear_plus_angular_compensation << mat_m * mat_smc   +  mat_n ;
 
-    return 1;
+    MatrixXf q_double_dot(3,1);
+    q_double_dot = SMCPOstureCorrection();
 
-
-
-
-    //T = Torque_SMC_Linear_plus_angular_compensation + T_posture_of_q ;
-    //
-    //% if T(1) >= 30
-    //%     T(1) = 30;
-    //% end
-    //% if T(1) <= -11.76
-    //%     T(1) = -11.76;
-    //% end
-    //
-    //T_ankle = T(1);
-    //T_knee = T(2);
-    //T_hip = T(3);
+    MatrixXf Pseudo_J_X_COM(3,1);
+    Pseudo_J_X_COM=J_X_COM.completeOrthogonalDecomposition().pseudoInverse(); // Pseudo Inverse of J_X_COM
+    MatrixXf Phi_N_of_q(3,1), eye(3,3), T_posture_of_q(3,1),T(3,1);
+    eye<< 1,0,0,
+      0,1,0,
+      0,0,1;
+    Phi_N_of_q = (eye - Pseudo_J_X_COM*J_X_COM)* q_double_dot; // second approach for angular momentum
+    T_posture_of_q = mat_m* Phi_N_of_q;
+    T = Torque_SMC_Linear_plus_angular_compensation + T_posture_of_q ;
+    return T;
   }
 
 };
@@ -375,8 +361,6 @@ int main()
   std::cout << "v2 =" << std::endl << v(2) << std::endl;
   float right[3] = {1, 2,3};
   float left[3] = {5, 6,7};
-//  MatrixXf result(3,3);
-//  result << Ibrahim.GetTorque(right, left, right, left);
   std::cout << "Prinitng =" << std::endl << Ibrahim.GetTorque(right, left, right, left) << std::endl;
 
 
