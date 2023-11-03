@@ -345,20 +345,25 @@ class PushRecoveryControl {
                                   + pow(lc1, 2)*m1*m2 + pow(lc1, 2)*m1*m3
                                   + pow(lc2, 2)*m1*m2 + pow(lc2, 2)*m2*m3
                                   + pow(lc3, 2)*m1*m3 + pow(lc3, 2)*m2*m3
-                                  - 2*l1*lc1*m1*m2 - 2*l1*lc1*m1*m3 - 2*l2*lc2*m2*m3
+                                  - 2*l1*lc1*m1*m2 - 2*l1*lc1*m1*m3
+                                  - 2*l2*lc2*m2*m3
                                   + 2*l1*lc3*m1*m3*cos(theta2 + theta3)
                                   - 2*lc1*lc3*m1*m3*cos(theta2 + theta3)
-                                  + 2*l1*l2*m1*m3*cos(theta2) + 2*l1*lc2*m1*m2*cos(theta2)
+                                  + 2*l1*l2*m1*m3*cos(theta2)
+                                  + 2*l1*lc2*m1*m2*cos(theta2)
                                   - 2*l2*lc1*m1*m3*cos(theta2)
-                                  + 2*l2*lc3*m1*m3*cos(theta3) + 2*l2*lc3*m2*m3*cos(theta3)
+                                  + 2*l2*lc3*m1*m3*cos(theta3)
+                                  + 2*l2*lc3*m2*m3*cos(theta3)
                                   - 2*lc1*lc2*m1*m2*cos(theta2)
                                   - 2*lc2*lc3*m2*m3*cos(theta3), 2)
                               /pow((m1 + m2 + m3), 2)
                             + pow(I3*m1 + I3*m2 + I3*m3
-                                    + pow(lc3, 2)*m1*m3 + pow(lc3, 2)*m2*m3
+                                    + pow(lc3, 2)*m1*m3
+                                    + pow(lc3, 2)*m2*m3
                                     + l1*lc3*m1*m3*cos(theta2 + theta3)
                                     - lc1*lc3*m1*m3*cos(theta2 + theta3)
-                                    + l2*lc3*m1*m3*cos(theta3) + l2*lc3*m2*m3*cos(theta3)
+                                    + l2*lc3*m1*m3*cos(theta3)
+                                    + l2*lc3*m2*m3*cos(theta3)
                                     - lc2*lc3*m2*m3*cos(theta3), 2)
                                 / pow((m1 + m2 + m3), 2) + pow(I2*m1
                                   + I2*m2 + I3*m1 + I2*m3 + I3*m2 + I3*m3
@@ -367,11 +372,14 @@ class PushRecoveryControl {
                                   + pow(lc2, 2)*m1*m2
                                   + pow(lc2, 2)*m2*m3
                                   + pow(lc3, 2)*m1*m3
-                                  + pow(lc3, 2)*m2*m3 - 2*l2*lc2*m2*m3
+                                  + pow(lc3, 2)*m2*m3
+                                  - 2*l2*lc2*m2*m3
                                   + l1*lc3*m1*m3*cos(theta2 + theta3)
                                   - lc1*lc3*m1*m3*cos(theta2 + theta3)
-                                  + l1*l2*m1*m3*cos(theta2) + l1*lc2*m1*m2*cos(theta2)
-                                  - l2*lc1*m1*m3*cos(theta2) + 2*l2*lc3*m1*m3*cos(theta3)
+                                  + l1*l2*m1*m3*cos(theta2)
+                                  + l1*lc2*m1*m2*cos(theta2)
+                                  - l2*lc1*m1*m3*cos(theta2)
+                                  + 2*l2*lc3*m1*m3*cos(theta3)
                                   + 2*l2*lc3*m2*m3*cos(theta3)
                                   - lc1*lc2*m1*m2*cos(theta2)
                                   - 2*lc2*lc3*m2*m3*cos(theta3), 2)
@@ -382,9 +390,11 @@ class PushRecoveryControl {
        + pow(lc3,  2)*m1*m3 + pow(lc3, 2)*m2*m3
        - 2*l2*lc2*m2*m3 + l1*lc3*m1*m3*cos(theta2 + theta3)
        - lc1*lc3*m1*m3*cos(theta2 + theta3)
-       + l1*l2*m1*m3*cos(theta2) + l1*lc2*m1*m2*cos(theta2)
+       + l1*l2*m1*m3*cos(theta2)
+       + l1*lc2*m1*m2*cos(theta2)
        - l2*lc1*m1*m3*cos(theta2)
-       + 2*l2*lc3*m1*m3*cos(theta3) + 2*l2*lc3*m2*m3*cos(theta3)
+       + 2*l2*lc3*m1*m3*cos(theta3)
+       + 2*l2*lc3*m2*m3*cos(theta3)
        - lc1*lc2*m1*m2*cos(theta2)
        - 2*lc2*lc3*m2*m3*cos(theta3))/((m1 + m2 + m3)
            *pow(I1*m1 + I1*m2 + I2*m1 + I1*m3 + I2*m2
@@ -394,11 +404,15 @@ class PushRecoveryControl {
                    + pow(lc1, 2)*m1*m2 + pow(lc1, 2)*m1*m3
                    + pow(lc2, 2)*m1*m2 + pow(lc2, 2)*m2*m3
                    + pow(lc3, 2)*m1*m3 + pow(lc3, 2)*m2*m3
-                   - 2*l1*lc1*m1*m2 - 2*l1*lc1*m1*m3
-                   - 2*l2*lc2*m2*m3 + 2*l1*lc3*m1*m3*cos(theta2 + theta3)
+                   - 2*l1*lc1*m1*m2
+                   - 2*l1*lc1*m1*m3
+                   - 2*l2*lc2*m2*m3
+                   + 2*l1*lc3*m1*m3*cos(theta2 + theta3)
                    - 2*lc1*lc3*m1*m3*cos(theta2 + theta3)
-                   + 2*l1*l2*m1*m3*cos(theta2) + 2*l1*lc2*m1*m2*cos(theta2)
-                   - 2*l2*lc1*m1*m3*cos(theta2) + 2*l2*lc3*m1*m3*cos(theta3)
+                   + 2*l1*l2*m1*m3*cos(theta2)
+                   + 2*l1*lc2*m1*m2*cos(theta2)
+                   - 2*l2*lc1*m1*m3*cos(theta2)
+                   + 2*l2*lc3*m1*m3*cos(theta3)
                    + 2*l2*lc3*m2*m3*cos(theta3)
                    - 2*lc1*lc2*m1*m2*cos(theta2)
                    - 2*lc2*lc3*m2*m3*cos(theta3), 2)
@@ -408,59 +422,87 @@ class PushRecoveryControl {
                  + pow(lc3, 2)*m2*m3
                  + l1*lc3*m1*m3*cos(theta2 + theta3)
                  - lc1*lc3*m1*m3*cos(theta2 + theta3)
-                 + l2*lc3*m1*m3*cos(theta3) + l2*lc3*m2*m3*cos(theta3)
+                 + l2*lc3*m1*m3*cos(theta3)
+                 + l2*lc3*m2*m3*cos(theta3)
                  - lc2*lc3*m2*m3*cos(theta3), 2)
              /pow((m1 + m2 + m3), 2) +
-         pow(I2*m1 + I2*m2 + I3*m1 + I2*m3 + I3*m2 + I3*m3
+         pow(I2*m1 + I2*m2 + I3*m1
+               + I2*m3 + I3*m2 + I3*m3
                + pow(l2, 2)*m1*m3 + pow(l2, 2)*m2*m3
                + pow(lc2, 2)*m1*m2 + pow(lc2, 2)*m2*m3
                + pow(lc3, 2)*m1*m3 + pow(lc3, 2)*m2*m3
-               - 2*l2*lc2*m2*m3 + l1*lc3*m1*m3*cos(theta2 + theta3)
+               - 2*l2*lc2*m2*m3
+               + l1*lc3*m1*m3*cos(theta2 + theta3)
                - lc1*lc3*m1*m3*cos(theta2 + theta3)
-               + l1*l2*m1*m3*cos(theta2) + l1*lc2*m1*m2*cos(theta2)
-               - l2*lc1*m1*m3*cos(theta2) + 2*l2*lc3*m1*m3*cos(theta3)
+               + l1*l2*m1*m3*cos(theta2)
+               + l1*lc2*m1*m2*cos(theta2)
+               - l2*lc1*m1*m3*cos(theta2)
+               + 2*l2*lc3*m1*m3*cos(theta3)
                + 2*l2*lc3*m2*m3*cos(theta3)
-               - lc1*lc2*m1*m2*cos(theta2) - 2*lc2*lc3*m2*m3*cos(theta3), 2)
+               - lc1*lc2*m1*m2*cos(theta2)
+               - 2*lc2*lc3*m2*m3*cos(theta3), 2)
            /pow((m1 + m2 + m3), 2)),
-      (I3*m1 + I3*m2 + I3*m3 + pow(lc3, 2)*m1*m3
-       + pow(lc3, 2)*m2*m3 + l1*lc3*m1*m3*cos(theta2 + theta3)
-       - lc1*lc3*m1*m3*cos(theta2 + theta3) + l2*lc3*m1*m3*cos(theta3)
-       + l2*lc3*m2*m3*cos(theta3) - lc2*lc3*m2*m3*cos(theta3))
-        /((m1 + m2 + m3)*(pow(I1*m1 + I1*m2 + I2*m1 + I1*m3 + I2*m2 + I3*m1
-                                   + I2*m3 + I3*m2 + I3*m3 + pow(l1, 2)*m1*m2
+      (I3*m1 + I3*m2 + I3*m3
+       + pow(lc3, 2)*m1*m3
+       + pow(lc3, 2)*m2*m3
+       + l1*lc3*m1*m3*cos(theta2 + theta3)
+       - lc1*lc3*m1*m3*cos(theta2 + theta3)
+       + l2*lc3*m1*m3*cos(theta3)
+       + l2*lc3*m2*m3*cos(theta3)
+       - lc2*lc3*m2*m3*cos(theta3))
+        /((m1 + m2 + m3)*(pow(I1*m1
+                                   + I1*m2 + I2*m1 + I1*m3 + I2*m2 + I3*m1
+                                   + I2*m3 + I3*m2 + I3*m3
+                                   + pow(l1, 2)*m1*m2
                                    + pow(l1, 2)*m1*m3
-                                   + pow(l2, 2)*m1*m3 + pow(l2, 2)*m2*m3
+                                   + pow(l2, 2)*m1*m3
+                                   + pow(l2, 2)*m2*m3
                                    + pow(lc1, 2)*m1*m2
-                                   + pow(lc1, 2)*m1*m3 + pow(lc2, 2)*m1*m2
+                                   + pow(lc1, 2)*m1*m3
+                                   + pow(lc2, 2)*m1*m2
                                    + pow(lc2, 2)*m2*m3
                                    + pow(lc3, 2)*m1*m3
-                                   + pow(lc3, 2)*m2*m3 - 2*l1*lc1*m1*m2 - 2*l1*lc1*m1*m3
-                                   - 2*l2*lc2*m2*m3 + 2*l1*lc3*m1*m3*cos(theta2 + theta3)
+                                   + pow(lc3, 2)*m2*m3
+                                   - 2*l1*lc1*m1*m2
+                                   - 2*l1*lc1*m1*m3
+                                   - 2*l2*lc2*m2*m3
+                                   + 2*l1*lc3*m1*m3*cos(theta2 + theta3)
                                    - 2*lc1*lc3*m1*m3*cos(theta2 + theta3)
-                                   + 2*l1*l2*m1*m3*cos(theta2) + 2*l1*lc2*m1*m2*cos(theta2)
+                                   + 2*l1*l2*m1*m3*cos(theta2)
+                                   + 2*l1*lc2*m1*m2*cos(theta2)
                                    - 2*l2*lc1*m1*m3*cos(theta2)
                                    + 2*l2*lc3*m1*m3*cos(theta3)
-                                   + 2*l2*lc3*m2*m3*cos(theta3) - 2*lc1*lc2*m1*m2*cos(theta2)
-                                 - 2*lc2*lc3*m2*m3*cos(theta3), 2)/pow((m1 + m2 + m3), 2)
-                             + pow(I3*m1 + I3*m2 + I3*m3 + pow(lc3, 2)*m1*m3
+                                   + 2*l2*lc3*m2*m3*cos(theta3)
+                                   - 2*lc1*lc2*m1*m2*cos(theta2)
+                                 - 2*lc2*lc3*m2*m3*cos(theta3), 2)
+                               /pow((m1 + m2 + m3), 2)
+                             + pow(I3*m1 + I3*m2 + I3*m3
+                                     + pow(lc3, 2)*m1*m3
                                      + pow(lc3, 2)*m2*m3
                                      + l1*lc3*m1*m3*cos(theta2 + theta3)
                                      - lc1*lc3*m1*m3*cos(theta2 + theta3)
                                      + l2*lc3*m1*m3*cos(theta3)
                                      + l2*lc3*m2*m3*cos(theta3)
-                                     - lc2*lc3*m2*m3*cos(theta3), 2) /
-                                 pow((m1 + m2 + m3), 2)
-                             + pow(I2*m1 + I2*m2 + I3*m1 + I2*m3 + I3*m2 + I3*m3
+                                     - lc2*lc3*m2*m3*cos(theta3), 2)
+                                 /pow((m1 + m2 + m3), 2)
+                             + pow(I2*m1 + I2*m2 + I3*m1
+                                     + I2*m3 + I3*m2 + I3*m3
                                      + pow(l2, 2)*m1*m3
-                                     + pow(l2, 2)*m2*m3 + pow(lc2, 2)*m1*m2
-                                     + pow(lc2, 2)*m2*m3 + pow(lc3,2)*m1*m3
-                                     + pow(lc3, 2)*m2*m3 - 2*l2*lc2*m2*m3
+                                     + pow(l2, 2)*m2*m3
+                                     + pow(lc2, 2)*m1*m2
+                                     + pow(lc2, 2)*m2*m3
+                                     + pow(lc3,2)*m1*m3
+                                     + pow(lc3, 2)*m2*m3
+                                     - 2*l2*lc2*m2*m3
                                      + l1*lc3*m1*m3*cos(theta2 + theta3)
                                      - lc1*lc3*m1*m3*cos(theta2 + theta3)
-                                     + l1*l2*m1*m3*cos(theta2) + l1*lc2*m1*m2*cos(theta2)
-                                     - l2*lc1*m1*m3*cos(theta2) + 2*l2*lc3*m1*m3*cos(theta3)
+                                     + l1*l2*m1*m3*cos(theta2)
+                                     + l1*lc2*m1*m2*cos(theta2)
+                                     - l2*lc1*m1*m3*cos(theta2)
+                                     + 2*l2*lc3*m1*m3*cos(theta3)
                                      +2*l2*lc3*m2*m3*cos(theta3)
-                                     - lc1*lc2*m1*m2*cos(theta2) - 2*lc2*lc3*m2*m3*cos(theta3), 2)
+                                     - lc1*lc2*m1*m2*cos(theta2)
+                                     - 2*lc2*lc3*m2*m3*cos(theta3), 2)
                                  /pow((m1 + m2 + m3), 2)));
 
     Eigen::MatrixXf A_theta_dot(1, 3);
