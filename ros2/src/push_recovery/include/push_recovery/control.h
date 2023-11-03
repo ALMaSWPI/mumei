@@ -6,10 +6,10 @@
 #include <complex>
 #include <vector>
 
-std::complex<double> i(0.0, 1.0);
 
 class PushRecoveryControl {
  private:
+  static const inline std::complex<double> i{0.0, 1.0};
   // EOM of 3 DOF model
   // Mass in kg, length in meter
   float alpha = 0.7;

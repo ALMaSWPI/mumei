@@ -1,4 +1,5 @@
-#include "../include/push_recovery/control.h"
+#include "push_recovery/control.h"
+
 int main() {
   std::cout << "This is meant to use for testing";
   PushRecoveryControl Ibrahim;

@@ -14,8 +14,13 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package (Eigen3 3.4 REQUIRED)
-add_executable(test_pr src/test_control.cc)
+
+add_executable(test_pr src/control.cc src/test_control.cc)
 ament_target_dependencies(test_pr rclcpp std_msgs Eigen3)
+
+target_include_directories(test_pr PUBLIC
+    "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
+    "$<INSTALL_INTERFACE:include/${PROJECT_NAME}>")
 
 install(TARGETS
         test_pr
