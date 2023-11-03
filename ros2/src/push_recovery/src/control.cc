@@ -1,8 +1,8 @@
 #include <iostream>
+#include "push_recovery/control.h"
 #include <rclcpp/rclcpp.hpp>
 #include <eigen3/Eigen/Dense>
 #include <complex>
-#include "push_recovery/control.h"
 
 std::complex<double> i(0.0, 1.0);
 class PushRecoveryControl {
