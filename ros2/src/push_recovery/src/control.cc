@@ -48,9 +48,9 @@ class PushRecoveryControl {
   float theta1, theta2, theta3 = 0;
   float theta1_dot, theta2_dot, theta3_dot = 0;
   float X_COM, X_dot_COM = 0;
-  std::vector<float> r1_ft_torque, l1_ft_torque, r1_ft_force, l1_ft_force;
 
  public:
+  std::vector<float> r1_ft_torque, l1_ft_torque, r1_ft_force, l1_ft_force;
   float CalculateXCOP() {
     /**
      * Outputs:
@@ -252,12 +252,12 @@ class PushRecoveryControl {
           Q11 = 0.001, a11 = 2, z11 = 2.5;
     float s_linear_motion = error_dot_in_x + L11*error_in_x;
 
-    float f11 = c11 * ( 1 - exp( k11*pow(std::abs(s_linear_motion), p11)));
+    float f11 = c11 * (1 - exp( k11*pow(std::abs(s_linear_motion), p11)));
     float s_linear_motion_dot = -Q11
                                   * pow(std::abs(s_linear_motion), f11)
                                   * sign(s_linear_motion)
-                                - z11 * pow(std::abs(s_linear_motion),a11)
-                                    * s_linear_motion ;
+                                - z11 * pow(std::abs(s_linear_motion), a11)
+                                    * s_linear_motion;
 
     // Angular Momentum control part
     Eigen::MatrixXf A_theta(1, 3);
@@ -540,10 +540,10 @@ class PushRecoveryControl {
                     - lc2*m2*theta3_dot*sin(theta3)))/(m1 + m2 + m3);
 
     float k_tunning = 2;  // For second option
-    float Desired_Angular_Momentum = k_tunning
-                                     * ( (cop(1)) - X_COM) *  (1);  // Second option
+    float Desired_Angular_Momentum =
+      k_tunning * ((cop(1)) - X_COM) *  (1);
 
-    //Desired accleration to achieve both linear and angular tasks without LPF
+    // Desired accleration to achieve both linear and angular tasks without LPF
     Eigen::MatrixXf mat(2, 3);
     mat << J_X_COM, A_theta;
     Eigen::MatrixXf mat_pinv(3, 2);
@@ -552,13 +552,13 @@ class PushRecoveryControl {
 
     Eigen::MatrixXf mat2(2, 1);
     Eigen::MatrixXf mult_temp(1, 1);
-    mult_temp << J_X_COM_dot*theta_dot ;
+    mult_temp << J_X_COM_dot*theta_dot;
     float mult = mult_temp(0);
     Eigen::MatrixXf mult2_temp(1, 1);
-    mult2_temp << A_theta_dot * theta_dot ;
+    mult2_temp << A_theta_dot * theta_dot;
     float mult2 = mult2_temp(0);
 
-    mat2 << ( s_linear_motion_dot - L11 * error_dot_in_x - mult),
+    mat2 << (s_linear_motion_dot - L11 * error_dot_in_x - mult),
       (Desired_Angular_Momentum - (mult2));
     Eigen::MatrixXf Desired_Theta_ddot(3, 3);
     Desired_Theta_ddot =  mat_pinv *  mat2;
@@ -575,11 +575,11 @@ class PushRecoveryControl {
     Eigen::MatrixXf theta_dot(3, 1), errordot_in_q(3, 1);
     theta_dot << theta1_dot, theta2_dot, theta3_dot;
 
-    error_in_q = theta  ;
-    errordot_in_q = theta_dot ;
+    error_in_q = theta;
+    errordot_in_q = theta_dot;
 
     // For above 80 N
-    Eigen::MatrixXf lamda_of_q(3,3), k_of_q(3,3);
+    Eigen::MatrixXf lamda_of_q(3, 3), k_of_q(3,3);
     lamda_of_q << 2.8, 0, 0,
       0, 2.8, 0,
       0, 0, 2.8;
@@ -595,25 +595,22 @@ class PushRecoveryControl {
     float phi1 = 0.002, phi2 = 0.02, phi3 = 0.02;
     float sat1 = 0, sat2 = 0, sat3 = 0;
 
-    if (s_of_q(0, 0) >= phi1) {  //Note: norm was here
+    if (s_of_q(0, 0) >= phi1) {  // Note: norm was here
         sat1 = sign(s_of_q(0, 0));
-      }
-    else {
+    } else {
       sat1 = s_of_q(0, 0)/ phi1;
     }
 
 
-    if (s_of_q(1, 0) >= phi2){
+    if (s_of_q(1, 0) >= phi2) {
         sat2 = sign(s_of_q(1, 0));
-      }
-    else {
+    } else {
       sat2 = s_of_q(1, 0) / phi2;
     }
 
-    if (s_of_q(2, 0) >= phi3){
+    if (s_of_q(2, 0) >= phi3) {
       sat3 = sign(s_of_q(2, 0));
-      }
-    else {
+    } else {
       sat3 = s_of_q(2, 0) / phi3;
     }
 
@@ -676,11 +673,11 @@ class PushRecoveryControl {
     q_double_dot = SMCPOstureCorrection();
 
     Eigen::MatrixXf Pseudo_J_X_COM(3, 1);
-    Pseudo_J_X_COM=J_X_COM
+    Pseudo_J_X_COM = J_X_COM
                        .completeOrthogonalDecomposition().pseudoInverse();
     // Pseudo Inverse of J_X_COM
     Eigen::MatrixXf Phi_N_of_q(3, 1), eye(3, 3),
-      T_posture_of_q(3, 1),T(3, 1);
+      T_posture_of_q(3, 1), T(3, 1);
     eye<< 1, 0, 0,
       0, 1, 0,
       0, 0, 1;
@@ -692,15 +689,16 @@ class PushRecoveryControl {
   }
 };
 
-int main()
-{
+int main() {
   std::cout << "This is meant to use for testing" ;
   PushRecoveryControl Ibrahim;
   Eigen::VectorXd v(3);
   v << 1, 2, 3;
   std::cout << "v2 =" << std::endl << v(2) << std::endl;
-  float right[3] = {1,  2, 3};
-  float left[3] = {5,  6, 7};
+  Ibrahim.r1_ft_force = {1,  2, 3};
+  Ibrahim.r1_ft_torque = {1,  2, 3};
+  Ibrahim.l1_ft_force = {1,  2, 3};
+  Ibrahim.l1_ft_torque = {1,  2, 3};
   std::cout << "Prinitng =" << std::endl <<
     Ibrahim.GetTorque() << std::endl;
 }
