@@ -225,21 +225,22 @@ class PushRecoveryControl {
     Eigen::MatrixXf J_total_COM_dot(2, 3), J_total_COM_pseduo(3, 2);
     J_total_COM_dot << J_X_COM_dot, 0, 0, 0;
     // time derivative of total Jacobian of COM
-    J_total_COM_pseduo=
+    J_total_COM_pseduo =
       J_total_COM.completeOrthogonalDecomposition().pseudoInverse();
     // pseduo inverse of the total Jacobian of COM
 
     Eigen::MatrixXf result(2, 3);
     result << J_X_COM, J_X_COM_dot;
     return result;
-
   }
 
   template <typename T>
   int sign (const T &val) { return (val > 0) - (val < 0); }
-  Eigen::MatrixXf SMCController( Eigen::RowVectorXf cop,
-                                Eigen::MatrixXf J_X_COM, Eigen::MatrixXf J_X_COM_dot) {
-    // SMC for Linear motion rate of change of linear momentum
+  Eigen::MatrixXf SMCController(Eigen::RowVectorXf cop,
+                                Eigen::MatrixXf J_X_COM,
+                                Eigen::MatrixXf J_X_COM_dot) {
+    // SMC for Linear motion
+    // rate of change of linear momentum
 
     float error_in_x = X_COM;
     float error_dot_in_x = X_dot_COM;
@@ -251,10 +252,12 @@ class PushRecoveryControl {
           Q11 = 0.001, a11 = 2, z11 = 2.5;
     float s_linear_motion = error_dot_in_x + L11*error_in_x;
 
-    float f11 = c11 * ( 1 - exp( k11*pow(abs(s_linear_motion),p11)));
+    float f11 = c11 * ( 1 - exp( k11*pow(std::abs(s_linear_motion), p11)));
     float s_linear_motion_dot = -Q11
-                                  * pow(abs(s_linear_motion),f11)  * sign(s_linear_motion)
-                                - z11 * pow(abs(s_linear_motion),a11)  * s_linear_motion ;
+                                  * pow(std::abs(s_linear_motion), f11)
+                                  * sign(s_linear_motion)
+                                - z11 * pow(std::abs(s_linear_motion),a11)
+                                    * s_linear_motion ;
 
     // Angular Momentum control part
     Eigen::MatrixXf A_theta(1, 3);
@@ -491,7 +494,7 @@ class PushRecoveryControl {
                                      + pow(l2, 2)*m2*m3
                                      + pow(lc2, 2)*m1*m2
                                      + pow(lc2, 2)*m2*m3
-                                     + pow(lc3,2)*m1*m3
+                                     + pow(lc3, 2)*m1*m3
                                      + pow(lc3, 2)*m2*m3
                                      - 2*l2*lc2*m2*m3
                                      + l1*lc3*m1*m3*cos(theta2 + theta3)
@@ -532,11 +535,13 @@ class PushRecoveryControl {
                     + l1*m1*theta3_dot*sin(theta2 + theta3)
                     - lc1*m1*theta2_dot*sin(theta2 + theta3)
                     - lc1*m1*theta3_dot*sin(theta2 + theta3)
-                    + l2*m1*theta3_dot*sin(theta3) + l2*m2*theta3_dot*sin(theta3)
+                    + l2*m1*theta3_dot*sin(theta3)
+                    + l2*m2*theta3_dot*sin(theta3)
                     - lc2*m2*theta3_dot*sin(theta3)))/(m1 + m2 + m3);
 
     float k_tunning = 2;  // For second option
-    float Desired_Angular_Momentum = k_tunning * ( (cop(1)) - X_COM) *  (1);  // Second option
+    float Desired_Angular_Momentum = k_tunning
+                                     * ( (cop(1)) - X_COM) *  (1);  // Second option
 
     //Desired accleration to achieve both linear and angular tasks without LPF
     Eigen::MatrixXf mat(2, 3);
@@ -562,6 +567,7 @@ class PushRecoveryControl {
       Desired_Theta_ddot(1, 0), Desired_Theta_ddot(2, 0);
     return mat_smc;
   }
+
   Eigen::MatrixXf SMCPOstureCorrection() {
     Eigen::MatrixXf theta(3, 1), error_in_q(3, 1);
     theta << theta1, theta2, theta3;
@@ -633,7 +639,6 @@ class PushRecoveryControl {
   }
 
   Eigen::MatrixXf GetTorque() {
-
     float x_cop = CalculateXCOP();
     Eigen::RowVectorXf cop(2), filtered_cop(2);
     cop << 0, x_cop;
@@ -682,7 +687,7 @@ class PushRecoveryControl {
     Phi_N_of_q = (eye - Pseudo_J_X_COM*J_X_COM)
                  * q_double_dot;   // Second approach for angular momentum
     T_posture_of_q = mat_m* Phi_N_of_q;
-    T = Torque_SMC_Linear_plus_angular_compensation + T_posture_of_q ;
+    T = Torque_SMC_Linear_plus_angular_compensation + T_posture_of_q;
     return T;
   }
 };
