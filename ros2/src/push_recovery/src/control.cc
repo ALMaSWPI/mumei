@@ -1,6 +1,4 @@
 #include "../include/push_recovery/control.h"
-#include <eigen3/Eigen/Dense>
-
 
 float PushRecoveryControl::CalculateXCOP() {
   /**
