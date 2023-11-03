@@ -2,6 +2,7 @@
 #include <rclcpp/rclcpp.hpp>
 #include <eigen3/Eigen/Dense>
 #include <complex>
+#include "push_recovery/control.h"
 
 std::complex<double> i(0.0, 1.0);
 class PushRecoveryControl {
@@ -252,7 +253,7 @@ class PushRecoveryControl {
           Q11 = 0.001, a11 = 2, z11 = 2.5;
     float s_linear_motion = error_dot_in_x + L11*error_in_x;
 
-    float f11 = c11 * (1 - exp( k11*pow(std::abs(s_linear_motion), p11)));
+    float f11 = c11 * (1 - exp(k11*pow(std::abs(s_linear_motion), p11)));
     float s_linear_motion_dot = -Q11
                                   * pow(std::abs(s_linear_motion), f11)
                                   * sign(s_linear_motion)
@@ -579,7 +580,7 @@ class PushRecoveryControl {
     errordot_in_q = theta_dot;
 
     // For above 80 N
-    Eigen::MatrixXf lamda_of_q(3, 3), k_of_q(3,3);
+    Eigen::MatrixXf lamda_of_q(3, 3), k_of_q(3, 3);
     lamda_of_q << 2.8, 0, 0,
       0, 2.8, 0,
       0, 0, 2.8;
@@ -626,7 +627,7 @@ class PushRecoveryControl {
                            * (pow(abs(s_of_q(1, 0)), w2)) * sat2)
                           - (lamda_of_q(1, 0) * errordot_in_q(1, 0));
     float q_double_dot3 = (-k_of_q(2, 2)
-                           * ( pow(abs(s_of_q(2, 0)), w3)) * sat3)
+                           * (pow(abs(s_of_q(2, 0)), w3)) * sat3)
                           - (lamda_of_q(2, 0) * errordot_in_q(2, 0));
 
     Eigen::MatrixXf q_double_dot(3, 1);
@@ -690,7 +691,7 @@ class PushRecoveryControl {
 };
 
 int main() {
-  std::cout << "This is meant to use for testing" ;
+  std::cout << "This is meant to use for testing";
   PushRecoveryControl Ibrahim;
   Eigen::VectorXd v(3);
   v << 1, 2, 3;
@@ -699,6 +700,6 @@ int main() {
   Ibrahim.r1_ft_torque = {1,  2, 3};
   Ibrahim.l1_ft_force = {1,  2, 3};
   Ibrahim.l1_ft_torque = {1,  2, 3};
-  std::cout << "Prinitng =" << std::endl <<
+  std::cout << "Printing =" << std::endl <<
     Ibrahim.GetTorque() << std::endl;
 }
