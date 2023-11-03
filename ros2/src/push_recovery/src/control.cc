@@ -1,4 +1,4 @@
-#include "../include/push_recovery/control.h"
+#include "push_recovery/control.h"
 
 float PushRecoveryControl::CalculateXCOP() {
   /**
