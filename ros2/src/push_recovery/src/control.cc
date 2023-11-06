@@ -249,7 +249,7 @@ Eigen::MatrixXf PushRecoveryControl::SMCController(
             + m2*(lc2*cos(theta1 + theta2)
                     + l1*cos(theta1))
             + lc1*m1*cos(theta1)))
-          /(m1 + m2 + m3),
+          /(m1 + m2 + m3)
     + l1*lc3*m3*cos(theta2 + theta3)
       + l1*l2*m3*cos(theta2)
       + l1*lc2*m2*cos(theta2)
