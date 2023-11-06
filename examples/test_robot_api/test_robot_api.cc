@@ -21,9 +21,7 @@ void PrintVector(const std::vector<T>& vec) {
 }
 
 int main(int argc, char* argv[]) {
-  using namespace huron;
-
-  Robot huron;
+  huron::Robot huron;
 
   huron::driver::can::SocketCanBus hcb0{"can0", 0};
   huron::driver::can::SocketCanBus hcb1{"can0", 1};
@@ -44,32 +42,28 @@ int main(int argc, char* argv[]) {
                    std::make_unique<huron::odrive::ODriveEncoder>(
                      kCPR, left_knee_odrive),
                    kGearRatio1,
-                   kGearRatio2
-                 ));
+                   kGearRatio2));
   huron.AddJoint(std::make_shared<huron::RevoluteJoint>(
                    std::make_unique<huron::odrive::TorqueMotor>(
                      left_hip_pitch_odrive),
                    std::make_unique<huron::odrive::ODriveEncoder>(
                      kCPR, left_hip_pitch_odrive),
                    kGearRatio1,
-                   kGearRatio2
-                 ));
+                   kGearRatio2));
   huron.AddJoint(std::make_shared<huron::RevoluteJoint>(
                    std::make_unique<huron::odrive::TorqueMotor>(
                      right_knee_odrive),
                    std::make_unique<huron::odrive::ODriveEncoder>(
                      kCPR, right_knee_odrive),
                    kGearRatio1,
-                   kGearRatio2
-                 ));
+                   kGearRatio2));
   huron.AddJoint(std::make_shared<huron::RevoluteJoint>(
                    std::make_unique<huron::odrive::TorqueMotor>(
                      right_hip_pitch_odrive),
                    std::make_unique<huron::odrive::ODriveEncoder>(
                      kCPR, right_hip_pitch_odrive),
                    kGearRatio1,
-                   kGearRatio2
-                 ));
+                   kGearRatio2));
 
   // Initialize
   std::cout << "Initializing..." << std::endl;
