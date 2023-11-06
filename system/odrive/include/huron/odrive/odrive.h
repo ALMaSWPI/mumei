@@ -61,10 +61,10 @@ class ODrive : public huron::GenericComponent {
 
   ODrive(std::unique_ptr<ODriveConfiguration> config, uint32_t get_timeout)
       : huron::GenericComponent(std::move(config)),
-	get_timeout_(get_timeout) {}
+        get_timeout_(get_timeout) {}
   explicit ODrive(uint32_t get_timeout = kGetTimeout)
       : ODrive(std::make_unique<ODriveConfiguration>(),
-	       get_timeout) {}
+               get_timeout) {}
   ODrive(const ODrive&) = delete;
   ODrive& operator=(const ODrive&) = delete;
   ~ODrive() override = default;

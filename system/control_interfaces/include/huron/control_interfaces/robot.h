@@ -8,6 +8,7 @@
 
 #include "configuration.h"
 #include "moving_group_component.h"
+#include "joint.h"
 
 namespace huron {
 
@@ -33,16 +34,29 @@ class Robot : public MovingGroupComponent {
         : RobotConfiguration({}, {}) {}
   };
 
-  explicit Robot(std::unique_ptr<RobotConfiguration> config)
-      : MovingGroupComponent(std::move(config)) {}
-  Robot() : Robot(std::make_unique<RobotConfiguration>()) {}
+  explicit Robot(std::unique_ptr<RobotConfiguration> config);
+  Robot();
   Robot(const Robot&) = delete;
   Robot& operator=(const Robot&) = delete;
   ~Robot() override = default;
 
   // Robot methods
-  virtual std::vector<double> GetJointPosition() = 0;
-  virtual std::vector<double> GetJointVelocity() = 0;
+  virtual std::vector<double> GetJointPosition();
+  virtual std::vector<double> GetJointVelocity();
+
+  virtual bool AddJoint(std::shared_ptr<Joint> joint);
+
+  // GenericComponent methods
+  void Initialize() override;
+  void SetUp() override;
+  void Terminate() override;
+
+  // MovingGroupComponent methods
+  bool Move(const std::vector<double>& values) override;
+  bool Stop() override;
+
+ private:
+  std::vector<std::shared_ptr<Joint>> joints_;
 };
 
 }  // namespace huron
