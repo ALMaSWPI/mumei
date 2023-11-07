@@ -11,6 +11,7 @@ list(APPEND CMAKE_PREFIX_PATH
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(huron_ros2 REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package (Eigen3 3.4 REQUIRED)
 find_package(sensor_msgs REQUIRED)
