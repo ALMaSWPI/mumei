@@ -4,7 +4,9 @@ project(push_recovery)
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
-
+list(APPEND CMAKE_PREFIX_PATH
+        "/usr/local/"
+)
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
@@ -18,13 +20,9 @@ add_library(${PROJECT_NAME}
         src/control.cc
 )
 
-add_executable(test_pr src/control.cc src/test_control.cc)
-ament_target_dependencies(test_pr rclcpp std_msgs Eigen3 sensor_msgs)
+ament_target_dependencies(${PROJECT_NAME}  rclcpp std_msgs Eigen3 sensor_msgs)
 
 
-target_include_directories(test_pr PUBLIC
-    "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
-    "$<INSTALL_INTERFACE:include/${PROJECT_NAME}>")
 target_include_directories(${PROJECT_NAME} PUBLIC
         "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
         "$<INSTALL_INTERFACE:include/${PROJECT_NAME}>")
