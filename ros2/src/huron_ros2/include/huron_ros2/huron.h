@@ -34,7 +34,7 @@ class Huron : public huron::Robot {
   std::vector<double> GetJointPosition() override;
   std::vector<double> GetJointVelocity() override;
 
-  //FSR
+  // FSR
   std::vector<float> GetForceResistorSensorLeft();
   std::vector<float> GetForceResistorSensorRight();
 

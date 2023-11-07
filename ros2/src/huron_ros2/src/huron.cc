@@ -37,10 +37,10 @@ std::vector<double> Huron::GetJointVelocity() {
   return node_->joint_velocity_;
 }
 
-std::vector<float> Huron::GetForceResistorSensorLeft(){
+std::vector<float> Huron::GetForceResistorSensorLeft() {
   return node_->fsr_left_;
 }
-std::vector<float> Huron::GetForceResistorSensorRight(){
+std::vector<float> Huron::GetForceResistorSensorRight() {
   return node_->fsr_right_;
 }
 void Huron::Loop() {

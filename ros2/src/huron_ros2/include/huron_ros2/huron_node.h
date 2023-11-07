@@ -41,7 +41,6 @@ class HuronNode : public rclcpp::Node {
   std::vector<double> joint_velocity_;
   std::vector<float> fsr_left_;
   std::vector<float> fsr_right_;
-
 };
 
 }  // namespace ros2
