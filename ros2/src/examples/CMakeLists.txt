@@ -14,6 +14,8 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(huron_ros2 REQUIRED)
+
+set(CMAKE_PREFIX_PATH "ros2/install/push_recovery/share/push_recovery/cmake")
 find_package(push_recovery REQUIRED)
 message(STATUS "Push Recovery found at: ${push_recovery_INCLUDE_DIR}")
 
