@@ -34,6 +34,10 @@ class Huron : public huron::Robot {
   std::vector<double> GetJointPosition() override;
   std::vector<double> GetJointVelocity() override;
 
+  //FSR
+  std::vector<float> GetForceResistorSensorLeft();
+  std::vector<float> GetForceResistorSensorRight();
+
   // ROS-specific
   void Loop();
 

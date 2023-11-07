@@ -4,27 +4,51 @@ project(push_recovery)
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
+list(APPEND CMAKE_PREFIX_PATH
+        "/usr/local/"
+)
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-# uncomment the following section in order to fill in
-# further dependencies manually.
-# find_package(<dependency> REQUIRED)
-
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package (Eigen3 3.4 REQUIRED)
+find_package(huron_ros2 REQUIRED)
+find_package(sensor_msgs REQUIRED)
+
+add_library(${PROJECT_NAME}
+        SHARED
+        src/control.cc
+)
 
 add_executable(test_pr src/control.cc src/test_control.cc)
-ament_target_dependencies(test_pr rclcpp std_msgs Eigen3)
+ament_target_dependencies(test_pr rclcpp std_msgs Eigen3 sensor_msgs huron_ros2)
+
 
 target_include_directories(test_pr PUBLIC
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
     "$<INSTALL_INTERFACE:include/${PROJECT_NAME}>")
+target_include_directories(${PROJECT_NAME} PUBLIC
+        "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
+        "$<INSTALL_INTERFACE:include/${PROJECT_NAME}>")
+install(
+        DIRECTORY include/${PROJECT_NAME}
+        DESTINATION include
+)
 
-install(TARGETS
-        test_pr
-        DESTINATION lib/${PROJECT_NAME})
+install(
+        TARGETS ${PROJECT_NAME}
+        EXPORT export_${PROJECT_NAME}
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib
+        RUNTIME DESTINATION bin
+        INCLUDES DESTINATION include
+)
+
+#install(TARGETS
+#        test_pr
+#        DESTINATION lib/${PROJECT_NAME})
+ament_export_targets(export_${PROJECT_NAME} HAS_LIBRARY_TARGET)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
