@@ -19,8 +19,8 @@ int main(int argc, char* argv[]) {
     auto joint_velocity = huron.GetJointVelocity();
     auto fsr_left = huron.GetForceResistorSensorLeft();
     auto fsr_right = huron.GetForceResistorSensorRight();
-//    std::cout << "Position: ";
-//    for (auto& p : joint_position) {
+//    std::cout << "FSR: ";
+//    for (auto& p : fsr_left) {
 //      std::cout << p << " ";
 //    }
 //    std::cout << std::endl;
@@ -33,16 +33,19 @@ int main(int argc, char* argv[]) {
     // After 10 seconds, move the joints
     if (since(start).count() > 10000 && !moved) {
       moved = true;
-
     }
-    if(moved){
+    if (moved) {
       std::cout << "Calculating new torque";
 
       PushRecoveryControl Ibrahim;
-      Ibrahim.r1_ft_force = {fsr_right.at(0), fsr_right.at(1), fsr_right.at(2)};
-      Ibrahim.r1_ft_torque = {fsr_right.at(3), fsr_right.at(4), fsr_right.at(5)};
-      Ibrahim.l1_ft_force = {fsr_left.at(0), fsr_left.at(1), fsr_left.at(2)};
-      Ibrahim.l1_ft_torque = {fsr_left.at(3), fsr_left.at(4), fsr_left.at(5)};
+      Ibrahim.r1_ft_force = {fsr_right.at(0),
+                             fsr_right.at(1), fsr_right.at(2)};
+      Ibrahim.r1_ft_torque = {fsr_right.at(3),
+                              fsr_right.at(4), fsr_right.at(5)};
+      Ibrahim.l1_ft_force = {fsr_left.at(0),
+                             fsr_left.at(1), fsr_left.at(2)};
+      Ibrahim.l1_ft_torque = {fsr_left.at(3),
+                              fsr_left.at(4), fsr_left.at(5)};
 
       Eigen::MatrixXf Torque(3, 1);
       Torque = Ibrahim.GetTorque();
@@ -53,15 +56,15 @@ int main(int argc, char* argv[]) {
 //                      0, 0, T_hip, T_knee, T_ankle, 0];
       huron.Move({0,
                   0,
-                  Torque(0,0),
-                  Torque(1,0),
-                  Torque(2,0),
+                  Torque(0, 0),
+                  Torque(1, 0),
+                  Torque(2, 0),
                   0,
                   0,
                   0,
-                  Torque(0,0),
-                  Torque(1,0),
-                  Torque(2,0),
+                  Torque(0, 0),
+                  Torque(1, 0),
+                  Torque(2, 0),
                   0
       });
     }

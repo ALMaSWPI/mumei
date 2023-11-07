@@ -13,7 +13,6 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package (Eigen3 3.4 REQUIRED)
-find_package(huron_ros2 REQUIRED)
 find_package(sensor_msgs REQUIRED)
 
 add_library(${PROJECT_NAME}
@@ -22,7 +21,7 @@ add_library(${PROJECT_NAME}
 )
 
 add_executable(test_pr src/control.cc src/test_control.cc)
-ament_target_dependencies(test_pr rclcpp std_msgs Eigen3 sensor_msgs huron_ros2)
+ament_target_dependencies(test_pr rclcpp std_msgs Eigen3 sensor_msgs)
 
 
 target_include_directories(test_pr PUBLIC
