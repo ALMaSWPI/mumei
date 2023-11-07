@@ -14,6 +14,7 @@ find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package (Eigen3 3.4 REQUIRED)
 find_package(sensor_msgs REQUIRED)
+find_package(huron REQUIRED)
 
 add_library(${PROJECT_NAME}
         SHARED
