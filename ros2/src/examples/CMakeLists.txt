@@ -15,6 +15,7 @@ find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(huron_ros2 REQUIRED)
 find_package(push_recovery REQUIRED)
+message(STATUS "Push Recovery found at: ${push_recovery_INCLUDE_DIR}")
 
 add_executable(test_pub_sub src/test_pub_sub.cc)
 add_executable(test_push_recovery src/test_push_recovery.cc)

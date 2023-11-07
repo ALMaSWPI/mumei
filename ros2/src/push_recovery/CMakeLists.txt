@@ -20,7 +20,7 @@ add_library(${PROJECT_NAME}
         src/control.cc
 )
 
-ament_target_dependencies(${PROJECT_NAME}  rclcpp std_msgs Eigen3 sensor_msgs)
+ament_target_dependencies(${PROJECT_NAME} PUBLIC rclcpp std_msgs Eigen3 sensor_msgs)
 
 
 target_include_directories(${PROJECT_NAME} PUBLIC
@@ -40,9 +40,7 @@ install(
         INCLUDES DESTINATION include
 )
 
-#install(TARGETS
-#        test_pr
-#        DESTINATION lib/${PROJECT_NAME})
+
 ament_export_targets(export_${PROJECT_NAME} HAS_LIBRARY_TARGET)
 
 if(BUILD_TESTING)
