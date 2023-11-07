@@ -48,9 +48,6 @@ install(
 ament_export_targets(export_${PROJECT_NAME} HAS_LIBRARY_TARGET)
 ament_export_dependencies(huron)
 
-# ament_export_libraries(${PROJECT_NAME})
-# ament_export_include_directories(include)
-
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   # the following line skips the linter which checks for copyrights
