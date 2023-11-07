@@ -13,6 +13,8 @@ list(APPEND CMAKE_PREFIX_PATH
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
+find_package(geometry_msgs REQUIRED)
+
 
 find_package(huron REQUIRED)
 
@@ -23,7 +25,7 @@ add_library(${PROJECT_NAME}
 )
 
 # target_link_libraries(${PROJECT_NAME} PUBLIC ${rclcpp_LIBRARIES} ${sensor_msgs_LIBRARIES} huron::huron)
-ament_target_dependencies(${PROJECT_NAME} PUBLIC rclcpp sensor_msgs)
+ament_target_dependencies(${PROJECT_NAME} PUBLIC rclcpp sensor_msgs geometry_msgs)
 target_link_libraries(${PROJECT_NAME} PUBLIC huron)
 
 target_include_directories(${PROJECT_NAME} PUBLIC
