@@ -46,7 +46,8 @@ int main(int argc, char* argv[]) {
                              fsr_left.at(1), fsr_left.at(2)};
       Ibrahim.l1_ft_torque = {fsr_left.at(3),
                               fsr_left.at(4), fsr_left.at(5)};
-
+      Ibrahim.position = joint_position;
+      Ibrahim.velocity = joint_velocity;
       Eigen::MatrixXf Torque(3, 1);
       Torque = Ibrahim.GetTorque();
       std::cout << "Publishing =" << std::endl <<

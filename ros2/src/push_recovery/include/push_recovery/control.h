@@ -55,6 +55,7 @@ class PushRecoveryControl {
 
  public:
   std::vector<float> r1_ft_torque, l1_ft_torque, r1_ft_force, l1_ft_force;
+  std::vector<double> position, velocity;
   float CalculateXCOP();
 
 
