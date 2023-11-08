@@ -585,9 +585,9 @@ Eigen::MatrixXf PushRecoveryControl::SMCPOstureCorrection() {
 
 Eigen::MatrixXf PushRecoveryControl::GetTorque() {
 
-  theta1 = position.at(6); //ankle_pitch_theta
-  theta2 = position.at(11); //knee_pitch_theta
-  theta3 = position.at(8); //hip_pitch_theta
+  theta1 = position.at(6);  // ankle_pitch_theta
+  theta2 = position.at(11);  // knee_pitch_theta
+  theta3 = position.at(8);  // hip_pitch_theta
 
   theta1_dot = velocity.at(6);
   theta2_dot = velocity.at(11);
