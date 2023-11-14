@@ -5,7 +5,7 @@
 #include <iostream>
 #include <complex>
 #include <vector>
-
+#include <math.h>
 
 class PushRecoveryControl {
  private:
@@ -73,4 +73,5 @@ class PushRecoveryControl {
   Eigen::MatrixXf SMCPOstureCorrection();
 
   Eigen::MatrixXf GetTorque();
+  float constrainAngle(float x);
 };
