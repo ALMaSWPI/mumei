@@ -5,7 +5,6 @@
 #include <iostream>
 #include <complex>
 #include <vector>
-#include <math.h>
 
 class PushRecoveryControl {
  private:

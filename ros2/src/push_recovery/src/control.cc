@@ -1,8 +1,9 @@
 #include "push_recovery/control.h"
+#include <math.h>
 
-//Helper function
-float PushRecoveryControl::constrainAngle(float x){
-  x = std::fmod(x + atan(1)*4,2*atan(1)*4);
+// Helper function
+float PushRecoveryControl::constrainAngle(float x) {
+  x = std::fmod(x + atan(1)*4, 2*atan(1)*4);
   if (x < 0)
     x += 2*atan(1)*4;   // pi
   return x - atan(1)*4;
