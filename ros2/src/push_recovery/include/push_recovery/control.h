@@ -51,26 +51,22 @@ class PushRecoveryControl {
   double theta1, theta2, theta3 = 0;
   double theta1_dot, theta2_dot, theta3_dot = 0;
   double X_COM, X_dot_COM = 0;
-
- public:
-  std::vector<double> r1_ft_torque, l1_ft_torque, r1_ft_force, l1_ft_force;
-  std::vector<double> position, velocity;
-  double CalculateXCOP();
-
-
+  double CalculateXCOP(std::vector<double> fsr_right,
+                       std::vector<double> fsr_left);
   Eigen::MatrixXd ModelCalculation();
-
   Eigen::MatrixXd CalculateCOM();
-
   template <typename T>
   int sign (const T &val) { return (val > 0) - (val < 0); }
-
   Eigen::MatrixXd SMCController(Eigen::RowVectorXf cop,
                                 Eigen::MatrixXd J_X_COM,
                                 Eigen::MatrixXd J_X_COM_dot);
-
   Eigen::MatrixXd SMCPOstureCorrection();
-
-  Eigen::MatrixXd GetTorque();
   double constrainAngle(double x);
+
+ public:
+  Eigen::MatrixXd GetTorque(std::vector<double> fsr_right,
+                            std::vector<double> fsr_left,
+                            std::vector<double> position,
+                            std::vector<double> velocity);
+
 };

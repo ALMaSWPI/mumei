@@ -38,20 +38,7 @@ int main(int argc, char* argv[]) {
       std::cout << "Calculating new torque";
 
       PushRecoveryControl Ibrahim;
-      Ibrahim.r1_ft_force = {fsr_right.at(0),
-                             fsr_right.at(1),
-                             fsr_right.at(2)};
-      Ibrahim.r1_ft_torque = {fsr_right.at(3),
-                              fsr_right.at(4),
-                              fsr_right.at(5)};
-      Ibrahim.l1_ft_force = {fsr_left.at(0),
-                             fsr_left.at(1),
-                             fsr_left.at(2)};
-      Ibrahim.l1_ft_torque = {fsr_left.at(3),
-                              fsr_left.at(4),
-                              fsr_left.at(5)};
-      Ibrahim.position = joint_position;
-      Ibrahim.velocity = joint_velocity;
+
 //      std::cout << "Velocity: ";
 //      for (auto& v : Ibrahim.velocity) {
 //        std::cout << v << " ";
@@ -59,7 +46,7 @@ int main(int argc, char* argv[]) {
 //      std::cout << "\n\n";
 
       Eigen::MatrixXd Torque(3, 1);
-      Torque = Ibrahim.GetTorque();
+      Torque = Ibrahim.GetTorque(fsr_right, fsr_left, joint_position, joint_velocity);
       std::cout << "Publishing =" << std::endl <<
         Torque << std::endl;
 

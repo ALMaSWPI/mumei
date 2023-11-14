@@ -10,7 +10,8 @@ double PushRecoveryControl::constrainAngle(double x) {
 }
 
 
-double PushRecoveryControl::CalculateXCOP() {
+double PushRecoveryControl::CalculateXCOP(std::vector<double> fsr_right,
+                                          std::vector<double> fsr_left) {
   /**
      * Outputs:
      * cop_x: x coordinate of COP
@@ -24,6 +25,20 @@ double PushRecoveryControl::CalculateXCOP() {
   // Position of right sensor
   Eigen::RowVectorXf p2(3);
   p2 << 0, -0.0775, d;
+
+  std::vector<double> r1_ft_torque, l1_ft_torque, r1_ft_force, l1_ft_force;
+  r1_ft_force = {fsr_right.at(0),
+                 fsr_right.at(1),
+                 fsr_right.at(2)};
+  r1_ft_torque = {fsr_right.at(3),
+                  fsr_right.at(4),
+                  fsr_right.at(5)};
+  l1_ft_force = {fsr_left.at(0),
+                 fsr_left.at(1),
+                 fsr_left.at(2)};
+  l1_ft_torque = {fsr_left.at(3),
+                  fsr_left.at(4),
+                  fsr_left.at(5)};
 
   Eigen::RowVectorXf tau_right(3);
   tau_right << r1_ft_torque[0], r1_ft_torque[1], r1_ft_torque[2];
@@ -595,7 +610,11 @@ Eigen::MatrixXd PushRecoveryControl::SMCPOstureCorrection() {
   return q_double_dot;
 }
 
-Eigen::MatrixXd PushRecoveryControl::GetTorque() {
+Eigen::MatrixXd PushRecoveryControl::GetTorque
+  (std::vector<double> fsr_right,
+   std::vector<double> fsr_left,
+   std::vector<double> position,
+   std::vector<double> velocity) {
   theta1 = constrainAngle(position.at(3));  // ankle_pitch_theta
   theta2 = constrainAngle(position.at(2));  // knee_pitch_theta
   theta3 = constrainAngle(position.at(7));  // hip_pitch_theta
@@ -604,7 +623,7 @@ Eigen::MatrixXd PushRecoveryControl::GetTorque() {
   theta2_dot = constrainAngle(velocity.at(2));
   theta3_dot = constrainAngle(velocity.at(7));
 
-  double x_cop = CalculateXCOP();
+  double x_cop = CalculateXCOP(fsr_right, fsr_left);
   std::cout << "X_COP =" << std::endl <<
     x_cop << std::endl;
   Eigen::RowVectorXf cop(2), filtered_cop(2);
