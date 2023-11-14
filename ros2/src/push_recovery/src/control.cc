@@ -596,13 +596,13 @@ Eigen::MatrixXd PushRecoveryControl::SMCPOstureCorrection() {
 }
 
 Eigen::MatrixXd PushRecoveryControl::GetTorque() {
-  theta1 = constrainAngle(position.at(6));  // ankle_pitch_theta
-  theta2 = constrainAngle(position.at(11));  // knee_pitch_theta
-  theta3 = constrainAngle(position.at(8));  // hip_pitch_theta
+  theta1 = constrainAngle(position.at(3));  // ankle_pitch_theta
+  theta2 = constrainAngle(position.at(2));  // knee_pitch_theta
+  theta3 = constrainAngle(position.at(7));  // hip_pitch_theta
 
-  theta1_dot = constrainAngle(velocity.at(6));
-  theta2_dot = constrainAngle(velocity.at(11));
-  theta3_dot = constrainAngle(velocity.at(8));
+  theta1_dot = constrainAngle(velocity.at(3));
+  theta2_dot = constrainAngle(velocity.at(2));
+  theta3_dot = constrainAngle(velocity.at(7));
 
   double x_cop = CalculateXCOP();
   std::cout << "X_COP =" << std::endl <<

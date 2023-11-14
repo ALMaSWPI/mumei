@@ -29,18 +29,18 @@ int main(int argc, char* argv[]) {
     // After 10 seconds, move the joints
     if (since(start).count() > 10000 && !moved) {
       moved = true;
-      huron.Move({0,
-                  0,
-                  0,
-                  10,
-                  0,
-                  0,
-                  0,
-                  0,
-                  0,
-                  10,
-                  0,
-                  0
+      huron.Move({0.0,
+                  0.0,
+                  0.0,
+                  10.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  10.0,
+                  0.0,
+                  0.0
       });
     }
 
