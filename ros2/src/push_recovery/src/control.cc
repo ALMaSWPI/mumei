@@ -1,5 +1,14 @@
 #include "push_recovery/control.h"
 
+//Helper function
+float PushRecoveryControl::constrainAngle(float x){
+  x = std::fmod(x + atan(1)*4,2*atan(1)*4);
+  if (x < 0)
+    x += 2*atan(1)*4;   // pi
+  return x - atan(1)*4;
+}
+
+
 float PushRecoveryControl::CalculateXCOP() {
   /**
      * Outputs:
@@ -106,6 +115,8 @@ Eigen::MatrixXf PushRecoveryControl::CalculateCOM() {
                 + (l1*sin(theta1)+lc2*sin(theta1+theta2))*m2
                 + (l1*sin(theta1)+l2*sin(theta1+theta2)
                    +lc3*sin(theta1+theta2+theta3))*m3) / (m1+m2+m3);
+  std::cout << "X_COM =" << std::endl <<
+    X_COM << std::endl;
   X_dot_COM = -1* (m1*(theta1_dot*lc1*cos(theta1))
                     + m2*(theta1_dot*l1*cos(theta1)
                             +(theta1_dot+theta2_dot)*lc2*cos(theta1+theta2))
@@ -543,20 +554,20 @@ Eigen::MatrixXf PushRecoveryControl::SMCPOstureCorrection() {
   float phi1 = 0.002, phi2 = 0.02, phi3 = 0.02;
   float sat1 = 0, sat2 = 0, sat3 = 0;
 
-  if (s_of_q(0, 0) >= phi1) {  // Note: norm was here
+  if (std::abs(s_of_q(0, 0)) >= phi1) {  // Note: norm was here
     sat1 = sign(s_of_q(0, 0));
   } else {
     sat1 = s_of_q(0, 0)/ phi1;
   }
 
 
-  if (s_of_q(1, 0) >= phi2) {
+  if (std::abs(s_of_q(1, 0)) >= phi2) {
     sat2 = sign(s_of_q(1, 0));
   } else {
     sat2 = s_of_q(1, 0) / phi2;
   }
 
-  if (s_of_q(2, 0) >= phi3) {
+  if (std::abs(s_of_q(2, 0)) >= phi3) {
     sat3 = sign(s_of_q(2, 0));
   } else {
     sat3 = s_of_q(2, 0) / phi3;
@@ -584,16 +595,17 @@ Eigen::MatrixXf PushRecoveryControl::SMCPOstureCorrection() {
 }
 
 Eigen::MatrixXf PushRecoveryControl::GetTorque() {
+  theta1 = constrainAngle(position.at(6));  // ankle_pitch_theta
+  theta2 = constrainAngle(position.at(11));  // knee_pitch_theta
+  theta3 = constrainAngle(position.at(8));  // hip_pitch_theta
 
-  theta1 = position.at(6);  // ankle_pitch_theta
-  theta2 = position.at(11);  // knee_pitch_theta
-  theta3 = position.at(8);  // hip_pitch_theta
-
-  theta1_dot = velocity.at(6);
-  theta2_dot = velocity.at(11);
-  theta3_dot = velocity.at(8);
+  theta1_dot = constrainAngle(velocity.at(6));
+  theta2_dot = constrainAngle(velocity.at(11));
+  theta3_dot = constrainAngle(velocity.at(8));
 
   float x_cop = CalculateXCOP();
+  std::cout << "X_COP =" << std::endl <<
+    x_cop << std::endl;
   Eigen::RowVectorXf cop(2), filtered_cop(2);
   cop << 0, x_cop;
   filtered_cop<< 0, 0*alpha + (1-alpha)*x_cop;
