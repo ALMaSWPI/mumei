@@ -31,7 +31,7 @@ int main(int argc, char* argv[]) {
 //    std::cout << "\n\n";
 
     // After 10 seconds, move the joints
-    if (since(start).count() > 10000 && !moved) {
+    if (since(start).count() > 5000 && !moved) {
       moved = true;
     }
     if (moved) {
