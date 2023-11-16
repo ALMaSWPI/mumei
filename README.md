@@ -43,3 +43,10 @@ Notes:
 - Currently, the project can be built on Linux only
 - By default, the project builds for Raspberry Pi (armv7l). To change platform,
 `BUILD_TYPE` needs to be changed. For example, on Linux x86_64: `-DBUILD_TYPE=x86_64`
+
+Uninstall:
+
+```
+cd build
+sudo make uninstall
+```
