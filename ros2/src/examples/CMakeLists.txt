@@ -14,15 +14,13 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(huron_ros2 REQUIRED)
-find_package(push_recovery REQUIRED)
-message(STATUS "Push Recovery found at: ${push_recovery_INCLUDE_DIR}")
+find_package(huron REQUIRED)
 
 add_executable(test_pub_sub src/test_pub_sub.cc)
 add_executable(test_push_recovery src/test_push_recovery.cc)
 ament_target_dependencies(test_pub_sub rclcpp sensor_msgs huron_ros2)
-ament_target_dependencies(test_push_recovery push_recovery rclcpp sensor_msgs huron_ros2)
+ament_target_dependencies(test_push_recovery huron rclcpp sensor_msgs huron_ros2)
 
-# target_link_libraries(test1 huron_ros2::huron_ros2)
 
 install(TARGETS
         test_pub_sub

@@ -1,4 +1,4 @@
-#include "push_recovery/control.h"
+#include "huron/control/push_recovery/control.h"
 #include <math.h>
 
 // Helper function
