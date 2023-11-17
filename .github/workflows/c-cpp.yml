@@ -72,6 +72,12 @@ jobs:
           cmake --toolchain ../../tools/x86_64-toolchain.cmake -DBUILD_SHARED_LIBS=ON -Bbuild
           sudo cmake --build build --parallel --target install
           cd -
+      - name: Build and install serial
+        run: |
+          cd third_party/serial
+          cmake --toolchain ../../tools/x86_64-toolchain.cmake -DBUILD_SHARED_LIBS=ON -Bbuild
+          sudo cmake --build build --parallel --target install
+          cd -
       - name: Build, test, and install huron
         run: |
           export LD_LIBRARY_PATH=/usr/local/lib:/usr/lib:$LD_LIBRARY_PATH
