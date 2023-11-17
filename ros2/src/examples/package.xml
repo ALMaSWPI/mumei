@@ -13,7 +13,7 @@
   <test_depend>ament_lint_common</test_depend>
 
   <depend>huron_ros2</depend>
-  <depend>push_recovery</depend>
+  <depend>huron</depend>
   <export>
     <build_type>ament_cmake</build_type>
   </export>

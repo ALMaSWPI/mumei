@@ -29,6 +29,7 @@ set_target_properties(huron PROPERTIES LINKER_LANGUAGE CXX)
 add_subdirectory(driver)
 add_subdirectory(utils)
 add_subdirectory(system)
+add_subdirectory(control)
 # add_subdirectory(third_party)
 
 target_link_libraries(huron
