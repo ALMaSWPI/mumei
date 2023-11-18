@@ -20,6 +20,8 @@ project(huron)
 # Find sockcanpp
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR})
 find_package(sockcanpp REQUIRED)
+find_package (Eigen3 3.4 REQUIRED)
+
 message(sockcanpp_INCLUDE_DIRS="${sockcanpp_INCLUDE_DIRS}")
 
 add_library(huron SHARED huron.cc)
@@ -38,7 +40,8 @@ target_link_libraries(huron
 )
 target_include_directories(huron
     PUBLIC
-    ${sockcanpp_INCLUDE_DIRS}/..)
+    ${sockcanpp_INCLUDE_DIRS}/..
+    ${EIGEN3_INCLUDE_DIR}/..)
 
 # Install the "huronConfig.cmake" file and export the target
 install(TARGETS huron
