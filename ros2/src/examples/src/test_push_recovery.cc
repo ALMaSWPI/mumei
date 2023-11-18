@@ -47,7 +47,8 @@ int main(int argc, char* argv[]) {
 //      std::cout << "\n\n";
 
       Eigen::MatrixXd Torque(3, 1);
-      Torque = Ibrahim.GetTorque(fsr_right, fsr_left, joint_position, joint_velocity);
+      Torque = Ibrahim.GetTorque(fsr_right, fsr_left,
+                                 joint_position, joint_velocity);
       std::cout << "Publishing =" << std::endl <<
         Torque << std::endl;
 
