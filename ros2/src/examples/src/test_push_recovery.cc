@@ -1,7 +1,7 @@
 #include "huron/utils/time.h"
 #include "huron_ros2/huron.h"
 #include <rclcpp/rclcpp.hpp>
-#include "huron/control/push_recovery/control.h"
+#include "huron/control/push_recovery.h"
 
 
 
