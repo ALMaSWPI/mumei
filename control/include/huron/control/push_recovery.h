@@ -68,5 +68,4 @@ class PushRecoveryControl {
                             std::vector<double> fsr_left,
                             std::vector<double> position,
                             std::vector<double> velocity);
-
 };
