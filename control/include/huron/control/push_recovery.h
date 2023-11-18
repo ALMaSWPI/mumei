@@ -60,7 +60,7 @@ class PushRecoveryControl {
   Eigen::MatrixXd SMCController(Eigen::RowVectorXf cop,
                                 Eigen::MatrixXd J_X_COM,
                                 Eigen::MatrixXd J_X_COM_dot);
-  Eigen::MatrixXd SMCPOstureCorrection();
+  Eigen::MatrixXd SMCPostureCorrection();
   double constrainAngle(double x);
 
  public:

@@ -543,7 +543,7 @@ Eigen::MatrixXd PushRecoveryControl::SMCController(
   return mat_smc;
 }
 
-Eigen::MatrixXd PushRecoveryControl::SMCPOstureCorrection() {
+Eigen::MatrixXd PushRecoveryControl::SMCPostureCorrection() {
   Eigen::MatrixXd theta(3, 1), error_in_q(3, 1);
   theta << theta1, theta2, theta3;
 
@@ -659,7 +659,7 @@ Eigen::MatrixXd PushRecoveryControl::GetTorque
   Torque_SMC_Linear_plus_angular_compensation << mat_m * mat_smc  +  mat_n;
 
   Eigen::MatrixXd q_double_dot(3, 1);
-  q_double_dot = SMCPOstureCorrection();
+  q_double_dot = SMCPostureCorrection();
 
   Eigen::MatrixXd Pseudo_J_X_COM(3, 1);
   Pseudo_J_X_COM = J_X_COM
