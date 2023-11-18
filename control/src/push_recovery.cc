@@ -1,5 +1,5 @@
-#include "huron/control/push_recovery/control.h"
-#include <math.h>
+#include <cmath>
+#include "huron/control/push_recovery.h"
 
 // Helper function
 double PushRecoveryControl::constrainAngle(double x) {
