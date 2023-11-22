@@ -37,8 +37,10 @@ jobs:
         -Bbuild        
     - name: build
       run: cmake --build build --parallel
+    - name: test
+      run: cd build && ctest
     - name: install
-      run: sudo cmake --install build
+      run: sudo make install
 
   build_ros2:
     runs-on: ubuntu-22.04
@@ -58,10 +60,14 @@ jobs:
           cmake --toolchain ../../tools/x86_64-toolchain.cmake -DBUILD_SHARED_LIBS=ON -Bbuild
           sudo cmake --build build --parallel --target install
           cd -
-      - name: Build and install huron
+      - name: Build, test, and install huron
         run: |
           cmake -DBUILD_TYPE=x86_64 -Bbuild
-          sudo cmake --build build --parallel --target install
+          cmake --build build --parallel
+          cd build
+          ctest
+          sudo make install
+          cd -
       - name: build and test ROS 2
         run: |
           cd ros2/
