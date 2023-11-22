@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.13)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 # Configure target build platform. Defaults to building for Raspberry Pi (armv7l).
@@ -24,8 +25,24 @@ find_package (Eigen3 REQUIRED)
 
 message(sockcanpp_INCLUDE_DIRS="${sockcanpp_INCLUDE_DIRS}")
 
+# Google Test
+include(FetchContent)
+FetchContent_Declare(
+  googletest
+  URL https://github.com/google/googletest/archive/refs/tags/v1.14.0.zip
+)
+# For Windows: Prevent overriding the parent project's compiler/linker settings
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(googletest)
+
+# libhuron
 add_library(huron SHARED huron.cc)
 set_target_properties(huron PROPERTIES LINKER_LANGUAGE CXX)
+
+# Test target
+enable_testing()
+
+add_executable(huron_tests huron.cc)
 
 # Add subpackages
 add_subdirectory(driver)
@@ -33,6 +50,12 @@ add_subdirectory(utils)
 add_subdirectory(system)
 add_subdirectory(control)
 # add_subdirectory(third_party)
+
+target_link_libraries(
+  huron_tests
+  huron
+  GTest::gtest_main
+)
 
 target_link_libraries(huron
     PUBLIC
@@ -92,3 +115,6 @@ endif()
 
 # Build examples
 add_subdirectory(examples)
+
+include(GoogleTest)
+gtest_discover_tests(huron_tests)
