@@ -24,11 +24,13 @@ jobs:
     - name: Install ARM compilers
       run: |
         sudo apt-get update
-        sudo apt-get install gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf libeigen3-dev
+        sudo apt-get install -y gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf libeigen3-dev binfmt-support qemu-user-binfmt
+        export LD_LIBRARY_PATH=/usr/local/lib:/usr/lib:/usr/arm-linux-gnueabihf/lib:$LD_LIBRARY_PATH
+        sudo ln -s /usr/arm-linux-gnueabihf/lib/ld-linux-armhf.so.3 /usr/lib/ld-linux-armhf.so.3
     - name: Build and install libsockcanpp
       run: |
         cd third_party/libsockcanpp
-        cmake --toolchain ../../tools/armhf-toolchain.cmake -DBUILD_SHARED_LIBS=ON -Bbuild
+        cmake --toolchain ../../tools/armhf-toolchain.cmake -DBUILD_SHARED_LIBS=ON -Bbuild -DGTEST_HAS_PTHREAD=0
         sudo cmake --build build --parallel --target install
         cd -
     - name: config
@@ -62,6 +64,7 @@ jobs:
           cd -
       - name: Build, test, and install huron
         run: |
+          export LD_LIBRARY_PATH=/usr/local/lib:/usr/lib:$LD_LIBRARY_PATH
           cmake -DBUILD_TYPE=x86_64 -Bbuild
           cmake --build build --parallel
           cd build

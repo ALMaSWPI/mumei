@@ -51,12 +51,6 @@ add_subdirectory(system)
 add_subdirectory(control)
 # add_subdirectory(third_party)
 
-target_link_libraries(
-  huron_tests
-  huron
-  GTest::gtest_main
-)
-
 target_link_libraries(huron
     PUBLIC
     sockcanpp
@@ -115,6 +109,13 @@ endif()
 
 # Build examples
 add_subdirectory(examples)
+
+target_link_libraries(
+  huron_tests
+  huron
+  sockcanpp
+  GTest::gtest_main
+)
 
 include(GoogleTest)
 gtest_discover_tests(huron_tests)
