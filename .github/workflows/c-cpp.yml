@@ -21,28 +21,40 @@ jobs:
     - uses: actions/checkout@v3
       with:
         submodules: recursive
-    - name: Install ARM compilers
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf libeigen3-dev binfmt-support qemu-user-binfmt
-        export LD_LIBRARY_PATH=/usr/local/lib:/usr/lib:/usr/arm-linux-gnueabihf/lib:$LD_LIBRARY_PATH
-        sudo ln -s /usr/arm-linux-gnueabihf/lib/ld-linux-armhf.so.3 /usr/lib/ld-linux-armhf.so.3
-    - name: Build and install libsockcanpp
-      run: |
-        cd third_party/libsockcanpp
-        cmake --toolchain ../../tools/armhf-toolchain.cmake -DBUILD_SHARED_LIBS=ON -Bbuild -DGTEST_HAS_PTHREAD=0
-        sudo cmake --build build --parallel --target install
-        cd -
-    - name: config
-      run: >-
-        cmake
-        -Bbuild        
-    - name: build
-      run: cmake --build build --parallel
-    - name: test
-      run: cd build && ctest
-    - name: install
-      run: sudo make install
+    - uses: uraimo/run-on-arch-action@v2.6.0
+      name: Install dependencies
+      id: install-dep
+      with:
+        arch: armv7
+        distro: ubuntu20.04
+        githubToken: ${{ github.token }}
+        dockerRunArgs: |
+          --volume "${PWD}:/huron"
+        shell: /bin/bash
+        install: |
+          apt-get update
+          apt-get install -y wget gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf libeigen3-dev build-essential libssl-dev
+
+          wget --no-check-certificate https://github.com/Kitware/CMake/releases/download/v3.27.8/cmake-3.27.8.tar.gz
+          tar xf cmake-3.27.8.tar.gz
+
+          cd cmake-3.27.8
+          ./bootstrap
+          make
+          make install 
+          cmake --version
+        run: |
+          cd /huron
+          cd third_party/libsockcanpp
+          cmake -DCMAKE_TOOLCHAIN_FILE=../../tools/armhf-toolchain.cmake -DBUILD_SHARED_LIBS=ON -Bbuild
+          cmake --build build --parallel --target install
+
+          cd -
+          export LD_LIBRARY_PATH=/usr/local/lib:/usr/lib
+          cmake -DBUILD_TYPE=armv7l -Bbuild
+          cmake --build build --parallel
+          cd build && ctest
+          make install
 
   build_ros2:
     runs-on: ubuntu-22.04
