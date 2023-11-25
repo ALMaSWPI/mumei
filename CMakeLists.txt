@@ -53,6 +53,7 @@ add_executable(huron_tests huron.cc)
 
 # Add subpackages
 add_subdirectory(common)
+add_subdirectory(math)
 add_subdirectory(driver)
 add_subdirectory(utils)
 add_subdirectory(system)
