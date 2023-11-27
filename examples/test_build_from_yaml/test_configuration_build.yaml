@@ -1,0 +1,63 @@
+kGearRatio1: 1.0
+kGearRatio2: 80.0
+kCPR: 4096.0
+
+odrive:
+  left_knee_odrive:
+    can_if: 'can0'
+    axis_id: '0'
+  left_hip_picht_odrive:
+    can_if: 'can0'
+    axis_id: '1'
+  right_knee_odrive:
+    can_if: 'can1'
+    axis_id: '6'
+  right_hip_picht_odrive:
+    can_if: 'can1'
+    axis_id: '7'
+
+motor:
+  left_knee_motor:
+    odrive: left_knee_odrive
+  left_hip_picht_motor:
+    odrive: left_hip_pitch_odrive
+  right_knee_motor:
+    odrive: right_knee_odrive
+  right_hip_picht_motor:
+    odrive: right_hip_pitch_odrive
+
+encoder:
+  left_knee_encoder:
+    cpr: kCPR
+    odrive: left_knee_odrive
+  left_hip_picht_encoder:
+    cpr: kCPR
+    odrive: left_hip_pitch_odrive
+  right_knee_encoder:
+    cpr: kCPR
+    odrive: right_knee_odrive
+  right_hip_picht_encoder:
+    cpr: kCPR
+    odrive: right_hip_pitch_odrive
+
+joint:
+  left_knee_joint:
+    motor: left_knee_motor
+    encoder: left_knee_encoder
+    config: kGearRatio1 kGearRatio2
+  left_hip_pitch_joint:
+    motor: left_hip_picht_motor
+    encoder: left_hip_picht_encoder
+    config: kGearRatio1 kGearRatio2
+  right_knee_joint:
+    motor: right_knee_motor
+    encoder: right_knee_encoder
+    config: kGearRatio1 kGearRatio2
+  right_hip_pitch_joint:
+    motor: right_hip_picht_motor
+    encoder: right_hip_picht_encoder
+    config: kGearRatio1 kGearRatio2
+
+huron:
+  left_knee_joint left_hip_pitch_joint right_knee_joint right_hip_pitch_joint
+        
