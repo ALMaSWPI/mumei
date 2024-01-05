@@ -7,7 +7,7 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 # Configure target build platform. Defaults to building for Raspberry Pi (armv7l).
 set(BUILD_TYPE "arm64" CACHE STRING "Choose the build type: [x86_64, armv7l, arm64]")
 
-    # Conditionally set the toolchain file based on the build type
+# Conditionally set the toolchain file based on the build type
 if(BUILD_TYPE STREQUAL "armv7l")
     set(CMAKE_TOOLCHAIN_FILE "tools/armhf-toolchain.cmake")
 elseif(BUILD_TYPE STREQUAL "arm64")
@@ -19,6 +19,12 @@ else()
 endif()
 
 project(huron)
+
+# Find pinocchio
+if (DEFINED USE_PINOCCHIO)
+  find_package(pinocchio REQUIRED)
+  message(pinocchio_INCLUDE_DIRS="${pinocchio_INCLUDE_DIRS}")
+endif()
 
 # Find sockcanpp
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR})
@@ -58,6 +64,7 @@ add_subdirectory(driver)
 add_subdirectory(utils)
 add_subdirectory(system)
 add_subdirectory(control)
+add_subdirectory(multibody)
 # add_subdirectory(third_party)
 
 target_link_libraries(huron
@@ -70,6 +77,13 @@ target_include_directories(huron
     ${sockcanpp_INCLUDE_DIRS}/..
     ${serial_INCLUDE_DIRS}/..
     ${EIGEN3_INCLUDE_DIR}/..)
+
+if (DEFINED USE_PINOCCHIO)
+  target_link_libraries(huron
+    PUBLIC
+      pinocchio::pinocchio)
+    target_compile_definitions(huron PUBLIC HURON_USE_PINOCCHIO=1)
+endif()
 
 # Install the "huronConfig.cmake" file and export the target
 install(TARGETS huron
