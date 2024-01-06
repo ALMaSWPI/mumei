@@ -38,15 +38,6 @@ jobs:
           cmake --version
 
           cd ~
-          git clone --recurse-submodules https://github.com/stack-of-tasks/eigenpy.git
-          cd eigenpy
-          mkdir build
-          cd build
-          cmake ..
-          make
-          make install
-
-          cd ~
           git clone --recurse-submodules https://github.com/humanoid-path-planner/hpp-fcl.git
           cd hpp-fcl
           mkdir build
@@ -80,7 +71,7 @@ jobs:
           cd pinocchio
           git checkout master
           mkdir build && cd build
-          cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DBUILD_WITH_COLLISION_SUPPORT=ON -DBUILD_WITH_AUTODIFF_SUPPORT=ON BUILD_WITH_CASADI_SUPPORT=ON
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DBUILD_PYTHON_INTERFACE=OFF -DBUILD_WITH_COLLISION_SUPPORT=ON -DBUILD_WITH_AUTODIFF_SUPPORT=ON BUILD_WITH_CASADI_SUPPORT=ON
           make -j4
           make install
 
