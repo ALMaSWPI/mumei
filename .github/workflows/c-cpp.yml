@@ -33,16 +33,57 @@ jobs:
         shell: /bin/bash
         install: |
           apt-get update
-          apt-get install -y python3 python3-pip wget gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf libeigen3-dev build-essential libssl-dev ca-certificates gpg cmake git bzip2 libbz2-dev
+          apt-get install -y python3 python3-pip wget gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf libeigen3-dev build-essential libssl-dev ca-certificates gpg cmake git bzip2 libbz2-dev libboost-all-dev libassimp-dev
 
           cmake --version
 
           cd ~
-          git clone https://git.openrobots.org/robots/robotpkg.git
-          cd robotpkg/bootstrap
-          ./bootstrap
-          cd ../math/py-pinocchio
-          make update
+          git clone --recurse-submodules https://github.com/stack-of-tasks/eigenpy.git
+          cd eigenpy
+          mkdir build
+          cd build
+          cmake ..
+          make
+          make install
+
+          cd ~
+          git clone --recurse-submodules https://github.com/humanoid-path-planner/hpp-fcl.git
+          cd hpp-fcl
+          mkdir build
+          cd build
+          cmake ..
+          make
+          make install
+
+          cd ~
+          git clone https://github.com/ros/urdfdom.git
+          cd urdfdom
+          mkdir -p build
+          cd build
+          cmake ../ -DCMAKE_INSTALL_PREFIX=/opt/ros/hydro
+          make
+          make install
+
+          cd ~
+          git clone https://github.com/coin-or/CppAD.git cppad.git
+          cd CppAD
+          mkdir build
+          cd build
+          cmake ..
+          make check
+          make install
+
+          pip install casadi
+
+          cd ~
+          git clone --recursive https://github.com/stack-of-tasks/pinocchio
+          cd pinocchio
+          git checkout master
+          mkdir build && cd build
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DBUILD_WITH_COLLISION_SUPPORT=ON -DBUILD_WITH_AUTODIFF_SUPPORT=ON BUILD_WITH_CASADI_SUPPORT=ON
+          make -j4
+          make install
+
         run: |
           export PATH=/opt/openrobots/bin:$PATH
           export PKG_CONFIG_PATH=/opt/openrobots/lib/pkgconfig:$PKG_CONFIG_PATH
