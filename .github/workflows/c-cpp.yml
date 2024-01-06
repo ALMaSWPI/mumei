@@ -33,23 +33,21 @@ jobs:
         shell: /bin/bash
         install: |
           apt-get update
-          apt-get install -y wget gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf libeigen3-dev build-essential libssl-dev
+          apt-get install -y wget gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf libeigen3-dev build-essential libssl-dev ca-certificates gpg
 
-          wget --no-check-certificate https://github.com/Kitware/CMake/releases/download/v3.27.8/cmake-3.27.8.tar.gz
-          tar xf cmake-3.27.8.tar.gz
+          wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null
+          echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ focal main' | tee /etc/apt/sources.list.d/kitware.list >/dev/null
+          apt-get update
+          rm /usr/share/keyrings/kitware-archive-keyring.gpg
+          apt-get install kitware-archive-keyring
+          apt-get install cmake
 
-          cd cmake-3.27.8
+          cd ~
+          git clone https://git.openrobots.org/robots/robotpkg.git
+          cd robotpkg/bootstrap
           ./bootstrap
-          make
-          make install 
-          cmake --version
-
-          apt install -qqy lsb-release curl
-          mkdir -p /etc/apt/keyrings
-          curl http://robotpkg.openrobots.org/packages/debian/robotpkg.asc | tee /etc/apt/keyrings/robotpkg.asc
-          echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/robotpkg.asc] http://robotpkg.openrobots.org/packages/debian/pub $(lsb_release -cs) robotpkg" | tee /etc/apt/sources.list.d/robotpkg.list
-          apt update
-          apt install -qqy robotpkg-py3*-pinocchio
+          cd ../math/py-pinocchio
+          make update
         run: |
           export PATH=/opt/openrobots/bin:$PATH
           export PKG_CONFIG_PATH=/opt/openrobots/lib/pkgconfig:$PKG_CONFIG_PATH
