@@ -40,6 +40,9 @@ jobs:
           apt-get update
           rm /usr/share/keyrings/kitware-archive-keyring.gpg
           apt-get install kitware-archive-keyring
+
+          echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ focal-rc main' | tee -a /etc/apt/sources.list.d/kitware.list >/dev/null
+          apt-get update
           apt-get install cmake
 
           cd ~
