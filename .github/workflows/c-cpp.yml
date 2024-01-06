@@ -35,15 +35,8 @@ jobs:
           apt-get update
           apt-get install -y wget gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf libeigen3-dev build-essential libssl-dev ca-certificates gpg
 
-          wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null
-          echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ focal main' | tee /etc/apt/sources.list.d/kitware.list >/dev/null
-          gpg --keyserver hkps://keys.openpgp.org --recv-keys 1A127079A92F09ED
-
-          apt-get update
-          rm /usr/share/keyrings/kitware-archive-keyring.gpg
-          apt-get install kitware-archive-keyring
-
-          apt-get install cmake
+          python3 -m pip install cmake
+          cmake --version
 
           cd ~
           git clone https://git.openrobots.org/robots/robotpkg.git
