@@ -42,6 +42,7 @@ jobs:
           apt-get install kitware-archive-keyring
 
           echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ focal-rc main' | tee -a /etc/apt/sources.list.d/kitware.list >/dev/null
+          apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 1A127079A92F09ED
           apt-get update
           apt-get install cmake
 
