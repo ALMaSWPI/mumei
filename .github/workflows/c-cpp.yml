@@ -46,6 +46,7 @@ jobs:
         PYTHONPATH: /opt/openrobots/lib/python3.8/site-packages:$PYTHONPATH
         CMAKE_PREFIX_PATH: /opt/openrobots:$CMAKE_PREFIX_PATH
 
+    - name: Build pinocchio
       run: |
         #Add robotpkg apt repo
         sudo sh -c 'echo "deb [arch=amd64] http://robotpkg.openrobots.org/packages/debian/pub $(lsb_release -cs) robotpkg" >> /etc/apt/sources.list.d/robotpkg.list'
@@ -60,7 +61,8 @@ jobs:
         
         #Install Pinocchio and robotpkg
         apt-get install -y robotpkg-py38-pinocchio
-        
+    - name: Build and test
+      run: |
         #Install libsockcanpp
         cd /huron
         cd third_party/libsockcanpp
