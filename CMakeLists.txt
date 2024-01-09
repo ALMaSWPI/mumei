@@ -22,7 +22,7 @@ project(huron)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR})
 find_package(sockcanpp REQUIRED)
 find_package (Eigen3 REQUIRED)
-
+find_package(yaml-cpp REQUIRED)
 message(sockcanpp_INCLUDE_DIRS="${sockcanpp_INCLUDE_DIRS}")
 
 # Google Test
@@ -54,6 +54,7 @@ add_subdirectory(control)
 target_link_libraries(huron
     PUBLIC
     sockcanpp
+    yaml-cpp
 )
 target_include_directories(huron
     PUBLIC
