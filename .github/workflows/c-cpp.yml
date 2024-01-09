@@ -26,19 +26,21 @@ jobs:
       with:
         platforms: arm64
     - name: Install dependencies
-      run: |
-          apt-get update
-          apt-get install -y wget gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf libeigen3-dev build-essential libssl-dev
-
-          wget --no-check-certificate https://github.com/Kitware/CMake/releases/download/v3.27.8/cmake-3.27.8.tar.gz
-          tar xf cmake-3.27.8.tar.gz
-
-          cd cmake-3.27.8
-          ./bootstrap
-          make
-          make install 
-          cmake --version
-    - name: Build and test on arm64
+      with:
+        github-token: ${{ github.token }}
+        shell: /bin/bash
+        install: |
+            apt-get update
+            apt-get install -y wget gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf libeigen3-dev build-essential libssl-dev
+  
+            wget --no-check-certificate https://github.com/Kitware/CMake/releases/download/v3.27.8/cmake-3.27.8.tar.gz
+            tar xf cmake-3.27.8.tar.gz
+  
+            cd cmake-3.27.8
+            ./bootstrap
+            make
+            make install 
+            cmake --version
       run: |
           cd /huron
           cd third_party/libsockcanpp
