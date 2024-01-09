@@ -39,26 +39,41 @@ jobs:
             make
             make install 
             cmake --version
-        run: |
-          cd /huron
-          cd third_party/libsockcanpp
-          cmake -DCMAKE_TOOLCHAIN_FILE=../../tools/armhf-toolchain.cmake -DBUILD_SHARED_LIBS=ON -Bbuild
-          cmake --build build --parallel --target install
-          cd -
-          export LD_LIBRARY_PATH=/usr/local/lib:/usr/lib
+      env:
+        PATH: /opt/openrobots/bin:$PATH
+        PKG_CONFIG_PATH: /opt/openrobots/lib/pkgconfig:$PKG_CONFIG_PATH
+        LD_LIBRARY_PATH: /opt/openrobots/lib:$LD_LIBRARY_PATH
+        PYTHONPATH: /opt/openrobots/lib/python3.8/site-packages:$PYTHONPATH
+        CMAKE_PREFIX_PATH: /opt/openrobots:$CMAKE_PREFIX_PATH
+
+      run: |
+        #Add robotpkg apt repo
+        sudo sh -c 'echo "deb [arch=amd64] http://robotpkg.openrobots.org/packages/debian/pub $(lsb_release -cs) robotpkg" >> /etc/apt/sources.list.d/robotpkg.list'
+        sudo sh -c 'echo "deb [arch=amd64] http://robotpkg.openrobots.org/wip/packages/debian/pub $(lsb_release -cs) robotpkg" >> /etc/apt/sources.list.d/robotpkg.list'
+        
+        #Import robotpkg key
+        curl -o /tmp/robotpkg.key http://robotpkg.openrobots.org/packages/debian/robotpkg.key
+        apt-key add /tmp/robotpkg.key
+        
+        #Update apt
+        apt-get update
+        
+        #Install Pinocchio and robotpkg
+        apt-get install -y robotpkg-py38-pinocchio
+        
+        #Install libsockcanpp
+        cd /huron
+        cd third_party/libsockcanpp
+        cmake -DCMAKE_TOOLCHAIN_FILE=../../tools/armhf-toolchain.cmake -DBUILD_SHARED_LIBS=ON -Bbuild
+        cmake --build build --parallel --target install
+        cd -
+        export LD_LIBRARY_PATH=/usr/local/lib:/usr/lib
           
-          #Install Pinocchio
-          git clone https://github.com/stack-of-tasks/pinocchio.git
-          cd pinocchio
-          mkdir build && cd build
-          cmake ..
-          make install
-          cd ../..
-            
-          cmake -DCMAKE_SYSTEM_PROCESSOR=armv8-a -Bbuild #Use armv8-a for arm64
-          cmake --build build --parallel
-          cd build && ctest
-          make install
+        #Build huron
+        cmake -DCMAKE_SYSTEM_PROCESSOR=armv8-a -Bbuild #Use armv8-a for arm64
+        cmake --build build --parallel
+        cd build && ctest
+        make install
 
   build_ros2:
     runs-on: ubuntu-22.04
