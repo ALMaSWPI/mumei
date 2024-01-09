@@ -21,17 +21,12 @@ jobs:
     - uses: actions/checkout@v3
       with:
         submodules: recursive
-    - uses: uraimo/run-on-arch-action@v2.6.0
-      name: Install dependencies
-      id: install-dep
+    - uses: docker/setup-qemu-action@v2
+      name: Set up QEMU
       with:
-        arch: armv7
-        distro: ubuntu20.04
-        githubToken: ${{ github.token }}
-        dockerRunArgs: |
-          --volume "${PWD}:/huron"
-        shell: /bin/bash
-        install: |
+        platforms: arm64
+    - name: Install dependencies
+      run: |
           apt-get update
           apt-get install -y wget gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf libeigen3-dev build-essential libssl-dev
 
@@ -43,7 +38,8 @@ jobs:
           make
           make install 
           cmake --version
-        run: |
+    - name: Build and test on arm64
+      run: |
           cd /huron
           cd third_party/libsockcanpp
           cmake -DCMAKE_TOOLCHAIN_FILE=../../tools/armhf-toolchain.cmake -DBUILD_SHARED_LIBS=ON -Bbuild
@@ -51,7 +47,7 @@ jobs:
 
           cd -
           export LD_LIBRARY_PATH=/usr/local/lib:/usr/lib
-          cmake -DBUILD_TYPE=armv7l -Bbuild
+          cmake -DBUILD_SYSTEM_PROCESSOR=armv8-a -Bbuild #Use armv8-a for arm64
           cmake --build build --parallel
           cd build && ctest
           make install
