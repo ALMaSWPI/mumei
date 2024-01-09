@@ -40,17 +40,25 @@ jobs:
             make install 
             cmake --version
         run: |
-            cd /huron
-            cd third_party/libsockcanpp
-            cmake -DCMAKE_TOOLCHAIN_FILE=../../tools/armhf-toolchain.cmake -DBUILD_SHARED_LIBS=ON -Bbuild
-            cmake --build build --parallel --target install
-  
-            cd -
-            export LD_LIBRARY_PATH=/usr/local/lib:/usr/lib
-            cmake -DCMAKE_SYSTEM_PROCESSOR=armv8-a -Bbuild #Use armv8-a for arm64
-            cmake --build build --parallel
-            cd build && ctest
-            make install
+          cd /huron
+          cd third_party/libsockcanpp
+          cmake -DCMAKE_TOOLCHAIN_FILE=../../tools/armhf-toolchain.cmake -DBUILD_SHARED_LIBS=ON -Bbuild
+          cmake --build build --parallel --target install
+          cd -
+          export LD_LIBRARY_PATH=/usr/local/lib:/usr/lib
+          
+          #Install Pinocchio
+          git clone https://github.com/stack-of-tasks/pinocchio.git
+          cd pinocchio
+          mkdir build && cd build
+          cmake ..
+          make install
+          cd ../..
+            
+          cmake -DCMAKE_SYSTEM_PROCESSOR=armv8-a -Bbuild #Use armv8-a for arm64
+          cmake --build build --parallel
+          cd build && ctest
+          make install
 
   build_ros2:
     runs-on: ubuntu-22.04
