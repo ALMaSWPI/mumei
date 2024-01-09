@@ -22,14 +22,12 @@ jobs:
       with:
         submodules: recursive
     - uses: docker/setup-qemu-action@v2
-      name: Set up QEMU
+      name: Install dependencies
       with:
         platforms: arm64
-    - name: Install dependencies
-      with:
         github-token: ${{ github.token }}
         shell: /bin/bash
-      run: |
+        install: |
             apt-get update
             apt-get install -y wget gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf libeigen3-dev build-essential libssl-dev
   
@@ -41,19 +39,18 @@ jobs:
             make
             make install 
             cmake --version
-    - name: Build and test on arm64
-      run: |
-          cd /huron
-          cd third_party/libsockcanpp
-          cmake -DCMAKE_TOOLCHAIN_FILE=../../tools/armhf-toolchain.cmake -DBUILD_SHARED_LIBS=ON -Bbuild
-          cmake --build build --parallel --target install
-
-          cd -
-          export LD_LIBRARY_PATH=/usr/local/lib:/usr/lib
-          cmake -DCMAKE_SYSTEM_PROCESSOR=armv8-a -Bbuild #Use armv8-a for arm64
-          cmake --build build --parallel
-          cd build && ctest
-          make install
+        run: |
+            cd /huron
+            cd third_party/libsockcanpp
+            cmake -DCMAKE_TOOLCHAIN_FILE=../../tools/armhf-toolchain.cmake -DBUILD_SHARED_LIBS=ON -Bbuild
+            cmake --build build --parallel --target install
+  
+            cd -
+            export LD_LIBRARY_PATH=/usr/local/lib:/usr/lib
+            cmake -DCMAKE_SYSTEM_PROCESSOR=armv8-a -Bbuild #Use armv8-a for arm64
+            cmake --build build --parallel
+            cd build && ctest
+            make install
 
   build_ros2:
     runs-on: ubuntu-22.04
