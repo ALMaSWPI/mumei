@@ -23,59 +23,56 @@ jobs:
         submodules: recursive
     - uses: docker/setup-qemu-action@v2
       name: Install dependencies
-      with:
-        platforms: arm64
-        github-token: ${{ github.token }}
-        shell: /bin/bash
-        install: |
-            apt-get update
-            apt-get install -y wget gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf libeigen3-dev build-essential libssl-dev
-  
-            wget --no-check-certificate https://github.com/Kitware/CMake/releases/download/v3.27.8/cmake-3.27.8.tar.gz
-            tar xf cmake-3.27.8.tar.gz
-  
-            cd cmake-3.27.8
-            ./bootstrap
-            make
-            make install 
-            cmake --version
       env:
         PATH: /opt/openrobots/bin:$PATH
         PKG_CONFIG_PATH: /opt/openrobots/lib/pkgconfig:$PKG_CONFIG_PATH
         LD_LIBRARY_PATH: /opt/openrobots/lib:$LD_LIBRARY_PATH
         PYTHONPATH: /opt/openrobots/lib/python3.8/site-packages:$PYTHONPATH
         CMAKE_PREFIX_PATH: /opt/openrobots:$CMAKE_PREFIX_PATH
-
-    - name: Build pinocchio
-      run: |
-        #Add robotpkg apt repo
-        sudo sh -c 'echo "deb [arch=amd64] http://robotpkg.openrobots.org/packages/debian/pub $(lsb_release -cs) robotpkg" >> /etc/apt/sources.list.d/robotpkg.list'
-        sudo sh -c 'echo "deb [arch=amd64] http://robotpkg.openrobots.org/wip/packages/debian/pub $(lsb_release -cs) robotpkg" >> /etc/apt/sources.list.d/robotpkg.list'
-        
-        #Import robotpkg key
-        curl -o /tmp/robotpkg.key http://robotpkg.openrobots.org/packages/debian/robotpkg.key
-        apt-key add /tmp/robotpkg.key
-        
-        #Update apt
-        apt-get update
-        
-        #Install Pinocchio and robotpkg
-        apt-get install -y robotpkg-py38-pinocchio
-    - name: Build and test
-      run: |
-        #Install libsockcanpp
-        cd /huron
-        cd third_party/libsockcanpp
-        cmake -DCMAKE_TOOLCHAIN_FILE=../../tools/armhf-toolchain.cmake -DBUILD_SHARED_LIBS=ON -Bbuild
-        cmake --build build --parallel --target install
-        cd -
-        export LD_LIBRARY_PATH=/usr/local/lib:/usr/lib
+      with:
+        platforms: arm64
+        github-token: ${{ github.token }}
+        shell: /bin/bash
+        install: |
+          apt-get update
+          apt-get install -y wget gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf libeigen3-dev build-essential libssl-dev
           
-        #Build huron
-        cmake -DCMAKE_SYSTEM_PROCESSOR=armv8-a -Bbuild #Use armv8-a for arm64
-        cmake --build build --parallel
-        cd build && ctest
-        make install
+          wget --no-check-certificate https://github.com/Kitware/CMake/releases/download/v3.27.8/cmake-3.27.8.tar.gz
+          tar xf cmake-3.27.8.tar.gz
+          
+          cd cmake-3.27.8
+          ./bootstrap
+          make
+          make install 
+          cmake --version
+        run: |
+          #Add robotpkg apt repo
+          sudo sh -c 'echo "deb [arch=amd64] http://robotpkg.openrobots.org/packages/debian/pub $(lsb_release -cs) robotpkg" >> /etc/apt/sources.list.d/robotpkg.list'
+          sudo sh -c 'echo "deb [arch=amd64] http://robotpkg.openrobots.org/wip/packages/debian/pub $(lsb_release -cs) robotpkg" >> /etc/apt/sources.list.d/robotpkg.list'
+          
+          #Import robotpkg key
+          curl -o /tmp/robotpkg.key http://robotpkg.openrobots.org/packages/debian/robotpkg.key
+          apt-key add /tmp/robotpkg.key
+          
+          #Update apt
+          apt-get update
+          
+          #Install Pinocchio and robotpkg
+          apt-get install -y robotpkg-py38-pinocchio
+          
+          #Install libsockcanpp
+          cd /huron
+          cd third_party/libsockcanpp
+          cmake -DCMAKE_TOOLCHAIN_FILE=../../tools/armhf-toolchain.cmake -DBUILD_SHARED_LIBS=ON -Bbuild
+          cmake --build build --parallel --target install
+          cd -
+          export LD_LIBRARY_PATH=/usr/local/lib:/usr/lib
+            
+          #Build huron
+          cmake -DCMAKE_SYSTEM_PROCESSOR=armv8-a -Bbuild #Use armv8-a for arm64
+          cmake --build build --parallel
+          cd build && ctest
+          make install
 
   build_ros2:
     runs-on: ubuntu-22.04
