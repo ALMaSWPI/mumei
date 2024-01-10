@@ -52,7 +52,7 @@ jobs:
           apt-get update
           
           #Install Pinocchio and robotpkg
-          apt-get install -y robotpkg-py38-pinocchio
+          apt-get install -y robotpkg-py310-pinocchio
           
           export PATH=/opt/openrobots/bin:$PATH
           export PKG_CONFIG_PATH=/opt/openrobots/lib/pkgconfig:$PKG_CONFIG_PATH
