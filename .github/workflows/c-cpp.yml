@@ -34,7 +34,7 @@ jobs:
           
           cmake --version
 
-          pip install eigenpy
+          pip install eigenpy==2.7.10
           
           cd ~ 
           git clone --recurse-submodules https://github.com/humanoid-path-planner/hpp-fcl.git
