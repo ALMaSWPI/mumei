@@ -10,7 +10,7 @@ set(BUILD_TYPE "arm64" CACHE STRING "Choose the build type: [x86_64, armv7l, arm
     # Conditionally set the toolchain file based on the build type
 if(BUILD_TYPE STREQUAL "armv7l")
     set(CMAKE_TOOLCHAIN_FILE "tools/armhf-toolchain.cmake")
-if(BUILD_TYPE STREQUAL "arm64")
+elseif(BUILD_TYPE STREQUAL "arm64")
     set(CMAKE_TOOLCHAIN_FILE "tools/arm64-toolchain.cmake")
 elseif(BUILD_TYPE STREQUAL "x86_64")
     set(CMAKE_TOOLCHAIN_FILE "tools/x86_64-toolchain.cmake")
