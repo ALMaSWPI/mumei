@@ -15,84 +15,38 @@ jobs:
     - run: pip install cpplint
     - run: cpplint --repository=. --verbose=2 --recursive .
   
-  build:
-    runs-on: ubuntu-20.04
+  build_pi3_ubuntu22_arm64:
+    runs-on: ubuntu-22.04
+    container:
+      image: arm64v8/ros:humble
     steps:
-    - uses: actions/checkout@v3
-      with:
-        submodules: recursive
-    - uses: uraimo/run-on-arch-action@v2.6.0
-      name: Install dependencies
-      with:
-        arch: aarch64
-        distro: ubuntu22.04
-        githubToken: ${{ github.token }}
-        shell: /bin/bash
-        install: |
-          apt-get update
-          apt-get install -y python3 python3-pip wget gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf libeigen3-dev build-essential libssl-dev ca-certificates gpg cmake git bzip2 libbz2-dev libboost-all-dev libassimp-dev
-          
-          cmake --version
-          
-          cd ~ 
-          git clone --recurse-submodules https://github.com/humanoid-path-planner/hpp-fcl.git
-          cd hpp-fcl
-          mkdir build
-          cd build
-          cmake ..
-          make -j4
-          make install
-          
-          cd ~
-          git clone https://github.com/ros/urdfdom.git
-          cd urdfdom
-          mkdir -p build
-          cd build
-          cmake -DCMAKE_INSTALL_PREFIX=/opt/ros/humble
-          make 
-          make install
-          
-          cd ~
-          git clone https://github.com/coin-or/CppAD.git cppad.git
-          cd CppAD
-          mkdir build
-          cd build
-          cmake ..
-          make check
-          make install
-          
-          pip install casadi
-          
-          cd ~
-          git clone https://github.com/stack-of-tasks/pinocchio.git
-          cd pinocchio
-          git checkout master
-          mkdir build
-          cd build
-          cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DCBUILD_WITH_COLLISION_SUPPORT=ON -DBUILD_WITH_AUTODIFF_SUPPORT=ON -BUILD_WITH_CASADI_SUPPORT=ON
-          make -j4
-          make install
-
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Install build tools
         run: |
-          export PATH=/opt/openrobots/bin:$PATH
-          export PKG_CONFIG_PATH=/opt/openrobots/lib/pkgconfig:$PKG_CONFIG_PATH
-          export LD_LIBRARY_PATH=/opt/openrobots/lib:$LD_LIBRARY_PATH
-          export PYTHONPATH=/opt/openrobots/lib/python3.10/site-packages:$PYTHONPATH 
-          export CMAKE_PREFIX_PATH=/opt/openrobots:$CMAKE_PREFIX_PATH
-  
-          #Install libsockcanpp
-          cd /huron
+          sudo apt-get update
+          sudo apt-get install -y build-essential libeigen3-dev ros-humble-pinocchio gcc-aarch64-linux-gnu g++-aarch64-linux-gnueabihf
+      - name: Build and install libsockcanpp
+        run: |
           cd third_party/libsockcanpp
-          cmake -DCMAKE_TOOLCHAIN_FILE=../../tools/armhf-toolchain.cmake -DBUILD_SHARED_LIBS=ON -Bbuild
-          cmake --build build --parallel --target install
+          cmake --toolchain ../../tools/arm64-toolchain.cmake -DBUILD_SHARED_LIBS=ON -DUSE_PINOCCHIO=1 -Bbuild
+          sudo cmake --build build --parallel --target install
           cd -
-          export LD_LIBRARY_PATH=/usr/local/lib:/usr/lib
-            
-          #Build huron
-          cmake -DCMAKE_SYSTEM_PROCESSOR=armv8-a -Bbuild #Use armv8-a for arm64
+      - name: Build, test, and install huron
+        run: |
+          export LD_LIBRARY_PATH=/usr/local/lib:/usr/lib:$LD_LIBRARY_PATH
+          cmake -DBUILD_TYPE=arm64 -Bbuild
           cmake --build build --parallel
-          cd build && ctest
-          make install
+          cd build
+          ctest
+          sudo make install
+          cd -
+      - name: build and test ROS 2
+        run: |
+          cd ros2/
+          . /opt/ros/humble/setup.sh
+          colcon build
 
   build_ros2:
     runs-on: ubuntu-22.04
@@ -105,7 +59,7 @@ jobs:
       - name: Install build tools
         run: |
           sudo apt-get update
-          sudo apt-get install build-essential libeigen3-dev
+          sudo apt-get install -y build-essential libeigen3-dev ros-humble-pinocchio
       - name: Build and install libsockcanpp
         run: |
           cd third_party/libsockcanpp
@@ -115,7 +69,7 @@ jobs:
       - name: Build, test, and install huron
         run: |
           export LD_LIBRARY_PATH=/usr/local/lib:/usr/lib:$LD_LIBRARY_PATH
-          cmake -DBUILD_TYPE=x86_64 -Bbuild
+          cmake -DBUILD_TYPE=x86_64 -DUSE_PINOCCHIO=1 -Bbuild
           cmake --build build --parallel
           cd build
           ctest
