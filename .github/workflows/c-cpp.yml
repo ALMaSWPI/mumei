@@ -48,7 +48,7 @@ jobs:
           cd urdfdom
           mkdir -p build
           cd build
-          cmake -DCMAKE_INSTALL_PREFIX=/opt/ros/hydro
+          cmake -DCMAKE_INSTALL_PREFIX=/opt/ros/humble
           make 
           make install
           
