@@ -17,36 +17,41 @@ jobs:
   
   build_pi3_ubuntu22_arm64:
     runs-on: ubuntu-22.04
-    container:
-      image: arm64v8/ros:humble
     steps:
-      - uses: actions/checkout@v3
-        with:
-          submodules: recursive
-      - name: Install build tools
+    - uses: actions/checkout@v3
+      with:
+        submodules: recursive
+    - uses: uraimo/run-on-arch-action@v2.6.0
+      name: Install dependencies
+      with:
+        arch: none
+        distro: none
+        base_image: arm64v8/ros:humble
+        githubToken: ${{ github.token }}
+        shell: /bin/bash
+        install: |
+          apt-get update
+          apt-get install -y gcc-aarch64-linux-gnueabihf g++-aarch64-linux-gnueabihf libeigen3-dev build-essential ros-humble-pinocchio
         run: |
-          sudo apt-get update
-          sudo apt-get install -y build-essential libeigen3-dev ros-humble-pinocchio gcc-aarch64-linux-gnu g++-aarch64-linux-gnueabihf
-      - name: Build and install libsockcanpp
-        run: |
+          export PATH=/opt/openrobots/bin:$PATH
+          export PKG_CONFIG_PATH=/opt/openrobots/lib/pkgconfig:$PKG_CONFIG_PATH
+          export LD_LIBRARY_PATH=/opt/openrobots/lib:$LD_LIBRARY_PATH
+          export PYTHONPATH=/opt/openrobots/lib/python3.10/site-packages:$PYTHONPATH 
+          export CMAKE_PREFIX_PATH=/opt/openrobots:$CMAKE_PREFIX_PATH
+  
+          #Install libsockcanpp
+          cd /huron
           cd third_party/libsockcanpp
-          cmake --toolchain ../../tools/arm64-toolchain.cmake -DBUILD_SHARED_LIBS=ON -DUSE_PINOCCHIO=1 -Bbuild
-          sudo cmake --build build --parallel --target install
+          cmake -DCMAKE_TOOLCHAIN_FILE=../../tools/arm64-toolchain.cmake -DBUILD_SHARED_LIBS=ON -Bbuild
+          cmake --build build --parallel --target install
+
+          #Build huron
           cd -
-      - name: Build, test, and install huron
-        run: |
-          export LD_LIBRARY_PATH=/usr/local/lib:/usr/lib:$LD_LIBRARY_PATH
+          export LD_LIBRARY_PATH=/usr/local/lib:/usr/lib
           cmake -DBUILD_TYPE=arm64 -Bbuild
           cmake --build build --parallel
-          cd build
-          ctest
-          sudo make install
-          cd -
-      - name: build and test ROS 2
-        run: |
-          cd ros2/
-          . /opt/ros/humble/setup.sh
-          colcon build
+          cd build && ctest
+          make install
 
   build_ros2:
     runs-on: ubuntu-22.04
