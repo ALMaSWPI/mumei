@@ -34,14 +34,12 @@ jobs:
           
           cmake --version
 
-          pip install eigenpy==2.7.10
-          
           cd ~ 
           git clone --recurse-submodules https://github.com/humanoid-path-planner/hpp-fcl.git
           cd hpp-fcl
           mkdir build
           cd build
-          cmake ..
+          cmake .. -DBUILD_PYTHON_INTERFACE=OFF
           make -j4
           make install
           
@@ -71,7 +69,7 @@ jobs:
           git checkout master
           mkdir build
           cd build
-          cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DCBUILD_WITH_COLLISION_SUPPORT=ON -DBUILD_WITH_AUTODIFF_SUPPORT=ON -BUILD_WITH_CASADI_SUPPORT=ON
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DBUILD_PYTHON_INTERFACE=OFF -DBUILD_WITH_COLLISION_SUPPORT=ON -DBUILD_WITH_AUTODIFF_SUPPORT=ON -BUILD_WITH_CASADI_SUPPORT=ON
           make -j4
           make install
         run: |
