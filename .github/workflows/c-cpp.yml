@@ -24,14 +24,56 @@ jobs:
     - uses: uraimo/run-on-arch-action@v2.6.0
       name: Install dependencies
       with:
-        arch: none
-        distro: none
-        base_image: arm64v8/ros:humble
+        arch: aarch64
+        distro: ubuntu22.04
         githubToken: ${{ github.token }}
         shell: /bin/bash
         install: |
           apt-get update
-          apt-get install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu libeigen3-dev build-essential ros-humble-pinocchio
+          apt-get install -y python3 python3-pip wget gcc-aarch64-linux-gnu g++-aarch64-linux-gnu libeigen3-dev build-essential libssl-dev ca-certificates gpg cmake git bzip2 libbz2-dev libboost-all-dev libassimp-dev
+          
+          cmake --version
+
+          pip install eigenpy
+          
+          cd ~ 
+          git clone --recurse-submodules https://github.com/humanoid-path-planner/hpp-fcl.git
+          cd hpp-fcl
+          mkdir build
+          cd build
+          cmake ..
+          make -j4
+          make install
+          
+          cd ~
+          git clone https://github.com/ros/urdfdom.git
+          cd urdfdom
+          mkdir -p build
+          cd build
+          cmake -DCMAKE_INSTALL_PREFIX=/opt/ros/humble
+          make 
+          make install
+          
+          cd ~
+          git clone https://github.com/coin-or/CppAD.git cppad.git
+          cd CppAD
+          mkdir build
+          cd build
+          cmake ..
+          make check
+          make install
+          
+          pip install casadi
+          
+          cd ~
+          git clone https://github.com/stack-of-tasks/pinocchio.git
+          cd pinocchio
+          git checkout master
+          mkdir build
+          cd build
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DCBUILD_WITH_COLLISION_SUPPORT=ON -DBUILD_WITH_AUTODIFF_SUPPORT=ON -BUILD_WITH_CASADI_SUPPORT=ON
+          make -j4
+          make install
         run: |
           export PATH=/opt/openrobots/bin:$PATH
           export PKG_CONFIG_PATH=/opt/openrobots/lib/pkgconfig:$PKG_CONFIG_PATH
