@@ -31,7 +31,7 @@ jobs:
         shell: /bin/bash
         install: |
           apt-get update
-          apt-get install -y gcc-aarch64-linux-gnueabihf g++-aarch64-linux-gnueabihf libeigen3-dev build-essential ros-humble-pinocchio
+          apt-get install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu libeigen3-dev build-essential ros-humble-pinocchio
         run: |
           export PATH=/opt/openrobots/bin:$PATH
           export PKG_CONFIG_PATH=/opt/openrobots/lib/pkgconfig:$PKG_CONFIG_PATH
