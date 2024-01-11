@@ -5,11 +5,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 # Configure target build platform. Defaults to building for Raspberry Pi (armv7l).
-set(BUILD_TYPE "armv7l" CACHE STRING "Choose the build type: x86_64 or armv7l")
+set(BUILD_TYPE "arm64" CACHE STRING "Choose the build type: [x86_64, armv7l, arm64]")
 
     # Conditionally set the toolchain file based on the build type
 if(BUILD_TYPE STREQUAL "armv7l")
     set(CMAKE_TOOLCHAIN_FILE "tools/armhf-toolchain.cmake")
+if(BUILD_TYPE STREQUAL "arm64")
+    set(CMAKE_TOOLCHAIN_FILE "tools/arm64-toolchain.cmake")
 elseif(BUILD_TYPE STREQUAL "x86_64")
     set(CMAKE_TOOLCHAIN_FILE "tools/x86_64-toolchain.cmake")
 else()
