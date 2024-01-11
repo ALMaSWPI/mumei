@@ -8,7 +8,7 @@ on:
 
 jobs:
   cpplint:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@v1
     - uses: actions/setup-python@v1
@@ -21,15 +21,16 @@ jobs:
     - uses: actions/checkout@v3
       with:
         submodules: recursive
-    - uses: docker/setup-qemu-action@v2
+    - uses: uraimo/run-on-arch-action@v2.6.0
       name: Install dependencies
       with:
-        platforms: arm64
+        arch: aarch64
+        distro: ubuntu22.04
         github-token: ${{ github.token }}
         shell: /bin/bash
         install: |
           apt-get update
-          apt-get install -y wget gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf libeigen3-dev build-essential libssl-dev
+          apt-get install -y python3 python3-pip wget gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf libeigen3-dev build-essential libssl-dev ca-certificates gpg cmake git bzip2 libbz2-dev libboost-all-dev libassimp-dev
           
           wget --no-check-certificate https://github.com/Kitware/CMake/releases/download/v3.27.8/cmake-3.27.8.tar.gz
           tar xf cmake-3.27.8.tar.gz
@@ -39,21 +40,47 @@ jobs:
           make
           make install 
           cmake --version
+          
+          cd ~ 
+          git clone --recursive-submodules https://github.com/humanoid-path-planner/hpp-fcl.git
+          cd hpp-fcl
+          mkdir build
+          cd build
+          cmake ..
+          make -j4
+          make install
+          
+          cd ~
+          git clone https://github.com/ros/urdfdom.git
+          cd urdfdom
+          mkdir -p build
+          cd build
+          cmake -DCMAKE_INSTALL_PREFIX=/opt/ros/hydro
+          make 
+          make install
+          
+          cd ~
+          git clone https://github.com/coin-or/CppAD.git cppad.git
+          cd CppAD
+          mkdir build
+          cd build
+          cmake ..
+          make check
+          make install
+          
+          pip install casadi
+          
+          cd ~
+          git clone https://github.com/stack-of-tasks/pinocchio.git
+          cd pinocchio
+          git checkout master
+          mkdir build
+          cd build
+          cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DBUILD_PYTHON_INTERFACE=OFF -DCBUILD_WITH_COLLISION_SUPPORT=ON -DBUILD_WITH_AUTODIFF_SUPPORT=ON -BUILD_WITH_CASADI_SUPPORT=ON
+          make -j4
+          make install
+
         run: |
-          #Add robotpkg apt repo
-          sudo sh -c 'echo "deb [arch=amd64] http://robotpkg.openrobots.org/packages/debian/pub $(lsb_release -cs) robotpkg" >> /etc/apt/sources.list.d/robotpkg.list'
-          sudo sh -c 'echo "deb [arch=amd64] http://robotpkg.openrobots.org/wip/packages/debian/pub $(lsb_release -cs) robotpkg" >> /etc/apt/sources.list.d/robotpkg.list'
-          
-          #Import robotpkg key
-          curl -o /tmp/robotpkg.key http://robotpkg.openrobots.org/packages/debian/robotpkg.key
-          apt-key add /tmp/robotpkg.key
-          
-          #Update apt
-          apt-get update
-          
-          #Install Pinocchio and robotpkg
-          apt-get install -y robotpkg-py310-pinocchio
-          
           export PATH=/opt/openrobots/bin:$PATH
           export PKG_CONFIG_PATH=/opt/openrobots/lib/pkgconfig:$PKG_CONFIG_PATH
           export LD_LIBRARY_PATH=/opt/openrobots/lib:$LD_LIBRARY_PATH
