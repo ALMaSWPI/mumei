@@ -44,6 +44,24 @@ jobs:
           make install
 
           cd ~
+          git clone https://github.com/ros/console_bridge.git
+          cd console_bridge
+          mkdir -p build
+          cd build
+          cmake ..
+          make 
+          make install
+
+          cd ~
+          git clone https://github.com/ros/urdfdom_headers.git
+          cd urdfdom_headers
+          mkdir -p build
+          cd build
+          cmake ..
+          make 
+          make install
+
+          cd ~
           git clone https://github.com/ros/urdfdom.git
           cd urdfdom
           mkdir -p build
