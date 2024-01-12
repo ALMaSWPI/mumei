@@ -82,7 +82,7 @@ jobs:
           make install
           
           cd ~
-          git clone https://github.com/stack-of-tasks/pinocchio.git
+          git clone --recurse-submodules https://github.com/stack-of-tasks/pinocchio.git
           cd pinocchio
           git checkout master
           mkdir build
