@@ -63,7 +63,7 @@ jobs:
           
           cd ~
           git clone https://github.com/coin-or/CppAD.git cppad.git
-          cd CppAD
+          cd cppad.git
           mkdir build
           cd build
           cmake ..
