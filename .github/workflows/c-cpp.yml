@@ -70,7 +70,7 @@ jobs:
           make check
           make install
           
-          pip install casadi
+          pip install casadi==3.4.5
           
           cd ~ 
           git clone --recurse-submodules https://github.com/humanoid-path-planner/hpp-fcl.git
