@@ -25,7 +25,7 @@ class MovingGroup : public MovingInterface {
 
   bool Stop() override;
 
- private:
+ protected:
   std::vector<std::shared_ptr<MovingInterface>> moving_components_;
   std::vector<size_t> moving_interface_dims_;
 };
