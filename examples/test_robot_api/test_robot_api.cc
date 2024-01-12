@@ -1,7 +1,8 @@
 #include <iostream>
 
-#include "huron/control_interfaces/robot.h"
-#include "huron/control_interfaces/revolute_joint.h"
+#include "huron/control_interfaces/legged_robot.h"
+#include "huron/control_interfaces/sensor.h"
+#include "huron/control_interfaces/constant_state_provider.h"
 #include "huron/driver/can/socket_can_bus.h"
 #include "huron/odrive/odrive_rotary_encoder.h"
 #include "huron/odrive/odrive_torque_motor.h"
@@ -10,6 +11,17 @@
 const float kGearRatio1 = 1.0;
 const float kGearRatio2 = 80.0;
 const float kCPR = 4096.0;
+
+const std::array<std::string, 8> joints_without_encoder = {
+  "l_hip_yaw_joint",
+  "l_hip_roll_joint",
+  "l_ankle_pitch_joint",
+  "r_hip_roll_joint",
+  "l_ankle_roll_joint",
+  "r_ankle_pitch_joint",
+  "r_hip_yaw_joint",
+  "r_ankle_roll_joint"
+};
 
 // Helper function to print vectors
 template<typename T>
@@ -20,8 +32,86 @@ void PrintVector(const std::vector<T>& vec) {
   std::cout << '\n';
 }
 
+class Huron : public huron::LeggedRobot {
+ public:
+  Huron() = default;
+  Huron(const Huron&) = delete;
+  Huron& operator=(const Huron&) = delete;
+  ~Huron() override = default;
+
+  void Initialize() override {
+    // Initialize all motors
+    for (auto& component : moving_components_) {
+      auto motor = std::dynamic_pointer_cast<huron::TorqueMotor>(
+        component);
+      if (motor != nullptr) {
+        motor->Initialize();
+      }
+    }
+    // Initialize all sensors
+    for (auto& sp : non_joint_state_providers_) {
+      auto sensor = std::dynamic_pointer_cast<huron::Sensor>(sp);
+      if (sensor != nullptr) {
+        sensor->Initialize();
+      }
+    }
+    for (auto& sp : joint_state_providers_) {
+      auto sensor = std::dynamic_pointer_cast<huron::Sensor>(sp);
+      if (sensor != nullptr) {
+        sensor->Initialize();
+      }
+    }
+  }
+  void SetUp() override {
+    // Initialize all motors
+    for (auto& component : moving_components_) {
+      auto motor = std::dynamic_pointer_cast<huron::TorqueMotor>(
+        component);
+      if (motor != nullptr) {
+        motor->SetUp();
+      }
+    }
+    // Initialize all sensors
+    for (auto& sp : non_joint_state_providers_) {
+      auto sensor = std::dynamic_pointer_cast<huron::Sensor>(sp);
+      if (sensor != nullptr) {
+        sensor->SetUp();
+      }
+    }
+    for (auto& sp : joint_state_providers_) {
+      auto sensor = std::dynamic_pointer_cast<huron::Sensor>(sp);
+      if (sensor != nullptr) {
+        sensor->SetUp();
+      }
+    }
+  }
+  void Terminate() override {
+    // Initialize all motors
+    for (auto& component : moving_components_) {
+      auto motor = std::dynamic_pointer_cast<huron::TorqueMotor>(
+        component);
+      if (motor != nullptr) {
+        motor->Terminate();
+      }
+    }
+    // Initialize all sensors
+    for (auto& sp : non_joint_state_providers_) {
+      auto sensor = std::dynamic_pointer_cast<huron::Sensor>(sp);
+      if (sensor != nullptr) {
+        sensor->Terminate();
+      }
+    }
+    for (auto& sp : joint_state_providers_) {
+      auto sensor = std::dynamic_pointer_cast<huron::Sensor>(sp);
+      if (sensor != nullptr) {
+        sensor->Terminate();
+      }
+    }
+  }
+};
+
 int main(int argc, char* argv[]) {
-  huron::Robot huron;
+  Huron robot;
 
   huron::driver::can::SocketCanBus hcb0{"can0", 0};
   huron::driver::can::SocketCanBus hcb1{"can0", 1};
@@ -36,69 +126,110 @@ int main(int argc, char* argv[]) {
   auto right_hip_pitch_odrive = std::make_shared<huron::odrive::ODriveCAN>(
     &hcb7, 7, std::make_unique<huron::odrive::ODrive::ODriveConfiguration>());
 
-  huron.AddJoint(std::make_shared<huron::RevoluteJoint>(
-                   std::make_unique<huron::odrive::TorqueMotor>(
-                     left_knee_odrive),
-                   std::make_unique<huron::odrive::ODriveEncoder>(
-                     kCPR, left_knee_odrive),
-                   kGearRatio1,
-                   kGearRatio2));
-  huron.AddJoint(std::make_shared<huron::RevoluteJoint>(
-                   std::make_unique<huron::odrive::TorqueMotor>(
-                     left_hip_pitch_odrive),
-                   std::make_unique<huron::odrive::ODriveEncoder>(
-                     kCPR, left_hip_pitch_odrive),
-                   kGearRatio1,
-                   kGearRatio2));
-  huron.AddJoint(std::make_shared<huron::RevoluteJoint>(
-                   std::make_unique<huron::odrive::TorqueMotor>(
-                     right_knee_odrive),
-                   std::make_unique<huron::odrive::ODriveEncoder>(
-                     kCPR, right_knee_odrive),
-                   kGearRatio1,
-                   kGearRatio2));
-  huron.AddJoint(std::make_shared<huron::RevoluteJoint>(
-                   std::make_unique<huron::odrive::TorqueMotor>(
-                     right_hip_pitch_odrive),
-                   std::make_unique<huron::odrive::ODriveEncoder>(
-                     kCPR, right_hip_pitch_odrive),
-                   kGearRatio1,
-                   kGearRatio2));
+  robot.GetModel()->AddModelImpl(
+    huron::multibody::ModelImplType::kPinocchio, true);
+  robot.GetModel()->BuildFromUrdf("huron.urdf",
+                                  huron::multibody::JointType::kFreeFlyer);
+
+  // Configure joints
+  // root_joint
+  Eigen::Vector<double, 13> floating_base_state;
+  floating_base_state << 0.0, 0.0, 1.123, 0.0, 0.0, 0.0, 1.0,  // positions
+                         0.0, 0.0, 0.0, 0.0, 0.0, 0.0;  // velocities
+  auto floating_joint_sp =
+    std::make_shared<huron::ConstantStateProvider>(floating_base_state);
+  robot.RegisterStateProvider(floating_joint_sp, true);
+  robot.GetModel()->SetJointStateProvider(1, floating_joint_sp);
+
+  // 4 encoders
+  auto left_knee_encoder = std::make_shared<huron::odrive::ODriveEncoder>(
+    kCPR, left_knee_odrive);
+  auto left_hip_pitch_encoder = std::make_shared<huron::odrive::ODriveEncoder>(
+    kCPR, left_hip_pitch_odrive);
+  auto right_knee_encoder = std::make_shared<huron::odrive::ODriveEncoder>(
+    kCPR, right_knee_odrive);
+  auto right_hip_pitch_encoder = std::make_shared<huron::odrive::ODriveEncoder>(
+    kCPR, right_hip_pitch_odrive);
+
+  robot.RegisterStateProvider(left_knee_encoder, true);
+  robot.GetModel()->SetJointStateProvider(
+    robot.GetModel()->GetJointIndex("l_knee_pitch_joint"),
+    left_knee_encoder);
+  robot.RegisterStateProvider(left_hip_pitch_encoder, true);
+  robot.GetModel()->SetJointStateProvider(
+    robot.GetModel()->GetJointIndex("l_hip_pitch_joint"),
+    left_hip_pitch_encoder);
+  robot.RegisterStateProvider(right_knee_encoder, true);
+  robot.GetModel()->SetJointStateProvider(
+    robot.GetModel()->GetJointIndex("r_knee_pitch_joint"),
+    right_knee_encoder);
+  robot.RegisterStateProvider(right_hip_pitch_encoder, true);
+  robot.GetModel()->SetJointStateProvider(
+    robot.GetModel()->GetJointIndex("r_hip_pitch_joint"),
+    right_hip_pitch_encoder);
+
+  // Use constant state provider for the remaining joints
+  for (const auto& joint_name : joints_without_encoder) {
+    auto sp =
+      std::make_shared<huron::ConstantStateProvider>(Eigen::Vector2d::Zero());
+    robot.RegisterStateProvider(sp, true);
+    robot.GetModel()->SetJointStateProvider(
+      robot.GetModel()->GetJointIndex(joint_name),
+      sp);
+  }
+
+  robot.GetModel()->Finalize();
+
+  // 4 motors
+  robot.AddToGroup(
+    std::make_shared<huron::odrive::TorqueMotor>(
+      left_knee_odrive));
+  robot.AddToGroup(
+    std::make_shared<huron::odrive::TorqueMotor>(
+      left_hip_pitch_odrive));
+  robot.AddToGroup(
+    std::make_shared<huron::odrive::TorqueMotor>(
+      right_knee_odrive));
+  robot.AddToGroup(
+    std::make_shared<huron::odrive::TorqueMotor>(
+      right_hip_pitch_odrive));
 
   // Initialize
   std::cout << "Initializing..." << std::endl;
-  huron.Initialize();
+  robot.Initialize();
   std::cout << "Initialization completed." << std::endl;
 
   std::cout << "Enabling motor..." << std::endl;
-  huron.SetUp();
+  robot.SetUp();
   std::cout << "Motor enabled." << std::endl;
 
-  std::cout << "Initial position: \n";
-  PrintVector<double>(huron.GetJointPosition());
+  std::cout << "Initial position: \n"
+            << robot.GetJointPositions() << std::endl;
 
   std::cout << "Moving..." << std::endl;
   auto start_time = std::chrono::steady_clock::now();
 
-  huron.Move({0.2, 0.2, 0.2, 0.2});
+  robot.Move(Eigen::Vector4d{0.2, 0.2, 0.2, 0.2});
 
   while (since(start_time).count() < 3000 /* ms */) {
-    std::cout << "Current position: \n";
-    PrintVector<double>(huron.GetJointPosition());
+    std::cout << "Current positions: \n"
+              << robot.GetJointPositions() << std::endl;
 
-    std::cout << "Current velocity: \n";
-    PrintVector<double>(huron.GetJointVelocity());
+    std::cout << "Current velocities: \n"
+              << robot.GetJointVelocities() << std::endl;
   }
 
   std::cout << "Stopping..." << std::endl;
-  huron.Stop();
+  robot.Stop();
 
-  std::cout << "Final position: \n";
-  PrintVector<double>(huron.GetJointPosition());
+  std::cout << "Final position: \n"
+            << robot.GetJointPositions() << std::endl;
 
   std::this_thread::sleep_for(std::chrono::seconds(5));
 
-  huron.Terminate();
+  robot.Terminate();
   std::cout << "Terminated." << std::endl;
+
+  return 0;
 }
 
