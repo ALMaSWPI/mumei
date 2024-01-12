@@ -69,9 +69,9 @@ class Robot : public MovingGroup, public GenericComponent {
         std::shared_ptr<Model> model);
   explicit Robot(std::shared_ptr<Model> model);
 
- private:
   std::shared_ptr<Model> model_;
   std::vector<std::shared_ptr<StateProvider>> non_joint_state_providers_;
+  std::vector<std::shared_ptr<StateProvider>> joint_state_providers_;
 };
 
 }  // namespace huron

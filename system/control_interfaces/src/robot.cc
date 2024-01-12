@@ -22,6 +22,8 @@ void Robot::RegisterStateProvider(
   bool is_joint_state_provider) {
   if (!is_joint_state_provider) {
     non_joint_state_providers_.push_back(state_provider);
+  } else {
+    joint_state_providers_.push_back(state_provider);
   }
 }
 
