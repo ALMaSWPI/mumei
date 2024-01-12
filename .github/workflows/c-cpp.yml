@@ -34,15 +34,15 @@ jobs:
           
           cmake --version
 
-          cd ~ 
-          git clone --recurse-submodules https://github.com/humanoid-path-planner/hpp-fcl.git
-          cd hpp-fcl
-          mkdir build
+          cd ~
+          git clone https://github.com/leethomason/tinyxml2.git
+          cd tinyxml2
+          mkdir -p build
           cd build
-          cmake .. -DBUILD_PYTHON_INTERFACE=OFF
-          make -j4
+          cmake ..
+          make 
           make install
-          
+
           cd ~
           git clone https://github.com/ros/urdfdom.git
           cd urdfdom
@@ -62,6 +62,15 @@ jobs:
           make install
           
           pip install casadi
+          
+          cd ~ 
+          git clone --recurse-submodules https://github.com/humanoid-path-planner/hpp-fcl.git
+          cd hpp-fcl
+          mkdir build
+          cd build
+          cmake .. -DBUILD_PYTHON_INTERFACE=OFF
+          make -j4
+          make install
           
           cd ~
           git clone https://github.com/stack-of-tasks/pinocchio.git
