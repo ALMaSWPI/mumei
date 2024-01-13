@@ -35,6 +35,15 @@ jobs:
           cmake --version
 
           cd ~
+          git clone https://github.com/OctoMap/octomap.git
+          cd octomap
+          mkdir build
+          cd build
+          cmake ..
+          make
+          make install
+
+          cd ~
           git clone https://github.com/ros/console_bridge.git
           cd console_bridge
           mkdir -p build
