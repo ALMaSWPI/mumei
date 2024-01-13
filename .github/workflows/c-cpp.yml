@@ -30,7 +30,7 @@ jobs:
         shell: /bin/bash
         install: |
           apt-get update
-          apt-get install -y python3 python3-pip wget gcc-aarch64-linux-gnu g++-aarch64-linux-gnu libeigen3-dev build-essential libssl-dev ca-certificates gpg cmake git bzip2 libbz2-dev libboost-all-dev libassimp-dev libtinyxml2-dev
+          apt-get install -y python3 python3-pip wget gcc-aarch64-linux-gnu g++-aarch64-linux-gnu libeigen3-dev build-essential libssl-dev ca-certificates gpg cmake git bzip2 libbz2-dev libboost-all-dev libassimp-dev libtinyxml2-dev gfortran liblapack-dev pkg-config --install-recommends
           
           cmake --version
 
@@ -62,6 +62,15 @@ jobs:
           make install
           
           cd ~
+          git clone https://github.com/casadi/casadi.git -b main casadi
+          cd casadi
+          mkdir build
+          cd build
+          cmake -DWITH_PYTHON=OFF -DWITH_PYTHON3=OFF ..
+          make
+          make install
+          
+          cd ~
           git clone https://github.com/coin-or/CppAD.git cppad.git
           cd cppad.git
           mkdir build
@@ -69,8 +78,6 @@ jobs:
           cmake ..
           make check
           make install
-          
-          pip install casadi==3.4.5
           
           cd ~ 
           git clone --recurse-submodules https://github.com/humanoid-path-planner/hpp-fcl.git
