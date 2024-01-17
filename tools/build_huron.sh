@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 echo "Target platform: $1"
 
 #Build huron
