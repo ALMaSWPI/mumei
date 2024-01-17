@@ -11,7 +11,6 @@ RUN case ${TARGETPLATFORM} in \
          "linux/arm64")  TOOLCHAIN_PREFIX=arm64  ;; \
          "linux/arm/v7") TOOLCHAIN_PREFIX=armhf  ;; \
          "linux/arm/v6") TOOLCHAIN_PREFIX=armel  ;; \
-         "linux/386")    TOOLCHAIN_PREFIX=i386   ;; \
-    esac
-RUN /huron/tools/build_huron.sh "${TOOLCHAIN_PREFIX}"
+    esac \
+    && /bin/bash /huron/tools/build_huron.sh "${TOOLCHAIN_PREFIX}"
 
