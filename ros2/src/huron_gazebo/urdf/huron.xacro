@@ -1,8 +1,5 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="huron">
-    <xacro:arg name="force_sensor" default="ft_sensor" />
-    <xacro:property name="force_sensor_prop" value="$(arg force_sensor)" />
-
     <!-- HURON model for use with Gazebo simulation -->
     <xacro:include filename="$(find huron_description)/urdf/huron_macro.xacro" />
     <xacro:include filename="$(find huron_gazebo)/urdf/huron_ros2_control.xacro" />
@@ -44,13 +41,59 @@
     </gazebo>
 
   
-    <xacro:if value="${force_sensor_prop == 'fsr'}">
-        <xacro:include filename="$(find huron_gazebo)/urdf/huron_fsr.xacro" />
-    </xacro:if>
-    <xacro:if value="${force_sensor_prop == 'ft_sensor'}">
-        <xacro:include filename="$(find huron_gazebo)/urdf/huron_ft_sensor.xacro" />
-    </xacro:if>
+    <gazebo reference ="r_ankle_roll_joint">
+    	<provideFeedback>true</provideFeedback>
+    </gazebo>
 
+    <gazebo>
+    <plugin name="r1_ft_sensor" filename="libgazebo_ros_ft_sensor.so">
+      <ros>
+        <namespace>/huron/sensor</namespace>
+        <remapping>wrench:=r1_ft_sensor</remapping>
+      </ros>
+      <update_rate>100</update_rate>
+      <!-- <body_name>r_ankle_roll_link</body_name> -->
+      <!-- <frame_name>r_ankle_roll_link</frame_name> -->
+      <joint_name>r_ankle_roll_joint</joint_name>
+      <gaussian_noise>0.0</gaussian_noise>
+    </plugin>
+    </gazebo>
+    
+   
+    <gazebo reference ="l_ankle_roll_joint">
+    	<provideFeedback>true</provideFeedback>
+    </gazebo>
+    
+    <gazebo>
+    <plugin name="l1_ft_sensor" filename="libgazebo_ros_ft_sensor.so">
+      <ros>
+        <namespace>/huron/sensor</namespace>
+        <remapping>wrench:=l1_ft_sensor</remapping>
+      </ros>
+      <update_rate>100</update_rate>
+      <!-- <body_name>l_ankle_roll_link</body_name> -->
+      <!-- <frame_name>l_ankle_roll_link</frame_name> -->
+      <joint_name>l_ankle_roll_joint</joint_name>
+      <gaussian_noise>0.0</gaussian_noise>
+    </plugin>
+    </gazebo>
+    
+    <!-- <gazebo reference = "l_hip_yaw_joint"> -->
+    <!-- 	<preserveFixedJoint>true</preserveFixedJoint> -->
+    <!-- </gazebo> -->
+    <!-- <gazebo reference = "l_hip_roll_joint"> -->
+    <!-- 	<preserveFixedJoint>true</preserveFixedJoint> -->
+    <!-- </gazebo> -->
+    <!-- <gazebo reference = "r_hip_yaw_joint"> -->
+    <!-- 	<preserveFixedJoint>true</preserveFixedJoint> -->
+    <!-- </gazebo> -->
+    <!-- <gazebo reference = "r_hip_roll_joint"> -->
+    <!-- 	<preserveFixedJoint>true</preserveFixedJoint> -->
+    <!-- </gazebo> -->
+    <!-- <gazebo reference = "dummy_joint"> -->
+    <!-- 	<preserveFixedJoint>true</preserveFixedJoint> -->
+    <!-- </gazebo> -->
+    
     <!-- World -->
     <gazebo reference="world"></gazebo>
     <!-- Map -->
