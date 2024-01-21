@@ -1,0 +1,186 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:macro name="insert_mesh_fsr" params="lr index">
+        <origin xyz="0 0 0" rpy=" 0 0 0" />
+        <geometry>
+            <mesh filename="package://huron_description/meshes/${lr}_fsr${index}.STL" scale="1 1 1" />
+        </geometry>
+        <material name="green"/>
+    </xacro:macro> 
+
+    <xacro:macro name="insert_inertia_fsr">
+        <origin
+          xyz="0 0.0047713 0"
+          rpy="0 0 0" />
+        <mass
+          value="0.0061011" />
+        <inertia
+          ixx="3.1713E-07"
+          ixy="0"
+          ixz="0"
+          iyy="4.8773E-07"
+          iyz="0"
+          izz="3.1713E-07" />
+    </xacro:macro>
+
+    <joint name="l_fsr1_fixed" type="fixed">
+        <origin
+          xyz="0.098297 0.02083 0.12788"
+          rpy="0 0 ${pi/2}" />
+        <axis xyz="0 0 1"/>
+        <parent link="l_ankle_roll_link"/>
+        <child link="l_fsr1_link"/>
+    </joint>
+    <link name="l_fsr1_link">
+        <visual>
+            <xacro:insert_mesh_fsr lr="l" index="1" />
+        </visual>
+        <collision>
+            <xacro:insert_mesh_fsr lr="l" index="1" />
+        </collision>	    
+        <inertial>
+            <xacro:insert_inertia_fsr />
+        </inertial>
+    </link>
+    
+    <joint name="l_fsr2_fixed" type="fixed">
+        <origin
+          xyz="0.098297 -0.01417 0.12788"
+          rpy="0 0 ${pi/2}" />
+        <axis xyz="0 0 1"/>
+        <parent link="l_ankle_roll_link"/>
+        <child link="l_fsr2_link"/>
+    </joint>
+    <link name="l_fsr2_link">
+        <visual>
+            <xacro:insert_mesh_fsr lr="l" index="2" />
+        </visual>
+        <collision>
+            <xacro:insert_mesh_fsr lr="l" index="2" />
+        </collision>	    
+        <inertial>
+            <xacro:insert_inertia_fsr />
+        </inertial>
+    </link>
+
+    <joint name="l_fsr3_fixed" type="fixed">
+        <origin
+          xyz="0.098297 -0.0165 0"
+          rpy="0 0 ${pi/2}" />
+        <axis xyz="0 0 1"/>
+        <parent link="l_ankle_roll_link"/>
+        <child link="l_fsr3_link"/>
+    </joint>
+    <link name="l_fsr3_link">
+        <visual>
+            <xacro:insert_mesh_fsr lr="l" index="3" />
+        </visual>
+        <collision>
+            <xacro:insert_mesh_fsr lr="l" index="3" />
+        </collision>	    
+        <inertial>
+            <xacro:insert_inertia_fsr />
+        </inertial>
+    </link>
+
+    <joint name="l_fsr4_fixed" type="fixed">
+        <origin
+          xyz="0.098297 0.017008 0"
+          rpy="0 0 ${pi/2}" />
+        <axis xyz="0 0 1"/>
+        <parent link="l_ankle_roll_link"/>
+        <child link="l_fsr4_link"/>
+    </joint>
+    <link name="l_fsr4_link">
+        <visual>
+            <xacro:insert_mesh_fsr lr="l" index="4" />
+        </visual>
+        <collision>
+            <xacro:insert_mesh_fsr lr="l" index="4" />
+        </collision>	    
+        <inertial>
+            <xacro:insert_inertia_fsr />
+        </inertial>
+    </link>
+
+    <joint name="r_fsr1_fixed" type="fixed">
+        <origin
+          xyz="0.098297 0.01417 0.12788"
+          rpy="0 0 ${pi/2}" />
+        <axis xyz="0 0 1"/>
+        <parent link="r_ankle_roll_link"/>
+        <child link="r_fsr1_link"/>
+    </joint>
+    <link name="r_fsr1_link">
+        <visual>
+            <xacro:insert_mesh_fsr lr="r" index="1" />
+        </visual>
+        <collision>
+            <xacro:insert_mesh_fsr lr="r" index="1" />
+        </collision>	    
+        <inertial>
+            <xacro:insert_inertia_fsr />
+        </inertial>
+    </link>
+
+    <joint name="r2_fsr_fixed" type="fixed">
+        <origin
+          xyz="0.098297 -0.02083 0.12788"
+          rpy="0 0 ${pi/2}" />
+        <axis xyz="0 0 1"/>
+        <parent link="r_ankle_roll_link"/>
+        <child link="r_fsr2_link"/>
+    </joint>
+    <link name="r_fsr2_link">
+        <visual>
+            <xacro:insert_mesh_fsr lr="r" index="2" />
+        </visual>
+        <collision>
+            <xacro:insert_mesh_fsr lr="r" index="2" />
+        </collision>	    
+        <inertial>
+            <xacro:insert_inertia_fsr />
+        </inertial>
+    </link>
+
+    <joint name="r_fsr3_fixed" type="fixed">
+        <origin
+          xyz="0.098297 -0.017008 0"
+          rpy="0 0 ${pi/2}" />
+        <axis xyz="0 0 1"/>
+        <parent link="r_ankle_roll_link"/>
+        <child link="r_fsr3_link"/>
+    </joint>
+    <link name="r_fsr3_link">
+        <visual>
+            <xacro:insert_mesh_fsr lr="r" index="3" />
+        </visual>
+        <collision>
+            <xacro:insert_mesh_fsr lr="r" index="3" />
+        </collision>	    
+        <inertial>
+            <xacro:insert_inertia_fsr />
+        </inertial>
+    </link>
+
+    <!-- right ft fixed joint 4 -->
+    <joint name="r4_ft_fixed" type="fixed">
+        <origin
+          xyz="0.098297 0.0165 0"
+          rpy="0 0 ${pi/2}" />
+        <axis xyz="0 0 1"/>
+        <parent link="r_ankle_roll_link"/>
+        <child link="r_fsr4_link"/>
+    </joint>
+    <link name="r_fsr4_link">
+        <visual>
+            <xacro:insert_mesh_fsr lr="r" index="4" />
+        </visual>
+        <collision>
+            <xacro:insert_mesh_fsr lr="r" index="4" />
+        </collision>	    
+        <inertial>
+            <xacro:insert_inertia_fsr />
+        </inertial>
+    </link>
+</robot>
