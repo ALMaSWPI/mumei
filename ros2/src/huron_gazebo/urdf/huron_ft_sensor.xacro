@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <gazebo reference ="r_ankle_roll_joint">
+    	<provideFeedback>true</provideFeedback>
+    </gazebo>
+
+    <gazebo>
+    <plugin name="r1_ft_sensor" filename="libgazebo_ros_ft_sensor.so">
+      <ros>
+        <namespace>/huron/sensor</namespace>
+        <remapping>wrench:=r1_ft_sensor</remapping>
+      </ros>
+      <update_rate>100</update_rate>
+      <!-- <body_name>r_ankle_roll_link</body_name> -->
+      <!-- <frame_name>r_ankle_roll_link</frame_name> -->
+      <joint_name>r_ankle_roll_joint</joint_name>
+      <gaussian_noise>0.0</gaussian_noise>
+    </plugin>
+    </gazebo>
+    
+   
+    <gazebo reference ="l_ankle_roll_joint">
+    	<provideFeedback>true</provideFeedback>
+    </gazebo>
+    
+    <gazebo>
+    <plugin name="l1_ft_sensor" filename="libgazebo_ros_ft_sensor.so">
+      <ros>
+        <namespace>/huron/sensor</namespace>
+        <remapping>wrench:=l1_ft_sensor</remapping>
+      </ros>
+      <update_rate>100</update_rate>
+      <!-- <body_name>l_ankle_roll_link</body_name> -->
+      <!-- <frame_name>l_ankle_roll_link</frame_name> -->
+      <joint_name>l_ankle_roll_joint</joint_name>
+      <gaussian_noise>0.0</gaussian_noise>
+    </plugin>
+    </gazebo>
+</robot>

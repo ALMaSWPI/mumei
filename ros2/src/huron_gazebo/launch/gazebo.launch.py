@@ -13,6 +13,7 @@ from launch_ros.descriptions import ParameterValue
 
 def generate_launch_description():
     pause_gz = LaunchConfiguration('pause_gz')
+    force_sensor = LaunchConfiguration('force_sensor')
     # pause_gz_arg = DeclareLaunchArgument(
     #         'pause_gz',
     #         default_value='False',
@@ -36,7 +37,9 @@ def generate_launch_description():
     simulation_urdf_path = os.path.join(simulation_description_path,
                                         'urdf', 'huron.xacro')
     robot_description_config = ParameterValue(
-            Command(['xacro ', str(simulation_urdf_path)]), value_type=str
+            Command(['xacro ', str(simulation_urdf_path),
+                     ' force_sensor:=', force_sensor]),
+            value_type=str
         )
     robot_description = {'robot_description': robot_description_config}
 
@@ -76,6 +79,10 @@ def generate_launch_description():
             'pause_gz',
             default_value='true',
             description='Pause Gazebo at launch'),
+        DeclareLaunchArgument(
+            'force_sensor',
+            default_value='ft_sensor',
+            description='HURON force sensor type [ft_sensor, fsr]'),
 
         gazebo,
         spawn_entity,

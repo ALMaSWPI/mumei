@@ -1,12 +1,20 @@
 <?xml version="1.0"?>
 <robot name="huron" xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <!--
-    Top level description file for HURON. This can be used to generate a URDF.
-  -->
+    <xacro:arg name="force_sensor" default="ft_sensor" />
+    <xacro:property name="force_sensor_prop" value="$(arg force_sensor)" />
+    <!--
+      Top level description file for HURON. This can be used to generate a URDF for non-simulation applications.
 
-  <xacro:include filename="$(find huron_description)/urdf/huron_macro.xacro" />
+      URDF generation syntax:
+        ros2 run xacro xacro huron.urdf [ft_sensor:=<ft_sensor|fsr>]
+    -->
 
-  <!-- Add HURON Base -->
-  <xacro:huron_base />
+    <xacro:include filename="$(find huron_description)/urdf/huron_macro.xacro" />
+    <xacro:if value="${force_sensor_prop == 'fsr'}">
+        <xacro:include filename="$(find huron_description)/urdf/huron_fsr.xacro" />
+    </xacro:if>
+
+    <!-- Add HURON Base -->
+    <xacro:huron_base />
 
 </robot>
