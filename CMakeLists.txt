@@ -93,6 +93,11 @@ if (DEFINED USE_PINOCCHIO)
     target_compile_definitions(huron PUBLIC HURON_USE_PINOCCHIO=1)
 endif()
 
+# Copy urdf files to build directory
+add_custom_command(TARGET huron PRE_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E copy
+                       ${CMAKE_SOURCE_DIR}/multibody/test/*.urdf $<TARGET_FILE_DIR:huron>)
+
 # Install the "huronConfig.cmake" file and export the target
 install(TARGETS huron
   EXPORT huronTargets
