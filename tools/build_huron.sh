@@ -10,3 +10,4 @@ export LD_LIBRARY_PATH=/usr/local/lib:/usr/lib
 cmake -DBUILD_TYPE=$1 -DUSE_PINOCCHIO=1 -DCMAKE_PREFIX_PATH=/opt/ros/humble -Bbuild
 cmake --build build --parallel --target install
 cd build && ctest
+ctest --rerun-failed --output-on-failure
