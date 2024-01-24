@@ -3,6 +3,7 @@
 #include <eigen3/Eigen/Dense>
 #include <memory>
 #include "huron/enable_protected_make_shared.h"
+#include <string>
 
 namespace huron {
 namespace multibody {

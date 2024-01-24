@@ -212,18 +212,19 @@ int main(int argc, char* argv[]) {
   robot.Move(Eigen::Vector4d{0.2, 0.2, 0.2, 0.2});
 
   while (since(start_time).count() < 3000 /* ms */) {
+    robot.UpdateJointStates();
     std::cout << "Current positions: \n"
-              << robot.GetJointPositions() << std::endl;
+              << robot.GetJointPositions().transpose() << std::endl;
 
     std::cout << "Current velocities: \n"
-              << robot.GetJointVelocities() << std::endl;
+              << robot.GetJointVelocities().transpose() << std::endl;
   }
 
   std::cout << "Stopping..." << std::endl;
   robot.Stop();
 
   std::cout << "Final position: \n"
-            << robot.GetJointPositions() << std::endl;
+            << robot.GetJointPositions().transpose() << std::endl;
 
   std::this_thread::sleep_for(std::chrono::seconds(5));
 
