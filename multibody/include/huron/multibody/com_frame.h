@@ -1,6 +1,8 @@
 #pragma once
 
 #include "huron/multibody/frame.h"
+#include <string>
+#include <memory>
 
 namespace huron {
 namespace multibody {

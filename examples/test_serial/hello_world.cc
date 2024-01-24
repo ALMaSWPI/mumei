@@ -10,9 +10,9 @@ int main(int argc, char* argv[]) {
   Serial serial("/dev/ttyACM0", 115200, Parity::None, StopBits::One,
                 FlowControl::None);
   std::cout << "Serial port status: ";
-  if(serial.IsOpen())
+  if (serial.IsOpen()) {
     std::cout << "Open" << std::endl;
-  else {
+  } else {
     std::cout << "Closed" << std::endl;
     return 0;
   }
