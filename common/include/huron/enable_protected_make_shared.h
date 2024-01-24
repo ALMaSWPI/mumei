@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+#include <utility>
 
 namespace huron {
 
@@ -39,7 +40,7 @@ class enable_protected_make_shared {
      public:
       // Ensures that the constructor is not public.
       static_assert(!std::is_constructible_v<ClassWithProtectedCtor, Args...>);
-      make_shared_enabler(Args &&... args)
+      explicit make_shared_enabler(Args &&... args)
         : ClassWithProtectedCtor(std::forward<Args>(args)...) {}
     };
     return std::make_shared<make_shared_enabler>(std::forward<Args>(args)...);
