@@ -27,7 +27,8 @@ void ForceSensingResistorArray::RequestStateUpdate() {
   }
 }
 
-void ForceSensingResistorArray::GetNewState(Eigen::Ref<Eigen::MatrixXd> new_state) const {
+void ForceSensingResistorArray::GetNewState(
+  Eigen::Ref<Eigen::MatrixXd> new_state) const {
   new_state = values_;
 }
 
