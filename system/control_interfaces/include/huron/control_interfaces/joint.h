@@ -74,7 +74,7 @@ class Joint {
   size_t num_positions() const {
     return jd_->num_positions();
   }
-  
+
   size_t nq() const {
     return num_positions();
   }

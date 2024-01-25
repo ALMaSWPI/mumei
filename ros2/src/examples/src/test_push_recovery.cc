@@ -8,7 +8,7 @@
 #include "huron/locomotion/zero_moment_point_ft_sensor.h"
 #include "huron/control/push_recovery.h"
 
-using namespace huron;
+using namespace huron;  //NOLINT
 
 // Joint names order from ROS2
 const std::array<std::string, 12> joint_names = {

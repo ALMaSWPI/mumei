@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <memory>
+#include <string>
 
 #include "huron/types.h"
 #include "huron/control_interfaces/joint.h"
@@ -114,7 +115,6 @@ class ModelImplInterface {
   virtual size_t num_velocities() const;
   virtual size_t num_joints() const;
   virtual size_t num_frames() const;
-
 };
 
 }  // namespace internal

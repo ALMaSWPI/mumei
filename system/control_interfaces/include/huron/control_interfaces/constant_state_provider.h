@@ -6,7 +6,7 @@ namespace huron {
 
 class ConstantStateProvider : public StateProvider {
  public:
-  ConstantStateProvider(const Eigen::MatrixXd& state)
+  explicit ConstantStateProvider(const Eigen::MatrixXd& state)
     : StateProvider(state.rows(), state.cols()),
       state_(state) {}
   ConstantStateProvider(const ConstantStateProvider&) = delete;
@@ -18,9 +18,9 @@ class ConstantStateProvider : public StateProvider {
     new_state = state_;
   }
 
-  void SetState(const Eigen::MatrixXd& state) { 
+  void SetState(const Eigen::MatrixXd& state) {
     assert(state.rows() == dim()[0] && state.cols() == dim()[1]);
-    state_ = state; 
+    state_ = state;
   }
 
  private:

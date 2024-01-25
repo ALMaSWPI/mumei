@@ -37,6 +37,7 @@ class RobotConfiguration : public Configuration {
 
 class Robot : public MovingGroup, public GenericComponent {
   using Model = multibody::Model;
+
  public:
   explicit Robot(std::unique_ptr<RobotConfiguration> config);
   Robot();

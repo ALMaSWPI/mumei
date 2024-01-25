@@ -12,10 +12,14 @@ void ModelImplInterface::BuildFromUrdf(const std::string& urdf_path,
 const std::vector<std::string>& ModelImplInterface::GetJointNames() const {
   throw NotImplementedException();
 }
-std::weak_ptr<Joint> ModelImplInterface::GetJoint(const std::string& name) const {
+
+std::weak_ptr<Joint>
+ModelImplInterface::GetJoint(const std::string& name) const {
   throw NotImplementedException();
 }
-std::weak_ptr<Joint> ModelImplInterface::GetJoint(size_t joint_index) const {
+
+std::weak_ptr<Joint>
+ModelImplInterface::GetJoint(size_t joint_index) const {
   throw NotImplementedException();
 }
 
@@ -46,17 +50,24 @@ FrameIndex ModelImplInterface::GetFrameIndex(
   const std::string& frame_name) const {
   throw NotImplementedException();
 }
-const std::string& ModelImplInterface::GetFrameName(FrameIndex frame_index) const {
+
+const std::string&
+ModelImplInterface::GetFrameName(FrameIndex frame_index) const {
   throw NotImplementedException();
 }
+
 FrameType ModelImplInterface::GetFrameType(FrameIndex frame_index) const {
   throw NotImplementedException();
 }
-Eigen::Affine3d ModelImplInterface::GetFrameTransform(FrameIndex from_frame,
-                                          FrameIndex to_frame) const {
+
+Eigen::Affine3d
+ModelImplInterface::GetFrameTransform(FrameIndex from_frame,
+                                      FrameIndex to_frame) const {
   throw NotImplementedException();
 }
-Eigen::Affine3d ModelImplInterface::GetFrameTransformInWorld(FrameIndex frame) const {
+
+Eigen::Affine3d
+ModelImplInterface::GetFrameTransformInWorld(FrameIndex frame) const {
   throw NotImplementedException();
 }
 

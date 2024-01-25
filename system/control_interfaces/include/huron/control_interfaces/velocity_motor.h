@@ -32,10 +32,10 @@ class VelocityMotorConfiguration : public MotorConfiguration {
 
 class VelocityMotor : public Motor {
  public:
-  explicit VelocityMotor(std::unique_ptr<VelocityMotorConfiguration> config,
-                       double gear_ratio)
+  VelocityMotor(std::unique_ptr<VelocityMotorConfiguration> config,
+                double gear_ratio)
     : Motor(std::move(config), gear_ratio) {}
-  VelocityMotor(double gear_ratio)
+  explicit VelocityMotor(double gear_ratio)
     : Motor(gear_ratio) {}
   VelocityMotor() : Motor() {}
   VelocityMotor(const VelocityMotor&) = delete;

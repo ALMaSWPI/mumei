@@ -1,6 +1,9 @@
 #pragma once
 
 #include <eigen3/Eigen/Core>
+
+#include <memory>
+
 #include "huron/control_interfaces/generic_component.h"
 #include "huron/control_interfaces/state_provider.h"
 
@@ -10,7 +13,7 @@ class Sensor : public GenericComponent, public StateProvider {
  public:
   Sensor(const Eigen::Vector2i& dim,
          std::unique_ptr<Configuration> config);
-  Sensor(const Eigen::Vector2i& dim);
+  explicit Sensor(const Eigen::Vector2i& dim);
   Sensor(int rows, int cols,
          std::unique_ptr<Configuration> config);
   Sensor(int rows, int cols);

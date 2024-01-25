@@ -17,17 +17,13 @@ void ForceTorqueSensor::RequestStateUpdate() {
 }
 
 void ForceTorqueSensor::Initialize() {
-
 }
 
 void ForceTorqueSensor::SetUp() {
-
 }
 
 void ForceTorqueSensor::Terminate() {
-
 }
-
 
 Vector6d ForceTorqueSensor::DoGetWrenchRaw() {
   auto node = node_.lock();

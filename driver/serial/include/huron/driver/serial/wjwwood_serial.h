@@ -1,11 +1,12 @@
 #pragma once
 
+#include <serial/serial.h>
+
 #include <memory>
 #include <vector>
 #include <string>
 
 #include "serial.h"
-#include <serial/serial.h>
 
 namespace huron {
 namespace driver {

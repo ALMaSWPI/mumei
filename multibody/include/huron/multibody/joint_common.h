@@ -1,9 +1,11 @@
 #pragma once
 
+#include <eigen3/Eigen/Dense>
+
 #include <stddef.h>
 #include <string>
 #include <cassert>
-#include <eigen3/Eigen/Dense>
+#include <limits>
 
 #include "frame.h"
 

@@ -25,7 +25,7 @@ class FakeForceTorqueSensor : public ForceTorqueSensor {
  public:
   FakeForceTorqueSensor(bool reverse_wrench_direction,
                         std::weak_ptr<const multibody::Frame> frame,
-                        const Vector6d& fake_wrench)  
+                        const Vector6d& fake_wrench)
     : ForceTorqueSensor(reverse_wrench_direction, std::move(frame)),
       fake_wrench_(fake_wrench) {}
 

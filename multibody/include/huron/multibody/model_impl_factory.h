@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 #include "model_impl_types.h"
 #include "model_impl_interface.h"
 #include "pinocchio_model_impl.h"

@@ -35,7 +35,7 @@ class PositionMotor : public Motor {
   explicit PositionMotor(std::unique_ptr<PositionMotorConfiguration> config,
                        double gear_ratio)
     : Motor(std::move(config), gear_ratio) {}
-  PositionMotor(double gear_ratio)
+  explicit PositionMotor(double gear_ratio)
     : Motor(gear_ratio) {}
   PositionMotor() : Motor() {}
   PositionMotor(const PositionMotor&) = delete;

@@ -1,5 +1,8 @@
 #pragma once
 
+#include <memory>
+#include <vector>
+
 #include "huron/locomotion/zero_moment_point.h"
 
 namespace huron {

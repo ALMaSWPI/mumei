@@ -1,10 +1,10 @@
 #pragma once
 
+#include <eigen3/Eigen/Dense>
+
 #include <vector>
 #include <memory>
 #include <utility>
-
-#include <eigen3/Eigen/Dense>
 
 namespace huron {
 
@@ -15,7 +15,7 @@ namespace huron {
  */
 class MovingInterface {
  public:
-  MovingInterface(size_t dim) : dim_(dim) {}
+  explicit MovingInterface(size_t dim) : dim_(dim) {}
   MovingInterface(const MovingInterface&) = delete;
   MovingInterface& operator=(const MovingInterface&) = delete;
   virtual ~MovingInterface() = default;

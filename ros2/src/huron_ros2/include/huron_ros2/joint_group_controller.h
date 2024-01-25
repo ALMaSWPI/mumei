@@ -1,5 +1,8 @@
 #pragma once
 
+#include <vector>
+#include <memory>
+
 #include "huron/control_interfaces/moving_interface.h"
 
 namespace huron {

@@ -1,6 +1,9 @@
 #pragma once
 
 #include <eigen3/Eigen/Core>
+
+#include <memory>
+
 #include "huron/control_interfaces/sensor.h"
 #include "huron/multibody/frame.h"
 
@@ -8,6 +11,7 @@ namespace huron {
 
 class SensorWithFrame : public Sensor {
   using Frame = multibody::Frame;
+
  public:
   SensorWithFrame(const Eigen::Vector2i& dim,
                   std::weak_ptr<const Frame> frame);

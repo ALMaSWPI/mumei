@@ -32,10 +32,10 @@ class TorqueMotorConfiguration : public MotorConfiguration {
 
 class TorqueMotor : public Motor {
  public:
-  explicit TorqueMotor(std::unique_ptr<TorqueMotorConfiguration> config,
-                       double gear_ratio)
+  TorqueMotor(std::unique_ptr<TorqueMotorConfiguration> config,
+              double gear_ratio)
     : Motor(std::move(config), gear_ratio) {}
-  TorqueMotor(double gear_ratio)
+  explicit TorqueMotor(double gear_ratio)
     : Motor(gear_ratio) {}
   TorqueMotor() : Motor() {}
   TorqueMotor(const TorqueMotor&) = delete;
