@@ -67,7 +67,8 @@ const std::vector<std::string>& PinocchioModelImpl::GetJointNames() const {
   return impl_->model_.names;
 }
 
-std::weak_ptr<Joint> PinocchioModelImpl::GetJoint(const std::string& name) const {
+std::weak_ptr<Joint>
+PinocchioModelImpl::GetJoint(const std::string& name) const {
   throw NotImplementedException();
 }
 

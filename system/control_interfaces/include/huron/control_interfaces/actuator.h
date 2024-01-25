@@ -35,7 +35,7 @@ class Actuator : public GenericComponent, public MovingInterface {
  public:
   Actuator(size_t dim, std::unique_ptr<ActuatorConfiguration> config)
     : GenericComponent(std::move(config)), MovingInterface(dim) {}
-  Actuator(size_t dim)
+  explicit Actuator(size_t dim)
     : Actuator(dim, std::make_unique<ActuatorConfiguration>()) {}
   Actuator(const Actuator&) = delete;
   Actuator& operator=(const Actuator&) = delete;
