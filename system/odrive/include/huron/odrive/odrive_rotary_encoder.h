@@ -9,8 +9,10 @@ namespace odrive {
 
 class ODriveEncoder final : public huron::RotaryEncoder {
  public:
-  ODriveEncoder(std::unique_ptr<RotaryEncoderConfiguration> config,
-		std::shared_ptr<ODrive> odrive);
+  ODriveEncoder(double gear_ratio,
+                std::unique_ptr<RotaryEncoderConfiguration> config,
+                std::shared_ptr<ODrive> odrive);
+  ODriveEncoder(double gear_ratio, double cpr, std::shared_ptr<ODrive> odrive);
   ODriveEncoder(double cpr, std::shared_ptr<ODrive> odrive);
   ODriveEncoder(const ODriveEncoder&) = delete;
   ODriveEncoder& operator=(const ODriveEncoder&) = delete;

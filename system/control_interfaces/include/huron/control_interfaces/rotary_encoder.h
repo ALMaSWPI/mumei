@@ -39,12 +39,16 @@ class RotaryEncoderConfiguration : public EncoderConfiguration {
  */
 class RotaryEncoder : public Encoder {
  public:
-  explicit RotaryEncoder(std::unique_ptr<RotaryEncoderConfiguration> config)
-    : Encoder(std::move(config)) {
+  RotaryEncoder(double gear_ratio,
+                std::unique_ptr<RotaryEncoderConfiguration> config)
+    : Encoder(gear_ratio, std::move(config)) {
     cpr_ = std::any_cast<double>(config_.get()->Get("cpr"));
   }
+  RotaryEncoder(double gear_ratio, double cpr)
+      : RotaryEncoder(gear_ratio,
+                      std::make_unique<RotaryEncoderConfiguration>(cpr)) {}
   explicit RotaryEncoder(double cpr)
-      : RotaryEncoder(std::make_unique<RotaryEncoderConfiguration>(cpr)) {}
+      : RotaryEncoder(1.0, cpr) {}
   RotaryEncoder(const RotaryEncoder&) = delete;
   RotaryEncoder& operator=(const RotaryEncoder&) = delete;
   ~RotaryEncoder() override = default;
@@ -84,31 +88,35 @@ class RotaryEncoder : public Encoder {
   }
 
   /**
-     * Gets the current angle in radians.
+     * Gets the current angle in radians. This takes into account the gear ratio
+     * and CPR.
      */
   double GetPosition() const override {
-    return count_ / cpr_ * 2.0 * M_PI;
+    return count_ / cpr_ * 2.0 * M_PI / gear_ratio_;
   }
 
   /**
-     * Gets the current angle in degrees.
+     * Gets the current angle in degrees. This takes into account the gear ratio
+     * and CPR.
      */
   double GetAngleDegree() const {
-    return count_ / cpr_ * 360.0;
+    return count_ / cpr_ * 360.0 / gear_ratio_;
   }
 
   /**
-     * Gets the current velocity in radians/second.
+     * Gets the current velocity in radians/second. This takes into account the
+     * gear ratio and CPR.
      */
   double GetVelocity() const override {
-    return velocity_ / cpr_ * 2 * M_PI;
+    return velocity_ / cpr_ * 2 * M_PI / gear_ratio_;
   }
 
   /**
-     * Gets the current velocity in degrees/second.
+     * Gets the current velocity in degrees/second. This takes into account the
+     * gear ratio and CPR.
      */
   double GetVelocityDegree() const {
-    return velocity_ / cpr_ * 360.0;
+    return velocity_ / cpr_ * 360.0 / gear_ratio_;
   }
 
   /**
