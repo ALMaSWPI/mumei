@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 #include "huron/control_interfaces/state_provider.h"
 #include "huron_node.h"
 
