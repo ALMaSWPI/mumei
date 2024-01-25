@@ -1,5 +1,8 @@
 #pragma once
 
+#include <memory>
+#include <vector>
+
 #include "huron/locomotion/zero_moment_point.h"
 
 namespace huron {
@@ -12,7 +15,7 @@ class ZeroMomentPointTotal : public ZeroMomentPoint {
   ZeroMomentPointTotal(const ZeroMomentPointTotal&) = delete;
   ZeroMomentPointTotal& operator=(const ZeroMomentPointTotal&) = delete;
   ~ZeroMomentPointTotal() override = default;
-    
+
   Eigen::Vector2d Eval(double& fz) override;
 
  private:

@@ -1,10 +1,10 @@
 #pragma once
 
+#include <eigen3/Eigen/Dense>
+
 #include <memory>
 #include <utility>
 #include <vector>
-
-#include <eigen3/Eigen/Dense>
 
 #include "moving_interface.h"
 

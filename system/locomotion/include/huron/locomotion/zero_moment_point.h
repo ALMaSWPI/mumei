@@ -1,7 +1,8 @@
 #pragma once
 
-#include <memory>
 #include <eigen3/Eigen/Dense>
+
+#include <memory>
 
 #include "huron/sensors/force_torque_sensor.h"
 #include "huron/sensors/force_sensing_resistor_array.h"

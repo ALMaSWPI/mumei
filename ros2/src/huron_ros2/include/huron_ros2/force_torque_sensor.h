@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 #include "huron/sensors/force_torque_sensor.h"
 
 namespace huron {

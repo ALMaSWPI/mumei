@@ -10,7 +10,7 @@ std::ostream& operator<<(std::ostream &os, const JointDescription &jd) {
                << "\nChild Frame ID: " << jd.child_frame_id()
                << "\nNum Positions: " << jd.num_positions()
                << "\nNum Velocities: " << jd.num_velocities()
-               << "\nType: " << (size_t) jd.type()
+               << "\nType: " << static_cast<size_t>(jd.type())
                << "\nMin Position: " << jd.min_position()
                << "\nMax Position: " << jd.max_position()
                << "\nMin Velocity: " << jd.min_velocity()

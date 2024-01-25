@@ -1,9 +1,11 @@
 #pragma once
 
 #include <eigen3/Eigen/Dense>
+
 #include <memory>
-#include "huron/enable_protected_make_shared.h"
 #include <string>
+
+#include "huron/enable_protected_make_shared.h"
 
 namespace huron {
 namespace multibody {

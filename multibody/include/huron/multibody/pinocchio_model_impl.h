@@ -1,6 +1,9 @@
 #pragma once
 
 #include <experimental/propagate_const>
+#include <vector>
+#include <string>
+#include <memory>
 
 #include "huron/multibody/model_impl_interface.h"
 #include "huron/multibody/joint_common.h"

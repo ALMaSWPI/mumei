@@ -1,5 +1,11 @@
 #pragma once
 
+#include <utility>
+#include <memory>
+#include <vector>
+#include <string>
+#include <unordered_map>
+
 #include "huron/multibody/model_impl_types.h"
 #include "huron/multibody/model_impl_interface.h"
 #include "huron/multibody/frame.h"
@@ -9,6 +15,7 @@ namespace multibody {
 
 class Model : public std::enable_shared_from_this<Model> {
   using ModelImplInterface = internal::ModelImplInterface;
+
  public:
   Model();
   Model(const Model&) = delete;
@@ -62,7 +69,8 @@ class Model : public std::enable_shared_from_this<Model> {
    * @param args Arguments to be passed to the constructor of the frame.
    */
   // template<typename FrameImpl, typename ...Args>
-  // std::weak_ptr<const Frame> AddFrame(const std::string& name, Args&&... args);
+  // std::weak_ptr<const Frame>
+  // AddFrame(const std::string& name, Args&&... args);
 
   template<typename FrameImpl, typename ...Args>
   std::weak_ptr<const Frame> AddFrame(const std::string& name, Args&&... args) {
@@ -71,7 +79,8 @@ class Model : public std::enable_shared_from_this<Model> {
       "Invalid frame type.");
     static_assert(
       std::is_base_of_v<enable_protected_make_shared<FrameImpl>, FrameImpl>,
-      "Frame-derived class must also derive from enable_protected_make_shared.");
+      "Frame-derived class must also derive from "
+      "enable_protected_make_shared.");
     assert(is_constructed_);
     assert(!is_finalized_);
 

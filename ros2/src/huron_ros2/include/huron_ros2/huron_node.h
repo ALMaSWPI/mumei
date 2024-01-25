@@ -1,9 +1,9 @@
 #pragma once
 
+#include <eigen3/Eigen/Core>
+
 #include <memory>
 #include <vector>
-
-#include <eigen3/Eigen/Core>
 
 #include <rclcpp/rclcpp.hpp>
 #include <sensor_msgs/msg/joint_state.hpp>

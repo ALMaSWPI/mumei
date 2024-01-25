@@ -21,8 +21,9 @@ bool MovingGroup::Move(const std::vector<double>& values) {
   }
   size_t offset = 0;
   for (size_t i = 0; i < moving_components_.size(); ++i) {
-    std::vector<double> tmp(values.begin() + offset,
-                            values.begin() + offset + moving_interface_dims_[i]);
+    std::vector<double> tmp(
+        values.begin() + offset,
+        values.begin() + offset + moving_interface_dims_[i]);
     if (!moving_components_[i]->Move(tmp)) {
       return false;
     }

@@ -45,5 +45,5 @@ Eigen::Affine3d LogicalFrame::GetTransformToFrame(FrameIndex other) const {
   return transform_function_(parent_transform).inverse() * parent_transform;
 }
 
-}  // namespace multibdody
+}  // namespace multibody
 }  // namespace huron

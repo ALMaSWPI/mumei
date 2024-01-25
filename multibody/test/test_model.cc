@@ -83,4 +83,4 @@ TEST(TestModelPinocchio, TestDepNotExist) {
   EXPECT_THROW(robot.GetModel()->AddModel(ModelImplType::kPinocchio),
                std::runtime_error));
 }
-#endif // HURON_USE_PINOCCHIO
+#endif  // HURON_USE_PINOCCHIO

@@ -1,7 +1,9 @@
 #pragma once
 
-#include "model.h"
 #include <vector>
+#include <memory>
+
+#include "model.h"
 
 namespace huron {
 namespace multibody {

@@ -39,7 +39,7 @@ void Model::BuildFromUrdf(const std::string& urdf_path,
   auto joint_names = impls_[default_impl_index_]->GetJointNames();
   size_t last_position_index = 0, last_velocity_index = 0;
   for (auto i = 0; i < joints_.size(); ++i) {
-    auto jd_tmp_ptr = 
+    auto jd_tmp_ptr =
       impls_[default_impl_index_]->GetJointDescription(joint_names[i]);
     // Add joint
     AddJoint(i, std::move(jd_tmp_ptr));
@@ -226,14 +226,12 @@ const huron::Matrix6Xd& Model::GetCentroidalMatrix() const {
   return impls_[default_impl_index_]->GetCentroidalMatrix();
 }
 
-
 void Model::ComputeAll() {
   assert(is_finalized_);
   impls_[default_impl_index_]->ComputeAll(
     states_.segment(0, num_positions_),
     states_.segment(num_positions_, num_velocities_));
 }
-
 
 void Model::ForwardKinematics() {
   assert(is_finalized_);

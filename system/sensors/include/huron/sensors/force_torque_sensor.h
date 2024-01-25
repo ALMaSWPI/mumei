@@ -2,6 +2,8 @@
 
 #include <eigen3/Eigen/Core>
 
+#include <memory>
+
 #include "huron/control_interfaces/sensor_with_frame.h"
 #include "huron/types.h"
 
@@ -27,7 +29,7 @@ class ForceTorqueSensor : public SensorWithFrame {
    * @return Wrench 6x1 vector \f$ [Fx, Fy, Fz, Tx, Ty, Tz]^T \f$.
    */
   Eigen::VectorXd GetValue() const override;
-  
+
  protected:
   /**
    * To be overriden.

@@ -25,7 +25,7 @@ Eigen::Vector2d ZeroMomentPointFTSensor::Eval(double& fz) {
       (-w(4) -
       w(0)*(zmp_to_sensor.translation().z() - zmp_frame_pose.translation().z())
       + zmp_to_sensor.translation().x()*w(2));
-    num_y += 
+    num_y +=
       (w(3) -
       w(1)*(zmp_to_sensor.translation().z() - zmp_frame_pose.translation().z())
       + zmp_to_sensor.translation().y()*w(2));

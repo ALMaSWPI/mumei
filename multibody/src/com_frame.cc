@@ -49,5 +49,5 @@ Eigen::Affine3d ComFrame::ParentToThisTransform() const {
   return parent_to_this;
 }
 
-}  // namespace multibdody
+}  // namespace multibody
 }  // namespace huron

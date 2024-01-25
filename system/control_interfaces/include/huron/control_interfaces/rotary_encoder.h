@@ -145,7 +145,6 @@ class RotaryEncoder : public Encoder {
   double count_ = 0.0;
   double prev_count_ = 0.0;
   double cpr_;
-
 };
 
 }  // namespace huron

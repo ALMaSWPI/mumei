@@ -7,7 +7,7 @@
 #include "huron_ros2/joint_state_provider.h"
 #include "huron_ros2/joint_group_controller.h"
 
-using namespace huron;
+using namespace huron;  //NOLINT
 
 // Joint names order from ROS2
 const std::array<std::string, 12> joint_names = {

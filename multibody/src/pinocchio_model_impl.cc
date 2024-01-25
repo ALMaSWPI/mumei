@@ -27,8 +27,6 @@ Eigen::Affine3d Se3ToAffine3d(const pinocchio::SE3& se3) {
 
 }  // namespace helpers
 
-using namespace helpers;
-
 struct PinocchioModelImpl::Impl {
   mutable pinocchio::Model model_;
   mutable pinocchio::Data data_;
@@ -72,7 +70,9 @@ const std::vector<std::string>& PinocchioModelImpl::GetJointNames() const {
 std::weak_ptr<Joint> PinocchioModelImpl::GetJoint(const std::string& name) const {
   throw NotImplementedException();
 }
-std::weak_ptr<Joint> PinocchioModelImpl::GetJoint(size_t joint_index) const {
+
+std::weak_ptr<Joint>
+PinocchioModelImpl::GetJoint(size_t joint_index) const {
   throw NotImplementedException();
 }
 
@@ -122,11 +122,13 @@ PinocchioModelImpl::GetJointDescription(
                            impl_->model_.nvs[joint_index]));
 }
 
-Eigen::Affine3d PinocchioModelImpl::GetJointTransformInWorld(size_t joint_index) const {
+Eigen::Affine3d
+PinocchioModelImpl::GetJointTransformInWorld(size_t joint_index) const {
   return helpers::Se3ToAffine3d(impl_->data_.oMi[joint_index]);
 }
 
-JointIndex PinocchioModelImpl::GetJointIndex(const std::string& joint_name) const {
+JointIndex
+PinocchioModelImpl::GetJointIndex(const std::string& joint_name) const {
   return impl_->model_.getJointId(joint_name);
 }
 
@@ -135,7 +137,8 @@ FrameIndex PinocchioModelImpl::GetFrameIndex(
   return impl_->model_.getFrameId(frame_name);
 }
 
-const std::string& PinocchioModelImpl::GetFrameName(FrameIndex frame_index) const {
+const std::string&
+PinocchioModelImpl::GetFrameName(FrameIndex frame_index) const {
   return impl_->model_.frames[frame_index].name;
 }
 
@@ -146,7 +149,7 @@ FrameType PinocchioModelImpl::GetFrameType(FrameIndex frame_index) const {
     return FrameType::kJoint;
   } else if (impl_->model_.frames[frame_index].type == pinocchio::SENSOR) {
     return FrameType::kSensor;
-  } else if (impl_->model_.frames[frame_index].type == pinocchio::FIXED_JOINT){
+  } else if (impl_->model_.frames[frame_index].type == pinocchio::FIXED_JOINT) {
     return FrameType::kFixed;
   } else {
     throw std::runtime_error("Unknown frame type.");
@@ -160,9 +163,13 @@ PinocchioModelImpl::GetFrameTransform(FrameIndex from_frame,
          GetFrameTransformInWorld(to_frame);
 }
 
-Eigen::Affine3d PinocchioModelImpl::GetFrameTransformInWorld(FrameIndex frame) const {
-  pinocchio::updateFramePlacement(impl_->model_, impl_->data_, (size_t) frame);
-  return Se3ToAffine3d(impl_->data_.oMf[frame]);
+Eigen::Affine3d
+PinocchioModelImpl::GetFrameTransformInWorld(FrameIndex frame) const {
+  pinocchio::updateFramePlacement(
+      impl_->model_,
+      impl_->data_,
+      static_cast<size_t>(frame));
+  return helpers::Se3ToAffine3d(impl_->data_.oMf[frame]);
 }
 
 Eigen::Vector3d PinocchioModelImpl::EvalCenterOfMassPosition() {
@@ -214,7 +221,7 @@ void PinocchioModelImpl::ComputeAll(
 void PinocchioModelImpl::ForwardKinematics(
   const Eigen::Ref<const Eigen::VectorXd>& q) {
   pinocchio::forwardKinematics(impl_->model_, impl_->data_, q);
-};
+}
 void PinocchioModelImpl::ForwardKinematics(
   const Eigen::Ref<const Eigen::VectorXd>& q,
   const Eigen::Ref<const Eigen::VectorXd>& v) {
@@ -242,9 +249,11 @@ JointType PinocchioModelImpl::GetJointType(size_t joint_index) const {
     return JointType::kPrismatic;
   } else if (impl_->model_.joints[joint_index].shortname() == "JointModelPZ") {
     return JointType::kPrismatic;
-  } else if (impl_->model_.joints[joint_index].shortname() == "JointModelSpherical") {
+  } else if (impl_->model_.joints[joint_index].shortname() ==
+      "JointModelSpherical") {
     return JointType::kSpherical;
-  } else if (impl_->model_.joints[joint_index].shortname() == "JointModelPlanar") {
+  } else if (impl_->model_.joints[joint_index].shortname() ==
+      "JointModelPlanar") {
     return JointType::kPlanar;
   } else {
     return JointType::kUnknown;

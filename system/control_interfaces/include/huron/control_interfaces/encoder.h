@@ -39,7 +39,8 @@ class Encoder : public Sensor {
  public:
   Encoder(double gear_ratio, std::unique_ptr<EncoderConfiguration> config)
     : Sensor(2, 1, std::move(config)), gear_ratio_(gear_ratio) {}
-  explicit Encoder(double gear_ratio) : Encoder(gear_ratio, std::make_unique<EncoderConfiguration>()) {}
+  explicit Encoder(double gear_ratio)
+    : Encoder(gear_ratio, std::make_unique<EncoderConfiguration>()) {}
   explicit Encoder(std::unique_ptr<EncoderConfiguration> config)
     : Encoder(1.0, std::move(config)) {}
   Encoder() : Encoder(1.0) {}

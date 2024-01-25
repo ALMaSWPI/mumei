@@ -1,6 +1,9 @@
 #pragma once
 
 #include <memory>
+#include <vector>
+#include <string>
+
 #include "huron/sensors/force_sensing_resistor_array.h"
 #include "huron/driver/serial/serial.h"
 

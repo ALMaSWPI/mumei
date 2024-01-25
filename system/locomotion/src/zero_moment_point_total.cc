@@ -27,5 +27,5 @@ Eigen::Vector2d ZeroMomentPointTotal::Eval(double& fz) {
   }
   return zmp;
 }
-    
+
 }  // namespace huron

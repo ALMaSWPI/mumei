@@ -2,6 +2,10 @@
 
 #include <eigen3/Eigen/Core>
 
+#include <string>
+#include <memory>
+#include <vector>
+
 #include "huron/control_interfaces/sensor_with_frame.h"
 #include "huron/sensors/force_sensing_resistor.h"
 
@@ -31,6 +35,7 @@ class ForceSensingResistorArray : public SensorWithFrame {
   Eigen::Affine3d GetSensorPose(size_t index) const;
 
   size_t num_sensors() const { return fsr_array_.size(); }
+
  protected:
   std::string name_;
   Eigen::VectorXd values_;

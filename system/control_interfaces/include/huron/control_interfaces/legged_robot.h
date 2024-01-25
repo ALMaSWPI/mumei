@@ -2,6 +2,8 @@
 
 #include <eigen3/Eigen/Core>
 
+#include <memory>
+
 #include "robot.h"
 #include "huron/locomotion/zero_moment_point.h"
 
