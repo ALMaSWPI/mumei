@@ -8,9 +8,8 @@
 #include "huron/odrive/odrive_torque_motor.h"
 #include "huron/utils/time.h"
 
-const float kGearRatio1 = 1.0;
-const float kGearRatio2 = 80.0;
-const float kCPR = 4096.0;
+const double kGearRatio = 1.0;
+const double kCPR = 4096.0;
 
 const std::array<std::string, 8> joints_without_encoder = {
   "l_hip_yaw_joint",
@@ -143,13 +142,13 @@ int main(int argc, char* argv[]) {
 
   // 4 encoders
   auto left_knee_encoder = std::make_shared<huron::odrive::ODriveEncoder>(
-    kCPR, left_knee_odrive);
+    kGearRatio, kCPR, left_knee_odrive);
   auto left_hip_pitch_encoder = std::make_shared<huron::odrive::ODriveEncoder>(
-    kCPR, left_hip_pitch_odrive);
+    kGearRatio, kCPR, left_hip_pitch_odrive);
   auto right_knee_encoder = std::make_shared<huron::odrive::ODriveEncoder>(
-    kCPR, right_knee_odrive);
+    kGearRatio, kCPR, right_knee_odrive);
   auto right_hip_pitch_encoder = std::make_shared<huron::odrive::ODriveEncoder>(
-    kCPR, right_hip_pitch_odrive);
+    kGearRatio, kCPR, right_hip_pitch_odrive);
 
   robot.RegisterStateProvider(left_knee_encoder, true);
   robot.GetModel()->SetJointStateProvider(
