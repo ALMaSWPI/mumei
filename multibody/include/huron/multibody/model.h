@@ -16,7 +16,7 @@ namespace multibody {
 
 template <typename T>
 class Model : public std::enable_shared_from_this<Model<T>> {
-  using ModelImplInterface = internal::ModelImplInterface;
+  using ModelImplInterface = internal::ModelImplInterface<T>;
 
  public:
   Model();

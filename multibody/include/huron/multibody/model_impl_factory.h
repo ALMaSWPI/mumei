@@ -20,11 +20,11 @@ class ModelImplFactory final {
   ModelImplFactory& operator=(const ModelImplFactory&) = delete;
   ~ModelImplFactory() = default;
  private:
-  static std::unique_ptr<internal::ModelImplInterface>
+  static std::unique_ptr<internal::ModelImplInterface<T>>
   Create(ModelImplType type) {
     switch (type) {
       case ModelImplType::kPinocchio:
-        return std::make_unique<internal::PinocchioModelImpl>();
+        return std::make_unique<internal::PinocchioModelImpl<T>>();
       default:
         throw std::runtime_error("ModelImplType not implemented.");
     }

@@ -11,8 +11,8 @@ class PinocchioModelImplTest : public testing::Test {
                              huron::multibody::JointType::kFreeFlyer);
   }
 
-  huron::multibody::internal::PinocchioModelImpl impl_rrbot;
-  huron::multibody::internal::PinocchioModelImpl impl_huron;
+  huron::multibody::internal::PinocchioModelImpl<double> impl_rrbot;
+  huron::multibody::internal::PinocchioModelImpl<double> impl_huron;
 };
 
 TEST_F(PinocchioModelImplTest, RRBotGeneralChecks) {

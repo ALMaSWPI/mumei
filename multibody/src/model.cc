@@ -17,7 +17,7 @@ void Model<T>::AddModelImpl(ModelImplType type,
 }
 
 template <typename T>
-internal::ModelImplInterface const * Model<T>::GetModelImpl(size_t index) const {
+internal::ModelImplInterface<T> const * Model<T>::GetModelImpl(size_t index) const {
   return impls_[index].get();
 }
 
