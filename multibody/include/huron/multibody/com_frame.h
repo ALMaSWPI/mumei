@@ -11,12 +11,13 @@ namespace multibody {
 /**
  * @brief Robot center of mass frame.
  */
-class ComFrame : public Frame {
+template <typename T>
+class ComFrame : public Frame<T> {
  public:
   ComFrame(FrameIndex index,
            const std::string& name,
            bool is_user_defined,
-           std::weak_ptr<const Model> model,
+           std::weak_ptr<const Model<T>> model,
            FrameIndex parent_frame_index);
 
   ComFrame(const ComFrame&) = delete;
@@ -24,9 +25,9 @@ class ComFrame : public Frame {
   ~ComFrame() override = default;
 
   Eigen::Affine3d GetTransformInWorld() const override;
-  Eigen::Affine3d GetTransformFromFrame(const Frame& other) const override;
+  Eigen::Affine3d GetTransformFromFrame(const Frame<T>& other) const override;
   Eigen::Affine3d GetTransformFromFrame(FrameIndex other) const override;
-  Eigen::Affine3d GetTransformToFrame(const Frame& other) const override;
+  Eigen::Affine3d GetTransformToFrame(const Frame<T>& other) const override;
   Eigen::Affine3d GetTransformToFrame(FrameIndex other) const override;
 
  private:
@@ -37,3 +38,6 @@ class ComFrame : public Frame {
 
 }  // namespace multibody
 }  // namespace huron
+
+HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+    class huron::multibody::ComFrame)

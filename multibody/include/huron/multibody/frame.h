@@ -5,12 +5,12 @@
 #include <memory>
 #include <string>
 
+#include "huron/multibody/fwd.h"
+#include "huron/utils/template_instantiations.h"
 #include "huron/enable_protected_make_shared.h"
 
 namespace huron {
 namespace multibody {
-
-class Model;
 
 using FrameIndex = size_t;
 
@@ -22,9 +22,10 @@ enum class FrameType {
   kPhysical,
 };
 
-class Frame : public enable_protected_make_shared<Frame> {
+template <typename T>
+class Frame : public enable_protected_make_shared<Frame<T>> {
  public:
-  friend class Model;
+  friend class Model<T>;
 
   Frame(const Frame&) = delete;
   Frame& operator=(const Frame&) = delete;
@@ -46,15 +47,18 @@ class Frame : public enable_protected_make_shared<Frame> {
         const std::string& name,
         FrameType type,
         bool is_user_defined,
-        std::weak_ptr<const Model> model);
+        std::weak_ptr<const Model<T>> model);
 
   /// \brief Frame name.
   const FrameIndex index_;
   const std::string name_;
   const FrameType type_;
   bool is_user_defined_;
-  const std::weak_ptr<const Model> model_;
+  const std::weak_ptr<const Model<T>> model_;
 };
 
 }  // namespace multibody
 }  // namespace huron
+
+HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+    class huron::multibody::Frame)

@@ -7,7 +7,7 @@
 
 using namespace huron;  //NOLINT
 
-class TestRobot : public Robot {
+class TestRobot : public Robot<double> {
  public:
   TestRobot() : Robot()  {}
   ~TestRobot() override = default;
@@ -21,10 +21,10 @@ class TestRobot : public Robot {
   void Terminate() override {}
 };
 
-class FakeForceTorqueSensor : public ForceTorqueSensor {
+class FakeForceTorqueSensor : public ForceTorqueSensor<double> {
  public:
   FakeForceTorqueSensor(bool reverse_wrench_direction,
-                        std::weak_ptr<const multibody::Frame> frame,
+                        std::weak_ptr<const multibody::Frame<double>> frame,
                         const Vector6d& fake_wrench)
     : ForceTorqueSensor(reverse_wrench_direction, std::move(frame)),
       fake_wrench_(fake_wrench) {}
@@ -89,10 +89,10 @@ class TestZeroMomentPointFt : public testing::Test {
     // ZMP frame is the world frame
     zmp_frame = robot.GetModel()->GetFrame("universe");
     // Total ZMP
-    std::vector<std::shared_ptr<ForceTorqueSensor>> ft_sensor_list;
+    std::vector<std::shared_ptr<ForceTorqueSensor<double>>> ft_sensor_list;
     ft_sensor_list.push_back(l_ft_sensor);
     ft_sensor_list.push_back(r_ft_sensor);
-    total_zmp = std::make_shared<ZeroMomentPointFTSensor>(
+    total_zmp = std::make_shared<ZeroMomentPointFTSensor<double>>(
         zmp_frame,
         normal_force_threshold,
         ft_sensor_list);
@@ -103,9 +103,9 @@ class TestZeroMomentPointFt : public testing::Test {
   double tolerance = 0.0005;
 
   TestRobot robot;
-  std::weak_ptr<const multibody::Frame> zmp_frame;
+  std::weak_ptr<const multibody::Frame<double>> zmp_frame;
   std::shared_ptr<FakeForceTorqueSensor> l_ft_sensor, r_ft_sensor;
-  std::shared_ptr<ZeroMomentPoint> total_zmp;
+  std::shared_ptr<ZeroMomentPoint<double>> total_zmp;
 };
 
 TEST_F(TestZeroMomentPointFt, TestGeneral) {

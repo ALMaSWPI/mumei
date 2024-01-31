@@ -4,13 +4,15 @@
 
 #include <memory>
 
+#include "huron/utils/template_instantiations.h"
 #include "huron/control_interfaces/sensor.h"
 #include "huron/multibody/frame.h"
 
 namespace huron {
 
+template <typename T>
 class SensorWithFrame : public Sensor {
-  using Frame = multibody::Frame;
+  using Frame = multibody::Frame<T>;
 
  public:
   SensorWithFrame(const Eigen::Vector2i& dim,
@@ -39,3 +41,6 @@ class SensorWithFrame : public Sensor {
 };
 
 }  // namespace huron
+
+HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+    class huron::SensorWithFrame)

@@ -5,7 +5,7 @@
 
 using namespace huron;  //NOLINT
 
-class TestRobot : public Robot {
+class TestRobot : public Robot<double> {
  public:
   TestRobot() : Robot()  {}
   ~TestRobot() override = default;

@@ -5,16 +5,16 @@ namespace huron {
 
 ForceSensingResistorArraySerial::ForceSensingResistorArraySerial(
   const std::string& name,
-  std::weak_ptr<const multibody::Frame> frame,
-  const std::vector<std::shared_ptr<ForceSensingResistor>>& fsr_array,
+  std::weak_ptr<const multibody::Frame<double>> frame,
+  const std::vector<std::shared_ptr<ForceSensingResistor<double>>>& fsr_array,
   std::shared_ptr<driver::serial::SerialBase> serial)
   : ForceSensingResistorArray(name, std::move(frame), fsr_array),
     serial_(std::move(serial)) {}
 
 ForceSensingResistorArraySerial::ForceSensingResistorArraySerial(
   const std::string& name,
-  std::weak_ptr<const multibody::Frame> frame,
-  const std::vector<std::shared_ptr<ForceSensingResistor>>& fsr_array,
+  std::weak_ptr<const multibody::Frame<double>> frame,
+  const std::vector<std::shared_ptr<ForceSensingResistor<double>>>& fsr_array,
   std::shared_ptr<driver::serial::SerialBase> serial,
   std::unique_ptr<Configuration> config)
   : ForceSensingResistorArray(name, std::move(frame),

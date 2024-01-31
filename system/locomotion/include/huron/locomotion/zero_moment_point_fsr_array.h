@@ -6,12 +6,13 @@
 
 namespace huron {
 
-class ZeroMomentPointFSRArray : public ZeroMomentPoint {
+template <typename T>
+class ZeroMomentPointFSRArray : public ZeroMomentPoint<T> {
  public:
   ZeroMomentPointFSRArray(
-    std::weak_ptr<const multibody::Frame> zmp_frame,
+    std::weak_ptr<const multibody::Frame<T>> zmp_frame,
     double normal_force_threshold,
-    std::shared_ptr<ForceSensingResistorArray> fsr_array);
+    std::shared_ptr<ForceSensingResistorArray<T>> fsr_array);
   ZeroMomentPointFSRArray(const ZeroMomentPointFSRArray&) = delete;
   ZeroMomentPointFSRArray& operator=(const ZeroMomentPointFSRArray&) = delete;
   ~ZeroMomentPointFSRArray() override = default;
@@ -19,7 +20,10 @@ class ZeroMomentPointFSRArray : public ZeroMomentPoint {
   Eigen::Vector2d Eval(double& fz) override;
 
  private:
-  std::shared_ptr<ForceSensingResistorArray> fsr_array_;
+  std::shared_ptr<ForceSensingResistorArray<T>> fsr_array_;
 };
 
 }  // namespace huron
+
+HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+    class huron::ForceSensingResistorArray)

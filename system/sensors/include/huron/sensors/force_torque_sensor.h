@@ -9,12 +9,13 @@
 
 namespace huron {
 
-class ForceTorqueSensor : public SensorWithFrame {
+template <typename T>
+class ForceTorqueSensor : public SensorWithFrame<T> {
  public:
   ForceTorqueSensor(bool reverse_wrench_direction,
-                    std::weak_ptr<const multibody::Frame> frame);
+                    std::weak_ptr<const multibody::Frame<T>> frame);
   ForceTorqueSensor(bool reverse_wrench_direction,
-                    std::weak_ptr<const multibody::Frame> frame,
+                    std::weak_ptr<const multibody::Frame<T>> frame,
                     std::unique_ptr<Configuration> config);
   ForceTorqueSensor(const ForceTorqueSensor&) = delete;
   ForceTorqueSensor& operator=(const ForceTorqueSensor&) = delete;
@@ -43,3 +44,6 @@ class ForceTorqueSensor : public SensorWithFrame {
 };
 
 }  // namespace huron
+
+HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+    class huron::ForceTorqueSensor)

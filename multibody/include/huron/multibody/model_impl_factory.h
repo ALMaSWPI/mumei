@@ -2,6 +2,7 @@
 
 #include <memory>
 
+#include "fwd.h"
 #include "model_impl_types.h"
 #include "model_impl_interface.h"
 #include "pinocchio_model_impl.h"
@@ -10,8 +11,9 @@ namespace huron {
 namespace multibody {
 namespace internal {
 
+template <typename T>
 class ModelImplFactory final {
-  friend class multibody::Model;
+  friend class Model<T>;
  public:
   ModelImplFactory() = delete;
   ModelImplFactory(const ModelImplFactory&) = delete;

@@ -7,7 +7,7 @@
 
 using namespace huron;  //NOLINT
 
-class TestLeggedRobot : public LeggedRobot {
+class TestLeggedRobot : public LeggedRobot<double> {
  public:
   TestLeggedRobot() : LeggedRobot()  {}
   ~TestLeggedRobot() override = default;
@@ -21,10 +21,10 @@ class TestLeggedRobot : public LeggedRobot {
   void Terminate() override {}
 };
 
-class FakeForceTorqueSensor : public ForceTorqueSensor {
+class FakeForceTorqueSensor : public ForceTorqueSensor<double> {
  public:
   FakeForceTorqueSensor(bool reverse_wrench_direction,
-                        std::weak_ptr<const multibody::Frame> frame,
+                        std::weak_ptr<const multibody::Frame<double>> frame,
                         const Vector6d& fake_wrench)
     : ForceTorqueSensor(reverse_wrench_direction, std::move(frame)),
       fake_wrench_(fake_wrench) {}
@@ -89,8 +89,8 @@ class TestLeggedZmp : public testing::Test {
     // Total ZMP
     ft_sensor_list.push_back(l_ft_sensor);
     ft_sensor_list.push_back(r_ft_sensor);
-    std::shared_ptr<ZeroMomentPoint> zmp =
-      std::make_shared<ZeroMomentPointFTSensor>(
+    std::shared_ptr<ZeroMomentPoint<double>> zmp =
+      std::make_shared<ZeroMomentPointFTSensor<double>>(
         robot.GetModel()->GetFrame("universe"),
         0.005,
         ft_sensor_list);
@@ -101,7 +101,7 @@ class TestLeggedZmp : public testing::Test {
   double tolerance = 0.0005;
 
   TestLeggedRobot robot;
-  std::vector<std::shared_ptr<ForceTorqueSensor>> ft_sensor_list;
+  std::vector<std::shared_ptr<ForceTorqueSensor<double>>> ft_sensor_list;
   std::shared_ptr<FakeForceTorqueSensor> l_ft_sensor, r_ft_sensor;
 };
 

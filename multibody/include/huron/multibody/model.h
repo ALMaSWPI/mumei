@@ -6,6 +6,7 @@
 #include <string>
 #include <unordered_map>
 
+#include "huron/utils/template_instantiations.h"
 #include "huron/multibody/model_impl_types.h"
 #include "huron/multibody/model_impl_interface.h"
 #include "huron/multibody/frame.h"
@@ -13,7 +14,8 @@
 namespace huron {
 namespace multibody {
 
-class Model : public std::enable_shared_from_this<Model> {
+template <typename T>
+class Model : public std::enable_shared_from_this<Model<T>> {
   using ModelImplInterface = internal::ModelImplInterface;
 
  public:
@@ -73,9 +75,9 @@ class Model : public std::enable_shared_from_this<Model> {
   // AddFrame(const std::string& name, Args&&... args);
 
   template<typename FrameImpl, typename ...Args>
-  std::weak_ptr<const Frame> AddFrame(const std::string& name, Args&&... args) {
+  std::weak_ptr<const Frame<T>> AddFrame(const std::string& name, Args&&... args) {
     static_assert(
-      std::is_base_of_v<Frame, FrameImpl>,
+      std::is_base_of_v<Frame<T>, FrameImpl>,
       "Invalid frame type.");
     static_assert(
       std::is_base_of_v<enable_protected_make_shared<FrameImpl>, FrameImpl>,
@@ -88,8 +90,8 @@ class Model : public std::enable_shared_from_this<Model> {
     return frames_.back();
   }
 
-  std::weak_ptr<const Frame> GetFrame(FrameIndex index) const;
-  std::weak_ptr<const Frame> GetFrame(const std::string& name) const;
+  std::weak_ptr<const Frame<T>> GetFrame(FrameIndex index) const;
+  std::weak_ptr<const Frame<T>> GetFrame(const std::string& name) const;
 
   void BuildFromUrdf(const std::string& urdf_path,
                      JointType root_joint_type = JointType::kFixed);
@@ -225,7 +227,7 @@ class Model : public std::enable_shared_from_this<Model> {
                         frames_.size(),  // frame index
                         name,  // frame name
                         is_user_defined,
-                        weak_from_this(),  // model
+                        this->weak_from_this(),  // model
                         std::forward<Args>(args)...));
     frame_name_to_index_[name] = frames_.size() - 1;
   }
@@ -244,7 +246,7 @@ class Model : public std::enable_shared_from_this<Model> {
 
   /// \brief All frames, including those defined by the model description file
   /// and user-defined ones.
-  std::vector<std::shared_ptr<Frame>> frames_;
+  std::vector<std::shared_ptr<Frame<T>>> frames_;
   std::unordered_map<std::string, FrameIndex> frame_name_to_index_;
 
   bool is_constructed_ = false;
@@ -253,3 +255,6 @@ class Model : public std::enable_shared_from_this<Model> {
 
 }  // namespace multibody
 }  // namespace huron
+
+HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+    class huron::multibody::Model)

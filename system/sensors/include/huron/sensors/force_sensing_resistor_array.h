@@ -11,16 +11,17 @@
 
 namespace huron {
 
-class ForceSensingResistorArray : public SensorWithFrame {
+template <typename T>
+class ForceSensingResistorArray : public SensorWithFrame<T> {
  public:
   ForceSensingResistorArray(
     const std::string& name,
-    std::weak_ptr<const multibody::Frame> frame,
-    const std::vector<std::shared_ptr<ForceSensingResistor>>& fsr_array);
+    std::weak_ptr<const multibody::Frame<T>> frame,
+    const std::vector<std::shared_ptr<ForceSensingResistor<T>>>& fsr_array);
   ForceSensingResistorArray(
     const std::string& name,
-    std::weak_ptr<const multibody::Frame> frame,
-    const std::vector<std::shared_ptr<ForceSensingResistor>>& fsr_array,
+    std::weak_ptr<const multibody::Frame<T>> frame,
+    const std::vector<std::shared_ptr<ForceSensingResistor<T>>>& fsr_array,
     std::unique_ptr<Configuration> config);
 
   ForceSensingResistorArray(const ForceSensingResistorArray&) = delete;
@@ -39,7 +40,10 @@ class ForceSensingResistorArray : public SensorWithFrame {
  protected:
   std::string name_;
   Eigen::VectorXd values_;
-  std::vector<std::shared_ptr<ForceSensingResistor>> fsr_array_;
+  std::vector<std::shared_ptr<ForceSensingResistor<T>>> fsr_array_;
 };
 
 }  // namespace huron
+
+HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+    class huron::ForceSensingResistorArray)

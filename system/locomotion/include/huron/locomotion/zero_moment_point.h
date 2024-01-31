@@ -10,9 +10,10 @@
 
 namespace huron {
 
+template <typename T>
 class ZeroMomentPoint {
  public:
-  ZeroMomentPoint(std::weak_ptr<const multibody::Frame> zmp_frame,
+  ZeroMomentPoint(std::weak_ptr<const multibody::Frame<T>> zmp_frame,
                   double normal_force_threshold);
   ZeroMomentPoint(const ZeroMomentPoint&) = delete;
   ZeroMomentPoint& operator=(const ZeroMomentPoint&) = delete;
@@ -40,8 +41,11 @@ class ZeroMomentPoint {
   Eigen::Affine3d ZmpToWorld(const Eigen::Vector2d& zmp) const;
 
  protected:
-  std::weak_ptr<const multibody::Frame> zmp_frame_;
+  std::weak_ptr<const multibody::Frame<T>> zmp_frame_;
   double normal_force_threshold_;
 };
 
 }  // namespace huron
+
+HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+    class huron::ZeroMomentPoint)

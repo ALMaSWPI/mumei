@@ -2,13 +2,15 @@
 
 namespace huron {
 
-ZeroMomentPointTotal::ZeroMomentPointTotal(
-  std::weak_ptr<const multibody::Frame> zmp_frame,
-  const std::vector<std::shared_ptr<ZeroMomentPoint>>& zmp_vector)
-  : ZeroMomentPoint(std::move(zmp_frame), 0.0),
+template <typename T>
+ZeroMomentPointTotal<T>::ZeroMomentPointTotal(
+  std::weak_ptr<const multibody::Frame<T>> zmp_frame,
+  const std::vector<std::shared_ptr<ZeroMomentPoint<T>>>& zmp_vector)
+  : ZeroMomentPoint<T>(std::move(zmp_frame), 0.0),
     zmp_vector_(zmp_vector) {}
 
-Eigen::Vector2d ZeroMomentPointTotal::Eval(double& fz) {
+template <typename T>
+Eigen::Vector2d ZeroMomentPointTotal<T>::Eval(double& fz) {
   Eigen::Vector2d zmp;
   double num_x = 0.0, num_y = 0.0, den = 0.0;
   for (auto& zmp_obj : zmp_vector_) {
@@ -29,3 +31,6 @@ Eigen::Vector2d ZeroMomentPointTotal::Eval(double& fz) {
 }
 
 }  // namespace huron
+
+HURON_DEFINE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+    class huron::ZeroMomentPointTotal)

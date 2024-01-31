@@ -6,6 +6,7 @@
 #include <utility>
 #include <memory>
 
+#include "huron/utils/template_instantiations.h"
 #include "huron/control_interfaces/configuration.h"
 #include "huron/control_interfaces/generic_component.h"
 #include "huron/control_interfaces/moving_group.h"
@@ -35,8 +36,9 @@ class RobotConfiguration : public Configuration {
       : RobotConfiguration({}, {}) {}
 };
 
+template <typename T>
 class Robot : public MovingGroup, public GenericComponent {
-  using Model = multibody::Model;
+  using Model = multibody::Model<T>;
 
  public:
   explicit Robot(std::unique_ptr<RobotConfiguration> config);
@@ -76,3 +78,6 @@ class Robot : public MovingGroup, public GenericComponent {
 };
 
 }  // namespace huron
+
+HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+    class huron::Robot)
