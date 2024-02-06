@@ -126,14 +126,8 @@ jobs:
           ctest
           sudo make install
           cd -
-      - name: Build and test Mujoco
+      - name: Load Mujoco
         run: |
           cd mujoco/
           git clone https://github.com/google-deepmind/mujoco
-          cd mujoco
-          sudo apt-get update
-          sudo apt-get install -y libosmesa6-dev libgl1-mesa-glx libglfw3 libglfw3-dev libglew-dev libxrandr2 libxinerama1 libxi6 libxcursor1 ibgl1-mesa-dev libglu1-mesa-dev
-          mkdir build
-          cd build
-          cmake ..
-          cmake --build 
+
