@@ -67,7 +67,11 @@ cmake .. -DCMAKE_TOOLCHAIN_FILE=../../../tools/<x86_64 or arm64>-toolchain.cmake
 make
 sudo make install
 ```
-
+4. Build and install Mujoco (if needed)
+```
+//Install glfw
+//Install Mujoco from source. Follow instruction at https://mujoco.readthedocs.io/en/stable/programming/index.html
+```
 ## Build and install:
 
 1. Make sure you are in the root of this repo (`huron/`)
@@ -93,6 +97,7 @@ Notes:
 `BUILD_TYPE` needs to be changed. For example, on Linux x86_64: `-DBUILD_TYPE=x86_64`
 
 ---
+
 
 ## Uninstall:
 
