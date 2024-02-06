@@ -95,8 +95,6 @@ jobs:
 
   build_mujoco:
     runs-on: ubuntu-22.04
-    container:
-      image: amd64/mujoco:latest
     steps:
       - uses: actions/checkout@v3
         with:
@@ -137,4 +135,3 @@ jobs:
           cd build
           cmake ..
           cmake --build 
-          
