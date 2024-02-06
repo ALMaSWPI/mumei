@@ -95,6 +95,8 @@ jobs:
 
   build_mujoco:
     runs-on: ubuntu-22.04
+    container:
+      image: amd64/ros:humble
     steps:
       - uses: actions/checkout@v3
         with:
