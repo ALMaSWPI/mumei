@@ -118,7 +118,7 @@ jobs:
       - name: Build, test, and install huron
         run: |
           export LD_LIBRARY_PATH=/usr/local/lib:/usr/lib:$LD_LIBRARY_PATH
-          cmake -DBUILD_TYPE=x86_64 -DUSE_PINOCCHIO=1 -Bbuild
+          cmake -DBUILD_TYPE=x86_64 -DUSE_PINOCCHIO=0 -Bbuild
           cmake --build build --parallel
           cd build
           ctest
