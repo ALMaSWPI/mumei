@@ -147,7 +147,7 @@ endif()
 
 # Build examples
 # add_subdirectory(examples)
-
+add_subdirectory(mujoco)
 target_link_libraries(
   huron_tests
   huron
