@@ -49,7 +49,7 @@ class Robot : public MovingGroup, public GenericComponent {
 
   Model* const GetModel() { return model_.get(); }
 
-  void RegisterStateProvider(std::shared_ptr<StateProvider> state_provider,
+  void RegisterStateProvider(std::shared_ptr<StateProvider<T>> state_provider,
                              bool is_joint_state_provider = false);
 
   /**
@@ -63,9 +63,9 @@ class Robot : public MovingGroup, public GenericComponent {
    */
   void UpdateJointStates();
 
-  const Eigen::VectorBlock<const Eigen::VectorXd> GetJointPositions() const;
+  const Eigen::VectorBlock<const huron::VectorX<T>> GetJointPositions() const;
 
-  const Eigen::VectorBlock<const Eigen::VectorXd> GetJointVelocities() const;
+  const Eigen::VectorBlock<const huron::VectorX<T>> GetJointVelocities() const;
 
  protected:
   Robot(std::unique_ptr<RobotConfiguration> config,
@@ -73,11 +73,13 @@ class Robot : public MovingGroup, public GenericComponent {
   explicit Robot(std::shared_ptr<Model> model);
 
   std::shared_ptr<Model> model_;
-  std::vector<std::shared_ptr<StateProvider>> non_joint_state_providers_;
-  std::vector<std::shared_ptr<StateProvider>> joint_state_providers_;
+  std::vector<std::shared_ptr<StateProvider<T>>> non_joint_state_providers_;
+  std::vector<std::shared_ptr<StateProvider<T>>> joint_state_providers_;
 };
 
 }  // namespace huron
 
 HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+    class huron::Robot)
+HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_AD_SCALARS(
     class huron::Robot)

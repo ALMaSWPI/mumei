@@ -17,3 +17,5 @@ ForceSensingResistor<T>::ForceSensingResistor(
 
 HURON_DEFINE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
     class huron::ForceSensingResistor)
+HURON_DEFINE_CLASS_TEMPLATE_INSTANTIATIONS_ON_AD_SCALARS(
+    class huron::ForceSensingResistor)

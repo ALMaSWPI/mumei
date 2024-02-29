@@ -28,8 +28,8 @@ class PinocchioModelImpl : public ModelImplInterface<T> {
                      JointType root_joint_type) override;
 
   const std::vector<std::string>& GetJointNames() const override;
-  std::weak_ptr<Joint> GetJoint(const std::string& name) const override;
-  std::weak_ptr<Joint> GetJoint(size_t joint_index) const override;
+  std::weak_ptr<Joint<T>> GetJoint(const std::string& name) const override;
+  std::weak_ptr<Joint<T>> GetJoint(size_t joint_index) const override;
 
   JointType GetJointType(size_t joint_index) const override;
   JointIndex GetJointIndex(const std::string& joint_name) const override;
@@ -39,15 +39,15 @@ class PinocchioModelImpl : public ModelImplInterface<T> {
   std::unique_ptr<JointDescription> GetJointDescription(
     const std::string& joint_name) const override;
 
-  huron::Affine3<T>
+  huron::SE3<T>
   GetJointTransformInWorld(size_t joint_index) const override;
 
   FrameIndex GetFrameIndex(const std::string& frame_name) const override;
   const std::string& GetFrameName(FrameIndex frame_index) const override;
   FrameType GetFrameType(FrameIndex frame_index) const override;
-  huron::Affine3<T> GetFrameTransform(FrameIndex from_frame,
+  huron::SE3<T> GetFrameTransform(FrameIndex from_frame,
                             FrameIndex to_frame) const override;
-  huron::Affine3<T>
+  huron::SE3<T>
   GetFrameTransformInWorld(FrameIndex frame) const override;
 
   huron::Vector3<T> EvalCenterOfMassPosition() override;
@@ -101,4 +101,6 @@ class PinocchioModelImpl : public ModelImplInterface<T> {
 }  // namespace huron
 
 HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+    class huron::multibody::internal::PinocchioModelImpl)
+HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_AD_SCALARS(
     class huron::multibody::internal::PinocchioModelImpl)

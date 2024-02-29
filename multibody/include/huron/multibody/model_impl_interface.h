@@ -24,8 +24,8 @@ class ModelImplInterface {
                              JointType root_joint_type);
 
   virtual const std::vector<std::string>& GetJointNames() const;
-  virtual std::weak_ptr<Joint> GetJoint(const std::string& name) const;
-  virtual std::weak_ptr<Joint> GetJoint(size_t joint_index) const;
+  virtual std::weak_ptr<Joint<T>> GetJoint(const std::string& name) const;
+  virtual std::weak_ptr<Joint<T>> GetJoint(size_t joint_index) const;
 
   virtual JointType GetJointType(size_t joint_index) const;
   virtual JointIndex GetJointIndex(const std::string& joint_name) const = 0;
@@ -35,16 +35,16 @@ class ModelImplInterface {
   virtual std::unique_ptr<JointDescription> GetJointDescription(
     const std::string& joint_name) const;
 
-  virtual huron::Affine3<T>
+  virtual huron::SE3<T>
   GetJointTransformInWorld(size_t joint_index) const;
 
   virtual FrameIndex GetFrameIndex(
     const std::string& frame_name) const;
   virtual const std::string& GetFrameName(FrameIndex frame_index) const;
   virtual FrameType GetFrameType(FrameIndex frame_index) const;
-  virtual huron::Affine3<T> GetFrameTransform(FrameIndex from_frame,
+  virtual huron::SE3<T> GetFrameTransform(FrameIndex from_frame,
                                             FrameIndex to_frame) const;
-  virtual huron::Affine3<T> GetFrameTransformInWorld(FrameIndex frame) const;
+  virtual huron::SE3<T> GetFrameTransformInWorld(FrameIndex frame) const;
 
   virtual huron::Vector3<T> EvalCenterOfMassPosition();
   virtual huron::Vector3<T> GetCenterOfMassPosition() const;
@@ -123,4 +123,6 @@ class ModelImplInterface {
 }  // namespace huron
 
 HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+    class huron::multibody::internal::ModelImplInterface)
+HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_AD_SCALARS(
     class huron::multibody::internal::ModelImplInterface)

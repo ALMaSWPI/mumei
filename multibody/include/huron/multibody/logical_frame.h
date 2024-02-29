@@ -37,11 +37,11 @@ class LogicalFrame
   LogicalFrame& operator=(const LogicalFrame&) = delete;
   ~LogicalFrame() override = default;
 
-  Eigen::Affine3d GetTransformInWorld() const override;
-  Eigen::Affine3d GetTransformFromFrame(const Frame<T>& other) const override;
-  Eigen::Affine3d GetTransformFromFrame(FrameIndex other) const override;
-  Eigen::Affine3d GetTransformToFrame(const Frame<T>& other) const override;
-  Eigen::Affine3d GetTransformToFrame(FrameIndex other) const override;
+  huron::SE3<T> GetTransformInWorld() const override;
+  huron::SE3<T> GetTransformFromFrame(const Frame<T>& other) const override;
+  huron::SE3<T> GetTransformFromFrame(FrameIndex other) const override;
+  huron::SE3<T> GetTransformToFrame(const Frame<T>& other) const override;
+  huron::SE3<T> GetTransformToFrame(FrameIndex other) const override;
 
  protected:
   LogicalFrame(FrameIndex index,
@@ -49,12 +49,12 @@ class LogicalFrame
                bool is_user_defined,
                std::weak_ptr<const Model<T>> model,
                FrameIndex parent_frame_index,
-               std::function<Eigen::Affine3d(const Eigen::Affine3d&)>
+               std::function<huron::SE3<T>(const huron::SE3<T>&)>
                  transform_function);
 
  private:
   FrameIndex parent_frame_index_;
-  const std::function<Eigen::Affine3d(const Eigen::Affine3d&)>
+  const std::function<huron::SE3<T>(const huron::SE3<T>&)>
     transform_function_;
 };
 
@@ -62,4 +62,6 @@ class LogicalFrame
 }  // namespace huron
 
 HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+    class huron::multibody::LogicalFrame)
+HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_AD_SCALARS(
     class huron::multibody::LogicalFrame)

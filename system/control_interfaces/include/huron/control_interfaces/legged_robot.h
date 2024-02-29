@@ -22,7 +22,7 @@ class LeggedRobot : public Robot<T> {
   /**
    * Computes the Center of Mass in Base frame.
    */
-  Eigen::Vector2d EvalZeroMomentPoint();
+  huron::Vector2<T> EvalZeroMomentPoint();
 
  private:
   std::shared_ptr<ZeroMomentPoint<T>> zmp_;
@@ -31,4 +31,6 @@ class LeggedRobot : public Robot<T> {
 }  // namespace huron
 
 HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+    class huron::LeggedRobot)
+HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_AD_SCALARS(
     class huron::LeggedRobot)

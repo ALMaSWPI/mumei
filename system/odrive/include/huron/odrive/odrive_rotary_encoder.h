@@ -7,10 +7,10 @@
 namespace huron {
 namespace odrive {
 
-class ODriveEncoder final : public huron::RotaryEncoder {
+class ODriveEncoder final : public huron::RotaryEncoder<double> {
  public:
   ODriveEncoder(double gear_ratio,
-                std::unique_ptr<RotaryEncoderConfiguration> config,
+                std::unique_ptr<RotaryEncoderConfiguration<double>> config,
                 std::shared_ptr<ODrive> odrive);
   ODriveEncoder(double gear_ratio, double cpr, std::shared_ptr<ODrive> odrive);
   ODriveEncoder(double cpr, std::shared_ptr<ODrive> odrive);

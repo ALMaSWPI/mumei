@@ -23,7 +23,7 @@ Robot<T>::Robot(std::shared_ptr<Model> model)
 
 template <typename T>
 void Robot<T>::RegisterStateProvider(
-  std::shared_ptr<StateProvider> state_provider,
+  std::shared_ptr<StateProvider<T>> state_provider,
   bool is_joint_state_provider) {
   if (!is_joint_state_provider) {
     non_joint_state_providers_.push_back(state_provider);
@@ -46,13 +46,13 @@ void Robot<T>::UpdateJointStates() {
 }
 
 template <typename T>
-const Eigen::VectorBlock<const Eigen::VectorXd>
+const Eigen::VectorBlock<const huron::VectorX<T>>
 Robot<T>::GetJointPositions() const {
   return model_->GetPositions();
 }
 
 template <typename T>
-const Eigen::VectorBlock<const Eigen::VectorXd>
+const Eigen::VectorBlock<const huron::VectorX<T>>
 Robot<T>::GetJointVelocities() const {
   return model_->GetVelocities();
 }
@@ -60,4 +60,6 @@ Robot<T>::GetJointVelocities() const {
 }  // namespace huron
 
 HURON_DEFINE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+    class huron::Robot)
+HURON_DEFINE_CLASS_TEMPLATE_INSTANTIATIONS_ON_AD_SCALARS(
     class huron::Robot)

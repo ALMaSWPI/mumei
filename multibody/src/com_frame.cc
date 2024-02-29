@@ -15,43 +15,43 @@ ComFrame<T>::ComFrame(
     parent_frame_index_(parent_frame_index) {}
 
 template <typename T>
-Eigen::Affine3d ComFrame<T>::GetTransformInWorld() const {
-  Eigen::Affine3d parent_transform =
+huron::SE3<T> ComFrame<T>::GetTransformInWorld() const {
+  huron::SE3<T> parent_transform =
     this->model_.lock()->GetFrameTransformInWorld(parent_frame_index_);
   return parent_transform * ParentToThisTransform();
 }
 
 template <typename T>
-Eigen::Affine3d ComFrame<T>::GetTransformFromFrame(const Frame<T>& other) const {
-  Eigen::Affine3d parent_transform =
+huron::SE3<T> ComFrame<T>::GetTransformFromFrame(const Frame<T>& other) const {
+  huron::SE3<T> parent_transform =
     this->model_.lock()->GetFrameTransform(other.index(), parent_frame_index_);
   return parent_transform * ParentToThisTransform();
 }
 
 template <typename T>
-Eigen::Affine3d ComFrame<T>::GetTransformFromFrame(FrameIndex other) const {
-  Eigen::Affine3d parent_transform =
+huron::SE3<T> ComFrame<T>::GetTransformFromFrame(FrameIndex other) const {
+  huron::SE3<T> parent_transform =
     this->model_.lock()->GetFrameTransform(other, parent_frame_index_);
   return parent_transform * ParentToThisTransform();
 }
 
 template <typename T>
-Eigen::Affine3d ComFrame<T>::GetTransformToFrame(const Frame<T>& other) const {
-  Eigen::Affine3d parent_transform =
+huron::SE3<T> ComFrame<T>::GetTransformToFrame(const Frame<T>& other) const {
+  huron::SE3<T> parent_transform =
     this->model_.lock()->GetFrameTransform(parent_frame_index_, other.index());
   return ParentToThisTransform().inverse() * parent_transform;
 }
 
 template <typename T>
-Eigen::Affine3d ComFrame<T>::GetTransformToFrame(FrameIndex other) const {
-  Eigen::Affine3d parent_transform =
+huron::SE3<T> ComFrame<T>::GetTransformToFrame(FrameIndex other) const {
+  huron::SE3<T> parent_transform =
     this->model_.lock()->GetFrameTransform(parent_frame_index_, other);
   return ParentToThisTransform().inverse() * parent_transform;
 }
 
 template <typename T>
-Eigen::Affine3d ComFrame<T>::ParentToThisTransform() const {
-  Eigen::Affine3d parent_to_this = Eigen::Affine3d::Identity();
+huron::SE3<T> ComFrame<T>::ParentToThisTransform() const {
+  huron::SE3<T> parent_to_this;
   parent_to_this.translate(this->model_.lock()->GetCenterOfMassPosition());
   return parent_to_this;
 }
@@ -60,4 +60,6 @@ Eigen::Affine3d ComFrame<T>::ParentToThisTransform() const {
 }  // namespace huron
 
 HURON_DEFINE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+    class huron::multibody::ComFrame)
+HURON_DEFINE_CLASS_TEMPLATE_INSTANTIATIONS_ON_AD_SCALARS(
     class huron::multibody::ComFrame)

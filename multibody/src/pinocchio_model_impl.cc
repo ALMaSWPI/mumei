@@ -19,11 +19,11 @@ namespace internal {
 namespace helpers {
 
 template <typename T>
-huron::Affine3<T> Se3ToAffine3(const pinocchio::SE3Tpl<T>& se3) {
-  huron::Affine3<T> affine;
-  affine.linear() = se3.rotation();
-  affine.translation() = se3.translation();
-  return affine;
+huron::SE3<T> PinSe3ToHuronSe3(const pinocchio::SE3Tpl<T>& se3) {
+  huron::SE3<T> ret;
+  ret.rotate(se3.rotation());
+  ret.translate(se3.translation());
+  return ret;
 }
 
 }  // namespace helpers
@@ -44,9 +44,20 @@ PinocchioModelImpl<T>::~PinocchioModelImpl() = default;
 template <typename T>
 void PinocchioModelImpl<T>::BuildFromUrdf(const std::string& urdf_path,
                                        JointType root_joint_type) {
+  #if HURON_USE_CASADI==1
+  pinocchio::Model tmp_model;
+  #endif
+
   pinocchio::Model::JointModel joint_model;
   if (root_joint_type == JointType::kFixed) {
+
+    #if HURON_USE_CASADI==1
+    pinocchio::urdf::buildModel(urdf_path, tmp_model);
+    impl_->model_ = tmp_model.cast<T>();
+    #else
     pinocchio::urdf::buildModel(urdf_path, impl_->model_);
+    #endif
+
   } else {
     switch (root_joint_type) {
       case JointType::kFreeFlyer:
@@ -59,9 +70,14 @@ void PinocchioModelImpl<T>::BuildFromUrdf(const std::string& urdf_path,
         throw std::runtime_error("Unsupported root joint type.");
         break;
     }
+    #if HURON_USE_CASADI==1
+    pinocchio::urdf::buildModel(urdf_path, joint_model, tmp_model);
+    impl_->model_ = tmp_model.cast<T>();
+    #else
     pinocchio::urdf::buildModel(urdf_path, joint_model, impl_->model_);
+    #endif
   }
-  impl_->data_ = pinocchio::Data(impl_->model_);
+  impl_->data_ = pinocchio::DataTpl<T>(impl_->model_);
   num_positions_ = impl_->model_.nq;
   num_velocities_ = impl_->model_.nv;
   num_joints_ = impl_->model_.njoints;
@@ -74,13 +90,13 @@ const std::vector<std::string>& PinocchioModelImpl<T>::GetJointNames() const {
 }
 
 template <typename T>
-std::weak_ptr<Joint>
+std::weak_ptr<Joint<T>>
 PinocchioModelImpl<T>::GetJoint(const std::string& name) const {
   throw NotImplementedException();
 }
 
 template <typename T>
-std::weak_ptr<Joint>
+std::weak_ptr<Joint<T>>
 PinocchioModelImpl<T>::GetJoint(size_t joint_index) const {
   throw NotImplementedException();
 }
@@ -134,9 +150,9 @@ PinocchioModelImpl<T>::GetJointDescription(
 }
 
 template <typename T>
-huron::Affine3<T>
+huron::SE3<T>
 PinocchioModelImpl<T>::GetJointTransformInWorld(size_t joint_index) const {
-  return helpers::Se3ToAffine3(impl_->data_.oMi[joint_index]);
+  return helpers::PinSe3ToHuronSe3(impl_->data_.oMi[joint_index]);
 }
 
 template <typename T>
@@ -173,7 +189,7 @@ FrameType PinocchioModelImpl<T>::GetFrameType(FrameIndex frame_index) const {
 }
 
 template <typename T>
-huron::Affine3<T>
+huron::SE3<T>
 PinocchioModelImpl<T>::GetFrameTransform(FrameIndex from_frame,
                                       FrameIndex to_frame) const {
   return GetFrameTransformInWorld(from_frame).inverse() *
@@ -181,13 +197,13 @@ PinocchioModelImpl<T>::GetFrameTransform(FrameIndex from_frame,
 }
 
 template <typename T>
-huron::Affine3<T>
+huron::SE3<T>
 PinocchioModelImpl<T>::GetFrameTransformInWorld(FrameIndex frame) const {
   pinocchio::updateFramePlacement(
       impl_->model_,
       impl_->data_,
       static_cast<size_t>(frame));
-  return helpers::Se3ToAffine3(impl_->data_.oMf[frame]);
+  return helpers::PinSe3ToHuronSe3(impl_->data_.oMf[frame]);
 }
 
 template <typename T>
@@ -300,4 +316,6 @@ JointType PinocchioModelImpl<T>::GetJointType(size_t joint_index) const {
 }  // namespace huron
 
 HURON_DEFINE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+    class huron::multibody::internal::PinocchioModelImpl)
+HURON_DEFINE_CLASS_TEMPLATE_INSTANTIATIONS_ON_AD_SCALARS(
     class huron::multibody::internal::PinocchioModelImpl)

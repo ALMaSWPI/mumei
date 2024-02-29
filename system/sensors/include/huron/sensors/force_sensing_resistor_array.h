@@ -31,19 +31,21 @@ class ForceSensingResistorArray : public SensorWithFrame<T> {
 
   void RequestStateUpdate() override;
 
-  void GetNewState(Eigen::Ref<Eigen::MatrixXd> new_state) const override;
+  void GetNewState(Eigen::Ref<huron::MatrixX<T>> new_state) const override;
 
-  Eigen::Affine3d GetSensorPose(size_t index) const;
+  huron::SE3<T> GetSensorPose(size_t index) const;
 
   size_t num_sensors() const { return fsr_array_.size(); }
 
  protected:
   std::string name_;
-  Eigen::VectorXd values_;
+  huron::VectorX<T> values_;
   std::vector<std::shared_ptr<ForceSensingResistor<T>>> fsr_array_;
 };
 
 }  // namespace huron
 
 HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+    class huron::ForceSensingResistorArray)
+HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_AD_SCALARS(
     class huron::ForceSensingResistorArray)

@@ -34,6 +34,12 @@ if (DEFINED USE_PINOCCHIO)
   message(pinocchio_INCLUDE_DIRS="${pinocchio_INCLUDE_DIRS}")
 endif()
 
+# Find Casadi
+if (DEFINED BUILD_WITH_CASADI)
+  find_package(casadi REQUIRED)
+  message(casadi_INCLUDE_DIRS="${pinocchio_INCLUDE_DIRS}")
+endif()
+
 # Find sockcanpp
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR})
 find_package(sockcanpp REQUIRED)
@@ -91,6 +97,14 @@ if (DEFINED USE_PINOCCHIO)
     PUBLIC
       pinocchio::pinocchio)
     target_compile_definitions(huron PUBLIC HURON_USE_PINOCCHIO=1)
+endif()
+
+if (DEFINED BUILD_WITH_CASADI)
+  target_link_libraries(huron
+    PUBLIC
+      casadi)
+    target_compile_definitions(huron PUBLIC HURON_ENABLE_AUTODIFF=1)
+    target_compile_definitions(huron PUBLIC HURON_USE_CASADI=1)
 endif()
 
 # Copy urdf files to build directory

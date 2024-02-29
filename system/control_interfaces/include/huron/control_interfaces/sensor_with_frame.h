@@ -11,7 +11,7 @@
 namespace huron {
 
 template <typename T>
-class SensorWithFrame : public Sensor {
+class SensorWithFrame : public Sensor<T> {
   using Frame = multibody::Frame<T>;
 
  public:
@@ -43,4 +43,6 @@ class SensorWithFrame : public Sensor {
 }  // namespace huron
 
 HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+    class huron::SensorWithFrame)
+HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_AD_SCALARS(
     class huron::SensorWithFrame)

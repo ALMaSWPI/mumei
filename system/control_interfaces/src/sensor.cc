@@ -3,33 +3,44 @@
 
 namespace huron {
 
-Sensor::Sensor(const Eigen::Vector2i& dim,
+template <typename T>
+Sensor<T>::Sensor(const Eigen::Vector2i& dim,
                std::unique_ptr<Configuration> config)
     : GenericComponent(std::move(config)),
-      StateProvider(dim) {}
+      StateProvider<T>(dim) {}
 
-Sensor::Sensor(const Eigen::Vector2i& dim)
+template <typename T>
+Sensor<T>::Sensor(const Eigen::Vector2i& dim)
   : GenericComponent(),
-    StateProvider(dim) {}
+    StateProvider<T>(dim) {}
 
-Sensor::Sensor(int rows, int cols,
-               std::unique_ptr<Configuration> config)
+template <typename T>
+Sensor<T>::Sensor(int rows, int cols,
+                  std::unique_ptr<Configuration> config)
     : GenericComponent(std::move(config)),
-      StateProvider(rows, cols) {}
+      StateProvider<T>(rows, cols) {}
 
-Sensor::Sensor(int rows, int cols)
+template <typename T>
+Sensor<T>::Sensor(int rows, int cols)
   : GenericComponent(),
-    StateProvider(rows, cols) {}
+    StateProvider<T>(rows, cols) {}
 
-Eigen::VectorXd Sensor::GetValue() const {
-  Eigen::VectorXd tmp;
-  GetNewState(tmp);
+template <typename T>
+huron::VectorX<T> Sensor<T>::GetValue() const {
+  huron::VectorX<T> tmp;
+  this->GetNewState(tmp);
   return tmp;
 }
 
-Eigen::VectorXd Sensor::ReloadAndGetValue() {
-  RequestStateUpdate();
+template <typename T>
+huron::VectorX<T> Sensor<T>::ReloadAndGetValue() {
+  this->RequestStateUpdate();
   return GetValue();
 }
 
 }  // namespace huron
+
+HURON_DEFINE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+    class huron::Sensor)
+HURON_DEFINE_CLASS_TEMPLATE_INSTANTIATIONS_ON_AD_SCALARS(
+    class huron::Sensor)

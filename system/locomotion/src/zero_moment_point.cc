@@ -7,19 +7,21 @@ namespace huron {
 template <typename T>
 ZeroMomentPoint<T>::ZeroMomentPoint(
   std::weak_ptr<const multibody::Frame<T>> zmp_frame,
-  double normal_force_threshold)
+  T normal_force_threshold)
   : zmp_frame_(std::move(zmp_frame)),
     normal_force_threshold_(normal_force_threshold) {
 }
 
 template <typename T>
-Eigen::Affine3d ZeroMomentPoint<T>::ZmpToWorld(const Eigen::Vector2d& zmp) const {
-  Eigen::Affine3d ret;
-  ret.translate(Eigen::Vector3d(zmp.x(), zmp.y(), 0.0));
+huron::SE3<T> ZeroMomentPoint<T>::ZmpToWorld(const huron::Vector2<T>& zmp) const {
+  huron::SE3<T> ret;
+  ret.translate(huron::Vector3<T>(zmp.x(), zmp.y(), 0.0));
   return ret;
 }
 
 }  // namespace huron
 
 HURON_DEFINE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+    class huron::ZeroMomentPoint)
+HURON_DEFINE_CLASS_TEMPLATE_INSTANTIATIONS_ON_AD_SCALARS(
     class huron::ZeroMomentPoint)

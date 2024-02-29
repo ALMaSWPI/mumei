@@ -9,7 +9,8 @@
 
 namespace huron {
 
-class Sensor : public GenericComponent, public StateProvider {
+template <typename T>
+class Sensor : public GenericComponent, public StateProvider<T> {
  public:
   Sensor(const Eigen::Vector2i& dim,
          std::unique_ptr<Configuration> config);
@@ -24,8 +25,13 @@ class Sensor : public GenericComponent, public StateProvider {
   /**
    * @brief Get the sensor value.
    */
-  virtual Eigen::VectorXd GetValue() const;
-  virtual Eigen::VectorXd ReloadAndGetValue();
+  virtual huron::VectorX<T> GetValue() const;
+  virtual huron::VectorX<T> ReloadAndGetValue();
 };
 
 }  // namespace huron
+
+HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+    class huron::Sensor)
+HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_AD_SCALARS(
+    class huron::Sensor)

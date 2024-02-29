@@ -9,7 +9,7 @@ ForceSensingResistorArray<T>::ForceSensingResistorArray(
   const std::vector<std::shared_ptr<ForceSensingResistor<T>>>& fsr_array)
   : SensorWithFrame<T>(fsr_array.size(), 1, std::move(frame)),
     name_(name),
-    values_(Eigen::VectorXd::Zero(fsr_array.size())),
+    values_(huron::VectorX<T>::Zero(fsr_array.size())),
     fsr_array_(fsr_array) {}
 
 template <typename T>
@@ -20,7 +20,7 @@ ForceSensingResistorArray<T>::ForceSensingResistorArray(
   std::unique_ptr<Configuration> config)
   : SensorWithFrame<T>(fsr_array.size(), 1, std::move(frame), std::move(config)),
     name_(name),
-    values_(Eigen::VectorXd::Zero(fsr_array.size())),
+    values_(huron::VectorX<T>::Zero(fsr_array.size())),
     fsr_array_(fsr_array) {}
 
 template <typename T>
@@ -32,16 +32,18 @@ void ForceSensingResistorArray<T>::RequestStateUpdate() {
 
 template <typename T>
 void ForceSensingResistorArray<T>::GetNewState(
-  Eigen::Ref<Eigen::MatrixXd> new_state) const {
+  Eigen::Ref<huron::MatrixX<T>> new_state) const {
   new_state = values_;
 }
 
 template <typename T>
-Eigen::Affine3d ForceSensingResistorArray<T>::GetSensorPose(size_t index) const {
+huron::SE3<T> ForceSensingResistorArray<T>::GetSensorPose(size_t index) const {
   return fsr_array_[index]->GetSensorFrame().lock()->GetTransformInWorld();
 }
 
 }  // namespace huron
 
 HURON_DEFINE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+    class huron::ForceSensingResistorArray)
+HURON_DEFINE_CLASS_TEMPLATE_INSTANTIATIONS_ON_AD_SCALARS(
     class huron::ForceSensingResistorArray)

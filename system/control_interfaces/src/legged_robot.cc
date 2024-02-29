@@ -16,11 +16,13 @@ void LeggedRobot<T>::InitializeZmp(std::shared_ptr<ZeroMomentPoint<T>> zmp) {
 }
 
 template <typename T>
-Eigen::Vector2d LeggedRobot<T>::EvalZeroMomentPoint() {
+huron::Vector2<T> LeggedRobot<T>::EvalZeroMomentPoint() {
   return zmp_->Eval();
 }
 
 }  // namespace huron
 
 HURON_DEFINE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+    class huron::LeggedRobot)
+HURON_DEFINE_CLASS_TEMPLATE_INSTANTIATIONS_ON_AD_SCALARS(
     class huron::LeggedRobot)

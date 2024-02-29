@@ -16,13 +16,13 @@ const std::vector<std::string>& ModelImplInterface<T>::GetJointNames() const {
 }
 
 template <typename T>
-std::weak_ptr<Joint>
+std::weak_ptr<Joint<T>>
 ModelImplInterface<T>::GetJoint(const std::string& name) const {
   throw NotImplementedException();
 }
 
 template <typename T>
-std::weak_ptr<Joint>
+std::weak_ptr<Joint<T>>
 ModelImplInterface<T>::GetJoint(size_t joint_index) const {
   throw NotImplementedException();
 }
@@ -50,7 +50,7 @@ std::unique_ptr<JointDescription> ModelImplInterface<T>::GetJointDescription(
 }
 
 template <typename T>
-huron::Affine3<T>
+huron::SE3<T>
 ModelImplInterface<T>::GetJointTransformInWorld(size_t joint_index) const {
   throw NotImplementedException();
 }
@@ -73,14 +73,14 @@ FrameType ModelImplInterface<T>::GetFrameType(FrameIndex frame_index) const {
 }
 
 template <typename T>
-huron::Affine3<T>
+huron::SE3<T>
 ModelImplInterface<T>::GetFrameTransform(FrameIndex from_frame,
                                       FrameIndex to_frame) const {
   throw NotImplementedException();
 }
 
 template <typename T>
-huron::Affine3<T>
+huron::SE3<T>
 ModelImplInterface<T>::GetFrameTransformInWorld(FrameIndex frame) const {
   throw NotImplementedException();
 }
@@ -198,4 +198,6 @@ size_t ModelImplInterface<T>::num_frames() const {
 }  // namespace huron
 
 HURON_DEFINE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+    class huron::multibody::internal::ModelImplInterface)
+HURON_DEFINE_CLASS_TEMPLATE_INSTANTIATIONS_ON_AD_SCALARS(
     class huron::multibody::internal::ModelImplInterface)

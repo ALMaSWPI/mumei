@@ -5,16 +5,24 @@ namespace huron {
 namespace multibody {
 namespace internal {
 
-struct PinocchioModelImpl::Impl {
+template <typename T>
+struct PinocchioModelImpl<T>::Impl {
   int dummy;
 };
 
-PinocchioModelImpl::PinocchioModelImpl()
-    : ModelImplInterface() {
+template <typename T>
+PinocchioModelImpl<T>::PinocchioModelImpl()
+    : ModelImplInterface<T>() {
   throw NotImplementedException("Pinocchio not available!");
 }
-PinocchioModelImpl::~PinocchioModelImpl() = default;
+template <typename T>
+PinocchioModelImpl<T>::~PinocchioModelImpl() = default;
 
 }  // namespace internal
 }  // namespace multibody
 }  // namespace huron
+
+HURON_DEFINE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+    class huron::multibody::internal::PinocchioModelImpl)
+HURON_DEFINE_CLASS_TEMPLATE_INSTANTIATIONS_ON_AD_SCALARS(
+    class huron::multibody::internal::PinocchioModelImpl)

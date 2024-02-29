@@ -34,7 +34,7 @@ void Model<T>::BuildFromUrdf(const std::string& urdf_path,
   num_positions_ = impls_[default_impl_index_]->num_positions();
   num_velocities_ = impls_[default_impl_index_]->num_velocities();
   // Initialize the joint vector
-  joints_ = std::vector<std::shared_ptr<Joint>>(
+  joints_ = std::vector<std::shared_ptr<Joint<T>>>(
       impls_[default_impl_index_]->num_joints());
   // Initialize the frame vector
   frames_ = std::vector<std::shared_ptr<Frame<T>>>(
@@ -63,7 +63,7 @@ void Model<T>::BuildFromUrdf(const std::string& urdf_path,
 }
 
 template <typename T>
-void Model<T>::Finalize(const Eigen::VectorXd& initial_state) {
+void Model<T>::Finalize(const huron::VectorX<T>& initial_state) {
   assert(is_constructed_);
   // Check if all joints are added to the model, and set the joint indices.
   for (auto& joint : joints_) {
@@ -82,17 +82,17 @@ void Model<T>::Finalize(const Eigen::VectorXd& initial_state) {
 template <typename T>
 void Model<T>::Finalize() {
   assert(is_constructed_);
-  Finalize(Eigen::VectorXd::Zero(num_positions_ + num_velocities_));
+  Finalize(huron::VectorX<T>::Zero(num_positions_ + num_velocities_));
 }
 
 template <typename T>
-Joint* const Model<T>::GetJoint(JointIndex index) {
+Joint<T>* const Model<T>::GetJoint(JointIndex index) {
   assert(is_constructed_);
   return joints_[index].get();
 }
 
 template <typename T>
-Joint* const Model<T>::GetJoint(const std::string& name) {
+Joint<T>* const Model<T>::GetJoint(const std::string& name) {
   assert(is_constructed_);
   return joints_[GetJointIndex(name)].get();
 }
@@ -100,7 +100,7 @@ Joint* const Model<T>::GetJoint(const std::string& name) {
 template <typename T>
 void Model<T>::SetJointStateProvider(
   JointIndex index,
-  std::shared_ptr<StateProvider> state_provider) {
+  std::shared_ptr<StateProvider<T>> state_provider) {
   assert(is_constructed_);
   joints_[index]->SetStateProvider(std::move(state_provider));
 }
@@ -150,7 +150,7 @@ std::weak_ptr<const Frame<T>> Model<T>::GetFrame(const std::string& name) const 
 
 // Kinematics and Dynamics functions
 template <typename T>
-Eigen::Affine3d Model<T>::GetJointTransformInWorld(size_t joint_index) const {
+huron::SE3<T> Model<T>::GetJointTransformInWorld(size_t joint_index) const {
   assert(is_finalized_);
   return impls_[default_impl_index_]->GetJointTransformInWorld(joint_index);
 }
@@ -162,98 +162,98 @@ FrameIndex Model<T>::GetFrameIndex(const std::string& frame_name) const {
 }
 
 template <typename T>
-Eigen::Affine3d Model<T>::GetFrameTransform(FrameIndex from_frame,
+huron::SE3<T> Model<T>::GetFrameTransform(FrameIndex from_frame,
                                          FrameIndex to_frame) const {
   assert(is_finalized_);
   return impls_[default_impl_index_]->GetFrameTransform(from_frame, to_frame);
 }
 
 template <typename T>
-Eigen::Affine3d Model<T>::GetFrameTransformInWorld(FrameIndex frame) const {
+huron::SE3<T> Model<T>::GetFrameTransformInWorld(FrameIndex frame) const {
   assert(is_finalized_);
   return impls_[default_impl_index_]->GetFrameTransformInWorld(frame);
 }
 
 template <typename T>
-Eigen::VectorXd Model<T>::NeutralConfiguration() const {
+huron::VectorX<T> Model<T>::NeutralConfiguration() const {
   assert(is_finalized_);
   return impls_[default_impl_index_]->NeutralConfiguration();
 }
 
 template <typename T>
-Eigen::Vector3d Model<T>::EvalCenterOfMassPosition() {
+huron::Vector3<T> Model<T>::EvalCenterOfMassPosition() {
   assert(is_finalized_);
   return impls_[default_impl_index_]->EvalCenterOfMassPosition();
 }
 
 template <typename T>
-Eigen::Vector3d Model<T>::GetCenterOfMassPosition() const {
+huron::Vector3<T> Model<T>::GetCenterOfMassPosition() const {
   assert(is_finalized_);
   return impls_[default_impl_index_]->GetCenterOfMassPosition();
 }
 
 template <typename T>
-const Eigen::VectorBlock<const Eigen::VectorXd> Model<T>::GetPositions() const {
+const Eigen::VectorBlock<const huron::VectorX<T>> Model<T>::GetPositions() const {
   assert(is_finalized_);
   return states_.segment(0, num_positions_);
 }
 
 template <typename T>
-const Eigen::VectorBlock<const Eigen::VectorXd> Model<T>::GetVelocities() const {
+const Eigen::VectorBlock<const huron::VectorX<T>> Model<T>::GetVelocities() const {
   assert(is_finalized_);
   return states_.segment(num_positions_, num_velocities_);
 }
 
 template <typename T>
-const Eigen::VectorXd& Model<T>::GetAccelerations() const {
+const huron::VectorX<T>& Model<T>::GetAccelerations() const {
   assert(is_finalized_);
   return impls_[default_impl_index_]->GetAccelerations();
 }
 
 template <typename T>
-const Eigen::VectorXd& Model<T>::GetTorques() const {
+const huron::VectorX<T>& Model<T>::GetTorques() const {
   assert(is_finalized_);
   return impls_[default_impl_index_]->GetTorques();
 }
 
 template <typename T>
-const Eigen::MatrixXd& Model<T>::GetMassMatrix() const {
+const huron::MatrixX<T>& Model<T>::GetMassMatrix() const {
   assert(is_finalized_);
   return impls_[default_impl_index_]->GetMassMatrix();
 }
 
 template <typename T>
-const Eigen::MatrixXd& Model<T>::GetCoriolisMatrix() const {
+const huron::MatrixX<T>& Model<T>::GetCoriolisMatrix() const {
   assert(is_finalized_);
   return impls_[default_impl_index_]->GetCoriolisMatrix();
 }
 
 template <typename T>
-const Eigen::VectorXd& Model<T>::GetNonlinearEffects() const {
+const huron::VectorX<T>& Model<T>::GetNonlinearEffects() const {
   assert(is_finalized_);
   return impls_[default_impl_index_]->GetNonlinearEffects();
 }
 
 template <typename T>
-const Eigen::VectorXd& Model<T>::GetGravity() const {
+const huron::VectorX<T>& Model<T>::GetGravity() const {
   assert(is_finalized_);
   return impls_[default_impl_index_]->GetGravity();
 }
 
 template <typename T>
-const huron::Vector6d& Model<T>::GetSpatialMomentum() const {
+const huron::Vector6<T>& Model<T>::GetSpatialMomentum() const {
   assert(is_finalized_);
   return impls_[default_impl_index_]->GetSpatialMomentum();
 }
 
 template <typename T>
-huron::Vector6d Model<T>::GetCentroidalMomentum() const {
+huron::Vector6<T> Model<T>::GetCentroidalMomentum() const {
   assert(is_finalized_);
   return impls_[default_impl_index_]->GetCentroidalMomentum();
 }
 
 template <typename T>
-const huron::Matrix6Xd& Model<T>::GetCentroidalMatrix() const {
+const huron::Matrix6X<T>& Model<T>::GetCentroidalMatrix() const {
   assert(is_finalized_);
   return impls_[default_impl_index_]->GetCentroidalMatrix();
 }
@@ -278,4 +278,6 @@ void Model<T>::ForwardKinematics() {
 }  // namespace huron
 
 HURON_DEFINE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+    class huron::multibody::Model)
+HURON_DEFINE_CLASS_TEMPLATE_INSTANTIATIONS_ON_AD_SCALARS(
     class huron::multibody::Model)

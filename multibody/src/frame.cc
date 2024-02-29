@@ -17,27 +17,27 @@ Frame<T>::Frame(FrameIndex index,
     model_(std::move(model)) {}
 
 template <typename T>
-Eigen::Affine3d Frame<T>::GetTransformInWorld() const {
+huron::SE3<T> Frame<T>::GetTransformInWorld() const {
   return model_.lock()->GetFrameTransformInWorld(index_);
 }
 
 template <typename T>
-Eigen::Affine3d Frame<T>::GetTransformFromFrame(const Frame& other) const {
+huron::SE3<T> Frame<T>::GetTransformFromFrame(const Frame& other) const {
   return model_.lock()->GetFrameTransform(other.index_, index_);
 }
 
 template <typename T>
-Eigen::Affine3d Frame<T>::GetTransformFromFrame(FrameIndex other) const {
+huron::SE3<T> Frame<T>::GetTransformFromFrame(FrameIndex other) const {
   return model_.lock()->GetFrameTransform(other, index_);
 }
 
 template <typename T>
-Eigen::Affine3d Frame<T>::GetTransformToFrame(const Frame& other) const {
+huron::SE3<T> Frame<T>::GetTransformToFrame(const Frame& other) const {
   return model_.lock()->GetFrameTransform(index_, other.index_);
 }
 
 template <typename T>
-Eigen::Affine3d Frame<T>::GetTransformToFrame(FrameIndex other) const {
+huron::SE3<T> Frame<T>::GetTransformToFrame(FrameIndex other) const {
   return model_.lock()->GetFrameTransform(index_, other);
 }
 
@@ -45,4 +45,6 @@ Eigen::Affine3d Frame<T>::GetTransformToFrame(FrameIndex other) const {
 }  // namespace huron
 
 HURON_DEFINE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+    class huron::multibody::Frame)
+HURON_DEFINE_CLASS_TEMPLATE_INSTANTIATIONS_ON_AD_SCALARS(
     class huron::multibody::Frame)

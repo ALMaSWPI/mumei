@@ -24,12 +24,12 @@ void ForceTorqueSensor<T>::RequestStateUpdate() {
 
 template <typename T>
 void ForceTorqueSensor<T>::GetNewState(
-  Eigen::Ref<Eigen::MatrixXd> new_state) const {
+  Eigen::Ref<huron::MatrixX<T>> new_state) const {
   new_state = GetValue();
 }
 
 template <typename T>
-Eigen::VectorXd ForceTorqueSensor<T>::GetValue() const {
+huron::VectorX<T> ForceTorqueSensor<T>::GetValue() const {
   if (reverse_wrench_direction_)
     return -wrench_;
   return wrench_;
@@ -38,4 +38,6 @@ Eigen::VectorXd ForceTorqueSensor<T>::GetValue() const {
 }  // namespace huron
 
 HURON_DEFINE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+    class huron::ForceTorqueSensor)
+HURON_DEFINE_CLASS_TEMPLATE_INSTANTIATIONS_ON_AD_SCALARS(
     class huron::ForceTorqueSensor)

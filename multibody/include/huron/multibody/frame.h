@@ -6,6 +6,8 @@
 #include <string>
 
 #include "huron/multibody/fwd.h"
+#include "huron/types.h"
+#include "huron/math/se3.h"
 #include "huron/utils/template_instantiations.h"
 #include "huron/enable_protected_make_shared.h"
 
@@ -31,11 +33,11 @@ class Frame : public enable_protected_make_shared<Frame<T>> {
   Frame& operator=(const Frame&) = delete;
   virtual ~Frame() = default;
 
-  virtual Eigen::Affine3d GetTransformInWorld() const;
-  virtual Eigen::Affine3d GetTransformFromFrame(const Frame& other) const;
-  virtual Eigen::Affine3d GetTransformFromFrame(FrameIndex other) const;
-  virtual Eigen::Affine3d GetTransformToFrame(const Frame& other) const;
-  virtual Eigen::Affine3d GetTransformToFrame(FrameIndex other) const;
+  virtual huron::SE3<T> GetTransformInWorld() const;
+  virtual huron::SE3<T> GetTransformFromFrame(const Frame& other) const;
+  virtual huron::SE3<T> GetTransformFromFrame(FrameIndex other) const;
+  virtual huron::SE3<T> GetTransformToFrame(const Frame& other) const;
+  virtual huron::SE3<T> GetTransformToFrame(FrameIndex other) const;
 
   const std::string& name() const { return name_; }
   FrameIndex index() const { return index_; }
@@ -61,4 +63,6 @@ class Frame : public enable_protected_make_shared<Frame<T>> {
 }  // namespace huron
 
 HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+    class huron::multibody::Frame)
+HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_AD_SCALARS(
     class huron::multibody::Frame)

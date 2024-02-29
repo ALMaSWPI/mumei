@@ -4,16 +4,16 @@ namespace huron {
 namespace odrive {
 
 ODriveEncoder::ODriveEncoder(double gear_ratio,
-                             std::unique_ptr<RotaryEncoderConfiguration> config,
+                             std::unique_ptr<RotaryEncoderConfiguration<double>> config,
                              std::shared_ptr<ODrive> odrive)
-    : huron::RotaryEncoder(gear_ratio,
+    : huron::RotaryEncoder<double>(gear_ratio,
                            std::move(config)),
       odrive_(std::move(odrive)) {}
 
 ODriveEncoder::ODriveEncoder(double gear_ratio,
                              double cpr,
                              std::shared_ptr<ODrive> odrive)
-    : huron::RotaryEncoder(gear_ratio, cpr),
+    : huron::RotaryEncoder<double>(gear_ratio, cpr),
       odrive_(std::move(odrive)) {}
 
 ODriveEncoder::ODriveEncoder(double cpr, std::shared_ptr<ODrive> odrive)
