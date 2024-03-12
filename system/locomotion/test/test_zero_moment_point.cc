@@ -62,13 +62,13 @@ class TestZeroMomentPointFt : public testing::Test {
     robot.GetModel()->BuildFromUrdf("huron.urdf",
                                     multibody::JointType::kFreeFlyer);
     auto floating_joint_sp =
-      std::make_shared<ConstantStateProvider>(initial_state);
+      std::make_shared<ConstantStateProvider<double>>(initial_state);
     robot.RegisterStateProvider(floating_joint_sp, true);
     robot.GetModel()->SetJointStateProvider(1, floating_joint_sp);
     // Fake joint states
     for (size_t joint_index = 2; joint_index <= 13; ++joint_index) {
       auto sp =
-        std::make_shared<ConstantStateProvider>(Eigen::Vector2d::Zero());
+        std::make_shared<ConstantStateProvider<double>>(Eigen::Vector2d::Zero());
       robot.RegisterStateProvider(sp, true);
       robot.GetModel()->SetJointStateProvider(
           joint_index,

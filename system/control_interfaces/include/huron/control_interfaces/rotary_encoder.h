@@ -149,11 +149,11 @@ class RotaryEncoder : public Encoder<T> {
 
 }  // namespace huron
 
-HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
-    class huron::RotaryEncoderConfiguration)
-HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_AD_SCALARS(
-    class huron::RotaryEncoderConfiguration)
-HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
-    class huron::RotaryEncoder)
-HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_AD_SCALARS(
-    class huron::RotaryEncoder)
+// HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+//     class huron::RotaryEncoderConfiguration)
+// HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_AD_SCALARS(
+//     class huron::RotaryEncoderConfiguration)
+// HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+//     class huron::RotaryEncoder)
+// HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_AD_SCALARS(
+//     class huron::RotaryEncoder)

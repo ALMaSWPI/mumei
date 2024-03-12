@@ -30,9 +30,9 @@ class ModelImplInterface {
   virtual JointType GetJointType(size_t joint_index) const;
   virtual JointIndex GetJointIndex(const std::string& joint_name) const = 0;
 
-  virtual std::unique_ptr<JointDescription> GetJointDescription(
+  virtual std::unique_ptr<JointDescription<T>> GetJointDescription(
     JointIndex joint_index) const;
-  virtual std::unique_ptr<JointDescription> GetJointDescription(
+  virtual std::unique_ptr<JointDescription<T>> GetJointDescription(
     const std::string& joint_name) const;
 
   virtual huron::SE3<T>

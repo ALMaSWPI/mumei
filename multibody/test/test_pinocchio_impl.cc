@@ -19,7 +19,7 @@ TEST_F(PinocchioModelImplTest, RRBotGeneralChecks) {
   auto v = impl_rrbot.GetJointNames();
   std::cout << "id\tname\t\tparent_frame\tchild_frame" << std::endl;
   for (auto& n : v) {
-    std::unique_ptr<huron::multibody::JointDescription> jd =
+    std::unique_ptr<huron::multibody::JointDescription<double>> jd =
       impl_rrbot.GetJointDescription(n);
     std::cout << *jd << std::endl;
   }

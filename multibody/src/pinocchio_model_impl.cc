@@ -1,8 +1,4 @@
-#include "huron/multibody/pinocchio_model_impl.h"
-#include "huron/multibody/joint_common.h"
-#include "huron/multibody/model_impl_types.h"
-#include "huron/exceptions/not_implemented_exception.h"
-
+#include "pinocchio/math/casadi.hpp"
 #include "pinocchio/multibody/model.hpp"
 #include "pinocchio/multibody/data.hpp"
 #include "pinocchio/parsers/urdf.hpp"
@@ -11,6 +7,11 @@
 #include "pinocchio/algorithm/kinematics.hpp"
 #include "pinocchio/algorithm/frames.hpp"
 #include "pinocchio/algorithm/center-of-mass.hpp"
+
+#include "huron/multibody/pinocchio_model_impl.h"
+#include "huron/multibody/joint_common.h"
+#include "huron/multibody/model_impl_types.h"
+#include "huron/exceptions/not_implemented_exception.h"
 
 namespace huron {
 namespace multibody {
@@ -41,23 +42,12 @@ PinocchioModelImpl<T>::PinocchioModelImpl()
 template <typename T>
 PinocchioModelImpl<T>::~PinocchioModelImpl() = default;
 
-template <typename T>
-void PinocchioModelImpl<T>::BuildFromUrdf(const std::string& urdf_path,
+template <>
+void PinocchioModelImpl<double>::BuildFromUrdf(const std::string& urdf_path,
                                        JointType root_joint_type) {
-  #if HURON_USE_CASADI==1
-  pinocchio::Model tmp_model;
-  #endif
-
   pinocchio::Model::JointModel joint_model;
   if (root_joint_type == JointType::kFixed) {
-
-    #if HURON_USE_CASADI==1
-    pinocchio::urdf::buildModel(urdf_path, tmp_model);
-    impl_->model_ = tmp_model.cast<T>();
-    #else
     pinocchio::urdf::buildModel(urdf_path, impl_->model_);
-    #endif
-
   } else {
     switch (root_joint_type) {
       case JointType::kFreeFlyer:
@@ -70,12 +60,37 @@ void PinocchioModelImpl<T>::BuildFromUrdf(const std::string& urdf_path,
         throw std::runtime_error("Unsupported root joint type.");
         break;
     }
-    #if HURON_USE_CASADI==1
+    pinocchio::urdf::buildModel(urdf_path, joint_model, impl_->model_);
+  }
+  impl_->data_ = pinocchio::Data(impl_->model_);
+  num_positions_ = impl_->model_.nq;
+  num_velocities_ = impl_->model_.nv;
+  num_joints_ = impl_->model_.njoints;
+  num_frames_ = impl_->model_.nframes;
+}
+
+template <typename T>
+void PinocchioModelImpl<T>::BuildFromUrdf(const std::string& urdf_path,
+                                       JointType root_joint_type) {
+  pinocchio::Model tmp_model;
+  pinocchio::Model::JointModel joint_model;
+  if (root_joint_type == JointType::kFixed) {
+    pinocchio::urdf::buildModel(urdf_path, tmp_model);
+    impl_->model_ = tmp_model.cast<T>();
+  } else {
+    switch (root_joint_type) {
+      case JointType::kFreeFlyer:
+        joint_model = pinocchio::JointModelFreeFlyer();
+        break;
+      case JointType::kPlanar:
+        joint_model = pinocchio::JointModelPlanar();
+        break;
+      default:
+        throw std::runtime_error("Unsupported root joint type.");
+        break;
+    }
     pinocchio::urdf::buildModel(urdf_path, joint_model, tmp_model);
     impl_->model_ = tmp_model.cast<T>();
-    #else
-    pinocchio::urdf::buildModel(urdf_path, joint_model, impl_->model_);
-    #endif
   }
   impl_->data_ = pinocchio::DataTpl<T>(impl_->model_);
   num_positions_ = impl_->model_.nq;
@@ -102,13 +117,13 @@ PinocchioModelImpl<T>::GetJoint(size_t joint_index) const {
 }
 
 template <typename T>
-std::unique_ptr<JointDescription> PinocchioModelImpl<T>::GetJointDescription(
+std::unique_ptr<JointDescription<T>> PinocchioModelImpl<T>::GetJointDescription(
   JointIndex joint_index) const {
   return GetJointDescription(impl_->model_.names[joint_index]);
 }
 
 template <typename T>
-std::unique_ptr<JointDescription>
+std::unique_ptr<JointDescription<T>>
 PinocchioModelImpl<T>::GetJointDescription(
   const std::string& joint_name) const {
   // auto frame_id = impl_->model_.getFrameId(joint_name, pinocchio::JOINT);
@@ -119,7 +134,7 @@ PinocchioModelImpl<T>::GetJointDescription(
   size_t parent_frame_index =  frame.previousFrame;
   JointType joint_type = (frame_id == 0) ? JointType::kUnknown
                                          : GetJointType(joint_index);
-  return std::make_unique<JointDescription>(
+  return std::make_unique<JointDescription<T>>(
     frame.parent,
     joint_name,
     parent_frame_index,

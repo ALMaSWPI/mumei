@@ -39,12 +39,12 @@ ModelImplInterface<T>::GetJointIndex(const std::string& joint_name) const {
 }
 
 template <typename T>
-std::unique_ptr<JointDescription> ModelImplInterface<T>::GetJointDescription(
+std::unique_ptr<JointDescription<T>> ModelImplInterface<T>::GetJointDescription(
   JointIndex joint_index) const {
   throw NotImplementedException();
 }
 template <typename T>
-std::unique_ptr<JointDescription> ModelImplInterface<T>::GetJointDescription(
+std::unique_ptr<JointDescription<T>> ModelImplInterface<T>::GetJointDescription(
   const std::string& joint_name) const {
   throw NotImplementedException();
 }

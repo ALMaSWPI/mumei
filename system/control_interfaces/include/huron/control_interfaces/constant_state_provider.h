@@ -29,7 +29,7 @@ class ConstantStateProvider : public StateProvider<T> {
 };
 
 }  // namespace huron
-HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
-    class huron::ConstantStateProvider)
-HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_AD_SCALARS(
-    class huron::ConstantStateProvider)
+// HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+//     class huron::ConstantStateProvider)
+// HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_AD_SCALARS(
+//     class huron::ConstantStateProvider)

@@ -34,9 +34,9 @@ class PinocchioModelImpl : public ModelImplInterface<T> {
   JointType GetJointType(size_t joint_index) const override;
   JointIndex GetJointIndex(const std::string& joint_name) const override;
 
-  std::unique_ptr<JointDescription> GetJointDescription(
+  std::unique_ptr<JointDescription<T>> GetJointDescription(
     JointIndex joint_index) const override;
-  std::unique_ptr<JointDescription> GetJointDescription(
+  std::unique_ptr<JointDescription<T>> GetJointDescription(
     const std::string& joint_name) const override;
 
   huron::SE3<T>
@@ -95,6 +95,10 @@ class PinocchioModelImpl : public ModelImplInterface<T> {
   size_t num_joints_ = 0;
   size_t num_frames_ = 0;
 };
+
+template <>
+void PinocchioModelImpl<double>::BuildFromUrdf(const std::string& urdf_path,
+                   JointType root_joint_type);
 
 }  // namespace internal
 }  // namespace multibody

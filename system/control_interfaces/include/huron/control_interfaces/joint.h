@@ -13,7 +13,7 @@ namespace huron {
 
 template <typename T>
 class Joint {
-  using JointDescription = huron::multibody::JointDescription;
+  using JointDescription = huron::multibody::JointDescription<T>;
   using JointType = huron::multibody::JointType;
 
  public:

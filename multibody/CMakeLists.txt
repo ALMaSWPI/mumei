@@ -2,7 +2,7 @@ set(dir "${CMAKE_CURRENT_SOURCE_DIR}")
 
 list(APPEND SOURCE_FILES
   "${dir}/src/model.cc"
-  "${dir}/src/joint_common.cc"
+  # "${dir}/src/joint_common.cc"
   "${dir}/src/frame.cc"
   "${dir}/src/logical_frame.cc"
   "${dir}/src/model_impl_default.cc")

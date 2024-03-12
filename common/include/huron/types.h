@@ -51,13 +51,13 @@ using Matrix6Xd = Matrix6X<double>;
 
 // namespace Eigen {
 //
-// template<typename Scalar>
-// struct NumTraits<casadi::Matrix<Scalar>> : NumTraits<double>
+// template <>
+// struct NumTraits<casadi::SX> : NumTraits<double>
 // {
-//   using Real = casadi::Matrix<Scalar>;
-//   using NonInteger = casadi::Matrix<Scalar>;
-//   using Literal = casadi::Matrix<Scalar>;
-//   using Nested = casadi::Matrix<Scalar>;
+//   using Real = casadi::SX;
+//   using NonInteger = casadi::SX;
+//   using Literal = casadi::SX;
+//   using Nested = casadi::SX;
 //   
 //   enum {
 //     // does not support complex Base types
@@ -74,7 +74,7 @@ using Matrix6Xd = Matrix6X<double>;
 //     MulCost               = 2
 //   };
 // };
-//
+
 // }  // namespace Eigen
 
 #endif  // HURON_USE_CASADI

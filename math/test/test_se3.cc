@@ -24,7 +24,7 @@ TEST_F(TestSe3, InitFromMatrix) {
   tf_gt.rotate(Eigen::AngleAxisd(uniform_dist(re), Eigen::Vector3d::UnitY()));
   tf_gt.rotate(Eigen::AngleAxisd(uniform_dist(re), Eigen::Vector3d::UnitZ()));
   tf_gt.translate(Eigen::Vector3d(uniform_dist(re), uniform_dist(re), uniform_dist(re)));
-  EXPECT_EQ(huron::SE3<double>(tf_gt.matrix()).matrix(), tf_gt);
+  EXPECT_EQ(huron::SE3<double>(tf_gt.matrix()).matrix(), tf_gt.matrix());
 }
 
 TEST_F(TestSe3, InitFromRotationTranslation) {
@@ -35,7 +35,7 @@ TEST_F(TestSe3, InitFromRotationTranslation) {
   tf_gt.translate(Eigen::Vector3d(uniform_dist(re), uniform_dist(re), uniform_dist(re)));
   EXPECT_EQ(huron::SE3<double>(tf_gt.rotation().matrix(),
                                tf_gt.translation().matrix()).matrix(),
-            tf_gt);
+            tf_gt.matrix());
 }
 
 TEST_F(TestSe3, Translation) {
@@ -63,7 +63,7 @@ TEST_F(TestSe3, Prerotation) {
   tf_gt = a;
   tf_gt.prerotate(b.rotation());
   // Test object
-  huron::SE3<double> tf(a.matrix(), Eigen::Vector3d::Zero());;
+  huron::SE3<double> tf(a.matrix());;
   tf.prerotate(b.rotation().matrix());
 
   EXPECT_EQ(tf.matrix(), tf_gt.matrix());
@@ -83,7 +83,7 @@ TEST_F(TestSe3, Rotation) {
   tf_gt = a;
   tf_gt.rotate(b.rotation());
   // Test object
-  huron::SE3<double> tf(a.matrix(), Eigen::Vector3d::Zero());;
+  huron::SE3<double> tf(a.matrix());;
   tf.rotate(b.rotation().matrix());
 
   EXPECT_EQ(tf.matrix(), tf_gt.matrix());
