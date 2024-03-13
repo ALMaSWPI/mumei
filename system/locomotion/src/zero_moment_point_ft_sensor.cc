@@ -12,7 +12,6 @@ ZeroMomentPointFTSensor<T>::ZeroMomentPointFTSensor(
     ft_sensors_(ft_sensors) {
 }
 
-// Generate Doxygen documentation for the following function
 template <typename T>
 huron::Vector2<T> ZeroMomentPointFTSensor<T>::Eval(T& fz) {
   huron::Vector2<T> zmp;
@@ -22,8 +21,7 @@ huron::Vector2<T> ZeroMomentPointFTSensor<T>::Eval(T& fz) {
       *ft_sensor->GetSensorFrame().lock());
     huron::SE3<T> zmp_frame_pose = this->zmp_frame_.lock()->GetTransformInWorld();
     huron::Vector6<T> w = ft_sensor->GetValue();
-    w.segment(0, 3) = zmp_to_sensor.rotation() * w.segment(0, 3);
-    w.segment(3, 3) = zmp_to_sensor.rotation() * w.segment(3, 3);
+    w = zmp_to_sensor.Inverse().AdjointAction().transpose() * w;
     num_x +=
       (-w(4) -
       w(0)*(zmp_to_sensor.translation().z() - zmp_frame_pose.translation().z())
@@ -54,8 +52,7 @@ ZeroMomentPointFTSensor<casadi::SX>::Eval(casadi::SX& fz) {
       *ft_sensor->GetSensorFrame().lock());
     huron::SE3<casadi::SX> zmp_frame_pose = this->zmp_frame_.lock()->GetTransformInWorld();
     huron::Vector6<casadi::SX> w = ft_sensor->GetValue();
-    w.segment(0, 3) = zmp_to_sensor.rotation() * w.segment(0, 3);
-    w.segment(3, 3) = zmp_to_sensor.rotation() * w.segment(3, 3);
+    w = zmp_to_sensor.Inverse().AdjointAction().transpose() * w;
     num_x +=
       (-w(4) -
       w(0)*(zmp_to_sensor.translation().z() - zmp_frame_pose.translation().z())

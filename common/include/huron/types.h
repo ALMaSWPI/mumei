@@ -8,6 +8,9 @@ template <typename T>
 using Affine3 = Eigen::Transform<T, 3, Eigen::Affine>;
 
 template <typename T>
+using Vector4 = Eigen::Matrix<T, 4, 1>;
+
+template <typename T>
 using Vector3 = Eigen::Matrix<T, 3, 1>;
 
 template <typename T>
@@ -29,10 +32,14 @@ template <typename T>
 using Vector6 = Eigen::Matrix<T, 6, 1>;
 
 template <typename T>
+using Matrix6 = Eigen::Matrix<T, 6, 6>;
+
+template <typename T>
 using Matrix6X = Eigen::Matrix<T, 6, Eigen::Dynamic>;
 
 /// double aliases
 using Affine3d = Affine3<double>;
+using Vector4d = Vector4<double>;
 using Vector3d = Vector3<double>;
 using Vector2d = Vector2<double>;
 using VectorXd = VectorX<double>;
@@ -47,7 +54,7 @@ using Matrix6Xd = Matrix6X<double>;
 #if HURON_ENABLE_AUTODIFF==1
 #if HURON_USE_CASADI==1
 
-#include <casadi/casadi.hpp>
+#include "huron/math/casadi.h"
 
 // namespace Eigen {
 //

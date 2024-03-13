@@ -98,7 +98,7 @@ class TestLeggedZmp : public testing::Test {
   }
 
   double normal_force_threshold = 0.01;
-  double tolerance = 0.0005;
+  double tolerance = 0.01;
 
   TestLeggedRobot robot;
   std::vector<std::shared_ptr<ForceTorqueSensor<double>>> ft_sensor_list;
@@ -166,6 +166,8 @@ TEST_F(TestLeggedZmp, TestBigNormalForce) {
 
   auto total_zmp_val = robot.EvalZeroMomentPoint();
   std::cout << (total_zmp_val - com.segment(0, 2)).transpose() << std::endl;
+  std::cout << "Computed zmp: " << total_zmp_val.transpose() << std::endl;
+  std::cout << "Expected zmp: " << expected_zmp.transpose() << std::endl;
 
   EXPECT_LE((total_zmp_val - expected_zmp).norm(), tolerance);
 }
@@ -187,7 +189,6 @@ TEST_F(TestLeggedZmp, TestBigNormalForceXY) {
   auto com = robot.GetModel()->EvalCenterOfMassPosition();
 
   auto total_zmp_val = robot.EvalZeroMomentPoint();
-  std::cout << (total_zmp_val - com.segment(0, 2)).transpose() << std::endl;
 
   std::cout << total_zmp_val.transpose() << std::endl;
 

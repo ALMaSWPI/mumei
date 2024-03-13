@@ -24,10 +24,19 @@ class SE3 {
     return ret;
   }
 
+  huron::Vector3<T> operator*(const huron::Vector3<T>& v) const {
+    huron::Vector4<T> v_homogeneous;
+    v_homogeneous << v, 1;
+    return (tf_ * v_homogeneous).template head<3>();
+  }
+
   SE3& operator*=(const SE3& other) {
     tf_ *= other.tf_;
     return *this;
   }
+
+  inline friend bool operator==(const SE3<double>& lhs, const SE3<double>& rhs);
+  inline friend bool operator!=(const SE3<double>& lhs, const SE3<double>& rhs);
 
   Matrix4<T>& matrix() { return tf_; }
   const Matrix4<T>& matrix() const { return tf_; }
@@ -35,15 +44,24 @@ class SE3 {
   Matrix3<T> rotation() const;
   Vector3<T> translation() const;
 
-  void rotate(const Matrix3<T>& R);
-  void prerotate(const Matrix3<T>& R);
-  void translate(const Vector3<T>& v);
+  void Rotate(const Matrix3<T>& R);
+  void Prerotate(const Matrix3<T>& R);
+  void Translate(const Vector3<T>& v);
 
-  SE3<T> inverse() const;
+  SE3<T> Inverse() const;
+
+  huron::Matrix6<T> AdjointAction() const;
 
  private:
   Matrix4<T> tf_;
 };
+
+inline bool operator==(const SE3<double>& lhs, const SE3<double>& rhs) {
+  return lhs.tf_ == rhs.tf_;
+}
+inline bool operator!=(const SE3<double>& lhs, const SE3<double>& rhs) {
+  return !(lhs == rhs);
+}
 
 } // namespace huron
 

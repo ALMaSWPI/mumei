@@ -21,9 +21,7 @@ namespace helpers {
 
 template <typename T>
 huron::SE3<T> PinSe3ToHuronSe3(const pinocchio::SE3Tpl<T>& se3) {
-  huron::SE3<T> ret;
-  ret.rotate(se3.rotation());
-  ret.translate(se3.translation());
+  huron::SE3<T> ret(se3.toHomogeneousMatrix());
   return ret;
 }
 
@@ -207,7 +205,7 @@ template <typename T>
 huron::SE3<T>
 PinocchioModelImpl<T>::GetFrameTransform(FrameIndex from_frame,
                                       FrameIndex to_frame) const {
-  return GetFrameTransformInWorld(from_frame).inverse() *
+  return GetFrameTransformInWorld(from_frame).Inverse() *
          GetFrameTransformInWorld(to_frame);
 }
 

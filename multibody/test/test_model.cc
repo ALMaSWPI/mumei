@@ -58,7 +58,7 @@ TEST_F(TestModelPinocchio, TestKinematics) {
   SE3<double> expected_link1_pose(Eigen::Matrix3d::Identity(),
                                   Eigen::Vector3d(0, 0.1, 1.95));
   SE3<double> expected_link2_pose = expected_link1_pose;
-  expected_link2_pose.translate(Eigen::Vector3d(0, 0.1, 0.9));
+  expected_link2_pose.Translate(Eigen::Vector3d(0, 0.1, 0.9));
 
   robot.GetModel()->UpdateJointStates();
   robot.GetModel()->ForwardKinematics();

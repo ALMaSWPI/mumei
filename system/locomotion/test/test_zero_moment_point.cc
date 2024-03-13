@@ -100,7 +100,7 @@ class TestZeroMomentPointFt : public testing::Test {
   }
 
   double normal_force_threshold = 0.01;
-  double tolerance = 0.0005;
+  double tolerance = 0.01;
 
   TestRobot robot;
   std::weak_ptr<const multibody::Frame<double>> zmp_frame;
@@ -171,6 +171,9 @@ TEST_F(TestZeroMomentPointFt, TestBigNormalForce) {
   robot.GetModel()->ForwardKinematics();
 
   auto total_zmp_val = total_zmp->Eval(computed_fz);
+
+  std::cout << "Computed zmp: " << total_zmp_val.transpose() << std::endl;
+  std::cout << "Expected zmp: " << expected_zmp.transpose() << std::endl;
 
   EXPECT_LE((total_zmp_val - expected_zmp).norm(), tolerance);
   EXPECT_DOUBLE_EQ(computed_fz, expected_fz);

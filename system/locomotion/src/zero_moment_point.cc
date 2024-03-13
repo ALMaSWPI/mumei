@@ -14,8 +14,8 @@ ZeroMomentPoint<T>::ZeroMomentPoint(
 
 template <typename T>
 huron::SE3<T> ZeroMomentPoint<T>::ZmpToWorld(const huron::Vector2<T>& zmp) const {
-  huron::SE3<T> ret;
-  ret.translate(huron::Vector3<T>(zmp.x(), zmp.y(), 0.0));
+  huron::SE3<T> ret(Matrix3<T>::Identity(),
+                    huron::Vector3<T>(zmp.x(), zmp.y(), 0.0));
   return ret;
 }
 

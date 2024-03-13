@@ -41,14 +41,14 @@ template <typename T>
 huron::SE3<T> LogicalFrame<T>::GetTransformToFrame(const Frame<T>& other) const {
   huron::SE3<T> parent_transform =
     this->model_.lock()->GetFrameTransform(parent_frame_index_, other.index());
-  return transform_function_(parent_transform).inverse() * parent_transform;
+  return transform_function_(parent_transform).Inverse() * parent_transform;
 }
 
 template <typename T>
 huron::SE3<T> LogicalFrame<T>::GetTransformToFrame(FrameIndex other) const {
   huron::SE3<T> parent_transform =
     this->model_.lock()->GetFrameTransform(parent_frame_index_, other);
-  return transform_function_(parent_transform).inverse() * parent_transform;
+  return transform_function_(parent_transform).Inverse() * parent_transform;
 }
 
 }  // namespace multibody
