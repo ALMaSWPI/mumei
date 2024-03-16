@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="cartpole">
+    <xacro:include filename="$(find cartpole_description)/urdf/cartpole.xacro" />
+    <xacro:include filename="$(find cartpole_gazebo)/urdf/cartpole_ros2_control.xacro" />
+
+    <!-- ros2_control plugin -->
+    <xacro:cartpole_ros2_control name="cartpole" prefix="" />
+
+    <!-- World -->
+    <gazebo reference="world"></gazebo>
+    <!-- Map -->
+    <gazebo reference="map"></gazebo>
+</robot>

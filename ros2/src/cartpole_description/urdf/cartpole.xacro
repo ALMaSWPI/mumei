@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro"
+ name="CartPole">
+
+  <link name="world">
+    <visual>
+      <origin xyz="0 0 -5" rpy="0 0 0" />
+      <geometry>
+        <box size="1000 1000 10" />
+      </geometry>
+      <material name="world_mat">
+        <color rgba="0.93 .74 .4 1" />
+      </material>
+    </visual>
+  </link>
+  
+  <link name="cart">
+    <inertial>
+      <origin xyz="0 0 .25" rpy="0 0 0" />
+      <mass value="10" />
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 .25" rpy="0 0 0" />
+      <geometry>
+        <box size=".6 .3 .3" />
+      </geometry>
+      <material name="cart_mat1">
+        <color rgba="0 1 0 1" />
+      </material>
+    </visual>
+    <visual>
+      <origin xyz=".15 0 .025" rpy="0 0 0" />
+      <geometry>
+        <sphere radius=".05" />
+      </geometry>
+      <material name="cart_mat2">
+        <color rgba="0 0 0 1" />
+      </material>
+    </visual>
+    <visual>
+      <origin xyz="-.15 0 .025" rpy="0 0 0" />
+      <geometry>
+        <sphere radius=".05" />
+      </geometry>
+      <material name="cart_mat3">
+        <color rgba="0 0 0 1" />
+      </material>
+    </visual>
+  </link>
+  
+  <link name="pole">
+    <inertial>
+      <origin xyz="0 0 -.5" rpy="0 0 0" />
+      <mass value="1" />
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 -.25" rpy="0 0 0" />
+      <geometry>
+         <cylinder length=".5" radius=".01" />
+      </geometry>
+      <material name="pole_mat1">
+        <color rgba="1 0 0 1" />
+      </material>
+    </visual>
+    <visual>
+      <origin xyz="0 0 -.5" rpy="0 0 0" />
+      <geometry>
+         <sphere radius=".05" />
+      </geometry>
+      <material name="pole_mat2">
+        <color rgba="0 0 1 1" />
+      </material>
+    </visual>
+  </link>
+  
+  <joint name="x" type="prismatic">
+    <parent link="world" />
+    <child link="cart" />
+    <origin xyz="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="-2" upper="2" effort="5" velocity="100" />
+    <dynamics damping="0" friction="0" />
+  </joint>
+  
+  <joint name="theta" type="continuous">
+    <parent link="cart" />
+    <child link="pole" />
+    <origin xyz="0 0 .25" />
+    <axis xyz="0 -1 0" />
+    <dynamics damping="0" friction="0" />
+  </joint>
+  
+  <transmission type="SimpleTransmission" name="cart_force">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="force">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </actuator>
+    <joint name="x">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <mechanicalReduction>1</mechanicalReduction>
+  </transmission>
+</robot>

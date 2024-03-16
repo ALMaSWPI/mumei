@@ -1,0 +1,17 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 100  # Hz
+      
+     # Publish all joint states -----------------------------------
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    # Effort Group Controller ---------------------------------------
+
+    joint_group_effort_controller:
+      type: effort_controllers/JointGroupEffortController
+
+joint_group_effort_controller:
+  ros__parameters:
+    joints:
+      - x 
