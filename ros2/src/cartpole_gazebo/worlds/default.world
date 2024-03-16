@@ -1,6 +1,16 @@
 <?xml version="1.0"?>
 <sdf version="1.6">
   <world name="default">
+    <plugin name='set_entity_state_plugin' filename='libset_entity_state.so'>
+      <robot_name>cartpole</robot_name>
+    </plugin>
+    <plugin name='gazebo_ros_state' filename='libgazebo_ros_state.so'>
+      <ros>
+        <argument>model_states:=model_states_demo</argument>
+      </ros>
+      <update_rate>1.0</update_rate>
+    </plugin>
+
     <gravity>0.000000 0.000000 -9.810000</gravity>
     <physics name="default_physics" default="0" type="ode">
       <max_step_size>0.001</max_step_size>
