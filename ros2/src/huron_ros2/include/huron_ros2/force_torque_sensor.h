@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+#include <utility>
 
 #include "huron/sensors/force_torque_sensor.h"
 
@@ -10,16 +11,13 @@ namespace ros2 {
 class HuronNode;
 
 class ForceTorqueSensor : public huron::ForceTorqueSensor {
+  friend class HuronNode;
  public:
-  ForceTorqueSensor(size_t index,
-                    bool reverse_wrench_direction,
-                    std::weak_ptr<const multibody::Frame> frame,
-                    std::weak_ptr<const HuronNode> node);
+  ForceTorqueSensor(bool reverse_wrench_direction,
+                    std::weak_ptr<const multibody::Frame> frame);
   ForceTorqueSensor(const ForceTorqueSensor&) = delete;
   ForceTorqueSensor& operator=(const ForceTorqueSensor&) = delete;
   ~ForceTorqueSensor() override = default;
-
-  void RequestStateUpdate() override;
 
   void Initialize() override;
   void SetUp() override;
@@ -31,6 +29,14 @@ class ForceTorqueSensor : public huron::ForceTorqueSensor {
  private:
   size_t index_;
   std::weak_ptr<const HuronNode> node_;
+
+  void SetNode(std::weak_ptr<HuronNode> node) {
+    node_ = std::move(node);
+  }
+
+  void SetIndex(size_t index) {
+    index_ = index;
+  }
 };
 
 }  // namespace ros2

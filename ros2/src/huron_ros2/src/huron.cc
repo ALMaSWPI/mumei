@@ -21,15 +21,6 @@ void Huron::SetUp() {
 void Huron::Terminate() {
 }
 
-bool Huron::Move(const std::vector<double>& values) {
-  node_->PublishJointEffort(values);
-  return true;
-}
-
-bool Huron::Stop() {
-  return Move(std::vector<double>(12));
-}
-
 void Huron::Loop() {
   rclcpp::spin_some(node_);
 }

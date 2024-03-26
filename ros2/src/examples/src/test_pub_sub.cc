@@ -38,8 +38,10 @@ int main(int argc, char* argv[]) {
 
   auto root_joint_sp = std::make_shared<ros2::JointStateProvider>(
         0, 7,
-        0, 6, huron_node);
+        0, 6);
+  robot.RegisterStateProvider(root_joint_sp, true);
   robot.GetModel()->SetJointStateProvider(1, root_joint_sp);
+  std::vector<std::weak_ptr<ros2::JointStateProvider>> joint_sp_list;
   for (size_t i = 0; i < joint_names.size(); ++i) {
     // Prints joint names in the internal model order
     auto joint = robot.GetModel()->GetJoint(i);
@@ -52,8 +54,8 @@ int main(int argc, char* argv[]) {
               << std::endl;
     auto joint_sp = std::make_shared<ros2::JointStateProvider>(
         i + 7, 1,
-        i + 6, 1,
-        huron_node);
+        i + 6, 1);
+    joint_sp_list.push_back(joint_sp);
     robot.RegisterStateProvider(joint_sp, true);
     robot.GetModel()->SetJointStateProvider(
       robot.GetModel()->GetJointIndex(joint_names[i]),
@@ -63,19 +65,15 @@ int main(int argc, char* argv[]) {
   robot.GetModel()->Finalize();
 
   // Register force torque sensors
-  std::shared_ptr<huron::ForceTorqueSensor> l_ft_sensor =
+  std::shared_ptr<huron::ros2::ForceTorqueSensor> l_ft_sensor =
     std::make_shared<ros2::ForceTorqueSensor>(
-      0,
       false,  // reverse wrench direction
-      robot.GetModel()->GetFrame("l_ankle_roll_joint"),
-      huron_node);
+      robot.GetModel()->GetFrame("l_ankle_roll_joint"));
   robot.RegisterStateProvider(l_ft_sensor);
-  std::shared_ptr<huron::ForceTorqueSensor> r_ft_sensor =
+  std::shared_ptr<huron::ros2::ForceTorqueSensor> r_ft_sensor =
     std::make_shared<ros2::ForceTorqueSensor>(
-      1,
       false,  // reverse wrench direction
-      robot.GetModel()->GetFrame("r_ankle_roll_joint"),
-      huron_node);
+      robot.GetModel()->GetFrame("r_ankle_roll_joint"));
   robot.RegisterStateProvider(r_ft_sensor);
 
   // Initialize ZMP
@@ -90,8 +88,19 @@ int main(int argc, char* argv[]) {
   robot.InitializeZmp(zmp);
 
   // Register joint group controller
-  robot.AddToGroup(
-    std::make_shared<ros2::JointGroupController>(huron_node));
+  auto jgc = std::make_shared<ros2::JointGroupController>(12);
+  robot.AddToGroup(jgc);
+
+  // Add components to ROS2 node
+  huron_node->AddJointStateProvider(root_joint_sp, "/p3d/odom", 7, 6, true);
+  for (auto& joint_sp : joint_sp_list) {
+    huron_node->AddJointStateProvider(joint_sp.lock(), "joint_states", 1, 1);
+  }
+  huron_node->AddForceTorqueSensor(l_ft_sensor, "huron/sensor/l1_ft_sensor");
+  huron_node->AddForceTorqueSensor(r_ft_sensor, "huron/sensor/r1_ft_sensor");
+  huron_node->AddJointGroupController(jgc,
+                                      "joint_group_effort_controller/commands");
+  huron_node->Finalize();
 
   auto start = std::chrono::steady_clock::now();
   bool moved = false;
@@ -109,19 +118,10 @@ int main(int argc, char* argv[]) {
     // After 10 seconds, move the joints
     if (since(start).count() > 10000 && !moved) {
       moved = true;
-      robot.Move({0.0,
-                  0.0,
-                  0.0,
-                  10.0,
-                  0.0,
-                  0.0,
-                  0.0,
-                  0.0,
-                  0.0,
-                  10.0,
-                  0.0,
-                  0.0
-      });
+      Eigen::VectorXd cmd = Eigen::VectorXd::Zero(12);
+      cmd << 0.0, 0.0, 0.0, 10.0, 0.0, 0.0,
+             0.0, 0.0, 0.0, 10.0, 0.0, 0.0;
+      robot.Move(cmd);
     }
   }
   rclcpp::shutdown();
