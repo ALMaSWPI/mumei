@@ -1,22 +1,9 @@
-// Copyright 2021 DeepMind Technologies Limited
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
 #include <cstdio>
 #include <cstring>
 
 #include <GLFW/glfw3.h>
 #include <mujoco/mujoco.h>
+#include "huron/control/push_recovery.h"
 
 // MuJoCo data structures
 mjModel* m = NULL;                  // MuJoCo model
@@ -32,7 +19,7 @@ bool button_middle = false;
 bool button_right =  false;
 double lastx = 0;
 double lasty = 0;
-
+PushRecoveryControl pushRecoveryControl;
 
 // keyboard callback
 void keyboard(GLFWwindow* window, int key, int scancode, int act, int mods) {
@@ -98,6 +85,43 @@ void scroll(GLFWwindow* window, double xoffset, double yoffset) {
   mjv_moveCamera(m, mjMOUSE_ZOOM, 0, -0.05*yoffset, &scn, &cam);
 }
 
+// simple controller applying damping to each dof
+void mycontroller(const mjModel* m, mjData* d)
+{
+  //TODO: Clean code later
+
+int l_hip_yaw_actuator_id = mj_name2id(m, mjOBJ_ACTUATOR, "l_hip_yaw_joint");
+int l_hip_roll_actuator_id = mj_name2id(m, mjOBJ_ACTUATOR, "l_hip_roll_joint");
+int l_hip_pitch_actuator_id = mj_name2id(m, mjOBJ_ACTUATOR, "l_hip_pitch_joint");
+int l_knee_pitch_actuator_id = mj_name2id(m, mjOBJ_ACTUATOR, "l_knee_pitch_joint");
+int l_ankle_pitch_actuator_id = mj_name2id(m, mjOBJ_ACTUATOR, "l_ankle_pitch_joint");
+int l_ankle_roll_actuator_id = mj_name2id(m, mjOBJ_ACTUATOR, "l_ankle_roll_joint");
+int r_hip_yaw_actuator_id = mj_name2id(m, mjOBJ_ACTUATOR, "r_hip_yaw_joint");
+int r_hip_roll_actuator_id = mj_name2id(m, mjOBJ_ACTUATOR, "r_hip_roll_joint");
+int r_hip_pitch_actuator_id = mj_name2id(m, mjOBJ_ACTUATOR, "r_hip_pitch_joint");
+int r_knee_pitch_actuator_id = mj_name2id(m, mjOBJ_ACTUATOR, "r_knee_pitch_joint");
+int r_ankle_pitch_actuator_id = mj_name2id(m, mjOBJ_ACTUATOR, "r_ankle_pitch_joint");
+int r_ankle_roll_joint_id = mj_name2id(m, mjOBJ_ACTUATOR, "r_ankle_roll_joint");
+
+Eigen::MatrixXd torque = pushRecoveryControl.GetTorque(
+  cop, joint_positions, joint_velocities);
+
+//Order based on joints name of ROS2
+d->ctrl[l_hip_yaw_actuator_id] = 0;
+d->ctrl[l_hip_roll_actuator_id] = 0;
+d->ctrl[l_knee_pitch_actuator_id] = torque(2, 0);
+d->ctrl[l_ankle_pitch_actuator_id] = torque(1, 0);
+d->ctrl[r_hip_roll_actuator_id] = torque(0, 0);
+d->ctrl[r_hip_pitch_actuator_id] = 0;
+d->ctrl[r_knee_pitch_actuator_id] = 0;
+d->ctrl[l_hip_pitch_actuator_id] = 0;
+d->ctrl[l_ankle_roll_actuator_id] = torque(2, 0);
+d->ctrl[r_ankle_pitch_actuator_id] = torque(1, 0);
+d->ctrl[r_hip_yaw_actuator_id] = torque(0, 0);
+d->ctrl[r_ankle_roll_joint_id] = 0.0;
+
+}
+
 
 // main function
 int main(int argc, const char** argv) {
@@ -146,7 +170,7 @@ int main(int argc, const char** argv) {
   glfwSetCursorPosCallback(window, mouse_move);
   glfwSetMouseButtonCallback(window, mouse_button);
   glfwSetScrollCallback(window, scroll);
-
+  mjcb_control = mycontroller;
   // run main loop, target real-time simulation and 60 fps rendering
   while (!glfwWindowShouldClose(window)) {
     // advance interactive simulation for 1/60 sec
@@ -158,10 +182,11 @@ int main(int argc, const char** argv) {
       mj_step(m, d);
     }
 
-    for (int i = 0; i < m->nq; i++){
-       printf("%f ",d->qpos[i]);
-    }
-    printf("\n");
+//
+//    for (int i = 0; i < m->njnt; i++){
+//       printf("Joint %d : %f \n",i,d->qpos[i]);
+//    }
+//    printf("\n");
 
     // get framebuffer viewport
     mjrRect viewport = {0, 0, 0, 0};
