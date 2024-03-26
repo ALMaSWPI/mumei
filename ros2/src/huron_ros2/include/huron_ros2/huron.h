@@ -26,10 +26,6 @@ class Huron : public huron::LeggedRobot {
   void SetUp() override;
   void Terminate() override;
 
-  // MovingGroupComponent interface
-  bool Move(const std::vector<double>& values) override;
-  bool Stop() override;
-
   // ROS-specific
   void Loop();
 

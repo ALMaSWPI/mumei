@@ -5,16 +5,9 @@ namespace huron {
 namespace ros2 {
 
 ForceTorqueSensor::ForceTorqueSensor(
-  size_t index,
   bool reverse_wrench_direction,
-  std::weak_ptr<const multibody::Frame> frame,
-  std::weak_ptr<const HuronNode> node)
-  : huron::ForceTorqueSensor(reverse_wrench_direction, std::move(frame)),
-    index_(index),
-    node_(std::move(node)) {}
-
-void ForceTorqueSensor::RequestStateUpdate() {
-}
+  std::weak_ptr<const multibody::Frame> frame)
+  : huron::ForceTorqueSensor(reverse_wrench_direction, std::move(frame)) {}
 
 void ForceTorqueSensor::Initialize() {
 }
