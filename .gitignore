@@ -10,3 +10,6 @@ compile_commands.json
 cmake-build-debug
 
 *.orig
+
+doc/html
+doc/latex

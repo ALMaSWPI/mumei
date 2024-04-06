@@ -5,3 +5,9 @@
 [submodule "third_party/serial"]
 	path = third_party/serial
 	url = https://github.com/ALMaSWPI/serial.git
+[submodule "doc/doxygen-awesome-css"]
+        path = doc/doxygen-awesome-css
+        url = https://github.com/jothepro/doxygen-awesome-css.git
+[submodule "doc/doxyvers"]
+        path = doc/doxyvers
+        url = git@github.com:root-project/doxyvers.git
