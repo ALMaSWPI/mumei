@@ -102,23 +102,30 @@ int r_hip_pitch_actuator_id = mj_name2id(m, mjOBJ_ACTUATOR, "r_hip_pitch_joint")
 int r_knee_pitch_actuator_id = mj_name2id(m, mjOBJ_ACTUATOR, "r_knee_pitch_joint");
 int r_ankle_pitch_actuator_id = mj_name2id(m, mjOBJ_ACTUATOR, "r_ankle_pitch_joint");
 int r_ankle_roll_joint_id = mj_name2id(m, mjOBJ_ACTUATOR, "r_ankle_roll_joint");
-
-Eigen::MatrixXd torque = pushRecoveryControl.GetTorque(
-  cop, joint_positions, joint_velocities);
-
-//Order based on joints name of ROS2
-d->ctrl[l_hip_yaw_actuator_id] = 0;
-d->ctrl[l_hip_roll_actuator_id] = 0;
-d->ctrl[l_knee_pitch_actuator_id] = torque(2, 0);
-d->ctrl[l_ankle_pitch_actuator_id] = torque(1, 0);
-d->ctrl[r_hip_roll_actuator_id] = torque(0, 0);
-d->ctrl[r_hip_pitch_actuator_id] = 0;
-d->ctrl[r_knee_pitch_actuator_id] = 0;
-d->ctrl[l_hip_pitch_actuator_id] = 0;
-d->ctrl[l_ankle_roll_actuator_id] = torque(2, 0);
-d->ctrl[r_ankle_pitch_actuator_id] = torque(1, 0);
-d->ctrl[r_hip_yaw_actuator_id] = torque(0, 0);
-d->ctrl[r_ankle_roll_joint_id] = 0.0;
+for (int i = 0; i < sizeof d->sensordata; i++){
+       printf("id %d : value %lf \n",i,d->sensordata[i]);
+    }
+    printf("\n");
+// 7 first from nq
+// 6 first from nv
+// =>> Odom
+//
+//Eigen::MatrixXd torque = pushRecoveryControl.GetTorque(
+//  cop, d->qpos, d->qvel);
+//
+////Order based on joints name of ROS2
+//d->ctrl[l_hip_yaw_actuator_id] = 0;
+//d->ctrl[l_hip_roll_actuator_id] = 0;
+//d->ctrl[l_knee_pitch_actuator_id] = torque(2, 0);
+//d->ctrl[l_ankle_pitch_actuator_id] = torque(1, 0);
+//d->ctrl[r_hip_roll_actuator_id] = torque(0, 0);
+//d->ctrl[r_hip_pitch_actuator_id] = 0;
+//d->ctrl[r_knee_pitch_actuator_id] = 0;
+//d->ctrl[l_hip_pitch_actuator_id] = 0;
+//d->ctrl[l_ankle_roll_actuator_id] = torque(2, 0);
+//d->ctrl[r_ankle_pitch_actuator_id] = torque(1, 0);
+//d->ctrl[r_hip_yaw_actuator_id] = torque(0, 0);
+//d->ctrl[r_ankle_roll_joint_id] = 0.0;
 
 }
 
