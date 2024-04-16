@@ -13,4 +13,5 @@ include_directories(
         ${huron_INCLUDE_DIRS}
 )
 
-add_subdirectory(test_push_recovery_mujoco)
+#add_subdirectory(src/examples)
+add_subdirectory(src/huron_mujoco)
