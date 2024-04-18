@@ -24,9 +24,10 @@
    DoxygenAwesomeParagraphLink.init()
    DoxygenAwesomeInteractiveToc.init()
 </script>
+<script type="text/javascript" src="$relpath^selectversion.js"></script>
 
 <!-- BEGIN version select -->
-<link rel="stylesheet" type="text/css" href="doxyvers/dropdown.css">
+<link rel="stylesheet" type="text/css" href="$relpath^dropdown.css">
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
 </script>
 <!-- END version select -->
@@ -51,38 +52,34 @@ $extrastylesheet
 <div id="titlearea">
 <table cellspacing="0" cellpadding="0">
  <tbody>
- <tr id="projectrow">
+ <tr style="height: 56px;">
   <!--BEGIN PROJECT_LOGO-->
   <td id="projectlogo"><img alt="Logo" src="$relpath^$projectlogo"/></td>
   <!--END PROJECT_LOGO-->
   <!--BEGIN PROJECT_NAME-->
-  <td id="projectalign">
+  <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">$projectname
-       <!--BEGIN PROJECT_NUMBER-->
-       <!-- <span id="projectnumber">&#160;$projectnumber</span> -->
-       <!-- BEGIN version select -->
-        <div class="dropdown">
-           <button class="dropbtn">Version $projectnumber</button>
-           <div class="dropdown-content">
-           </div>
-        </div>
-        <script type="text/javascript" src="doxyvers/selectversion.js"></script>
-        <!-- END version select -->
-       <!--END PROJECT_NUMBER-->
+   <!--BEGIN PROJECT_NUMBER-->&#160;
+   <span id="projectnumber">
+   <div class="dropdown">
+      <button class="dropbtn">Version $projectnumber</button>
+      <div class="dropdown-content"></div>
+   </div>
+    </span><!--END PROJECT_NUMBER-->
    </div>
    <!--BEGIN PROJECT_BRIEF--><div id="projectbrief">$projectbrief</div><!--END PROJECT_BRIEF-->
   </td>
   <!--END PROJECT_NAME-->
   <!--BEGIN !PROJECT_NAME-->
    <!--BEGIN PROJECT_BRIEF-->
-    <td>
+    <td style="padding-left: 0.5em;">
     <div id="projectbrief">$projectbrief</div>
     </td>
    <!--END PROJECT_BRIEF-->
   <!--END !PROJECT_NAME-->
   <!--BEGIN DISABLE_INDEX-->
    <!--BEGIN SEARCHENGINE-->
-    <td>$searchbox</td>
+   <td>$searchbox</td>
    <!--END SEARCHENGINE-->
   <!--END DISABLE_INDEX-->
  </tr>
