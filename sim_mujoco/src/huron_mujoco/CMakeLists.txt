@@ -23,14 +23,14 @@ target_include_directories(huron
         $<INSTALL_INTERFACE:include>
 )
 
-#target_sources(huron_tests
-#        PRIVATE
-#        ${TEST_SOURCE_FILES}
-#)
-#target_include_directories(huron_tests
-#        PUBLIC
-#        $<BUILD_INTERFACE:${INCLUDE_DIRS}>
-#        $<INSTALL_INTERFACE:include>
-#)
+target_sources(huron_tests
+        PRIVATE
+        ${TEST_SOURCE_FILES}
+)
+target_include_directories(huron_tests
+        PUBLIC
+        $<BUILD_INTERFACE:${INCLUDE_DIRS}>
+        $<INSTALL_INTERFACE:include>
+)
 
 install(DIRECTORY ${INCLUDE_DIRS} DESTINATION include)

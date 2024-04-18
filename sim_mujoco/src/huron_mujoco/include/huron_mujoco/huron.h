@@ -26,15 +26,18 @@ class Huron : public huron::LeggedRobot {
   void Terminate() override;
 
   // MovingGroupComponent interface
-  bool Move(const std::vector<double>& values) override;
+  bool Move(const std::vector<double> values);
   bool Stop() override;
 
   // Mujoco-specific
-  void BuildFromXml(const char* xml_path);
-
+  void BuildFromXml(char* xml_path, std::vector<char*> joint_list);
+  void Loop();
+  void Controller(const mjModel* m_, mjData* d_);
  private:
   mjModel* m_;                  // MuJoCo model
   mjData* d_;                   // MuJoCo data
+  std::vector<char*> joint_list_; // List of joints
+
 };
 
 }  // namespace ros2
