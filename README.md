@@ -1,5 +1,49 @@
-# 
-There are two ways to run `huron`: using the prebuilt Docker image or building from source.
+# Mumei
+Modular Universal Middleware for Enhanced Integration
+
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/ALMaSWPI/huron)](https://github.com/ALMaSWPI/huron/releases/latest)
+[![GitHub](https://img.shields.io/github/license/ALMaSWPI/huron)](ODrive.LICENSE.md)
+![GitHub Repo stars](https://img.shields.io/github/stars/ALMaSWPI/huron)
+
+<div class="title_screenshot">
+
+![Screen_shot_of_Mumei_Documentation_Page](img/MUMEIDocFile.png)
+
+</div>
+
+**Mumei** is an open-source full-stack framework for any rigid-body robot.
+
+## Introduction
+In order to help researchers and students in implementing their research/work in software environment, Mumei is made to provide a generalize solution for all rigid-body robots. 
+Our framework saves time for researchers/students on researching how to use a new technology in robotics software and aim to establish a set of standards and best practices for robotic development. 
+By providing guidelines, libraries, and toolkits, the framework ensures that developers do not need to 'reinvent the wheel' for common tasks. This not only improves the efficiency and quality of development but also ensures that different projects can easily share and integrate each other's work.
+On the other hand, our full-stack framework also benefits the robotics open-source community and provide educational value for students, researchers and roboticists.
+
+
+## Features
+
+- 🚄 Fast and convenient with just a Docker image
+- 🌈 Clean with automated CI/CD process
+- 🚀 Can be integrated with any rigid-body robots
+- 🧩 No need to modify any internal code when using new external tools
+- 🔌 Can plug in any robotics simulation environment
+- 📑 Examples are provided clearly and easy to reuse
+- 🌘 Dark mode support on our documentation page!
+- 🐐 Goated!
+
+## Current supported third parties
+These are all current external plugins that are implemented in the framework. For other APIs/tools that are not in the list, feel free to use our framework and follow one of our examples to build it your own.
+- Kinematics and math: [Pinocchio](https://stack-of-tasks.github.io/pinocchio/), [Eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page)
+- Robotics simulation: [Gazebo](https://gazebosim.org/home), [MuJoCo](https://mujoco.readthedocs.io/)
+- Robotics middleware: [ROS2 Humble](https://docs.ros.org/en/humble/index.html)
+- Hardware-related APIs: [ODrive](https://stack-of-tasks.github.io/pinocchio/), [libsocketcan](https://lalten.github.io/libsocketcan/)
+
+## Examples
+Here is a simple example that used our framework on a humanoid called HURON. 
+After the controller are implemented on the user's side, they can easily set up the framework and choose whatever simulation environment they want.
+
+# Getting Started
+In order to use our framework, there are two ways to run `mumei`: using the prebuilt Docker image or building from source.
 
 ---
 
@@ -12,13 +56,13 @@ There are two ways to run `huron`: using the prebuilt Docker image or building f
 ### Steps:
 1. Pull the image:
 ```
-sudo docker pull wpihuron/huron:<tag>
+sudo docker pull wpimumei/mumei:<tag>
 ```
 Currently, `<tag>` can only be a pull request (e.g. `pr-72`).
 
 2. Run the container in interactive mode:
 ```
-sudo docker run -it --network=host wpihuron/huron:<tag>
+sudo docker run -it --network=host wpimumei/mumei:<tag>
 ```
 The option `--network=host` is needed to expose the network interfaces (including CAN) to the container.
 
@@ -40,7 +84,7 @@ If everything is correct, the binary will be built in `build` folder, which is r
 
 Clone the main repo and all submodules: 
 ```
-git clone git@github.com:wpi-huron/huron.git --recurse-submodules
+git clone git@github.com:wpi-mumei/mumei.git --recurse-submodules
 ```
 
 ### Prerequisites:
@@ -75,7 +119,7 @@ sudo make install
 ```
 ## Build and install:
 
-1. Make sure you are in the root of this repo (`huron/`)
+1. Make sure you are in the root of this repo (`mumei/`)
 2. Create `build` folder
 ```
 mkdir build
@@ -86,7 +130,7 @@ cd build
 cmake .. [-DBUILD_TYPE=<build-type>] [-DUSE_PINOCCHIO=1]
 make
 ```
-4. Install `huron`
+4. Install `mumei`
 ```
 sudo make install
 ```
@@ -106,3 +150,8 @@ Notes:
 cd build
 sudo make uninstall
 ```
+
+
+# Contributing and questions
+Since Mumei is an open-source framework, we welcome community engagement: questions, requests for help, bug reports and feature requests.
+For questions and requests, you can reach out to us by our ALMaS research group or directly to the original contributors.
