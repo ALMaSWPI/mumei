@@ -1,11 +1,8 @@
 name: Doxygen on GitHub Pages
 
 on:
-  push:
-    branches:
-      # - main  # Set a branch name to trigger deployment
-      - 6-add-documentation-page
-  pull_request:
+  release:
+    types: [released]
 
 jobs:
   deploy:
@@ -27,13 +24,9 @@ jobs:
           doxyfile-path: './Doxyfile'
           enable-latex: true
 
-      - name: Deploy
+      - name: Deploy under current release version folder
         uses: peaceiris/actions-gh-pages@v4
-        # If you're changing the branch from main,
-        # also change the `main` in `refs/heads/main`
-        # below accordingly.
-        # if: github.ref == 'refs/heads/main'
-        if: github.ref == 'refs/heads/6-add-documentation-page'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./doc
+          publish_dir: ./doc/html
+          destination_dir: doc/${{  github.ref_name }}
