@@ -16,17 +16,17 @@ namespace huron {
   * <sensor_name>,<val_1>,<val_2>,...,<val_n>\n
   * The sensor values should be sent periodically.
   */
-class ForceSensingResistorArraySerial : public ForceSensingResistorArray {
+class ForceSensingResistorArraySerial : public ForceSensingResistorArray<double> {
  public:
   ForceSensingResistorArraySerial(
     const std::string& name,
-    std::weak_ptr<const multibody::Frame> frame,
-    const std::vector<std::shared_ptr<ForceSensingResistor>>& fsr_array,
+    std::weak_ptr<const multibody::Frame<double>> frame,
+    const std::vector<std::shared_ptr<ForceSensingResistor<double>>>& fsr_array,
     std::shared_ptr<driver::serial::SerialBase> serial);
   ForceSensingResistorArraySerial(
     const std::string& name,
-    std::weak_ptr<const multibody::Frame> frame,
-    const std::vector<std::shared_ptr<ForceSensingResistor>>& fsr_array,
+    std::weak_ptr<const multibody::Frame<double>> frame,
+    const std::vector<std::shared_ptr<ForceSensingResistor<double>>>& fsr_array,
     std::shared_ptr<driver::serial::SerialBase> serial,
     std::unique_ptr<Configuration> config);
 

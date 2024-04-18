@@ -2,13 +2,20 @@
 
 namespace huron {
 
-ForceSensingResistor::ForceSensingResistor(
-  std::weak_ptr<const multibody::Frame> frame)
-  : SensorWithFrame(1, 1, std::move(frame)) {}
+template <typename T>
+ForceSensingResistor<T>::ForceSensingResistor(
+  std::weak_ptr<const multibody::Frame<T>> frame)
+  : SensorWithFrame<T>(1, 1, std::move(frame)) {}
 
-ForceSensingResistor::ForceSensingResistor(
-  std::weak_ptr<const multibody::Frame> frame,
+template <typename T>
+ForceSensingResistor<T>::ForceSensingResistor(
+  std::weak_ptr<const multibody::Frame<T>> frame,
   std::unique_ptr<Configuration> config)
-  : SensorWithFrame(1, 1, std::move(frame), std::move(config)) {}
+  : SensorWithFrame<T>(1, 1, std::move(frame), std::move(config)) {}
 
 }  // namespace huron
+
+HURON_DEFINE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+    class huron::ForceSensingResistor)
+HURON_DEFINE_CLASS_TEMPLATE_INSTANTIATIONS_ON_AD_SCALARS(
+    class huron::ForceSensingResistor)

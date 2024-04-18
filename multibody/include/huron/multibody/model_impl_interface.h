@@ -12,6 +12,7 @@ namespace huron {
 namespace multibody {
 namespace internal {
 
+template <typename T>
 class ModelImplInterface {
  public:
   ModelImplInterface() = default;
@@ -23,91 +24,91 @@ class ModelImplInterface {
                              JointType root_joint_type);
 
   virtual const std::vector<std::string>& GetJointNames() const;
-  virtual std::weak_ptr<Joint> GetJoint(const std::string& name) const;
-  virtual std::weak_ptr<Joint> GetJoint(size_t joint_index) const;
+  virtual std::weak_ptr<Joint<T>> GetJoint(const std::string& name) const;
+  virtual std::weak_ptr<Joint<T>> GetJoint(size_t joint_index) const;
 
   virtual JointType GetJointType(size_t joint_index) const;
   virtual JointIndex GetJointIndex(const std::string& joint_name) const = 0;
 
-  virtual std::unique_ptr<JointDescription> GetJointDescription(
+  virtual std::unique_ptr<JointDescription<T>> GetJointDescription(
     JointIndex joint_index) const;
-  virtual std::unique_ptr<JointDescription> GetJointDescription(
+  virtual std::unique_ptr<JointDescription<T>> GetJointDescription(
     const std::string& joint_name) const;
 
-  virtual Eigen::Affine3d
+  virtual huron::SE3<T>
   GetJointTransformInWorld(size_t joint_index) const;
 
   virtual FrameIndex GetFrameIndex(
     const std::string& frame_name) const;
   virtual const std::string& GetFrameName(FrameIndex frame_index) const;
   virtual FrameType GetFrameType(FrameIndex frame_index) const;
-  virtual Eigen::Affine3d GetFrameTransform(FrameIndex from_frame,
+  virtual huron::SE3<T> GetFrameTransform(FrameIndex from_frame,
                                             FrameIndex to_frame) const;
-  virtual Eigen::Affine3d GetFrameTransformInWorld(FrameIndex frame) const;
+  virtual huron::SE3<T> GetFrameTransformInWorld(FrameIndex frame) const;
 
-  virtual Eigen::Vector3d EvalCenterOfMassPosition();
-  virtual Eigen::Vector3d GetCenterOfMassPosition() const;
+  virtual huron::Vector3<T> EvalCenterOfMassPosition();
+  virtual huron::Vector3<T> GetCenterOfMassPosition() const;
 
-  virtual Eigen::VectorXd NeutralConfiguration() const;
+  virtual huron::VectorX<T> NeutralConfiguration() const;
 
   /**
    * @brief Get the generalized accelerations of the model.
    */
-  virtual const Eigen::VectorXd& GetAccelerations() const;
+  virtual const huron::VectorX<T>& GetAccelerations() const;
 
   /**
    * @brief Get the joint torques.
    */
-  virtual const Eigen::VectorXd& GetTorques() const;
+  virtual const huron::VectorX<T>& GetTorques() const;
 
   /**
    * @brief Get the mass matrix with the cached value.
    */
-  virtual const Eigen::MatrixXd& GetMassMatrix() const;
+  virtual const huron::MatrixX<T>& GetMassMatrix() const;
 
   /**
    * @brief Get the Coriolis matrix with the cached value.
    */
-  virtual const Eigen::MatrixXd& GetCoriolisMatrix() const;
+  virtual const huron::MatrixX<T>& GetCoriolisMatrix() const;
 
   /**
    * @brief Get the nonlinear effects vector.
    */
-  virtual const Eigen::VectorXd& GetNonlinearEffects() const;
+  virtual const huron::VectorX<T>& GetNonlinearEffects() const;
 
   /**
    * @brief Get the gravity vector.
    */
-  virtual const Eigen::VectorXd& GetGravity() const;
+  virtual const huron::VectorX<T>& GetGravity() const;
 
   /**
    * @brief Get the spatial momentum with respect to the specified frame.
    */
-  virtual const huron::Vector6d& GetSpatialMomentum() const;
+  virtual const huron::Vector6<T>& GetSpatialMomentum() const;
 
   /**
    * @brief Get the centroidal momentum.
    */
-  virtual huron::Vector6d GetCentroidalMomentum() const;
+  virtual huron::Vector6<T> GetCentroidalMomentum() const;
 
   /**
    * @brief Get the centroidal momentum matrix with the cached value.
    */
-  virtual const huron::Matrix6Xd& GetCentroidalMatrix() const;
+  virtual const huron::Matrix6X<T>& GetCentroidalMatrix() const;
 
   virtual void ComputeAll(
-    const Eigen::Ref<const Eigen::VectorXd>& q,
-    const Eigen::Ref<const Eigen::VectorXd>& v);
+    const Eigen::Ref<const huron::VectorX<T>>& q,
+    const Eigen::Ref<const huron::VectorX<T>>& v);
 
   virtual void ForwardKinematics(
-    const Eigen::Ref<const Eigen::VectorXd>& q);
+    const Eigen::Ref<const huron::VectorX<T>>& q);
   virtual void ForwardKinematics(
-    const Eigen::Ref<const Eigen::VectorXd>& q,
-    const Eigen::Ref<const Eigen::VectorXd>& v);
+    const Eigen::Ref<const huron::VectorX<T>>& q,
+    const Eigen::Ref<const huron::VectorX<T>>& v);
   virtual void ForwardKinematics(
-    const Eigen::Ref<const Eigen::VectorXd>& q,
-    const Eigen::Ref<const Eigen::VectorXd>& v,
-    const Eigen::Ref<const Eigen::VectorXd>& a);
+    const Eigen::Ref<const huron::VectorX<T>>& q,
+    const Eigen::Ref<const huron::VectorX<T>>& v,
+    const Eigen::Ref<const huron::VectorX<T>>& a);
 
   virtual bool is_built() const;
 
@@ -120,3 +121,8 @@ class ModelImplInterface {
 }  // namespace internal
 }  // namespace multibody
 }  // namespace huron
+
+HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+    class huron::multibody::internal::ModelImplInterface)
+HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_AD_SCALARS(
+    class huron::multibody::internal::ModelImplInterface)

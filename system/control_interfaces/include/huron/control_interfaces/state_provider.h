@@ -1,9 +1,11 @@
 #pragma once
 
-#include <eigen3/Eigen/Dense>
+#include "huron/types.h"
+#include "huron/utils/template_instantiations.h"
 
 namespace huron {
 
+template <typename T>
 class StateProvider {
  public:
   explicit StateProvider(const Eigen::Vector2i& dim)
@@ -15,7 +17,7 @@ class StateProvider {
   virtual ~StateProvider() = default;
 
   virtual void RequestStateUpdate() = 0;
-  virtual void GetNewState(Eigen::Ref<Eigen::MatrixXd> new_state) const = 0;
+  virtual void GetNewState(Eigen::Ref<huron::MatrixX<T>> new_state) const = 0;
 
   const Eigen::Vector2i& dim() const { return dim_; }
 
@@ -24,3 +26,8 @@ class StateProvider {
 };
 
 }  // namespace huron
+
+// HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+//     class huron::StateProvider)
+// HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_AD_SCALARS(
+//     class huron::StateProvider)

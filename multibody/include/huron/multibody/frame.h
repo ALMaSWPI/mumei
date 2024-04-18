@@ -5,12 +5,14 @@
 #include <memory>
 #include <string>
 
+#include "huron/multibody/fwd.h"
+#include "huron/types.h"
+#include "huron/math/se3.h"
+#include "huron/utils/template_instantiations.h"
 #include "huron/enable_protected_make_shared.h"
 
 namespace huron {
 namespace multibody {
-
-class Model;
 
 using FrameIndex = size_t;
 
@@ -22,19 +24,20 @@ enum class FrameType {
   kPhysical,
 };
 
-class Frame : public enable_protected_make_shared<Frame> {
+template <typename T>
+class Frame : public enable_protected_make_shared<Frame<T>> {
  public:
-  friend class Model;
+  friend class Model<T>;
 
   Frame(const Frame&) = delete;
   Frame& operator=(const Frame&) = delete;
   virtual ~Frame() = default;
 
-  virtual Eigen::Affine3d GetTransformInWorld() const;
-  virtual Eigen::Affine3d GetTransformFromFrame(const Frame& other) const;
-  virtual Eigen::Affine3d GetTransformFromFrame(FrameIndex other) const;
-  virtual Eigen::Affine3d GetTransformToFrame(const Frame& other) const;
-  virtual Eigen::Affine3d GetTransformToFrame(FrameIndex other) const;
+  virtual huron::SE3<T> GetTransformInWorld() const;
+  virtual huron::SE3<T> GetTransformFromFrame(const Frame& other) const;
+  virtual huron::SE3<T> GetTransformFromFrame(FrameIndex other) const;
+  virtual huron::SE3<T> GetTransformToFrame(const Frame& other) const;
+  virtual huron::SE3<T> GetTransformToFrame(FrameIndex other) const;
 
   const std::string& name() const { return name_; }
   FrameIndex index() const { return index_; }
@@ -46,15 +49,20 @@ class Frame : public enable_protected_make_shared<Frame> {
         const std::string& name,
         FrameType type,
         bool is_user_defined,
-        std::weak_ptr<const Model> model);
+        std::weak_ptr<const Model<T>> model);
 
   /// \brief Frame name.
   const FrameIndex index_;
   const std::string name_;
   const FrameType type_;
   bool is_user_defined_;
-  const std::weak_ptr<const Model> model_;
+  const std::weak_ptr<const Model<T>> model_;
 };
 
 }  // namespace multibody
 }  // namespace huron
+
+HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+    class huron::multibody::Frame)
+HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_AD_SCALARS(
+    class huron::multibody::Frame)

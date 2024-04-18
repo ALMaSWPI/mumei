@@ -6,6 +6,8 @@
 #include <string>
 #include <unordered_map>
 
+#include "huron/types.h"
+#include "huron/utils/template_instantiations.h"
 #include "huron/multibody/model_impl_types.h"
 #include "huron/multibody/model_impl_interface.h"
 #include "huron/multibody/frame.h"
@@ -13,8 +15,9 @@
 namespace huron {
 namespace multibody {
 
-class Model : public std::enable_shared_from_this<Model> {
-  using ModelImplInterface = internal::ModelImplInterface;
+template <typename T>
+class Model : public std::enable_shared_from_this<Model<T>> {
+  using ModelImplInterface = internal::ModelImplInterface<T>;
 
  public:
   Model();
@@ -47,14 +50,14 @@ class Model : public std::enable_shared_from_this<Model> {
       // TODO(dtbpkmte): provide index information in the error message.
       throw std::runtime_error("Joint already exists at this index.");
     }
-    joints_[index] = std::make_shared<Joint>(std::forward<Args>(args)...);
+    joints_[index] = std::make_shared<Joint<T>>(std::forward<Args>(args)...);
   }
 
-  Joint* const GetJoint(JointIndex index);
-  Joint* const GetJoint(const std::string& name);
+  Joint<T>* const GetJoint(JointIndex index);
+  Joint<T>* const GetJoint(const std::string& name);
 
   void SetJointStateProvider(JointIndex index,
-                             std::shared_ptr<StateProvider> state_provider);
+                             std::shared_ptr<StateProvider<T>> state_provider);
 
   JointIndex GetJointIndex(const std::string& joint_name) const;
   /**
@@ -73,9 +76,9 @@ class Model : public std::enable_shared_from_this<Model> {
   // AddFrame(const std::string& name, Args&&... args);
 
   template<typename FrameImpl, typename ...Args>
-  std::weak_ptr<const Frame> AddFrame(const std::string& name, Args&&... args) {
+  std::weak_ptr<const Frame<T>> AddFrame(const std::string& name, Args&&... args) {
     static_assert(
-      std::is_base_of_v<Frame, FrameImpl>,
+      std::is_base_of_v<Frame<T>, FrameImpl>,
       "Invalid frame type.");
     static_assert(
       std::is_base_of_v<enable_protected_make_shared<FrameImpl>, FrameImpl>,
@@ -88,8 +91,8 @@ class Model : public std::enable_shared_from_this<Model> {
     return frames_.back();
   }
 
-  std::weak_ptr<const Frame> GetFrame(FrameIndex index) const;
-  std::weak_ptr<const Frame> GetFrame(const std::string& name) const;
+  std::weak_ptr<const Frame<T>> GetFrame(FrameIndex index) const;
+  std::weak_ptr<const Frame<T>> GetFrame(const std::string& name) const;
 
   void BuildFromUrdf(const std::string& urdf_path,
                      JointType root_joint_type = JointType::kFixed);
@@ -101,7 +104,7 @@ class Model : public std::enable_shared_from_this<Model> {
    * This method also sets the initial state [q, v] of the model.
    * @throws std::runtime_error if the model is not valid.
    */
-  void Finalize(const Eigen::VectorXd& initial_state);
+  void Finalize(const huron::VectorX<T>& initial_state);
   void Finalize();
 
   /**
@@ -118,67 +121,67 @@ class Model : public std::enable_shared_from_this<Model> {
 
 
   // Kinematics and Dynamics wrapper functions
-  Eigen::Affine3d GetJointTransformInWorld(size_t joint_index) const;
+  huron::SE3<T> GetJointTransformInWorld(size_t joint_index) const;
 
   FrameIndex GetFrameIndex(const std::string& frame_name) const;
   const std::string& GetFrameName(FrameIndex frame_index) const;
-  Eigen::Affine3d GetFrameTransform(FrameIndex from_frame,
+  huron::SE3<T> GetFrameTransform(FrameIndex from_frame,
                                     FrameIndex to_frame) const;
-  Eigen::Affine3d GetFrameTransformInWorld(FrameIndex frame) const;
+  huron::SE3<T> GetFrameTransformInWorld(FrameIndex frame) const;
 
-  Eigen::VectorXd NeutralConfiguration() const;
+  huron::VectorX<T> NeutralConfiguration() const;
 
-  Eigen::Vector3d EvalCenterOfMassPosition();
-  Eigen::Vector3d GetCenterOfMassPosition() const;
+  huron::Vector3<T> EvalCenterOfMassPosition();
+  huron::Vector3<T> GetCenterOfMassPosition() const;
 
-  const Eigen::VectorBlock<const Eigen::VectorXd> GetPositions() const;
+  const Eigen::VectorBlock<const huron::VectorX<T>> GetPositions() const;
 
-  const Eigen::VectorBlock<const Eigen::VectorXd> GetVelocities() const;
+  const Eigen::VectorBlock<const huron::VectorX<T>> GetVelocities() const;
 
   /**
    * @brief Get the generalized accelerations of the model.
    */
-  const Eigen::VectorXd& GetAccelerations() const;
+  const huron::VectorX<T>& GetAccelerations() const;
 
   /**
    * @brief Get the joint torques.
    */
-  const Eigen::VectorXd& GetTorques() const;
+  const huron::VectorX<T>& GetTorques() const;
 
   /**
    * @brief Get the mass matrix with the cached value.
    */
-  const Eigen::MatrixXd& GetMassMatrix() const;
+  const huron::MatrixX<T>& GetMassMatrix() const;
 
   /**
    * @brief Get the Coriolis matrix with the cached value.
    */
-  const Eigen::MatrixXd& GetCoriolisMatrix() const;
+  const huron::MatrixX<T>& GetCoriolisMatrix() const;
 
   /**
    * @brief Get the nonlinear effects vector.
    */
-  const Eigen::VectorXd& GetNonlinearEffects() const;
+  const huron::VectorX<T>& GetNonlinearEffects() const;
 
   /**
    * @brief Get the gravity vector.
    */
-  const Eigen::VectorXd& GetGravity() const;
+  const huron::VectorX<T>& GetGravity() const;
 
   /**
    * @brief Get the spatial momentum with respect to the specified frame.
    */
-  const huron::Vector6d& GetSpatialMomentum() const;
+  const huron::Vector6<T>& GetSpatialMomentum() const;
 
   /**
    * @brief Get the centroidal momentum.
    */
-  huron::Vector6d GetCentroidalMomentum() const;
+  huron::Vector6<T> GetCentroidalMomentum() const;
 
   /**
    * @brief Get the centroidal momentum matrix with the cached value.
    */
-  const huron::Matrix6Xd& GetCentroidalMatrix() const;
+  const huron::Matrix6X<T>& GetCentroidalMatrix() const;
 
   void ComputeAll();
 
@@ -225,7 +228,7 @@ class Model : public std::enable_shared_from_this<Model> {
                         frames_.size(),  // frame index
                         name,  // frame name
                         is_user_defined,
-                        weak_from_this(),  // model
+                        this->weak_from_this(),  // model
                         std::forward<Args>(args)...));
     frame_name_to_index_[name] = frames_.size() - 1;
   }
@@ -236,15 +239,15 @@ class Model : public std::enable_shared_from_this<Model> {
 
   size_t default_impl_index_ = 0;
   std::vector<std::unique_ptr<ModelImplInterface>> impls_;
-  std::vector<std::shared_ptr<Joint>> joints_;
+  std::vector<std::shared_ptr<Joint<T>>> joints_;
   /// \brief The joint states [q, v].
-  Eigen::VectorXd states_;
+  huron::VectorX<T> states_;
   size_t num_positions_ = 0;
   size_t num_velocities_ = 0;
 
   /// \brief All frames, including those defined by the model description file
   /// and user-defined ones.
-  std::vector<std::shared_ptr<Frame>> frames_;
+  std::vector<std::shared_ptr<Frame<T>>> frames_;
   std::unordered_map<std::string, FrameIndex> frame_name_to_index_;
 
   bool is_constructed_ = false;
@@ -253,3 +256,8 @@ class Model : public std::enable_shared_from_this<Model> {
 
 }  // namespace multibody
 }  // namespace huron
+
+HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+    class huron::multibody::Model)
+HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_AD_SCALARS(
+    class huron::multibody::Model)

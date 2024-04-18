@@ -9,7 +9,8 @@
 
 namespace huron {
 
-class LeggedRobot : public Robot {
+template <typename T>
+class LeggedRobot : public Robot<T> {
  public:
   explicit LeggedRobot(std::unique_ptr<RobotConfiguration> config);
   LeggedRobot();
@@ -17,14 +18,19 @@ class LeggedRobot : public Robot {
   LeggedRobot& operator=(const LeggedRobot&) = delete;
   ~LeggedRobot() override = default;
 
-  void InitializeZmp(std::shared_ptr<ZeroMomentPoint> zmp);
+  void InitializeZmp(std::shared_ptr<ZeroMomentPoint<T>> zmp);
   /**
    * Computes the Center of Mass in Base frame.
    */
-  Eigen::Vector2d EvalZeroMomentPoint();
+  huron::Vector2<T> EvalZeroMomentPoint();
 
  private:
-  std::shared_ptr<ZeroMomentPoint> zmp_;
+  std::shared_ptr<ZeroMomentPoint<T>> zmp_;
 };
 
 }  // namespace huron
+
+HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+    class huron::LeggedRobot)
+HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_AD_SCALARS(
+    class huron::LeggedRobot)

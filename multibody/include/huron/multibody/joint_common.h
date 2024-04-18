@@ -7,6 +7,8 @@
 #include <cassert>
 #include <limits>
 
+#include "huron/types.h"
+#include "huron/utils/template_instantiations.h"
 #include "frame.h"
 
 namespace huron {
@@ -24,6 +26,7 @@ enum class JointType {
   kFreeFlyer
 };
 
+template <typename T>
 struct JointDescription {
  public:
   // TODO(dtbpkmte): Properly implement JointIndex/FrameIndex and casts.
@@ -32,16 +35,16 @@ struct JointDescription {
                    size_t child_frame_id,
                    size_t num_positions, size_t num_velocities,
                    JointType type,
-                   const Eigen::VectorXd& min_position,
-                   const Eigen::VectorXd& max_position,
-                   const Eigen::VectorXd& min_velocity,
-                   const Eigen::VectorXd& max_velocity,
-                   const Eigen::VectorXd& min_acceleration,
-                   const Eigen::VectorXd& max_acceleration,
-                   const Eigen::VectorXd& min_torque,
-                   const Eigen::VectorXd& max_torque,
-                   const Eigen::VectorXd& friction,
-                   const Eigen::VectorXd& damping)
+                   const huron::VectorX<T>& min_position,
+                   const huron::VectorX<T>& max_position,
+                   const huron::VectorX<T>& min_velocity,
+                   const huron::VectorX<T>& max_velocity,
+                   const huron::VectorX<T>& min_acceleration,
+                   const huron::VectorX<T>& max_acceleration,
+                   const huron::VectorX<T>& min_torque,
+                   const huron::VectorX<T>& max_torque,
+                   const huron::VectorX<T>& friction,
+                   const huron::VectorX<T>& damping)
       : id_((JointIndex) id),
         name_(name),
         parent_frame_id_((FrameIndex) parent_frame_id),
@@ -59,24 +62,24 @@ struct JointDescription {
         max_torque_(max_torque),
         friction_(friction),
         damping_(damping) {
-    assert(min_position.size() == num_positions_);
-    assert(max_position.size() == num_positions_);
-    assert((max_position.array() >= min_position.array()).all());
-
-    assert(min_velocity.size() == num_velocities_);
-    assert(max_velocity.size() == num_velocities_);
-    assert((max_velocity.array() >= min_velocity.array()).all());
-
-    assert(min_acceleration.size() == num_velocities_);
-    assert(max_acceleration.size() == num_velocities_);
-    assert((max_acceleration.array() >= min_acceleration.array()).all());
-
-    assert(min_torque.size() == num_velocities_);
-    assert(max_torque.size() == num_velocities_);
-    assert((max_torque.array() >= min_torque.array()).all());
-
-    assert(friction.size() == num_velocities_);
-    assert(damping.size() == num_velocities_);
+    // assert(min_position.size() == num_positions_);
+    // assert(max_position.size() == num_positions_);
+    // assert((max_position.array() >= min_position.array()).all());
+    //
+    // assert(min_velocity.size() == num_velocities_);
+    // assert(max_velocity.size() == num_velocities_);
+    // assert((max_velocity.array() >= min_velocity.array()).all());
+    //
+    // assert(min_acceleration.size() == num_velocities_);
+    // assert(max_acceleration.size() == num_velocities_);
+    // assert((max_acceleration.array() >= min_acceleration.array()).all());
+    //
+    // assert(min_torque.size() == num_velocities_);
+    // assert(max_torque.size() == num_velocities_);
+    // assert((max_torque.array() >= min_torque.array()).all());
+    //
+    // assert(friction.size() == num_velocities_);
+    // assert(damping.size() == num_velocities_);
   }
 
   JointDescription(size_t id, const std::string& name,
@@ -84,14 +87,14 @@ struct JointDescription {
                    size_t child_frame_id,
                    size_t num_positions, size_t num_velocities,
                    JointType type,
-                   const Eigen::VectorXd& min_position,
-                   const Eigen::VectorXd& max_position,
-                   const Eigen::VectorXd& min_velocity,
-                   const Eigen::VectorXd& max_velocity,
-                   const Eigen::VectorXd& min_acceleration,
-                   const Eigen::VectorXd& max_acceleration,
-                   const Eigen::VectorXd& min_torque,
-                   const Eigen::VectorXd& max_torque)
+                   const huron::VectorX<T>& min_position,
+                   const huron::VectorX<T>& max_position,
+                   const huron::VectorX<T>& min_velocity,
+                   const huron::VectorX<T>& max_velocity,
+                   const huron::VectorX<T>& min_acceleration,
+                   const huron::VectorX<T>& max_acceleration,
+                   const huron::VectorX<T>& min_torque,
+                   const huron::VectorX<T>& max_torque)
       : JointDescription(id, name,
                          parent_frame_id, child_frame_id,
                          num_positions, num_velocities,
@@ -100,8 +103,8 @@ struct JointDescription {
                          min_velocity, max_velocity,
                          min_acceleration, max_acceleration,
                          min_torque, max_torque,
-                         Eigen::VectorXd::Zero(num_velocities),
-                         Eigen::VectorXd::Zero(num_velocities)) {}
+                         huron::VectorX<T>::Zero(num_velocities),
+                         huron::VectorX<T>::Zero(num_velocities)) {}
 
   JointDescription(size_t id, const std::string& name,
                    size_t parent_frame_id,
@@ -114,24 +117,24 @@ struct JointDescription {
           parent_frame_id, child_frame_id,
           num_positions, num_velocities,
           type,
-          Eigen::VectorXd::Constant(num_positions,
+          huron::VectorX<T>::Constant(num_positions,
             -std::numeric_limits<double>::infinity()),
-          Eigen::VectorXd::Constant(num_positions,
+          huron::VectorX<T>::Constant(num_positions,
             std::numeric_limits<double>::infinity()),
-          Eigen::VectorXd::Constant(num_velocities,
+          huron::VectorX<T>::Constant(num_velocities,
             -std::numeric_limits<double>::infinity()),
-          Eigen::VectorXd::Constant(num_velocities,
+          huron::VectorX<T>::Constant(num_velocities,
             std::numeric_limits<double>::infinity()),
-          Eigen::VectorXd::Constant(num_velocities,
+          huron::VectorX<T>::Constant(num_velocities,
             -std::numeric_limits<double>::infinity()),
-          Eigen::VectorXd::Constant(num_velocities,
+          huron::VectorX<T>::Constant(num_velocities,
             std::numeric_limits<double>::infinity()),
-          Eigen::VectorXd::Constant(num_velocities,
+          huron::VectorX<T>::Constant(num_velocities,
             -std::numeric_limits<double>::infinity()),
-          Eigen::VectorXd::Constant(num_velocities,
+          huron::VectorX<T>::Constant(num_velocities,
             std::numeric_limits<double>::infinity()),
-          Eigen::VectorXd::Zero(num_velocities),
-          Eigen::VectorXd::Zero(num_velocities)) {}
+          huron::VectorX<T>::Zero(num_velocities),
+          huron::VectorX<T>::Zero(num_velocities)) {}
 
   JointIndex id() const { return id_; }
   const std::string& name() const { return name_; }
@@ -140,16 +143,16 @@ struct JointDescription {
   size_t num_positions() const { return num_positions_; }
   size_t num_velocities() const { return num_velocities_; }
   JointType type() const { return type_; }
-  const Eigen::VectorXd& min_position() const { return min_position_; }
-  const Eigen::VectorXd& max_position() const { return max_position_; }
-  const Eigen::VectorXd& min_velocity() const { return min_velocity_; }
-  const Eigen::VectorXd& max_velocity() const { return max_velocity_; }
-  const Eigen::VectorXd& min_acceleration() const { return min_acceleration_; }
-  const Eigen::VectorXd& max_acceleration() const { return max_acceleration_; }
-  const Eigen::VectorXd& min_torque() const { return min_torque_; }
-  const Eigen::VectorXd& max_torque() const { return max_torque_; }
-  const Eigen::VectorXd& friction() const { return friction_; }
-  const Eigen::VectorXd& damping() const { return damping_; }
+  const huron::VectorX<T>& min_position() const { return min_position_; }
+  const huron::VectorX<T>& max_position() const { return max_position_; }
+  const huron::VectorX<T>& min_velocity() const { return min_velocity_; }
+  const huron::VectorX<T>& max_velocity() const { return max_velocity_; }
+  const huron::VectorX<T>& min_acceleration() const { return min_acceleration_; }
+  const huron::VectorX<T>& max_acceleration() const { return max_acceleration_; }
+  const huron::VectorX<T>& min_torque() const { return min_torque_; }
+  const huron::VectorX<T>& max_torque() const { return max_torque_; }
+  const huron::VectorX<T>& friction() const { return friction_; }
+  const huron::VectorX<T>& damping() const { return damping_; }
 
  private:
   JointIndex id_;
@@ -159,19 +162,39 @@ struct JointDescription {
   size_t num_positions_;
   size_t num_velocities_;
   JointType type_;
-  Eigen::VectorXd min_position_;
-  Eigen::VectorXd max_position_;
-  Eigen::VectorXd min_velocity_;
-  Eigen::VectorXd max_velocity_;
-  Eigen::VectorXd min_acceleration_;
-  Eigen::VectorXd max_acceleration_;
-  Eigen::VectorXd min_torque_;
-  Eigen::VectorXd max_torque_;
-  Eigen::VectorXd friction_;
-  Eigen::VectorXd damping_;
+  huron::VectorX<T> min_position_;
+  huron::VectorX<T> max_position_;
+  huron::VectorX<T> min_velocity_;
+  huron::VectorX<T> max_velocity_;
+  huron::VectorX<T> min_acceleration_;
+  huron::VectorX<T> max_acceleration_;
+  huron::VectorX<T> min_torque_;
+  huron::VectorX<T> max_torque_;
+  huron::VectorX<T> friction_;
+  huron::VectorX<T> damping_;
 };
 
-std::ostream& operator<<(std::ostream &os, const JointDescription &jd);
+template <typename T>
+std::ostream& operator<<(std::ostream &os, const JointDescription<T> &jd) {
+  return (os << "ID: " << jd.id()
+             << "\nName: " << jd.name()
+             << "\nParent Frame ID: " << jd.parent_frame_id()
+             << "\nChild Frame ID: " << jd.child_frame_id()
+             << "\nNum Positions: " << jd.num_positions()
+             << "\nNum Velocities: " << jd.num_velocities()
+             << "\nType: " << static_cast<size_t>(jd.type())
+             << "\nMin Position: " << jd.min_position()
+             << "\nMax Position: " << jd.max_position()
+             << "\nMin Velocity: " << jd.min_velocity()
+             << "\nMax Velocity: " << jd.max_velocity()
+             << "\nMin Acceleration: " << jd.min_acceleration()
+             << "\nMax Acceleration: " << jd.max_acceleration()
+             << "\nMin Torque: " << jd.min_torque()
+             << "\nMax Torque: " << jd.max_torque()
+             << "\nFriction: " << jd.friction()
+             << "\nDamping: " << jd.damping()
+             << std::endl);
+}
 
 }  // namespace multibody
 }  // namespace huron

@@ -1,13 +1,13 @@
 set(dir "${CMAKE_CURRENT_SOURCE_DIR}")
 
 list(APPEND SOURCE_FILES
-        "${dir}/src/rotation.cc")
+        "${dir}/src/se3.cc")
 FILE(GLOB_RECURSE HEADER_FILES
         ${CMAKE_CURRENT_SOURCE_DIR}/include/*.h
 )
 
 list(APPEND TEST_SOURCE_FILES
-        "${dir}/test/test_rotation.cc")
+        "${dir}/test/test_se3.cc")
 
 set(INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/include/")
 

@@ -2,32 +2,42 @@
 
 namespace huron {
 
-ForceTorqueSensor::ForceTorqueSensor(
+template <typename T>
+ForceTorqueSensor<T>::ForceTorqueSensor(
   bool reverse_wrench_direction,
-  std::weak_ptr<const multibody::Frame> frame)
-  : SensorWithFrame(6, 1, std::move(frame)),
+  std::weak_ptr<const multibody::Frame<T>> frame)
+  : SensorWithFrame<T>(6, 1, std::move(frame)),
     reverse_wrench_direction_(reverse_wrench_direction) {}
 
-ForceTorqueSensor::ForceTorqueSensor(
+template <typename T>
+ForceTorqueSensor<T>::ForceTorqueSensor(
   bool reverse_wrench_direction,
-  std::weak_ptr<const multibody::Frame> frame,
+  std::weak_ptr<const multibody::Frame<T>> frame,
   std::unique_ptr<Configuration> config)
-  : SensorWithFrame(6, 1, std::move(frame), std::move(config)),
+  : SensorWithFrame<T>(6, 1, std::move(frame), std::move(config)),
     reverse_wrench_direction_(reverse_wrench_direction) {}
 
-void ForceTorqueSensor::RequestStateUpdate() {
+template <typename T>
+void ForceTorqueSensor<T>::RequestStateUpdate() {
   wrench_ = DoGetWrenchRaw();
 }
 
-void ForceTorqueSensor::GetNewState(
-  Eigen::Ref<Eigen::MatrixXd> new_state) const {
+template <typename T>
+void ForceTorqueSensor<T>::GetNewState(
+  Eigen::Ref<huron::MatrixX<T>> new_state) const {
   new_state = GetValue();
 }
 
-Eigen::VectorXd ForceTorqueSensor::GetValue() const {
+template <typename T>
+huron::VectorX<T> ForceTorqueSensor<T>::GetValue() const {
   if (reverse_wrench_direction_)
     return -wrench_;
   return wrench_;
 }
 
 }  // namespace huron
+
+HURON_DEFINE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+    class huron::ForceTorqueSensor)
+HURON_DEFINE_CLASS_TEMPLATE_INSTANTIATIONS_ON_AD_SCALARS(
+    class huron::ForceTorqueSensor)

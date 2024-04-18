@@ -6,10 +6,11 @@
 
 namespace huron {
 
-class ForceSensingResistor : public SensorWithFrame {
+template <typename T>
+class ForceSensingResistor : public SensorWithFrame<T> {
  public:
-  explicit ForceSensingResistor(std::weak_ptr<const multibody::Frame> frame);
-  ForceSensingResistor(std::weak_ptr<const multibody::Frame> frame,
+  explicit ForceSensingResistor(std::weak_ptr<const multibody::Frame<T>> frame);
+  ForceSensingResistor(std::weak_ptr<const multibody::Frame<T>> frame,
                        std::unique_ptr<Configuration> config);
   ForceSensingResistor(const ForceSensingResistor&) = delete;
   ForceSensingResistor& operator=(const ForceSensingResistor&) = delete;
@@ -17,3 +18,8 @@ class ForceSensingResistor : public SensorWithFrame {
 };
 
 }  // namespace huron
+
+HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+    class huron::ForceSensingResistor)
+HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_AD_SCALARS(
+    class huron::ForceSensingResistor)

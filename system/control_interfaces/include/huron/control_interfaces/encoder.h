@@ -35,30 +35,33 @@ class EncoderConfiguration : public Configuration {
  *
  * @ingroup control_interface
  */
-class Encoder : public Sensor {
+template <typename T>
+class Encoder : public Sensor<T> {
  public:
-  Encoder(double gear_ratio, std::unique_ptr<EncoderConfiguration> config)
-    : Sensor(2, 1, std::move(config)), gear_ratio_(gear_ratio) {}
-  explicit Encoder(double gear_ratio)
-    : Encoder(gear_ratio, std::make_unique<EncoderConfiguration>()) {}
-  explicit Encoder(std::unique_ptr<EncoderConfiguration> config)
-    : Encoder(1.0, std::move(config)) {}
-  Encoder() : Encoder(1.0) {}
+  Encoder(T gear_ratio, std::unique_ptr<EncoderConfiguration> config)
+    : Sensor<T>(2, 1, std::move(config)), gear_ratio_(gear_ratio) {}
+  explicit Encoder(T gear_ratio)
+    : Encoder<T>(gear_ratio, std::make_unique<EncoderConfiguration>()) {}
   Encoder(const Encoder&) = delete;
   Encoder& operator=(const Encoder&) = delete;
   virtual ~Encoder() = default;
 
-  void GetNewState(Eigen::Ref<Eigen::MatrixXd> new_state) const override {
-    new_state = Eigen::Vector2d(GetPosition(), GetVelocity());
+  void GetNewState(Eigen::Ref<huron::MatrixX<T>> new_state) const override {
+    new_state = huron::Vector2<T>(GetPosition(), GetVelocity());
   }
 
-  virtual double GetPosition() const = 0;
-  virtual double GetVelocity() const = 0;
+  virtual T GetPosition() const = 0;
+  virtual T GetVelocity() const = 0;
 
   virtual void Reset() = 0;
 
  protected:
-  double gear_ratio_;
+  T gear_ratio_;
 };
 
 }  // namespace huron
+
+// HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+//     class huron::Encoder)
+// HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_AD_SCALARS(
+//     class huron::Encoder)

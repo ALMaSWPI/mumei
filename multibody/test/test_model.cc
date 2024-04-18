@@ -5,7 +5,7 @@
 
 using namespace huron;  //NOLINT
 
-class TestRobot : public Robot {
+class TestRobot : public Robot<double> {
  public:
   TestRobot() : Robot()  {}
   ~TestRobot() override = default;
@@ -28,11 +28,11 @@ class TestModelPinocchio : public testing::Test {
     robot.GetModel()->BuildFromUrdf("rrbot.urdf");
     robot.GetModel()->SetJointStateProvider(
         1,
-        std::make_shared<ConstantStateProvider>(
+        std::make_shared<ConstantStateProvider<double>>(
           Eigen::Vector2d::Zero()));
     robot.GetModel()->SetJointStateProvider(
         2,
-        std::make_shared<ConstantStateProvider>(
+        std::make_shared<ConstantStateProvider<double>>(
           Eigen::Vector2d::Zero()));
     robot.GetModel()->Finalize();
   }
@@ -54,20 +54,20 @@ TEST_F(TestModelPinocchio, TestKinematics) {
   auto link1_frame = robot.GetModel()->GetFrame("link1");
   auto link2_frame = robot.GetModel()->GetFrame("link2");
 
-  Eigen::Affine3d expected_base_link_pose(Eigen::Affine3d::Identity());
-  Eigen::Affine3d expected_link1_pose =
-    expected_base_link_pose * Eigen::Translation3d(0, 0.1, 1.95);
-  Eigen::Affine3d expected_link2_pose =
-    expected_link1_pose * Eigen::Translation3d(0, 0.1, 0.9);
+  SE3<double> expected_base_link_pose;
+  SE3<double> expected_link1_pose(Eigen::Matrix3d::Identity(),
+                                  Eigen::Vector3d(0, 0.1, 1.95));
+  SE3<double> expected_link2_pose = expected_link1_pose;
+  expected_link2_pose.Translate(Eigen::Vector3d(0, 0.1, 0.9));
 
   robot.GetModel()->UpdateJointStates();
   robot.GetModel()->ForwardKinematics();
 
-  Eigen::Affine3d base_link_pose =
+  SE3<double> base_link_pose =
     base_link_frame.lock()->GetTransformInWorld();
-  Eigen::Affine3d link1_pose =
+  SE3<double> link1_pose =
     link1_frame.lock()->GetTransformInWorld();
-  Eigen::Affine3d link2_pose =
+  SE3<double> link2_pose =
     link2_frame.lock()->GetTransformInWorld();
   EXPECT_EQ(base_link_pose.matrix(),
             expected_base_link_pose.matrix());

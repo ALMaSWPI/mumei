@@ -10,6 +10,7 @@
 
 namespace huron {
 
+template <typename T>
 class RotaryEncoderConfiguration : public EncoderConfiguration {
  public:
   /**
@@ -24,7 +25,7 @@ class RotaryEncoderConfiguration : public EncoderConfiguration {
                                return tmp;
                              }()) {}
 
-  explicit RotaryEncoderConfiguration(double cpr)
+  explicit RotaryEncoderConfiguration(T cpr)
       : RotaryEncoderConfiguration(
           ConfigMap({{"cpr", cpr}}), {}) {}
 
@@ -37,18 +38,17 @@ class RotaryEncoderConfiguration : public EncoderConfiguration {
  *
  * @ingroup control_interfaces
  */
-class RotaryEncoder : public Encoder {
+template <typename T>
+class RotaryEncoder : public Encoder<T> {
  public:
-  RotaryEncoder(double gear_ratio,
-                std::unique_ptr<RotaryEncoderConfiguration> config)
-    : Encoder(gear_ratio, std::move(config)) {
-    cpr_ = std::any_cast<double>(config_.get()->Get("cpr"));
+  RotaryEncoder(T gear_ratio,
+                std::unique_ptr<RotaryEncoderConfiguration<T>> config)
+    : Encoder<T>(gear_ratio, std::move(config)) {
+    cpr_ = std::any_cast<T>(this->config_.get()->Get("cpr"));
   }
-  RotaryEncoder(double gear_ratio, double cpr)
+  RotaryEncoder(T gear_ratio, T cpr)
       : RotaryEncoder(gear_ratio,
-                      std::make_unique<RotaryEncoderConfiguration>(cpr)) {}
-  explicit RotaryEncoder(double cpr)
-      : RotaryEncoder(1.0, cpr) {}
+                      std::make_unique<RotaryEncoderConfiguration<T>>(cpr)) {}
   RotaryEncoder(const RotaryEncoder&) = delete;
   RotaryEncoder& operator=(const RotaryEncoder&) = delete;
   ~RotaryEncoder() override = default;
@@ -62,28 +62,28 @@ class RotaryEncoder : public Encoder {
   /**
      * Gets the current encoder count.
      */
-  double GetCount() const {
+  T GetCount() const {
     return count_;
   }
 
   /**
      * Gets the current encoder velocity in count.
      */
-  double GetVelocityCount() const {
+  T GetVelocityCount() const {
     return velocity_;
   }
 
   /**
      * Gets the previous encoder count.
      */
-  double GetPrevCount() const {
+  T GetPrevCount() const {
     return prev_count_;
   }
 
   /**
      * Gets the counts per revolution (CPR).
      */
-  double GetCPR() const {
+  T GetCPR() const {
     return cpr_;
   }
 
@@ -91,32 +91,32 @@ class RotaryEncoder : public Encoder {
      * Gets the current angle in radians. This takes into account the gear ratio
      * and CPR.
      */
-  double GetPosition() const override {
-    return count_ / cpr_ * 2.0 * M_PI / gear_ratio_;
+  T GetPosition() const override {
+    return count_ / cpr_ * 2.0 * M_PI / this->gear_ratio_;
   }
 
   /**
      * Gets the current angle in degrees. This takes into account the gear ratio
      * and CPR.
      */
-  double GetAngleDegree() const {
-    return count_ / cpr_ * 360.0 / gear_ratio_;
+  T GetAngleDegree() const {
+    return count_ / cpr_ * 360.0 / this->gear_ratio_;
   }
 
   /**
      * Gets the current velocity in radians/second. This takes into account the
      * gear ratio and CPR.
      */
-  double GetVelocity() const override {
-    return velocity_ / cpr_ * 2 * M_PI / gear_ratio_;
+  T GetVelocity() const override {
+    return velocity_ / cpr_ * 2 * M_PI / this->gear_ratio_;
   }
 
   /**
      * Gets the current velocity in degrees/second. This takes into account the
      * gear ratio and CPR.
      */
-  double GetVelocityDegree() const {
-    return velocity_ / cpr_ * 360.0 / gear_ratio_;
+  T GetVelocityDegree() const {
+    return velocity_ / cpr_ * 360.0 / this->gear_ratio_;
   }
 
   /**
@@ -139,12 +139,21 @@ class RotaryEncoder : public Encoder {
   virtual void DoUpdateState() = 0;
 
   /// \brief Encoder velocity in counts per second.
-  double velocity_ = 0.0;
+  T velocity_;
   /// \brief Encoder previous velocity in counts per second.
-  double prev_velocity_ = 0.0;
-  double count_ = 0.0;
-  double prev_count_ = 0.0;
-  double cpr_;
+  T prev_velocity_;
+  T count_;
+  T prev_count_;
+  T cpr_;
 };
 
 }  // namespace huron
+
+// HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+//     class huron::RotaryEncoderConfiguration)
+// HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_AD_SCALARS(
+//     class huron::RotaryEncoderConfiguration)
+// HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+//     class huron::RotaryEncoder)
+// HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_AD_SCALARS(
+//     class huron::RotaryEncoder)

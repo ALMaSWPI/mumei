@@ -11,8 +11,9 @@
 
 namespace huron {
 
+template <typename T>
 class Joint {
-  using JointDescription = huron::multibody::JointDescription;
+  using JointDescription = huron::multibody::JointDescription<T>;
   using JointType = huron::multibody::JointType;
 
  public:
@@ -20,7 +21,7 @@ class Joint {
    * Creates a Joint that connects the specfied parent and child frames.
    */
   explicit Joint(std::unique_ptr<JointDescription> joint_desc,
-                 std::shared_ptr<StateProvider> state_provider = nullptr);
+                 std::shared_ptr<StateProvider<T>> state_provider = nullptr);
   Joint(const Joint&) = delete;
   Joint& operator=(const Joint&) = delete;
   virtual ~Joint() = default;
@@ -36,7 +37,7 @@ class Joint {
    * and size:
    * \[ \begin{bmatrix} q \\ \dot{q} \end{bmatrix} \in \mathbb{R}^{nq + nv}\]
    */
-  void SetStateProvider(std::shared_ptr<StateProvider> state_provider);
+  void SetStateProvider(std::shared_ptr<StateProvider<T>> state_provider);
 
   /**
    * @brief Updates the joint state from the state provider.
@@ -47,11 +48,11 @@ class Joint {
     return jd_->type();
   }
 
-  const Eigen::VectorXd& GetPositions() const {
+  const huron::VectorX<T>& GetPositions() const {
     return positions_;
   }
 
-  const Eigen::VectorXd& GetVelocities() const {
+  const huron::VectorX<T>& GetVelocities() const {
     return velocities_;
   }
 
@@ -89,12 +90,17 @@ class Joint {
 
  protected:
   std::unique_ptr<JointDescription> jd_;
-  Eigen::VectorXd positions_;
-  Eigen::VectorXd velocities_;
+  huron::VectorX<T> positions_;
+  huron::VectorX<T> velocities_;
   size_t id_q_;
   size_t id_v_;
 
-  std::shared_ptr<StateProvider> state_provider_;
+  std::shared_ptr<StateProvider<T>> state_provider_;
 };
 
 }  // namespace huron
+
+HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_DEFAULT_SCALARS(
+    class huron::Joint)
+HURON_DECLARE_CLASS_TEMPLATE_INSTANTIATIONS_ON_AD_SCALARS(
+    class huron::Joint)
