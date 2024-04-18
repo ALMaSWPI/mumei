@@ -1,0 +1,43 @@
+\hypertarget{system_2sensors_2include_2huron_2sensors_2force__torque__sensor_8h_source}{}\doxysection{force\+\_\+torque\+\_\+sensor.\+h}
+\label{system_2sensors_2include_2huron_2sensors_2force__torque__sensor_8h_source}\index{/github/workspace/system/sensors/include/huron/sensors/force\_torque\_sensor.h@{/github/workspace/system/sensors/include/huron/sensors/force\_torque\_sensor.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <eigen3/Eigen/Core>}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include "{}huron/control\_interfaces/sensor\_with\_frame.h"{}}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}huron/types.h"{}}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacehuron}{huron}} \{}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{keyword}{class }\mbox{\hyperlink{classhuron_1_1ForceTorqueSensor}{ForceTorqueSensor}} : \textcolor{keyword}{public} \mbox{\hyperlink{classhuron_1_1SensorWithFrame}{SensorWithFrame}} \{}
+\DoxyCodeLine{13  \textcolor{keyword}{public}:}
+\DoxyCodeLine{14   \mbox{\hyperlink{classhuron_1_1ForceTorqueSensor}{ForceTorqueSensor}}(\textcolor{keywordtype}{bool} reverse\_wrench\_direction,}
+\DoxyCodeLine{15                     std::weak\_ptr<const multibody::Frame> frame);}
+\DoxyCodeLine{16   \mbox{\hyperlink{classhuron_1_1ForceTorqueSensor}{ForceTorqueSensor}}(\textcolor{keywordtype}{bool} reverse\_wrench\_direction,}
+\DoxyCodeLine{17                     std::weak\_ptr<const multibody::Frame> frame,}
+\DoxyCodeLine{18                     std::unique\_ptr<Configuration> config);}
+\DoxyCodeLine{19   \mbox{\hyperlink{classhuron_1_1ForceTorqueSensor}{ForceTorqueSensor}}(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1ForceTorqueSensor}{ForceTorqueSensor}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{20   \mbox{\hyperlink{classhuron_1_1ForceTorqueSensor}{ForceTorqueSensor}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1ForceTorqueSensor}{ForceTorqueSensor}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{21   \mbox{\hyperlink{classhuron_1_1ForceTorqueSensor}{\string~ForceTorqueSensor}}() \textcolor{keyword}{override} = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23   \textcolor{keywordtype}{void} RequestStateUpdate() \textcolor{keyword}{override};}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25   \textcolor{keywordtype}{void} GetNewState(Eigen::Ref<Eigen::MatrixXd> new\_state) \textcolor{keyword}{const override};}
+\DoxyCodeLine{31   Eigen::VectorXd \mbox{\hyperlink{classhuron_1_1ForceTorqueSensor_af673900b89593ebeae572ff2b3c07cd5}{GetValue}}() \textcolor{keyword}{const override};}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33  \textcolor{keyword}{protected}:}
+\DoxyCodeLine{37   \textcolor{keyword}{virtual} Vector6d \mbox{\hyperlink{classhuron_1_1ForceTorqueSensor_ae41dc25688f98799c1cab5c9751b6f12}{DoGetWrenchRaw}}() = 0;}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39   \textcolor{keywordtype}{bool} reverse\_wrench\_direction\_;}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41  \textcolor{keyword}{private}:}
+\DoxyCodeLine{42   huron::Vector6d wrench\_;}
+\DoxyCodeLine{43 \};}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 \}  \textcolor{comment}{// namespace huron}}
+
+\end{DoxyCode}

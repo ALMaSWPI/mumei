@@ -1,3 +1,0 @@
-add_subdirectory(test_can)
-add_subdirectory(test_huron_canbus)
-add_subdirectory(test_odrive_can)

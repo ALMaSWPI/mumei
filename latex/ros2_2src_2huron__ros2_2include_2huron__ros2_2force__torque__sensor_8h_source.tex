@@ -1,0 +1,49 @@
+\hypertarget{ros2_2src_2huron__ros2_2include_2huron__ros2_2force__torque__sensor_8h_source}{}\doxysection{force\+\_\+torque\+\_\+sensor.\+h}
+\label{ros2_2src_2huron__ros2_2include_2huron__ros2_2force__torque__sensor_8h_source}\index{/github/workspace/ros2/src/huron\_ros2/include/huron\_ros2/force\_torque\_sensor.h@{/github/workspace/ros2/src/huron\_ros2/include/huron\_ros2/force\_torque\_sensor.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <utility>}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include "{}huron/sensors/force\_torque\_sensor.h"{}}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacehuron}{huron}} \{}
+\DoxyCodeLine{9 \textcolor{keyword}{namespace }ros2 \{}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{keyword}{class }HuronNode;}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{keyword}{class }\mbox{\hyperlink{classhuron_1_1ros2_1_1ForceTorqueSensor}{ForceTorqueSensor}} : \textcolor{keyword}{public} \mbox{\hyperlink{classhuron_1_1ForceTorqueSensor}{huron::ForceTorqueSensor}} \{}
+\DoxyCodeLine{14   \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{classhuron_1_1ros2_1_1HuronNode}{HuronNode}};}
+\DoxyCodeLine{15  \textcolor{keyword}{public}:}
+\DoxyCodeLine{16   \mbox{\hyperlink{classhuron_1_1ros2_1_1ForceTorqueSensor}{ForceTorqueSensor}}(\textcolor{keywordtype}{bool} reverse\_wrench\_direction,}
+\DoxyCodeLine{17                     std::weak\_ptr<const multibody::Frame> frame);}
+\DoxyCodeLine{18   \mbox{\hyperlink{classhuron_1_1ros2_1_1ForceTorqueSensor}{ForceTorqueSensor}}(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1ros2_1_1ForceTorqueSensor}{ForceTorqueSensor}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{19   \mbox{\hyperlink{classhuron_1_1ros2_1_1ForceTorqueSensor}{ForceTorqueSensor}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1ros2_1_1ForceTorqueSensor}{ForceTorqueSensor}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{20   \mbox{\hyperlink{classhuron_1_1ros2_1_1ForceTorqueSensor}{\string~ForceTorqueSensor}}() \textcolor{keyword}{override} = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22   \textcolor{keywordtype}{void} Initialize() \textcolor{keyword}{override};}
+\DoxyCodeLine{23   \textcolor{keywordtype}{void} SetUp() \textcolor{keyword}{override};}
+\DoxyCodeLine{24   \textcolor{keywordtype}{void} Terminate() \textcolor{keyword}{override};}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26  \textcolor{keyword}{protected}:}
+\DoxyCodeLine{27   Vector6d \mbox{\hyperlink{classhuron_1_1ros2_1_1ForceTorqueSensor_a8e629e1a17129bd7b96fd2464afa2e35}{DoGetWrenchRaw}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29  \textcolor{keyword}{private}:}
+\DoxyCodeLine{30   \textcolor{keywordtype}{size\_t} index\_;}
+\DoxyCodeLine{31   std::weak\_ptr<const HuronNode> node\_;}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33   \textcolor{keywordtype}{void} SetNode(std::weak\_ptr<HuronNode> node) \{}
+\DoxyCodeLine{34     node\_ = std::move(node);}
+\DoxyCodeLine{35   \}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37   \textcolor{keywordtype}{void} SetIndex(\textcolor{keywordtype}{size\_t} index) \{}
+\DoxyCodeLine{38     index\_ = index;}
+\DoxyCodeLine{39   \}}
+\DoxyCodeLine{40 \};}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42 \}  \textcolor{comment}{// namespace ros2}}
+\DoxyCodeLine{43 \}  \textcolor{comment}{// namespace huron}}
+
+\end{DoxyCode}

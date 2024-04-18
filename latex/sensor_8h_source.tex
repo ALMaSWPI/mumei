@@ -1,0 +1,34 @@
+\hypertarget{sensor_8h_source}{}\doxysection{sensor.\+h}
+\label{sensor_8h_source}\index{/github/workspace/system/control\_interfaces/include/huron/control\_interfaces/sensor.h@{/github/workspace/system/control\_interfaces/include/huron/control\_interfaces/sensor.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <eigen3/Eigen/Core>}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include "{}huron/control\_interfaces/generic\_component.h"{}}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}huron/control\_interfaces/state\_provider.h"{}}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacehuron}{huron}} \{}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{keyword}{class }\mbox{\hyperlink{classhuron_1_1Sensor}{Sensor}} : \textcolor{keyword}{public} \mbox{\hyperlink{classhuron_1_1GenericComponent}{GenericComponent}}, \textcolor{keyword}{public} \mbox{\hyperlink{classhuron_1_1StateProvider}{StateProvider}} \{}
+\DoxyCodeLine{13  \textcolor{keyword}{public}:}
+\DoxyCodeLine{14   \mbox{\hyperlink{classhuron_1_1Sensor}{Sensor}}(\textcolor{keyword}{const} Eigen::Vector2i\& dim,}
+\DoxyCodeLine{15          std::unique\_ptr<Configuration> config);}
+\DoxyCodeLine{16   \textcolor{keyword}{explicit} \mbox{\hyperlink{classhuron_1_1Sensor}{Sensor}}(\textcolor{keyword}{const} Eigen::Vector2i\& dim);}
+\DoxyCodeLine{17   \mbox{\hyperlink{classhuron_1_1Sensor}{Sensor}}(\textcolor{keywordtype}{int} rows, \textcolor{keywordtype}{int} cols,}
+\DoxyCodeLine{18          std::unique\_ptr<Configuration> config);}
+\DoxyCodeLine{19   \mbox{\hyperlink{classhuron_1_1Sensor}{Sensor}}(\textcolor{keywordtype}{int} rows, \textcolor{keywordtype}{int} cols);}
+\DoxyCodeLine{20   \mbox{\hyperlink{classhuron_1_1Sensor}{Sensor}}(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1Sensor}{Sensor}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{21   \mbox{\hyperlink{classhuron_1_1Sensor}{Sensor}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1Sensor}{Sensor}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{22   \textcolor{keyword}{virtual} \mbox{\hyperlink{classhuron_1_1Sensor}{\string~Sensor}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{27   \textcolor{keyword}{virtual} Eigen::VectorXd \mbox{\hyperlink{classhuron_1_1Sensor_ac51483e40634aea85c75bb772f817e78}{GetValue}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{28   \textcolor{keyword}{virtual} Eigen::VectorXd ReloadAndGetValue();}
+\DoxyCodeLine{29 \};}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 \}  \textcolor{comment}{// namespace huron}}
+
+\end{DoxyCode}

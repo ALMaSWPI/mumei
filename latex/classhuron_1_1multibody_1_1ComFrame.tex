@@ -1,0 +1,102 @@
+\hypertarget{classhuron_1_1multibody_1_1ComFrame}{}\doxysection{huron\+::multibody\+::Com\+Frame Class Reference}
+\label{classhuron_1_1multibody_1_1ComFrame}\index{huron::multibody::ComFrame@{huron::multibody::ComFrame}}
+
+
+\mbox{\hyperlink{classhuron_1_1Robot}{Robot}} center of mass frame.  
+
+
+
+
+{\ttfamily \#include $<$com\+\_\+frame.\+h$>$}
+
+Inheritance diagram for huron\+::multibody\+::Com\+Frame\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classhuron_1_1multibody_1_1ComFrame}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1ComFrame_ac5f9ad8b6f8aba6ad84acd3dc50c7590}\label{classhuron_1_1multibody_1_1ComFrame_ac5f9ad8b6f8aba6ad84acd3dc50c7590}} 
+{\bfseries Com\+Frame} (Frame\+Index index, const std\+::string \&name, bool is\+\_\+user\+\_\+defined, std\+::weak\+\_\+ptr$<$ const \mbox{\hyperlink{classhuron_1_1multibody_1_1Model}{Model}} $>$ model, Frame\+Index parent\+\_\+frame\+\_\+index)
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1ComFrame_a811d6903196d8d386abfc951f20cd245}\label{classhuron_1_1multibody_1_1ComFrame_a811d6903196d8d386abfc951f20cd245}} 
+{\bfseries Com\+Frame} (const \mbox{\hyperlink{classhuron_1_1multibody_1_1ComFrame}{Com\+Frame}} \&)=delete
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1ComFrame_abb4d25ceaa84a977c23c8ad70dba9c61}\label{classhuron_1_1multibody_1_1ComFrame_abb4d25ceaa84a977c23c8ad70dba9c61}} 
+\mbox{\hyperlink{classhuron_1_1multibody_1_1ComFrame}{Com\+Frame}} \& {\bfseries operator=} (const \mbox{\hyperlink{classhuron_1_1multibody_1_1ComFrame}{Com\+Frame}} \&)=delete
+\item 
+Eigen\+::\+Affine3d \mbox{\hyperlink{classhuron_1_1multibody_1_1ComFrame_aaf20d0ceabf8aee7a0065108fb568e48}{Get\+Transform\+In\+World}} () const override
+\item 
+Eigen\+::\+Affine3d \mbox{\hyperlink{classhuron_1_1multibody_1_1ComFrame_a8980d752d50a94ddaa54fdd3ce109e12}{Get\+Transform\+From\+Frame}} (const \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{Frame}} \&other) const override
+\item 
+Eigen\+::\+Affine3d \mbox{\hyperlink{classhuron_1_1multibody_1_1ComFrame_af1f7f0ad08e2d101e34d71accd63559c}{Get\+Transform\+From\+Frame}} (Frame\+Index other) const override
+\item 
+Eigen\+::\+Affine3d \mbox{\hyperlink{classhuron_1_1multibody_1_1ComFrame_aa4b96dfaaacb381cc62a39e02ed91953}{Get\+Transform\+To\+Frame}} (const \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{Frame}} \&other) const override
+\item 
+Eigen\+::\+Affine3d \mbox{\hyperlink{classhuron_1_1multibody_1_1ComFrame_a9699a3e20b8fd0afecd8950620d7c046}{Get\+Transform\+To\+Frame}} (Frame\+Index other) const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classhuron_1_1Robot}{Robot}} center of mass frame. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1ComFrame_a8980d752d50a94ddaa54fdd3ce109e12}\label{classhuron_1_1multibody_1_1ComFrame_a8980d752d50a94ddaa54fdd3ce109e12}} 
+\index{huron::multibody::ComFrame@{huron::multibody::ComFrame}!GetTransformFromFrame@{GetTransformFromFrame}}
+\index{GetTransformFromFrame@{GetTransformFromFrame}!huron::multibody::ComFrame@{huron::multibody::ComFrame}}
+\doxysubsubsection{\texorpdfstring{GetTransformFromFrame()}{GetTransformFromFrame()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Eigen\+::\+Affine3d huron\+::multibody\+::\+Com\+Frame\+::\+Get\+Transform\+From\+Frame (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{Frame}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{huron\+::multibody\+::\+Frame}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1ComFrame_af1f7f0ad08e2d101e34d71accd63559c}\label{classhuron_1_1multibody_1_1ComFrame_af1f7f0ad08e2d101e34d71accd63559c}} 
+\index{huron::multibody::ComFrame@{huron::multibody::ComFrame}!GetTransformFromFrame@{GetTransformFromFrame}}
+\index{GetTransformFromFrame@{GetTransformFromFrame}!huron::multibody::ComFrame@{huron::multibody::ComFrame}}
+\doxysubsubsection{\texorpdfstring{GetTransformFromFrame()}{GetTransformFromFrame()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Eigen\+::\+Affine3d huron\+::multibody\+::\+Com\+Frame\+::\+Get\+Transform\+From\+Frame (\begin{DoxyParamCaption}\item[{Frame\+Index}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{huron\+::multibody\+::\+Frame}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1ComFrame_aaf20d0ceabf8aee7a0065108fb568e48}\label{classhuron_1_1multibody_1_1ComFrame_aaf20d0ceabf8aee7a0065108fb568e48}} 
+\index{huron::multibody::ComFrame@{huron::multibody::ComFrame}!GetTransformInWorld@{GetTransformInWorld}}
+\index{GetTransformInWorld@{GetTransformInWorld}!huron::multibody::ComFrame@{huron::multibody::ComFrame}}
+\doxysubsubsection{\texorpdfstring{GetTransformInWorld()}{GetTransformInWorld()}}
+{\footnotesize\ttfamily Eigen\+::\+Affine3d huron\+::multibody\+::\+Com\+Frame\+::\+Get\+Transform\+In\+World (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{huron\+::multibody\+::\+Frame}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1ComFrame_aa4b96dfaaacb381cc62a39e02ed91953}\label{classhuron_1_1multibody_1_1ComFrame_aa4b96dfaaacb381cc62a39e02ed91953}} 
+\index{huron::multibody::ComFrame@{huron::multibody::ComFrame}!GetTransformToFrame@{GetTransformToFrame}}
+\index{GetTransformToFrame@{GetTransformToFrame}!huron::multibody::ComFrame@{huron::multibody::ComFrame}}
+\doxysubsubsection{\texorpdfstring{GetTransformToFrame()}{GetTransformToFrame()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Eigen\+::\+Affine3d huron\+::multibody\+::\+Com\+Frame\+::\+Get\+Transform\+To\+Frame (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{Frame}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{huron\+::multibody\+::\+Frame}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1ComFrame_a9699a3e20b8fd0afecd8950620d7c046}\label{classhuron_1_1multibody_1_1ComFrame_a9699a3e20b8fd0afecd8950620d7c046}} 
+\index{huron::multibody::ComFrame@{huron::multibody::ComFrame}!GetTransformToFrame@{GetTransformToFrame}}
+\index{GetTransformToFrame@{GetTransformToFrame}!huron::multibody::ComFrame@{huron::multibody::ComFrame}}
+\doxysubsubsection{\texorpdfstring{GetTransformToFrame()}{GetTransformToFrame()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Eigen\+::\+Affine3d huron\+::multibody\+::\+Com\+Frame\+::\+Get\+Transform\+To\+Frame (\begin{DoxyParamCaption}\item[{Frame\+Index}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{huron\+::multibody\+::\+Frame}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/github/workspace/multibody/include/huron/multibody/com\+\_\+frame.\+h\item 
+/github/workspace/multibody/src/com\+\_\+frame.\+cc\end{DoxyCompactItemize}

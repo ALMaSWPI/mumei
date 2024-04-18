@@ -1,0 +1,47 @@
+\hypertarget{classhuron_1_1ros2_1_1HuronNode}{}\doxysection{huron\+::ros2\+::Huron\+Node Class Reference}
+\label{classhuron_1_1ros2_1_1HuronNode}\index{huron::ros2::HuronNode@{huron::ros2::HuronNode}}
+Inheritance diagram for huron\+::ros2\+::Huron\+Node\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classhuron_1_1ros2_1_1HuronNode}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classhuron_1_1ros2_1_1HuronNode_ad8674f7308f10b6ded92dd940624c951}\label{classhuron_1_1ros2_1_1HuronNode_ad8674f7308f10b6ded92dd940624c951}} 
+void {\bfseries Joint\+State\+Callback} (std\+::shared\+\_\+ptr$<$ const sensor\+\_\+msgs\+::msg\+::\+Joint\+State $>$ msg)
+\item 
+\mbox{\Hypertarget{classhuron_1_1ros2_1_1HuronNode_abdb76f371523748e4ef2ffbc1ca7ed07}\label{classhuron_1_1ros2_1_1HuronNode_abdb76f371523748e4ef2ffbc1ca7ed07}} 
+void {\bfseries Odom\+Callback} (std\+::shared\+\_\+ptr$<$ const nav\+\_\+msgs\+::msg\+::\+Odometry $>$ msg)
+\item 
+\mbox{\Hypertarget{classhuron_1_1ros2_1_1HuronNode_a47283c55640890274244cf01607682e2}\label{classhuron_1_1ros2_1_1HuronNode_a47283c55640890274244cf01607682e2}} 
+void {\bfseries Wrench\+Stamped\+Callback} (size\+\_\+t idx, std\+::shared\+\_\+ptr$<$ const geometry\+\_\+msgs\+::msg\+::\+Wrench\+Stamped $>$ msg)
+\item 
+\mbox{\Hypertarget{classhuron_1_1ros2_1_1HuronNode_a2f83ffe9d9ba76192846581b8f238624}\label{classhuron_1_1ros2_1_1HuronNode_a2f83ffe9d9ba76192846581b8f238624}} 
+void {\bfseries Publish\+Float64\+Multi\+Array} (size\+\_\+t idx, const std\+::vector$<$ double $>$ \&values)
+\item 
+\mbox{\Hypertarget{classhuron_1_1ros2_1_1HuronNode_abd06d0d835da89fe6429f7cdec7160a1}\label{classhuron_1_1ros2_1_1HuronNode_abd06d0d835da89fe6429f7cdec7160a1}} 
+const huron\+::\+Vector6d \& {\bfseries Get\+Wrench} (size\+\_\+t idx) const
+\item 
+\mbox{\Hypertarget{classhuron_1_1ros2_1_1HuronNode_a71feae86fc35b0505ea58988b68f06e0}\label{classhuron_1_1ros2_1_1HuronNode_a71feae86fc35b0505ea58988b68f06e0}} 
+void {\bfseries Add\+Joint\+State\+Provider} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classhuron_1_1ros2_1_1JointStateProvider}{Joint\+State\+Provider}} $>$ jsp, const std\+::string \&topic, size\+\_\+t nq, size\+\_\+t nv, bool is\+\_\+odom=false)
+\begin{DoxyCompactList}\small\item\em Add a subscriber to the joint state topic. There can be at most one subscriber to the joint state topic. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classhuron_1_1ros2_1_1HuronNode_a20c10da5535b30c66aa8bc6d151a19f9}\label{classhuron_1_1ros2_1_1HuronNode_a20c10da5535b30c66aa8bc6d151a19f9}} 
+void {\bfseries Add\+Force\+Torque\+Sensor} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classhuron_1_1ros2_1_1ForceTorqueSensor}{Force\+Torque\+Sensor}} $>$ ft\+\_\+sensor, const std\+::string \&topic)
+\item 
+\mbox{\Hypertarget{classhuron_1_1ros2_1_1HuronNode_a339515b5af6ef810d2efb231114e3e83}\label{classhuron_1_1ros2_1_1HuronNode_a339515b5af6ef810d2efb231114e3e83}} 
+void {\bfseries Add\+Joint\+Group\+Controller} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classhuron_1_1ros2_1_1JointGroupController}{Joint\+Group\+Controller}} $>$ jgc, const std\+::string \&topic)
+\item 
+\mbox{\Hypertarget{classhuron_1_1ros2_1_1HuronNode_a279722a93dd10c27bd08a7dfb656e976}\label{classhuron_1_1ros2_1_1HuronNode_a279722a93dd10c27bd08a7dfb656e976}} 
+void {\bfseries Finalize} ()
+\begin{DoxyCompactList}\small\item\em Finalize the configuration. This method must be called after adding all the ROS2 components to the node, else exceptions will be thrown. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classhuron_1_1ros2_1_1HuronNode_a2328de43e72fc49c981f06e1fb1c425a}\label{classhuron_1_1ros2_1_1HuronNode_a2328de43e72fc49c981f06e1fb1c425a}} 
+Eigen\+::\+Vector\+Xd {\bfseries Get\+Joint\+State} (size\+\_\+t id\+\_\+q, size\+\_\+t dim\+\_\+q, size\+\_\+t id\+\_\+v, size\+\_\+t dim\+\_\+v) const
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/github/workspace/ros2/src/huron\+\_\+ros2/include/huron\+\_\+ros2/huron\+\_\+node.\+h\item 
+/github/workspace/ros2/src/huron\+\_\+ros2/src/huron\+\_\+node.\+cc\end{DoxyCompactItemize}

@@ -1,0 +1,36 @@
+\hypertarget{constant__state__provider_8h_source}{}\doxysection{constant\+\_\+state\+\_\+provider.\+h}
+\label{constant__state__provider_8h_source}\index{/github/workspace/system/control\_interfaces/include/huron/control\_interfaces/constant\_state\_provider.h@{/github/workspace/system/control\_interfaces/include/huron/control\_interfaces/constant\_state\_provider.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}state\_provider.h"{}}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacehuron}{huron}} \{}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{keyword}{class }\mbox{\hyperlink{classhuron_1_1ConstantStateProvider}{ConstantStateProvider}} : \textcolor{keyword}{public} \mbox{\hyperlink{classhuron_1_1StateProvider}{StateProvider}} \{}
+\DoxyCodeLine{8  \textcolor{keyword}{public}:}
+\DoxyCodeLine{9   \textcolor{keyword}{explicit} \mbox{\hyperlink{classhuron_1_1ConstantStateProvider}{ConstantStateProvider}}(\textcolor{keyword}{const} Eigen::MatrixXd\& state)}
+\DoxyCodeLine{10     : \mbox{\hyperlink{classhuron_1_1StateProvider}{StateProvider}}(state.rows(), state.cols()),}
+\DoxyCodeLine{11       state\_(state) \{\}}
+\DoxyCodeLine{12   \mbox{\hyperlink{classhuron_1_1ConstantStateProvider}{ConstantStateProvider}}(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1ConstantStateProvider}{ConstantStateProvider}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{13   \mbox{\hyperlink{classhuron_1_1ConstantStateProvider}{ConstantStateProvider}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1ConstantStateProvider}{ConstantStateProvider}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{14   \mbox{\hyperlink{classhuron_1_1ConstantStateProvider}{\string~ConstantStateProvider}}() \textcolor{keyword}{override} = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16   \textcolor{keywordtype}{void} RequestStateUpdate()\textcolor{keyword}{ override }\{\}}
+\DoxyCodeLine{17   \textcolor{keywordtype}{void} GetNewState(Eigen::Ref<Eigen::MatrixXd> new\_state)\textcolor{keyword}{ const override }\{}
+\DoxyCodeLine{18     new\_state = state\_;}
+\DoxyCodeLine{19   \}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21   \textcolor{keywordtype}{void} SetState(\textcolor{keyword}{const} Eigen::MatrixXd\& state) \{}
+\DoxyCodeLine{22     assert(state.rows() == dim()[0] \&\& state.cols() == dim()[1]);}
+\DoxyCodeLine{23     state\_ = state;}
+\DoxyCodeLine{24   \}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26  \textcolor{keyword}{private}:}
+\DoxyCodeLine{27   Eigen::MatrixXd state\_;}
+\DoxyCodeLine{28 \};}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 \}  \textcolor{comment}{// namespace huron}}
+
+\end{DoxyCode}

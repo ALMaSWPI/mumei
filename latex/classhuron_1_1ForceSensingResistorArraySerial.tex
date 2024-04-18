@@ -1,0 +1,119 @@
+\hypertarget{classhuron_1_1ForceSensingResistorArraySerial}{}\doxysection{huron\+::Force\+Sensing\+Resistor\+Array\+Serial Class Reference}
+\label{classhuron_1_1ForceSensingResistorArraySerial}\index{huron::ForceSensingResistorArraySerial@{huron::ForceSensingResistorArraySerial}}
+
+
+{\ttfamily \#include $<$force\+\_\+sensing\+\_\+resistor\+\_\+array\+\_\+serial.\+h$>$}
+
+Inheritance diagram for huron\+::Force\+Sensing\+Resistor\+Array\+Serial\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{classhuron_1_1ForceSensingResistorArraySerial}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classhuron_1_1ForceSensingResistorArraySerial_a5e704810ce6e6e98727e21d2b1acf82b}\label{classhuron_1_1ForceSensingResistorArraySerial_a5e704810ce6e6e98727e21d2b1acf82b}} 
+{\bfseries Force\+Sensing\+Resistor\+Array\+Serial} (const std\+::string \&name, std\+::weak\+\_\+ptr$<$ const \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{multibody\+::\+Frame}} $>$ frame, const std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classhuron_1_1ForceSensingResistor}{Force\+Sensing\+Resistor}} $>$ $>$ \&fsr\+\_\+array, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classhuron_1_1driver_1_1serial_1_1SerialBase}{driver\+::serial\+::\+Serial\+Base}} $>$ serial)
+\item 
+\mbox{\Hypertarget{classhuron_1_1ForceSensingResistorArraySerial_a3f0f6077c2105eb0ea2e29c041285a76}\label{classhuron_1_1ForceSensingResistorArraySerial_a3f0f6077c2105eb0ea2e29c041285a76}} 
+{\bfseries Force\+Sensing\+Resistor\+Array\+Serial} (const std\+::string \&name, std\+::weak\+\_\+ptr$<$ const \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{multibody\+::\+Frame}} $>$ frame, const std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classhuron_1_1ForceSensingResistor}{Force\+Sensing\+Resistor}} $>$ $>$ \&fsr\+\_\+array, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classhuron_1_1driver_1_1serial_1_1SerialBase}{driver\+::serial\+::\+Serial\+Base}} $>$ serial, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classhuron_1_1Configuration}{Configuration}} $>$ config)
+\item 
+\mbox{\Hypertarget{classhuron_1_1ForceSensingResistorArraySerial_ab63ace13f7918f2665cb7f36b6246f9d}\label{classhuron_1_1ForceSensingResistorArraySerial_ab63ace13f7918f2665cb7f36b6246f9d}} 
+{\bfseries Force\+Sensing\+Resistor\+Array\+Serial} (const \mbox{\hyperlink{classhuron_1_1ForceSensingResistorArraySerial}{Force\+Sensing\+Resistor\+Array\+Serial}} \&)=delete
+\item 
+\mbox{\Hypertarget{classhuron_1_1ForceSensingResistorArraySerial_a4016597ef4c9ca6d4d5d3064d0665195}\label{classhuron_1_1ForceSensingResistorArraySerial_a4016597ef4c9ca6d4d5d3064d0665195}} 
+\mbox{\hyperlink{classhuron_1_1ForceSensingResistorArraySerial}{Force\+Sensing\+Resistor\+Array\+Serial}} \& {\bfseries operator=} (const \mbox{\hyperlink{classhuron_1_1ForceSensingResistorArraySerial}{Force\+Sensing\+Resistor\+Array\+Serial}} \&)=delete
+\item 
+void \mbox{\hyperlink{classhuron_1_1ForceSensingResistorArraySerial_a10ea3cb63bf7e18bd6b9c0c786a923ac}{Request\+State\+Update}} () override
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classhuron_1_1ForceSensingResistorArraySerial_adceb3f95657694ed6fdf90d86fda9c2d}{Get\+Value}} () const override
+\begin{DoxyCompactList}\small\item\em Get the sensor value. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classhuron_1_1ForceSensingResistorArraySerial_afd4870021449d29c8732a4dda29a5ca5}{Reload\+And\+Get\+Value}} () override
+\item 
+void \mbox{\hyperlink{classhuron_1_1ForceSensingResistorArraySerial_aa6d0003c110f87710260448e822430da}{Initialize}} () override
+\item 
+void \mbox{\hyperlink{classhuron_1_1ForceSensingResistorArraySerial_aa2d8bdb2f810c066dd1d629e86c19da4}{Set\+Up}} () override
+\item 
+void \mbox{\hyperlink{classhuron_1_1ForceSensingResistorArraySerial_ad9fd262ca8d9d2daad38f57f2644d45d}{Terminate}} () override
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+An array of FSR with values transmitted over Serial communication.
+
+The sensor values are in double but sent in string in the following syntax\+: $<$sensor\+\_\+name$>$,$<$val\+\_\+1$>$,$<$val\+\_\+2$>$,...,$<$val\+\_\+n$>$~\newline
+The sensor values should be sent periodically. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classhuron_1_1ForceSensingResistorArraySerial_adceb3f95657694ed6fdf90d86fda9c2d}\label{classhuron_1_1ForceSensingResistorArraySerial_adceb3f95657694ed6fdf90d86fda9c2d}} 
+\index{huron::ForceSensingResistorArraySerial@{huron::ForceSensingResistorArraySerial}!GetValue@{GetValue}}
+\index{GetValue@{GetValue}!huron::ForceSensingResistorArraySerial@{huron::ForceSensingResistorArraySerial}}
+\doxysubsubsection{\texorpdfstring{GetValue()}{GetValue()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd huron\+::\+Force\+Sensing\+Resistor\+Array\+Serial\+::\+Get\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get the sensor value. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1Sensor_ac51483e40634aea85c75bb772f817e78}{huron\+::\+Sensor}}.
+
+\mbox{\Hypertarget{classhuron_1_1ForceSensingResistorArraySerial_aa6d0003c110f87710260448e822430da}\label{classhuron_1_1ForceSensingResistorArraySerial_aa6d0003c110f87710260448e822430da}} 
+\index{huron::ForceSensingResistorArraySerial@{huron::ForceSensingResistorArraySerial}!Initialize@{Initialize}}
+\index{Initialize@{Initialize}!huron::ForceSensingResistorArraySerial@{huron::ForceSensingResistorArraySerial}}
+\doxysubsubsection{\texorpdfstring{Initialize()}{Initialize()}}
+{\footnotesize\ttfamily void huron\+::\+Force\+Sensing\+Resistor\+Array\+Serial\+::\+Initialize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classhuron_1_1GenericComponent}{huron\+::\+Generic\+Component}}.
+
+\mbox{\Hypertarget{classhuron_1_1ForceSensingResistorArraySerial_afd4870021449d29c8732a4dda29a5ca5}\label{classhuron_1_1ForceSensingResistorArraySerial_afd4870021449d29c8732a4dda29a5ca5}} 
+\index{huron::ForceSensingResistorArraySerial@{huron::ForceSensingResistorArraySerial}!ReloadAndGetValue@{ReloadAndGetValue}}
+\index{ReloadAndGetValue@{ReloadAndGetValue}!huron::ForceSensingResistorArraySerial@{huron::ForceSensingResistorArraySerial}}
+\doxysubsubsection{\texorpdfstring{ReloadAndGetValue()}{ReloadAndGetValue()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd huron\+::\+Force\+Sensing\+Resistor\+Array\+Serial\+::\+Reload\+And\+Get\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1Sensor}{huron\+::\+Sensor}}.
+
+\mbox{\Hypertarget{classhuron_1_1ForceSensingResistorArraySerial_a10ea3cb63bf7e18bd6b9c0c786a923ac}\label{classhuron_1_1ForceSensingResistorArraySerial_a10ea3cb63bf7e18bd6b9c0c786a923ac}} 
+\index{huron::ForceSensingResistorArraySerial@{huron::ForceSensingResistorArraySerial}!RequestStateUpdate@{RequestStateUpdate}}
+\index{RequestStateUpdate@{RequestStateUpdate}!huron::ForceSensingResistorArraySerial@{huron::ForceSensingResistorArraySerial}}
+\doxysubsubsection{\texorpdfstring{RequestStateUpdate()}{RequestStateUpdate()}}
+{\footnotesize\ttfamily void huron\+::\+Force\+Sensing\+Resistor\+Array\+Serial\+::\+Request\+State\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1ForceSensingResistorArray}{huron\+::\+Force\+Sensing\+Resistor\+Array}}.
+
+\mbox{\Hypertarget{classhuron_1_1ForceSensingResistorArraySerial_aa2d8bdb2f810c066dd1d629e86c19da4}\label{classhuron_1_1ForceSensingResistorArraySerial_aa2d8bdb2f810c066dd1d629e86c19da4}} 
+\index{huron::ForceSensingResistorArraySerial@{huron::ForceSensingResistorArraySerial}!SetUp@{SetUp}}
+\index{SetUp@{SetUp}!huron::ForceSensingResistorArraySerial@{huron::ForceSensingResistorArraySerial}}
+\doxysubsubsection{\texorpdfstring{SetUp()}{SetUp()}}
+{\footnotesize\ttfamily void huron\+::\+Force\+Sensing\+Resistor\+Array\+Serial\+::\+Set\+Up (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classhuron_1_1GenericComponent}{huron\+::\+Generic\+Component}}.
+
+\mbox{\Hypertarget{classhuron_1_1ForceSensingResistorArraySerial_ad9fd262ca8d9d2daad38f57f2644d45d}\label{classhuron_1_1ForceSensingResistorArraySerial_ad9fd262ca8d9d2daad38f57f2644d45d}} 
+\index{huron::ForceSensingResistorArraySerial@{huron::ForceSensingResistorArraySerial}!Terminate@{Terminate}}
+\index{Terminate@{Terminate}!huron::ForceSensingResistorArraySerial@{huron::ForceSensingResistorArraySerial}}
+\doxysubsubsection{\texorpdfstring{Terminate()}{Terminate()}}
+{\footnotesize\ttfamily void huron\+::\+Force\+Sensing\+Resistor\+Array\+Serial\+::\+Terminate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classhuron_1_1GenericComponent}{huron\+::\+Generic\+Component}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/github/workspace/system/sensors/include/huron/sensors/force\+\_\+sensing\+\_\+resistor\+\_\+array\+\_\+serial.\+h\item 
+/github/workspace/system/sensors/src/force\+\_\+sensing\+\_\+resistor\+\_\+array\+\_\+serial.\+cc\end{DoxyCompactItemize}

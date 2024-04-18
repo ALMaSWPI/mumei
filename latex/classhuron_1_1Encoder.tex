@@ -1,0 +1,96 @@
+\hypertarget{classhuron_1_1Encoder}{}\doxysection{huron\+::Encoder Class Reference}
+\label{classhuron_1_1Encoder}\index{huron::Encoder@{huron::Encoder}}
+
+
+{\ttfamily \#include $<$encoder.\+h$>$}
+
+Inheritance diagram for huron\+::Encoder\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{classhuron_1_1Encoder}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classhuron_1_1Encoder_ae9d60c516888f8190985b4dde685da34}\label{classhuron_1_1Encoder_ae9d60c516888f8190985b4dde685da34}} 
+{\bfseries Encoder} (double gear\+\_\+ratio, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classhuron_1_1EncoderConfiguration}{Encoder\+Configuration}} $>$ config)
+\item 
+\mbox{\Hypertarget{classhuron_1_1Encoder_a7ead1188895f5c1bd0eebd1906c15653}\label{classhuron_1_1Encoder_a7ead1188895f5c1bd0eebd1906c15653}} 
+{\bfseries Encoder} (double gear\+\_\+ratio)
+\item 
+\mbox{\Hypertarget{classhuron_1_1Encoder_aa456687664a88ca72ece1f3f57ac7ac2}\label{classhuron_1_1Encoder_aa456687664a88ca72ece1f3f57ac7ac2}} 
+{\bfseries Encoder} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classhuron_1_1EncoderConfiguration}{Encoder\+Configuration}} $>$ config)
+\item 
+\mbox{\Hypertarget{classhuron_1_1Encoder_af2b9276881a6c3659fbee20efa952746}\label{classhuron_1_1Encoder_af2b9276881a6c3659fbee20efa952746}} 
+{\bfseries Encoder} (const \mbox{\hyperlink{classhuron_1_1Encoder}{Encoder}} \&)=delete
+\item 
+\mbox{\Hypertarget{classhuron_1_1Encoder_ac6d747bbafea9b88b5219b664e1132d5}\label{classhuron_1_1Encoder_ac6d747bbafea9b88b5219b664e1132d5}} 
+\mbox{\hyperlink{classhuron_1_1Encoder}{Encoder}} \& {\bfseries operator=} (const \mbox{\hyperlink{classhuron_1_1Encoder}{Encoder}} \&)=delete
+\item 
+void \mbox{\hyperlink{classhuron_1_1Encoder_a4747a43daa358d117d357fb14dd8eb8d}{Get\+New\+State}} (Eigen\+::\+Ref$<$ Eigen\+::\+Matrix\+Xd $>$ new\+\_\+state) const override
+\item 
+virtual double \mbox{\hyperlink{classhuron_1_1Encoder_a6cde66b1227abde6527ef05c286d5b32}{Get\+Position}} () const =0
+\item 
+virtual double \mbox{\hyperlink{classhuron_1_1Encoder_a6da4b296387e8b60ca7237a110228f8b}{Get\+Velocity}} () const =0
+\item 
+virtual void \mbox{\hyperlink{classhuron_1_1Encoder_ad86708c0d8a0a8822afa59cab4d657fb}{Reset}} ()=0
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classhuron_1_1Encoder_ad8cb14a18653b5ca205f8918d7122d9b}\label{classhuron_1_1Encoder_ad8cb14a18653b5ca205f8918d7122d9b}} 
+double {\bfseries gear\+\_\+ratio\+\_\+}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Abstract class for encoder A generic encoder has count and velocity. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classhuron_1_1Encoder_a4747a43daa358d117d357fb14dd8eb8d}\label{classhuron_1_1Encoder_a4747a43daa358d117d357fb14dd8eb8d}} 
+\index{huron::Encoder@{huron::Encoder}!GetNewState@{GetNewState}}
+\index{GetNewState@{GetNewState}!huron::Encoder@{huron::Encoder}}
+\doxysubsubsection{\texorpdfstring{GetNewState()}{GetNewState()}}
+{\footnotesize\ttfamily void huron\+::\+Encoder\+::\+Get\+New\+State (\begin{DoxyParamCaption}\item[{Eigen\+::\+Ref$<$ Eigen\+::\+Matrix\+Xd $>$}]{new\+\_\+state }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classhuron_1_1StateProvider}{huron\+::\+State\+Provider}}.
+
+\mbox{\Hypertarget{classhuron_1_1Encoder_a6cde66b1227abde6527ef05c286d5b32}\label{classhuron_1_1Encoder_a6cde66b1227abde6527ef05c286d5b32}} 
+\index{huron::Encoder@{huron::Encoder}!GetPosition@{GetPosition}}
+\index{GetPosition@{GetPosition}!huron::Encoder@{huron::Encoder}}
+\doxysubsubsection{\texorpdfstring{GetPosition()}{GetPosition()}}
+{\footnotesize\ttfamily virtual double huron\+::\+Encoder\+::\+Get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classhuron_1_1RotaryEncoder_ae54c2e5234f61d96ab755e3266986458}{huron\+::\+Rotary\+Encoder}}.
+
+\mbox{\Hypertarget{classhuron_1_1Encoder_a6da4b296387e8b60ca7237a110228f8b}\label{classhuron_1_1Encoder_a6da4b296387e8b60ca7237a110228f8b}} 
+\index{huron::Encoder@{huron::Encoder}!GetVelocity@{GetVelocity}}
+\index{GetVelocity@{GetVelocity}!huron::Encoder@{huron::Encoder}}
+\doxysubsubsection{\texorpdfstring{GetVelocity()}{GetVelocity()}}
+{\footnotesize\ttfamily virtual double huron\+::\+Encoder\+::\+Get\+Velocity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classhuron_1_1RotaryEncoder_a5e59dc869c35ae1ce537f29e068bf85c}{huron\+::\+Rotary\+Encoder}}.
+
+\mbox{\Hypertarget{classhuron_1_1Encoder_ad86708c0d8a0a8822afa59cab4d657fb}\label{classhuron_1_1Encoder_ad86708c0d8a0a8822afa59cab4d657fb}} 
+\index{huron::Encoder@{huron::Encoder}!Reset@{Reset}}
+\index{Reset@{Reset}!huron::Encoder@{huron::Encoder}}
+\doxysubsubsection{\texorpdfstring{Reset()}{Reset()}}
+{\footnotesize\ttfamily virtual void huron\+::\+Encoder\+::\+Reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classhuron_1_1RotaryEncoder_a96792dbef952f8268546c0122b5f0dea}{huron\+::\+Rotary\+Encoder}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/github/workspace/system/control\+\_\+interfaces/include/huron/control\+\_\+interfaces/encoder.\+h\end{DoxyCompactItemize}

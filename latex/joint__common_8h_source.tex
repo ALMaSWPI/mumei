@@ -1,0 +1,183 @@
+\hypertarget{joint__common_8h_source}{}\doxysection{joint\+\_\+common.\+h}
+\label{joint__common_8h_source}\index{/github/workspace/multibody/include/huron/multibody/joint\_common.h@{/github/workspace/multibody/include/huron/multibody/joint\_common.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <eigen3/Eigen/Dense>}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <stddef.h>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <cassert>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <limits>}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}frame.h"{}}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacehuron}{huron}} \{}
+\DoxyCodeLine{13 \textcolor{keyword}{namespace }multibody \{}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{keyword}{using }JointIndex = size\_t;}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{keyword}{enum class} JointType \{}
+\DoxyCodeLine{18   kUnknown = 0,}
+\DoxyCodeLine{19   kFixed,}
+\DoxyCodeLine{20   kRevolute,}
+\DoxyCodeLine{21   kPrismatic,}
+\DoxyCodeLine{22   kPlanar,}
+\DoxyCodeLine{23   kSpherical,}
+\DoxyCodeLine{24   kFreeFlyer}
+\DoxyCodeLine{25 \};}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{keyword}{struct }\mbox{\hyperlink{structhuron_1_1multibody_1_1JointDescription}{JointDescription}} \{}
+\DoxyCodeLine{28  \textcolor{keyword}{public}:}
+\DoxyCodeLine{29   \textcolor{comment}{// TODO(dtbpkmte): Properly implement JointIndex/FrameIndex and casts.}}
+\DoxyCodeLine{30   \mbox{\hyperlink{structhuron_1_1multibody_1_1JointDescription}{JointDescription}}(\textcolor{keywordtype}{size\_t} \textcolor{keywordtype}{id}, \textcolor{keyword}{const} std::string\& name,}
+\DoxyCodeLine{31                    \textcolor{keywordtype}{size\_t} parent\_frame\_id,}
+\DoxyCodeLine{32                    \textcolor{keywordtype}{size\_t} child\_frame\_id,}
+\DoxyCodeLine{33                    \textcolor{keywordtype}{size\_t} num\_positions, \textcolor{keywordtype}{size\_t} num\_velocities,}
+\DoxyCodeLine{34                    JointType type,}
+\DoxyCodeLine{35                    \textcolor{keyword}{const} Eigen::VectorXd\& min\_position,}
+\DoxyCodeLine{36                    \textcolor{keyword}{const} Eigen::VectorXd\& max\_position,}
+\DoxyCodeLine{37                    \textcolor{keyword}{const} Eigen::VectorXd\& min\_velocity,}
+\DoxyCodeLine{38                    \textcolor{keyword}{const} Eigen::VectorXd\& max\_velocity,}
+\DoxyCodeLine{39                    \textcolor{keyword}{const} Eigen::VectorXd\& min\_acceleration,}
+\DoxyCodeLine{40                    \textcolor{keyword}{const} Eigen::VectorXd\& max\_acceleration,}
+\DoxyCodeLine{41                    \textcolor{keyword}{const} Eigen::VectorXd\& min\_torque,}
+\DoxyCodeLine{42                    \textcolor{keyword}{const} Eigen::VectorXd\& max\_torque,}
+\DoxyCodeLine{43                    \textcolor{keyword}{const} Eigen::VectorXd\& friction,}
+\DoxyCodeLine{44                    \textcolor{keyword}{const} Eigen::VectorXd\& damping)}
+\DoxyCodeLine{45       : id\_((JointIndex) \textcolor{keywordtype}{id}),}
+\DoxyCodeLine{46         name\_(name),}
+\DoxyCodeLine{47         parent\_frame\_id\_((FrameIndex) parent\_frame\_id),}
+\DoxyCodeLine{48         child\_frame\_id\_((FrameIndex) child\_frame\_id),}
+\DoxyCodeLine{49         num\_positions\_(num\_positions),}
+\DoxyCodeLine{50         num\_velocities\_(num\_velocities),}
+\DoxyCodeLine{51         type\_(type),}
+\DoxyCodeLine{52         min\_position\_(min\_position),}
+\DoxyCodeLine{53         max\_position\_(max\_position),}
+\DoxyCodeLine{54         min\_velocity\_(min\_velocity),}
+\DoxyCodeLine{55         max\_velocity\_(max\_velocity),}
+\DoxyCodeLine{56         min\_acceleration\_(min\_acceleration),}
+\DoxyCodeLine{57         max\_acceleration\_(max\_acceleration),}
+\DoxyCodeLine{58         min\_torque\_(min\_torque),}
+\DoxyCodeLine{59         max\_torque\_(max\_torque),}
+\DoxyCodeLine{60         friction\_(friction),}
+\DoxyCodeLine{61         damping\_(damping) \{}
+\DoxyCodeLine{62     assert(min\_position.size() == num\_positions\_);}
+\DoxyCodeLine{63     assert(max\_position.size() == num\_positions\_);}
+\DoxyCodeLine{64     assert((max\_position.array() >= min\_position.array()).all());}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66     assert(min\_velocity.size() == num\_velocities\_);}
+\DoxyCodeLine{67     assert(max\_velocity.size() == num\_velocities\_);}
+\DoxyCodeLine{68     assert((max\_velocity.array() >= min\_velocity.array()).all());}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70     assert(min\_acceleration.size() == num\_velocities\_);}
+\DoxyCodeLine{71     assert(max\_acceleration.size() == num\_velocities\_);}
+\DoxyCodeLine{72     assert((max\_acceleration.array() >= min\_acceleration.array()).all());}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74     assert(min\_torque.size() == num\_velocities\_);}
+\DoxyCodeLine{75     assert(max\_torque.size() == num\_velocities\_);}
+\DoxyCodeLine{76     assert((max\_torque.array() >= min\_torque.array()).all());}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78     assert(friction.size() == num\_velocities\_);}
+\DoxyCodeLine{79     assert(damping.size() == num\_velocities\_);}
+\DoxyCodeLine{80   \}}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82   \mbox{\hyperlink{structhuron_1_1multibody_1_1JointDescription}{JointDescription}}(\textcolor{keywordtype}{size\_t} \textcolor{keywordtype}{id}, \textcolor{keyword}{const} std::string\& name,}
+\DoxyCodeLine{83                    \textcolor{keywordtype}{size\_t} parent\_frame\_id,}
+\DoxyCodeLine{84                    \textcolor{keywordtype}{size\_t} child\_frame\_id,}
+\DoxyCodeLine{85                    \textcolor{keywordtype}{size\_t} num\_positions, \textcolor{keywordtype}{size\_t} num\_velocities,}
+\DoxyCodeLine{86                    JointType type,}
+\DoxyCodeLine{87                    \textcolor{keyword}{const} Eigen::VectorXd\& min\_position,}
+\DoxyCodeLine{88                    \textcolor{keyword}{const} Eigen::VectorXd\& max\_position,}
+\DoxyCodeLine{89                    \textcolor{keyword}{const} Eigen::VectorXd\& min\_velocity,}
+\DoxyCodeLine{90                    \textcolor{keyword}{const} Eigen::VectorXd\& max\_velocity,}
+\DoxyCodeLine{91                    \textcolor{keyword}{const} Eigen::VectorXd\& min\_acceleration,}
+\DoxyCodeLine{92                    \textcolor{keyword}{const} Eigen::VectorXd\& max\_acceleration,}
+\DoxyCodeLine{93                    \textcolor{keyword}{const} Eigen::VectorXd\& min\_torque,}
+\DoxyCodeLine{94                    \textcolor{keyword}{const} Eigen::VectorXd\& max\_torque)}
+\DoxyCodeLine{95       : \mbox{\hyperlink{structhuron_1_1multibody_1_1JointDescription}{JointDescription}}(\textcolor{keywordtype}{id}, name,}
+\DoxyCodeLine{96                          parent\_frame\_id, child\_frame\_id,}
+\DoxyCodeLine{97                          num\_positions, num\_velocities,}
+\DoxyCodeLine{98                          type,}
+\DoxyCodeLine{99                          min\_position, max\_position,}
+\DoxyCodeLine{100                          min\_velocity, max\_velocity,}
+\DoxyCodeLine{101                          min\_acceleration, max\_acceleration,}
+\DoxyCodeLine{102                          min\_torque, max\_torque,}
+\DoxyCodeLine{103                          Eigen::VectorXd::Zero(num\_velocities),}
+\DoxyCodeLine{104                          Eigen::VectorXd::Zero(num\_velocities)) \{\}}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106   \mbox{\hyperlink{structhuron_1_1multibody_1_1JointDescription}{JointDescription}}(\textcolor{keywordtype}{size\_t} \textcolor{keywordtype}{id}, \textcolor{keyword}{const} std::string\& name,}
+\DoxyCodeLine{107                    \textcolor{keywordtype}{size\_t} parent\_frame\_id,}
+\DoxyCodeLine{108                    \textcolor{keywordtype}{size\_t} child\_frame\_id,}
+\DoxyCodeLine{109                    \textcolor{keywordtype}{size\_t} num\_positions,}
+\DoxyCodeLine{110                    \textcolor{keywordtype}{size\_t} num\_velocities,}
+\DoxyCodeLine{111                    JointType type)}
+\DoxyCodeLine{112       : \mbox{\hyperlink{structhuron_1_1multibody_1_1JointDescription}{JointDescription}}(}
+\DoxyCodeLine{113           \textcolor{keywordtype}{id}, name,}
+\DoxyCodeLine{114           parent\_frame\_id, child\_frame\_id,}
+\DoxyCodeLine{115           num\_positions, num\_velocities,}
+\DoxyCodeLine{116           type,}
+\DoxyCodeLine{117           Eigen::VectorXd::Constant(num\_positions,}
+\DoxyCodeLine{118             -\/std::numeric\_limits<double>::infinity()),}
+\DoxyCodeLine{119           Eigen::VectorXd::Constant(num\_positions,}
+\DoxyCodeLine{120             std::numeric\_limits<double>::infinity()),}
+\DoxyCodeLine{121           Eigen::VectorXd::Constant(num\_velocities,}
+\DoxyCodeLine{122             -\/std::numeric\_limits<double>::infinity()),}
+\DoxyCodeLine{123           Eigen::VectorXd::Constant(num\_velocities,}
+\DoxyCodeLine{124             std::numeric\_limits<double>::infinity()),}
+\DoxyCodeLine{125           Eigen::VectorXd::Constant(num\_velocities,}
+\DoxyCodeLine{126             -\/std::numeric\_limits<double>::infinity()),}
+\DoxyCodeLine{127           Eigen::VectorXd::Constant(num\_velocities,}
+\DoxyCodeLine{128             std::numeric\_limits<double>::infinity()),}
+\DoxyCodeLine{129           Eigen::VectorXd::Constant(num\_velocities,}
+\DoxyCodeLine{130             -\/std::numeric\_limits<double>::infinity()),}
+\DoxyCodeLine{131           Eigen::VectorXd::Constant(num\_velocities,}
+\DoxyCodeLine{132             std::numeric\_limits<double>::infinity()),}
+\DoxyCodeLine{133           Eigen::VectorXd::Zero(num\_velocities),}
+\DoxyCodeLine{134           Eigen::VectorXd::Zero(num\_velocities)) \{\}}
+\DoxyCodeLine{135 }
+\DoxyCodeLine{136   JointIndex id()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} id\_; \}}
+\DoxyCodeLine{137   \textcolor{keyword}{const} std::string\& name()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} name\_; \}}
+\DoxyCodeLine{138   FrameIndex parent\_frame\_id()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} parent\_frame\_id\_; \}}
+\DoxyCodeLine{139   FrameIndex child\_frame\_id()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} child\_frame\_id\_; \}}
+\DoxyCodeLine{140   \textcolor{keywordtype}{size\_t} num\_positions()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} num\_positions\_; \}}
+\DoxyCodeLine{141   \textcolor{keywordtype}{size\_t} num\_velocities()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} num\_velocities\_; \}}
+\DoxyCodeLine{142   JointType type()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} type\_; \}}
+\DoxyCodeLine{143   \textcolor{keyword}{const} Eigen::VectorXd\& min\_position()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} min\_position\_; \}}
+\DoxyCodeLine{144   \textcolor{keyword}{const} Eigen::VectorXd\& max\_position()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} max\_position\_; \}}
+\DoxyCodeLine{145   \textcolor{keyword}{const} Eigen::VectorXd\& min\_velocity()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} min\_velocity\_; \}}
+\DoxyCodeLine{146   \textcolor{keyword}{const} Eigen::VectorXd\& max\_velocity()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} max\_velocity\_; \}}
+\DoxyCodeLine{147   \textcolor{keyword}{const} Eigen::VectorXd\& min\_acceleration()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} min\_acceleration\_; \}}
+\DoxyCodeLine{148   \textcolor{keyword}{const} Eigen::VectorXd\& max\_acceleration()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} max\_acceleration\_; \}}
+\DoxyCodeLine{149   \textcolor{keyword}{const} Eigen::VectorXd\& min\_torque()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} min\_torque\_; \}}
+\DoxyCodeLine{150   \textcolor{keyword}{const} Eigen::VectorXd\& max\_torque()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} max\_torque\_; \}}
+\DoxyCodeLine{151   \textcolor{keyword}{const} Eigen::VectorXd\& friction()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} friction\_; \}}
+\DoxyCodeLine{152   \textcolor{keyword}{const} Eigen::VectorXd\& damping()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} damping\_; \}}
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154  \textcolor{keyword}{private}:}
+\DoxyCodeLine{155   JointIndex id\_;}
+\DoxyCodeLine{156   std::string name\_;}
+\DoxyCodeLine{157   FrameIndex parent\_frame\_id\_;}
+\DoxyCodeLine{158   FrameIndex child\_frame\_id\_;}
+\DoxyCodeLine{159   \textcolor{keywordtype}{size\_t} num\_positions\_;}
+\DoxyCodeLine{160   \textcolor{keywordtype}{size\_t} num\_velocities\_;}
+\DoxyCodeLine{161   JointType type\_;}
+\DoxyCodeLine{162   Eigen::VectorXd min\_position\_;}
+\DoxyCodeLine{163   Eigen::VectorXd max\_position\_;}
+\DoxyCodeLine{164   Eigen::VectorXd min\_velocity\_;}
+\DoxyCodeLine{165   Eigen::VectorXd max\_velocity\_;}
+\DoxyCodeLine{166   Eigen::VectorXd min\_acceleration\_;}
+\DoxyCodeLine{167   Eigen::VectorXd max\_acceleration\_;}
+\DoxyCodeLine{168   Eigen::VectorXd min\_torque\_;}
+\DoxyCodeLine{169   Eigen::VectorXd max\_torque\_;}
+\DoxyCodeLine{170   Eigen::VectorXd friction\_;}
+\DoxyCodeLine{171   Eigen::VectorXd damping\_;}
+\DoxyCodeLine{172 \};}
+\DoxyCodeLine{173 }
+\DoxyCodeLine{174 std::ostream\& operator<<(std::ostream \&os, \textcolor{keyword}{const} \mbox{\hyperlink{structhuron_1_1multibody_1_1JointDescription}{JointDescription}} \&jd);}
+\DoxyCodeLine{175 }
+\DoxyCodeLine{176 \}  \textcolor{comment}{// namespace multibody}}
+\DoxyCodeLine{177 \}  \textcolor{comment}{// namespace huron}}
+
+\end{DoxyCode}

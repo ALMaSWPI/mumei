@@ -1,0 +1,88 @@
+\hypertarget{classhuron_1_1MovingInterface}{}\doxysection{huron\+::Moving\+Interface Class Reference}
+\label{classhuron_1_1MovingInterface}\index{huron::MovingInterface@{huron::MovingInterface}}
+
+
+{\ttfamily \#include $<$moving\+\_\+interface.\+h$>$}
+
+Inheritance diagram for huron\+::Moving\+Interface\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.692308cm]{classhuron_1_1MovingInterface}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classhuron_1_1MovingInterface_a98c7ffe83ebaeb2cb66c8279bf620142}\label{classhuron_1_1MovingInterface_a98c7ffe83ebaeb2cb66c8279bf620142}} 
+{\bfseries Moving\+Interface} (size\+\_\+t dim)
+\item 
+\mbox{\Hypertarget{classhuron_1_1MovingInterface_a420ba7e07bdcf817e621341c05a0e8b3}\label{classhuron_1_1MovingInterface_a420ba7e07bdcf817e621341c05a0e8b3}} 
+{\bfseries Moving\+Interface} (const \mbox{\hyperlink{classhuron_1_1MovingInterface}{Moving\+Interface}} \&)=delete
+\item 
+\mbox{\Hypertarget{classhuron_1_1MovingInterface_abd60a1c722461894766010288cb9221c}\label{classhuron_1_1MovingInterface_abd60a1c722461894766010288cb9221c}} 
+\mbox{\hyperlink{classhuron_1_1MovingInterface}{Moving\+Interface}} \& {\bfseries operator=} (const \mbox{\hyperlink{classhuron_1_1MovingInterface}{Moving\+Interface}} \&)=delete
+\item 
+virtual bool \mbox{\hyperlink{classhuron_1_1MovingInterface_a499e82e23fad6173d1b5f1b2052b6fe7}{Move}} (const std\+::vector$<$ double $>$ \&values)=0
+\item 
+\mbox{\Hypertarget{classhuron_1_1MovingInterface_a5db36e6412a44733f3c806e0b7099bbb}\label{classhuron_1_1MovingInterface_a5db36e6412a44733f3c806e0b7099bbb}} 
+virtual bool {\bfseries Move} (const Eigen\+::\+Vector\+Xd \&values)=0
+\item 
+virtual bool \mbox{\hyperlink{classhuron_1_1MovingInterface_ad5150f9feda61d0fc2314e40c8e17dd6}{Stop}} ()=0
+\item 
+\mbox{\Hypertarget{classhuron_1_1MovingInterface_ab4ee6899313018e45c73c5ff57784931}\label{classhuron_1_1MovingInterface_ab4ee6899313018e45c73c5ff57784931}} 
+size\+\_\+t {\bfseries dim} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classhuron_1_1MovingInterface_af2febdcb1a7f478b58025735b5386674}\label{classhuron_1_1MovingInterface_af2febdcb1a7f478b58025735b5386674}} 
+size\+\_\+t {\bfseries dim\+\_\+}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface for components that can move. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classhuron_1_1MovingInterface_a499e82e23fad6173d1b5f1b2052b6fe7}\label{classhuron_1_1MovingInterface_a499e82e23fad6173d1b5f1b2052b6fe7}} 
+\index{huron::MovingInterface@{huron::MovingInterface}!Move@{Move}}
+\index{Move@{Move}!huron::MovingInterface@{huron::MovingInterface}}
+\doxysubsubsection{\texorpdfstring{Move()}{Move()}}
+{\footnotesize\ttfamily virtual bool huron\+::\+Moving\+Interface\+::\+Move (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{values }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Moves the component by the specified input vector.
+
+This method can be used if the component needs more than one input. For example, a position controlled motor needs position input, velocity feedforward, and current feedforward.
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Input value vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the operation is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classhuron_1_1ros2_1_1JointGroupController_ad9831afe510c035aa66773b7f0038834}{huron\+::ros2\+::\+Joint\+Group\+Controller}}, \mbox{\hyperlink{classhuron_1_1MovingGroup_a59a4cefa8ce6e48b7c3277e590de1819}{huron\+::\+Moving\+Group}}, and \mbox{\hyperlink{classhuron_1_1odrive_1_1TorqueMotor_af3ba360d33e1db79b2b80a050c72b130}{huron\+::odrive\+::\+Torque\+Motor}}.
+
+\mbox{\Hypertarget{classhuron_1_1MovingInterface_ad5150f9feda61d0fc2314e40c8e17dd6}\label{classhuron_1_1MovingInterface_ad5150f9feda61d0fc2314e40c8e17dd6}} 
+\index{huron::MovingInterface@{huron::MovingInterface}!Stop@{Stop}}
+\index{Stop@{Stop}!huron::MovingInterface@{huron::MovingInterface}}
+\doxysubsubsection{\texorpdfstring{Stop()}{Stop()}}
+{\footnotesize\ttfamily virtual bool huron\+::\+Moving\+Interface\+::\+Stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Stops the component from moving.
+
+\begin{DoxyReturn}{Returns}
+true if the operation is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classhuron_1_1ros2_1_1JointGroupController_a468127249962d6e9e8ddb2c1c083aa38}{huron\+::ros2\+::\+Joint\+Group\+Controller}}, \mbox{\hyperlink{classhuron_1_1MovingGroup_a5d1593b6beeca82ee79d48cf1e0dae7d}{huron\+::\+Moving\+Group}}, and \mbox{\hyperlink{classhuron_1_1odrive_1_1TorqueMotor_ad1c582b6fd6c8d648f47f1e2afe40458}{huron\+::odrive\+::\+Torque\+Motor}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/github/workspace/system/control\+\_\+interfaces/include/huron/control\+\_\+interfaces/moving\+\_\+interface.\+h\end{DoxyCompactItemize}

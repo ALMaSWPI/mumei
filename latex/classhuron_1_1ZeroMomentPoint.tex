@@ -1,0 +1,80 @@
+\hypertarget{classhuron_1_1ZeroMomentPoint}{}\doxysection{huron\+::Zero\+Moment\+Point Class Reference}
+\label{classhuron_1_1ZeroMomentPoint}\index{huron::ZeroMomentPoint@{huron::ZeroMomentPoint}}
+Inheritance diagram for huron\+::Zero\+Moment\+Point\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.728395cm]{classhuron_1_1ZeroMomentPoint}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classhuron_1_1ZeroMomentPoint_a9bf49e5de3bfd0e936bb2bc1b1f3a32e}\label{classhuron_1_1ZeroMomentPoint_a9bf49e5de3bfd0e936bb2bc1b1f3a32e}} 
+{\bfseries Zero\+Moment\+Point} (std\+::weak\+\_\+ptr$<$ const \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{multibody\+::\+Frame}} $>$ zmp\+\_\+frame, double normal\+\_\+force\+\_\+threshold)
+\item 
+\mbox{\Hypertarget{classhuron_1_1ZeroMomentPoint_a25689f003c7c7af96859899180ee5cc6}\label{classhuron_1_1ZeroMomentPoint_a25689f003c7c7af96859899180ee5cc6}} 
+{\bfseries Zero\+Moment\+Point} (const \mbox{\hyperlink{classhuron_1_1ZeroMomentPoint}{Zero\+Moment\+Point}} \&)=delete
+\item 
+\mbox{\Hypertarget{classhuron_1_1ZeroMomentPoint_adde966baeb9ce024d46fc25afd916534}\label{classhuron_1_1ZeroMomentPoint_adde966baeb9ce024d46fc25afd916534}} 
+\mbox{\hyperlink{classhuron_1_1ZeroMomentPoint}{Zero\+Moment\+Point}} \& {\bfseries operator=} (const \mbox{\hyperlink{classhuron_1_1ZeroMomentPoint}{Zero\+Moment\+Point}} \&)=delete
+\item 
+virtual Eigen\+::\+Vector2d \mbox{\hyperlink{classhuron_1_1ZeroMomentPoint_ae865e74073742f92ce6ba6f4983415af}{Eval}} (double \&fz)=0
+\item 
+\mbox{\Hypertarget{classhuron_1_1ZeroMomentPoint_a7af1f189f3c53afa91e0be6c4b616a15}\label{classhuron_1_1ZeroMomentPoint_a7af1f189f3c53afa91e0be6c4b616a15}} 
+Eigen\+::\+Vector2d {\bfseries Eval} ()
+\item 
+Eigen\+::\+Affine3d \mbox{\hyperlink{classhuron_1_1ZeroMomentPoint_ac0a511e9543fc59de06b0b45cbaebdae}{Zmp\+To\+World}} (const Eigen\+::\+Vector2d \&zmp) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classhuron_1_1ZeroMomentPoint_add8613c227a8966e62f01f34827d41da}\label{classhuron_1_1ZeroMomentPoint_add8613c227a8966e62f01f34827d41da}} 
+std\+::weak\+\_\+ptr$<$ const \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{multibody\+::\+Frame}} $>$ {\bfseries zmp\+\_\+frame\+\_\+}
+\item 
+\mbox{\Hypertarget{classhuron_1_1ZeroMomentPoint_ab0c30462997cec1380aa7642d569404b}\label{classhuron_1_1ZeroMomentPoint_ab0c30462997cec1380aa7642d569404b}} 
+double {\bfseries normal\+\_\+force\+\_\+threshold\+\_\+}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classhuron_1_1ZeroMomentPoint_ae865e74073742f92ce6ba6f4983415af}\label{classhuron_1_1ZeroMomentPoint_ae865e74073742f92ce6ba6f4983415af}} 
+\index{huron::ZeroMomentPoint@{huron::ZeroMomentPoint}!Eval@{Eval}}
+\index{Eval@{Eval}!huron::ZeroMomentPoint@{huron::ZeroMomentPoint}}
+\doxysubsubsection{\texorpdfstring{Eval()}{Eval()}}
+{\footnotesize\ttfamily virtual Eigen\+::\+Vector2d huron\+::\+Zero\+Moment\+Point\+::\+Eval (\begin{DoxyParamCaption}\item[{double \&}]{fz }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Evaluate the zero moment point in the ZMP frame based on the current sensor and joint states.
+
+
+\begin{DoxyParams}{Parameters}
+{\em zmp} & The zero moment point in the ZMP frame. \\
+\hline
+{\em fz} & The normal force. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classhuron_1_1ZeroMomentPointFSRArray_a79438ddc6bc3b24b2cf5694892818fd7}{huron\+::\+Zero\+Moment\+Point\+FSRArray}}, \mbox{\hyperlink{classhuron_1_1ZeroMomentPointFTSensor_a4ba289c870423bcaa9bf5f708b963a92}{huron\+::\+Zero\+Moment\+Point\+FTSensor}}, and \mbox{\hyperlink{classhuron_1_1ZeroMomentPointTotal_a5ebae94fff805555c767527c161f6c6d}{huron\+::\+Zero\+Moment\+Point\+Total}}.
+
+\mbox{\Hypertarget{classhuron_1_1ZeroMomentPoint_ac0a511e9543fc59de06b0b45cbaebdae}\label{classhuron_1_1ZeroMomentPoint_ac0a511e9543fc59de06b0b45cbaebdae}} 
+\index{huron::ZeroMomentPoint@{huron::ZeroMomentPoint}!ZmpToWorld@{ZmpToWorld}}
+\index{ZmpToWorld@{ZmpToWorld}!huron::ZeroMomentPoint@{huron::ZeroMomentPoint}}
+\doxysubsubsection{\texorpdfstring{ZmpToWorld()}{ZmpToWorld()}}
+{\footnotesize\ttfamily Eigen\+::\+Affine3d huron\+::\+Zero\+Moment\+Point\+::\+Zmp\+To\+World (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector2d \&}]{zmp }\end{DoxyParamCaption}) const}
+
+Convert the zero moment point from the 2D ZMP frame to the world frame.
+
+
+\begin{DoxyParams}{Parameters}
+{\em zmp} & The zero moment point in the ZMP frame. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The zero moment point in the world frame. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/github/workspace/system/locomotion/include/huron/locomotion/zero\+\_\+moment\+\_\+point.\+h\item 
+/github/workspace/system/locomotion/src/zero\+\_\+moment\+\_\+point.\+cc\end{DoxyCompactItemize}

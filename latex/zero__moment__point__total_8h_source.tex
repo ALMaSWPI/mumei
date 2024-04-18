@@ -1,0 +1,31 @@
+\hypertarget{zero__moment__point__total_8h_source}{}\doxysection{zero\+\_\+moment\+\_\+point\+\_\+total.\+h}
+\label{zero__moment__point__total_8h_source}\index{/github/workspace/system/locomotion/include/huron/locomotion/zero\_moment\_point\_total.h@{/github/workspace/system/locomotion/include/huron/locomotion/zero\_moment\_point\_total.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include "{}huron/locomotion/zero\_moment\_point.h"{}}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacehuron}{huron}} \{}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{keyword}{class }\mbox{\hyperlink{classhuron_1_1ZeroMomentPointTotal}{ZeroMomentPointTotal}} : \textcolor{keyword}{public} \mbox{\hyperlink{classhuron_1_1ZeroMomentPoint}{ZeroMomentPoint}} \{}
+\DoxyCodeLine{11  \textcolor{keyword}{public}:}
+\DoxyCodeLine{12   \mbox{\hyperlink{classhuron_1_1ZeroMomentPointTotal}{ZeroMomentPointTotal}}(}
+\DoxyCodeLine{13     std::weak\_ptr<const multibody::Frame> zmp\_frame,}
+\DoxyCodeLine{14     \textcolor{keyword}{const} std::vector<std::shared\_ptr<ZeroMomentPoint>>\& zmp\_vector);}
+\DoxyCodeLine{15   \mbox{\hyperlink{classhuron_1_1ZeroMomentPointTotal}{ZeroMomentPointTotal}}(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1ZeroMomentPointTotal}{ZeroMomentPointTotal}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{16   \mbox{\hyperlink{classhuron_1_1ZeroMomentPointTotal}{ZeroMomentPointTotal}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1ZeroMomentPointTotal}{ZeroMomentPointTotal}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{17   \mbox{\hyperlink{classhuron_1_1ZeroMomentPointTotal}{\string~ZeroMomentPointTotal}}() \textcolor{keyword}{override} = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19   Eigen::Vector2d \mbox{\hyperlink{classhuron_1_1ZeroMomentPointTotal_a5ebae94fff805555c767527c161f6c6d}{Eval}}(\textcolor{keywordtype}{double}\& fz) \textcolor{keyword}{override};}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21  \textcolor{keyword}{private}:}
+\DoxyCodeLine{22   std::vector<std::shared\_ptr<ZeroMomentPoint>> zmp\_vector\_;}
+\DoxyCodeLine{23 \};}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \}  \textcolor{comment}{// namespace huron}}
+
+\end{DoxyCode}

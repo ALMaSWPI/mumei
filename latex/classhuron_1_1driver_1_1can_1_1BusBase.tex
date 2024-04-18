@@ -1,0 +1,114 @@
+\hypertarget{classhuron_1_1driver_1_1can_1_1BusBase}{}\doxysection{huron\+::driver\+::can\+::Bus\+Base Class Reference}
+\label{classhuron_1_1driver_1_1can_1_1BusBase}\index{huron::driver::can::BusBase@{huron::driver::can::BusBase}}
+Inheritance diagram for huron\+::driver\+::can\+::Bus\+Base\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classhuron_1_1driver_1_1can_1_1BusBase}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structhuron_1_1driver_1_1can_1_1BusBase_1_1CanSubscription}{Can\+Subscription}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classhuron_1_1driver_1_1can_1_1BusBase_a0fa36010b000b4b9d258ed42723b0487}\label{classhuron_1_1driver_1_1can_1_1BusBase_a0fa36010b000b4b9d258ed42723b0487}} 
+typedef void($\ast$ {\bfseries on\+\_\+can\+\_\+message\+\_\+cb\+\_\+t}) (void $\ast$ctx, const \mbox{\hyperlink{structcan__Message__t}{can\+\_\+\+Message\+\_\+t}} \&message)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classhuron_1_1driver_1_1can_1_1BusBase_a4f3991836f2476dc1f9f4f7c5b1d534e}\label{classhuron_1_1driver_1_1can_1_1BusBase_a4f3991836f2476dc1f9f4f7c5b1d534e}} 
+{\bfseries Bus\+Base} (const \mbox{\hyperlink{classhuron_1_1driver_1_1can_1_1BusBase}{Bus\+Base}} \&)=delete
+\item 
+\mbox{\Hypertarget{classhuron_1_1driver_1_1can_1_1BusBase_a896c138e31fd58ddfd7afb19e0e6b91a}\label{classhuron_1_1driver_1_1can_1_1BusBase_a896c138e31fd58ddfd7afb19e0e6b91a}} 
+\mbox{\hyperlink{classhuron_1_1driver_1_1can_1_1BusBase}{Bus\+Base}} \& {\bfseries operator=} (const \mbox{\hyperlink{classhuron_1_1driver_1_1can_1_1BusBase}{Bus\+Base}} \&)=delete
+\item 
+virtual bool \mbox{\hyperlink{classhuron_1_1driver_1_1can_1_1BusBase_ada1869d6f163bf3d9d293026d27565e8}{send\+\_\+message}} (const \mbox{\hyperlink{structcan__Message__t}{can\+\_\+\+Message\+\_\+t}} \&message)=0
+\begin{DoxyCompactList}\small\item\em Sends the specified CAN message. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classhuron_1_1driver_1_1can_1_1BusBase_a8ec06dc1912b2731c939dcfc634b9f34}{recv\+\_\+message}} (\mbox{\hyperlink{structcan__Message__t}{can\+\_\+\+Message\+\_\+t}} \&message, uint32\+\_\+t timeout=UINT32\+\_\+\+MAX)=0
+\begin{DoxyCompactList}\small\item\em Receives a CAN message with the same {\ttfamily id} as {\ttfamily message}. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classhuron_1_1driver_1_1can_1_1BusBase_a771bfd68d614a50700783a2e59bf8cf5}{subscribe}} (const \mbox{\hyperlink{structhuron_1_1driver_1_1can_1_1MsgIdFilterSpecs}{Msg\+Id\+Filter\+Specs}} \&filter, on\+\_\+can\+\_\+message\+\_\+cb\+\_\+t callback, void $\ast$ctx, \mbox{\hyperlink{structhuron_1_1driver_1_1can_1_1BusBase_1_1CanSubscription}{Can\+Subscription}} $\ast$$\ast$handle)=0
+\begin{DoxyCompactList}\small\item\em Registers a callback that will be invoked for every incoming CAN message that matches the filter. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classhuron_1_1driver_1_1can_1_1BusBase_afeae8dedf8e685d5c9cf7dea67517dc6}{unsubscribe}} (\mbox{\hyperlink{structhuron_1_1driver_1_1can_1_1BusBase_1_1CanSubscription}{Can\+Subscription}} $\ast$handle)=0
+\begin{DoxyCompactList}\small\item\em Deregisters a callback that was previously registered with \mbox{\hyperlink{classhuron_1_1driver_1_1can_1_1BusBase_a771bfd68d614a50700783a2e59bf8cf5}{subscribe()}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classhuron_1_1driver_1_1can_1_1BusBase_a8ec06dc1912b2731c939dcfc634b9f34}\label{classhuron_1_1driver_1_1can_1_1BusBase_a8ec06dc1912b2731c939dcfc634b9f34}} 
+\index{huron::driver::can::BusBase@{huron::driver::can::BusBase}!recv\_message@{recv\_message}}
+\index{recv\_message@{recv\_message}!huron::driver::can::BusBase@{huron::driver::can::BusBase}}
+\doxysubsubsection{\texorpdfstring{recv\_message()}{recv\_message()}}
+{\footnotesize\ttfamily virtual bool huron\+::driver\+::can\+::\+Bus\+Base\+::recv\+\_\+message (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structcan__Message__t}{can\+\_\+\+Message\+\_\+t}} \&}]{message,  }\item[{uint32\+\_\+t}]{timeout = {\ttfamily UINT32\+\_\+MAX} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Receives a CAN message with the same {\ttfamily id} as {\ttfamily message}. 
+
+\begin{DoxyReturn}{Returns}
+\+: true on success or false otherwise (e.\+g. if the receive queue is empty). 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classhuron_1_1driver_1_1can_1_1SocketCanBus_a64aed240f64652ed3402b6b52f9c889b}{huron\+::driver\+::can\+::\+Socket\+Can\+Bus}}.
+
+\mbox{\Hypertarget{classhuron_1_1driver_1_1can_1_1BusBase_ada1869d6f163bf3d9d293026d27565e8}\label{classhuron_1_1driver_1_1can_1_1BusBase_ada1869d6f163bf3d9d293026d27565e8}} 
+\index{huron::driver::can::BusBase@{huron::driver::can::BusBase}!send\_message@{send\_message}}
+\index{send\_message@{send\_message}!huron::driver::can::BusBase@{huron::driver::can::BusBase}}
+\doxysubsubsection{\texorpdfstring{send\_message()}{send\_message()}}
+{\footnotesize\ttfamily virtual bool huron\+::driver\+::can\+::\+Bus\+Base\+::send\+\_\+message (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structcan__Message__t}{can\+\_\+\+Message\+\_\+t}} \&}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Sends the specified CAN message. 
+
+\begin{DoxyReturn}{Returns}
+\+: true on success or false otherwise (e.\+g. if the send queue is full). 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classhuron_1_1driver_1_1can_1_1SocketCanBus_abf70c2a3992b00ff82e5c9040de91365}{huron\+::driver\+::can\+::\+Socket\+Can\+Bus}}.
+
+\mbox{\Hypertarget{classhuron_1_1driver_1_1can_1_1BusBase_a771bfd68d614a50700783a2e59bf8cf5}\label{classhuron_1_1driver_1_1can_1_1BusBase_a771bfd68d614a50700783a2e59bf8cf5}} 
+\index{huron::driver::can::BusBase@{huron::driver::can::BusBase}!subscribe@{subscribe}}
+\index{subscribe@{subscribe}!huron::driver::can::BusBase@{huron::driver::can::BusBase}}
+\doxysubsubsection{\texorpdfstring{subscribe()}{subscribe()}}
+{\footnotesize\ttfamily virtual bool huron\+::driver\+::can\+::\+Bus\+Base\+::subscribe (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structhuron_1_1driver_1_1can_1_1MsgIdFilterSpecs}{Msg\+Id\+Filter\+Specs}} \&}]{filter,  }\item[{on\+\_\+can\+\_\+message\+\_\+cb\+\_\+t}]{callback,  }\item[{void $\ast$}]{ctx,  }\item[{\mbox{\hyperlink{structhuron_1_1driver_1_1can_1_1BusBase_1_1CanSubscription}{Can\+Subscription}} $\ast$$\ast$}]{handle }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Registers a callback that will be invoked for every incoming CAN message that matches the filter. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & On success this handle is set to an opaque pointer that can be used to cancel the subscription.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\+: true on success or false otherwise (e.\+g. if the maximum number of subscriptions has been reached). 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classhuron_1_1driver_1_1can_1_1SocketCanBus_a81fe148e7bd96151fe8e3a9c9bc789e9}{huron\+::driver\+::can\+::\+Socket\+Can\+Bus}}.
+
+\mbox{\Hypertarget{classhuron_1_1driver_1_1can_1_1BusBase_afeae8dedf8e685d5c9cf7dea67517dc6}\label{classhuron_1_1driver_1_1can_1_1BusBase_afeae8dedf8e685d5c9cf7dea67517dc6}} 
+\index{huron::driver::can::BusBase@{huron::driver::can::BusBase}!unsubscribe@{unsubscribe}}
+\index{unsubscribe@{unsubscribe}!huron::driver::can::BusBase@{huron::driver::can::BusBase}}
+\doxysubsubsection{\texorpdfstring{unsubscribe()}{unsubscribe()}}
+{\footnotesize\ttfamily virtual bool huron\+::driver\+::can\+::\+Bus\+Base\+::unsubscribe (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhuron_1_1driver_1_1can_1_1BusBase_1_1CanSubscription}{Can\+Subscription}} $\ast$}]{handle }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Deregisters a callback that was previously registered with \mbox{\hyperlink{classhuron_1_1driver_1_1can_1_1BusBase_a771bfd68d614a50700783a2e59bf8cf5}{subscribe()}}. 
+
+
+
+Implemented in \mbox{\hyperlink{classhuron_1_1driver_1_1can_1_1SocketCanBus_a97a139c4de588cb683e0d22a6811f821}{huron\+::driver\+::can\+::\+Socket\+Can\+Bus}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/github/workspace/driver/can/include/huron/driver/can/canbus.\+h\end{DoxyCompactItemize}

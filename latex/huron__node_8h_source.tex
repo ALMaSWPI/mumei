@@ -1,0 +1,90 @@
+\hypertarget{huron__node_8h_source}{}\doxysection{huron\+\_\+node.\+h}
+\label{huron__node_8h_source}\index{/github/workspace/ros2/src/huron\_ros2/include/huron\_ros2/huron\_node.h@{/github/workspace/ros2/src/huron\_ros2/include/huron\_ros2/huron\_node.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <eigen3/Eigen/Core>}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <rclcpp/rclcpp.hpp>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <sensor\_msgs/msg/joint\_state.hpp>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <std\_msgs/msg/float64\_multi\_array.hpp>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <geometry\_msgs/msg/wrench\_stamped.hpp>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <nav\_msgs/msg/odometry.hpp>}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include "{}huron/types.h"{}}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacehuron}{huron}} \{}
+\DoxyCodeLine{19 \textcolor{keyword}{namespace }ros2 \{}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{keyword}{class }ForceTorqueSensor;}
+\DoxyCodeLine{22 \textcolor{keyword}{class }JointGroupController;}
+\DoxyCodeLine{23 \textcolor{keyword}{class }JointStateProvider;}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{keyword}{class }\mbox{\hyperlink{classhuron_1_1ros2_1_1HuronNode}{HuronNode}} : \textcolor{keyword}{public} rclcpp::Node \{}
+\DoxyCodeLine{26  \textcolor{keyword}{public}:}
+\DoxyCodeLine{27   \mbox{\hyperlink{classhuron_1_1ros2_1_1HuronNode}{HuronNode}}();}
+\DoxyCodeLine{28   \mbox{\hyperlink{classhuron_1_1ros2_1_1HuronNode}{\string~HuronNode}}() \textcolor{keyword}{override} = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30   \textcolor{keywordtype}{void} JointStateCallback(}
+\DoxyCodeLine{31     std::shared\_ptr<const sensor\_msgs::msg::JointState> msg);}
+\DoxyCodeLine{32   \textcolor{keywordtype}{void} OdomCallback(}
+\DoxyCodeLine{33     std::shared\_ptr<const nav\_msgs::msg::Odometry> msg);}
+\DoxyCodeLine{34   \textcolor{keywordtype}{void} WrenchStampedCallback(}
+\DoxyCodeLine{35     \textcolor{keywordtype}{size\_t} idx,}
+\DoxyCodeLine{36     std::shared\_ptr<const geometry\_msgs::msg::WrenchStamped> msg);}
+\DoxyCodeLine{37   \textcolor{keywordtype}{void} PublishFloat64MultiArray(\textcolor{keywordtype}{size\_t} idx, \textcolor{keyword}{const} std::vector<double>\& values);}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39   \textcolor{keyword}{const} huron::Vector6d\& GetWrench(\textcolor{keywordtype}{size\_t} idx)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{40     \textcolor{keywordflow}{return} wrenches\_[idx];}
+\DoxyCodeLine{41   \}}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{47   \textcolor{keywordtype}{void} \mbox{\hyperlink{classhuron_1_1ros2_1_1HuronNode_a71feae86fc35b0505ea58988b68f06e0}{AddJointStateProvider}}(}
+\DoxyCodeLine{48     std::shared\_ptr<JointStateProvider> jsp,}
+\DoxyCodeLine{49     \textcolor{keyword}{const} std::string\& topic,}
+\DoxyCodeLine{50     \textcolor{keywordtype}{size\_t} nq, \textcolor{keywordtype}{size\_t} nv,}
+\DoxyCodeLine{51     \textcolor{keywordtype}{bool} is\_odom = \textcolor{keyword}{false});}
+\DoxyCodeLine{52   \textcolor{keywordtype}{void} AddForceTorqueSensor(}
+\DoxyCodeLine{53     std::shared\_ptr<ForceTorqueSensor> ft\_sensor,}
+\DoxyCodeLine{54     \textcolor{keyword}{const} std::string\& topic);}
+\DoxyCodeLine{55   \textcolor{keywordtype}{void} AddJointGroupController(}
+\DoxyCodeLine{56     std::shared\_ptr<JointGroupController> jgc,}
+\DoxyCodeLine{57     \textcolor{keyword}{const} std::string\& topic);}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{63   \textcolor{keywordtype}{void} \mbox{\hyperlink{classhuron_1_1ros2_1_1HuronNode_a279722a93dd10c27bd08a7dfb656e976}{Finalize}}();}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65   Eigen::VectorXd GetJointState(\textcolor{keywordtype}{size\_t} id\_q, \textcolor{keywordtype}{size\_t} dim\_q,}
+\DoxyCodeLine{66                                 \textcolor{keywordtype}{size\_t} id\_v, \textcolor{keywordtype}{size\_t} dim\_v)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{67     Eigen::VectorXd state(dim\_q + dim\_v);}
+\DoxyCodeLine{68     state.segment(0, dim\_q) = joint\_state\_.segment(id\_q, dim\_q);}
+\DoxyCodeLine{69     state.segment(dim\_q, dim\_v) = joint\_state\_.segment(nq\_ + id\_v,}
+\DoxyCodeLine{70                                                        dim\_v);}
+\DoxyCodeLine{71     \textcolor{keywordflow}{return} state;}
+\DoxyCodeLine{72   \}}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74  \textcolor{keyword}{private}:}
+\DoxyCodeLine{75   \textcolor{keywordtype}{bool} finalized\_ = \textcolor{keyword}{false};}
+\DoxyCodeLine{77   \textcolor{keywordtype}{size\_t} nq\_ = 0;}
+\DoxyCodeLine{79   \textcolor{keywordtype}{size\_t} nv\_ = 0;}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81   rclcpp::Subscription<nav\_msgs::msg::Odometry>::SharedPtr odom\_sub\_;}
+\DoxyCodeLine{82   rclcpp::Subscription<sensor\_msgs::msg::JointState>::SharedPtr}
+\DoxyCodeLine{83     joint\_state\_sub\_;}
+\DoxyCodeLine{84   std::vector<rclcpp::Publisher<std\_msgs::msg::Float64MultiArray>::SharedPtr>}
+\DoxyCodeLine{85     float64\_multi\_array\_pubs\_;}
+\DoxyCodeLine{86   std::vector<rclcpp::Subscription<geometry\_msgs::msg::WrenchStamped>}
+\DoxyCodeLine{87     ::SharedPtr> wrench\_stamped\_subs\_;}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89   Eigen::VectorXd joint\_state\_;}
+\DoxyCodeLine{90   std::vector<huron::Vector6d> wrenches\_;}
+\DoxyCodeLine{91 \};}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93 \}  \textcolor{comment}{// namespace ros2}}
+\DoxyCodeLine{94 \}  \textcolor{comment}{// namespace huron}}
+
+\end{DoxyCode}

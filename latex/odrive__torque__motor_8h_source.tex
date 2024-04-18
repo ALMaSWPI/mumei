@@ -1,0 +1,47 @@
+\hypertarget{odrive__torque__motor_8h_source}{}\doxysection{odrive\+\_\+torque\+\_\+motor.\+h}
+\label{odrive__torque__motor_8h_source}\index{/github/workspace/system/odrive/include/huron/odrive/odrive\_torque\_motor.h@{/github/workspace/system/odrive/include/huron/odrive/odrive\_torque\_motor.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include "{}huron/control\_interfaces/torque\_motor.h"{}}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include "{}huron/odrive/odrive\_can.h"{}}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacehuron}{huron}} \{}
+\DoxyCodeLine{10 \textcolor{keyword}{namespace }odrive \{}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{keyword}{class }\mbox{\hyperlink{classhuron_1_1odrive_1_1TorqueMotor}{TorqueMotor}} : \textcolor{keyword}{public} \mbox{\hyperlink{classhuron_1_1TorqueMotor}{huron::TorqueMotor}} \{}
+\DoxyCodeLine{13  \textcolor{keyword}{public}:}
+\DoxyCodeLine{14   \mbox{\hyperlink{classhuron_1_1odrive_1_1TorqueMotor}{TorqueMotor}}(}
+\DoxyCodeLine{15     std::unique\_ptr<TorqueMotorConfiguration> config,}
+\DoxyCodeLine{16     std::shared\_ptr<ODrive> odrive,}
+\DoxyCodeLine{17     \textcolor{keywordtype}{double} gear\_ratio);}
+\DoxyCodeLine{18   \mbox{\hyperlink{classhuron_1_1odrive_1_1TorqueMotor}{TorqueMotor}}(}
+\DoxyCodeLine{19     std::shared\_ptr<ODrive> odrive,}
+\DoxyCodeLine{20     \textcolor{keywordtype}{double} gear\_ratio);}
+\DoxyCodeLine{21   \textcolor{keyword}{explicit} \mbox{\hyperlink{classhuron_1_1odrive_1_1TorqueMotor}{TorqueMotor}}(std::shared\_ptr<ODrive> odrive);}
+\DoxyCodeLine{22   \mbox{\hyperlink{classhuron_1_1odrive_1_1TorqueMotor}{TorqueMotor}}(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1odrive_1_1TorqueMotor}{TorqueMotor}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{23   \mbox{\hyperlink{classhuron_1_1odrive_1_1TorqueMotor}{TorqueMotor}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1odrive_1_1TorqueMotor}{TorqueMotor}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{24   \mbox{\hyperlink{classhuron_1_1odrive_1_1TorqueMotor}{\string~TorqueMotor}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26   \textcolor{comment}{// GenericComponent methods}}
+\DoxyCodeLine{27   \textcolor{keywordtype}{void} Initialize() \textcolor{keyword}{override};}
+\DoxyCodeLine{28   \textcolor{keywordtype}{void} SetUp() \textcolor{keyword}{override};}
+\DoxyCodeLine{29   \textcolor{keywordtype}{void} Terminate() \textcolor{keyword}{override};}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31   \textcolor{keywordtype}{bool} Move(\textcolor{keywordtype}{double} value) \textcolor{keyword}{override};}
+\DoxyCodeLine{32   \textcolor{keywordtype}{bool} Move(\textcolor{keyword}{const} std::vector<double>\& values) \textcolor{keyword}{override};}
+\DoxyCodeLine{33   \textcolor{keywordtype}{bool} Move(\textcolor{keyword}{const} Eigen::VectorXd\& values) \textcolor{keyword}{override};}
+\DoxyCodeLine{34   \textcolor{keywordtype}{bool} \mbox{\hyperlink{classhuron_1_1odrive_1_1TorqueMotor_ad1c582b6fd6c8d648f47f1e2afe40458}{Stop}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36  \textcolor{keyword}{private}:}
+\DoxyCodeLine{37   std::shared\_ptr<ODrive> odrive\_;}
+\DoxyCodeLine{38 \};}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40 \}  \textcolor{comment}{// namespace odrive}}
+\DoxyCodeLine{41 \}  \textcolor{comment}{// namespace huron}}
+
+\end{DoxyCode}

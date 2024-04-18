@@ -1,0 +1,36 @@
+\hypertarget{moving__interface_8h_source}{}\doxysection{moving\+\_\+interface.\+h}
+\label{moving__interface_8h_source}\index{/github/workspace/system/control\_interfaces/include/huron/control\_interfaces/moving\_interface.h@{/github/workspace/system/control\_interfaces/include/huron/control\_interfaces/moving\_interface.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <eigen3/Eigen/Dense>}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <utility>}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacehuron}{huron}} \{}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{16 \textcolor{keyword}{class }\mbox{\hyperlink{classhuron_1_1MovingInterface}{MovingInterface}} \{}
+\DoxyCodeLine{17  \textcolor{keyword}{public}:}
+\DoxyCodeLine{18   \textcolor{keyword}{explicit} \mbox{\hyperlink{classhuron_1_1MovingInterface}{MovingInterface}}(\textcolor{keywordtype}{size\_t} dim) : dim\_(dim) \{\}}
+\DoxyCodeLine{19   \mbox{\hyperlink{classhuron_1_1MovingInterface}{MovingInterface}}(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1MovingInterface}{MovingInterface}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{20   \mbox{\hyperlink{classhuron_1_1MovingInterface}{MovingInterface}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1MovingInterface}{MovingInterface}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{21   \textcolor{keyword}{virtual} \mbox{\hyperlink{classhuron_1_1MovingInterface}{\string~MovingInterface}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{33   \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classhuron_1_1MovingInterface_a499e82e23fad6173d1b5f1b2052b6fe7}{Move}}(\textcolor{keyword}{const} std::vector<double>\& values) = 0;}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35   \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classhuron_1_1MovingInterface_a499e82e23fad6173d1b5f1b2052b6fe7}{Move}}(\textcolor{keyword}{const} Eigen::VectorXd\& values) = 0;}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{42   \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classhuron_1_1MovingInterface_ad5150f9feda61d0fc2314e40c8e17dd6}{Stop}}() = 0;}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44   \textcolor{keywordtype}{size\_t} dim()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} dim\_; \}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46  \textcolor{keyword}{protected}:}
+\DoxyCodeLine{47   \textcolor{keywordtype}{size\_t} dim\_;}
+\DoxyCodeLine{48 \};}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50 \}  \textcolor{comment}{// namespace huron}}
+
+\end{DoxyCode}

@@ -1,0 +1,48 @@
+\hypertarget{canbus_8h_source}{}\doxysection{canbus.\+h}
+\label{canbus_8h_source}\index{/github/workspace/driver/can/include/huron/driver/can/canbus.h@{/github/workspace/driver/can/include/huron/driver/can/canbus.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Original source from: https://github.com/odriverobotics/ODrive/tree/master}}
+\DoxyCodeLine{3 \textcolor{comment}{ * */}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <variant>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include "{}can\_helpers.h"{}}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacehuron}{huron}} \{}
+\DoxyCodeLine{10 \textcolor{keyword}{namespace }driver \{}
+\DoxyCodeLine{11 \textcolor{keyword}{namespace }can \{}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{keyword}{struct }\mbox{\hyperlink{structhuron_1_1driver_1_1can_1_1MsgIdFilterSpecs}{MsgIdFilterSpecs}} \{}
+\DoxyCodeLine{14   std::variant<uint16\_t, uint32\_t> id;}
+\DoxyCodeLine{15   uint32\_t mask;}
+\DoxyCodeLine{16 \};}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{keyword}{class }\mbox{\hyperlink{classhuron_1_1driver_1_1can_1_1BusBase}{BusBase}} \{}
+\DoxyCodeLine{19  \textcolor{keyword}{public}:}
+\DoxyCodeLine{20   \textcolor{keyword}{typedef} void(*on\_can\_message\_cb\_t)(\textcolor{keywordtype}{void}* ctx, \textcolor{keyword}{const} \mbox{\hyperlink{structcan__Message__t}{can\_Message\_t}}\& message);}
+\DoxyCodeLine{21   \textcolor{keyword}{struct }\mbox{\hyperlink{structhuron_1_1driver_1_1can_1_1BusBase_1_1CanSubscription}{CanSubscription}} \{\};}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23   \mbox{\hyperlink{classhuron_1_1driver_1_1can_1_1BusBase}{BusBase}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{24   \mbox{\hyperlink{classhuron_1_1driver_1_1can_1_1BusBase}{BusBase}}(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1driver_1_1can_1_1BusBase}{BusBase}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{25   \mbox{\hyperlink{classhuron_1_1driver_1_1can_1_1BusBase}{BusBase}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1driver_1_1can_1_1BusBase}{BusBase}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{26   \textcolor{keyword}{virtual} \mbox{\hyperlink{classhuron_1_1driver_1_1can_1_1BusBase}{\string~BusBase}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{34   \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classhuron_1_1driver_1_1can_1_1BusBase_ada1869d6f163bf3d9d293026d27565e8}{send\_message}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcan__Message__t}{can\_Message\_t}}\& message) = 0;}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{42   \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classhuron_1_1driver_1_1can_1_1BusBase_a8ec06dc1912b2731c939dcfc634b9f34}{recv\_message}}(\mbox{\hyperlink{structcan__Message__t}{can\_Message\_t}}\& message,}
+\DoxyCodeLine{43                             uint32\_t timeout = UINT32\_MAX) = 0;}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{55   \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classhuron_1_1driver_1_1can_1_1BusBase_a771bfd68d614a50700783a2e59bf8cf5}{subscribe}}(\textcolor{keyword}{const} \mbox{\hyperlink{structhuron_1_1driver_1_1can_1_1MsgIdFilterSpecs}{MsgIdFilterSpecs}}\& filter,}
+\DoxyCodeLine{56                          on\_can\_message\_cb\_t callback, \textcolor{keywordtype}{void}* ctx,}
+\DoxyCodeLine{57                          \mbox{\hyperlink{structhuron_1_1driver_1_1can_1_1BusBase_1_1CanSubscription}{CanSubscription}}** handle) = 0;}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{62   \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classhuron_1_1driver_1_1can_1_1BusBase_afeae8dedf8e685d5c9cf7dea67517dc6}{unsubscribe}}(\mbox{\hyperlink{structhuron_1_1driver_1_1can_1_1BusBase_1_1CanSubscription}{CanSubscription}}* handle) = 0;}
+\DoxyCodeLine{63 \};}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65 \}  \textcolor{comment}{// namespace can}}
+\DoxyCodeLine{66 \}  \textcolor{comment}{// namespace driver}}
+\DoxyCodeLine{67 \}  \textcolor{comment}{// namespace huron}}
+
+\end{DoxyCode}

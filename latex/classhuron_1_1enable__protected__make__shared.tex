@@ -1,0 +1,37 @@
+\hypertarget{classhuron_1_1enable__protected__make__shared}{}\doxysection{huron\+::enable\+\_\+protected\+\_\+make\+\_\+shared\texorpdfstring{$<$}{<} Class\+With\+Protected\+Ctor \texorpdfstring{$>$}{>} Class Template Reference}
+\label{classhuron_1_1enable__protected__make__shared}\index{huron::enable\_protected\_make\_shared$<$ ClassWithProtectedCtor $>$@{huron::enable\_protected\_make\_shared$<$ ClassWithProtectedCtor $>$}}
+
+
+This class provides a static method to create a shared\+\_\+ptr to a class with a protected constructor.  
+
+
+
+
+{\ttfamily \#include $<$enable\+\_\+protected\+\_\+make\+\_\+shared.\+h$>$}
+
+\doxysubsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classhuron_1_1enable__protected__make__shared_ac50a9a6d827b5fd8af6cc927ec245c9b}\label{classhuron_1_1enable__protected__make__shared_ac50a9a6d827b5fd8af6cc927ec245c9b}} 
+{\footnotesize template$<$typename... Args$>$ }\\static std\+::shared\+\_\+ptr$<$ Class\+With\+Protected\+Ctor $>$ {\bfseries make\+\_\+shared} (Args \&\&... args)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Class\+With\+Protected\+Ctor$>$\newline
+class huron\+::enable\+\_\+protected\+\_\+make\+\_\+shared$<$ Class\+With\+Protected\+Ctor $>$}
+This class provides a static method to create a shared\+\_\+ptr to a class with a protected constructor. 
+
+This is useful for classes that should not be instantiated directly, but should instead be created by a factory method.
+
+Example\+: class Foo \+: public enable\+\_\+protected\+\_\+make\+\_\+shared$<$\+Foo$>$ \{ public\+: friend class Bar;
+
+protected\+: Foo(int a, int b) \+: a\+\_\+(a), b\+\_\+(b) \{\} int a\+\_\+; int b\+\_\+; \};
+
+class Bar \{ std\+::shared\+\_\+ptr$<$\+Foo$>$ Create\+Foo(int a, double b) \{ return Foo\+::make\+\_\+shared(a, b); \} \}
+
+\href{https://stackoverflow.com/a/73236821}{\texttt{ https\+://stackoverflow.\+com/a/73236821}} 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/github/workspace/common/include/huron/enable\+\_\+protected\+\_\+make\+\_\+shared.\+h\end{DoxyCompactItemize}

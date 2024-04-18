@@ -1,0 +1,32 @@
+\hypertarget{zero__moment__point__ft__sensor_8h_source}{}\doxysection{zero\+\_\+moment\+\_\+point\+\_\+ft\+\_\+sensor.\+h}
+\label{zero__moment__point__ft__sensor_8h_source}\index{/github/workspace/system/locomotion/include/huron/locomotion/zero\_moment\_point\_ft\_sensor.h@{/github/workspace/system/locomotion/include/huron/locomotion/zero\_moment\_point\_ft\_sensor.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include "{}huron/locomotion/zero\_moment\_point.h"{}}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacehuron}{huron}} \{}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{keyword}{class }\mbox{\hyperlink{classhuron_1_1ZeroMomentPointFTSensor}{ZeroMomentPointFTSensor}} : \textcolor{keyword}{public} \mbox{\hyperlink{classhuron_1_1ZeroMomentPoint}{ZeroMomentPoint}} \{}
+\DoxyCodeLine{11  \textcolor{keyword}{public}:}
+\DoxyCodeLine{12   \mbox{\hyperlink{classhuron_1_1ZeroMomentPointFTSensor}{ZeroMomentPointFTSensor}}(}
+\DoxyCodeLine{13     std::weak\_ptr<const multibody::Frame> zmp\_frame,}
+\DoxyCodeLine{14     \textcolor{keywordtype}{double} normal\_force\_threshold,}
+\DoxyCodeLine{15     \textcolor{keyword}{const} std::vector<std::shared\_ptr<ForceTorqueSensor>>\& ft\_sensors);}
+\DoxyCodeLine{16   \mbox{\hyperlink{classhuron_1_1ZeroMomentPointFTSensor}{ZeroMomentPointFTSensor}}(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1ZeroMomentPointFTSensor}{ZeroMomentPointFTSensor}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{17   \mbox{\hyperlink{classhuron_1_1ZeroMomentPointFTSensor}{ZeroMomentPointFTSensor}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1ZeroMomentPointFTSensor}{ZeroMomentPointFTSensor}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{18   \mbox{\hyperlink{classhuron_1_1ZeroMomentPointFTSensor}{\string~ZeroMomentPointFTSensor}}() \textcolor{keyword}{override} = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20   Eigen::Vector2d \mbox{\hyperlink{classhuron_1_1ZeroMomentPointFTSensor_a4ba289c870423bcaa9bf5f708b963a92}{Eval}}(\textcolor{keywordtype}{double}\& fz) \textcolor{keyword}{override};}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22  \textcolor{keyword}{private}:}
+\DoxyCodeLine{23   std::vector<std::shared\_ptr<ForceTorqueSensor>> ft\_sensors\_;}
+\DoxyCodeLine{24 \};}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \}  \textcolor{comment}{// namespace huron}}
+
+\end{DoxyCode}

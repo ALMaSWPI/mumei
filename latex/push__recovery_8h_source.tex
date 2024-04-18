@@ -1,0 +1,74 @@
+\hypertarget{push__recovery_8h_source}{}\doxysection{push\+\_\+recovery.\+h}
+\label{push__recovery_8h_source}\index{/github/workspace/control/include/huron/control/push\_recovery.h@{/github/workspace/control/include/huron/control/push\_recovery.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <eigen3/Eigen/Dense>}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <complex>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{keyword}{class }\mbox{\hyperlink{classPushRecoveryControl}{PushRecoveryControl}} \{}
+\DoxyCodeLine{10  \textcolor{keyword}{private}:}
+\DoxyCodeLine{11   \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{inline} std::complex<double> i\{0.0, 1.0\};}
+\DoxyCodeLine{12   \textcolor{comment}{// EOM of 3 DOF model}}
+\DoxyCodeLine{13   \textcolor{comment}{// Mass in kg, length in meter}}
+\DoxyCodeLine{14   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{double} alpha = 0.7;}
+\DoxyCodeLine{15   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{double} m1 = 5.9117,}
+\DoxyCodeLine{16         m2 = 4.2554,}
+\DoxyCodeLine{17         m3 = 10.19329;}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{double} lc1 = 0.15149,}
+\DoxyCodeLine{20         lc2 = 0.24517,}
+\DoxyCodeLine{21         lc3 = 0.1585;}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{double} l1 = 0.3715,}
+\DoxyCodeLine{24         l2 = 0.49478,}
+\DoxyCodeLine{25         l3 = 0.32662;}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{double} g = 9.81;}
+\DoxyCodeLine{28   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{double} I1 = 0.0222,}
+\DoxyCodeLine{29         I2 = 0.01009,}
+\DoxyCodeLine{30         I3 = 0.0219;}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32   \textcolor{comment}{// Desired position, velocity and acceleration of location of the com}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34   \textcolor{keywordtype}{double} theta1\_d = 0,}
+\DoxyCodeLine{35         theta2\_d = 0,}
+\DoxyCodeLine{36         theta3\_d = 0;}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38   \textcolor{keywordtype}{double} theta1\_dot\_d = 0,}
+\DoxyCodeLine{39         theta2\_dot\_d = 0,}
+\DoxyCodeLine{40         theta3\_dot\_d = 0;}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42   \textcolor{keywordtype}{double} theta1\_dddot = 0,}
+\DoxyCodeLine{43         theta2\_dddot = 0,}
+\DoxyCodeLine{44         theta3\_dddot = 0;}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46   \textcolor{keywordtype}{double} x\_com\_d = 0,}
+\DoxyCodeLine{47         x\_com\_ddot = 0,}
+\DoxyCodeLine{48         x\_com\_dddot = 0;}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50   \textcolor{comment}{// Values}}
+\DoxyCodeLine{51   \textcolor{keywordtype}{double} theta1, theta2, theta3 = 0;}
+\DoxyCodeLine{52   \textcolor{keywordtype}{double} theta1\_dot, theta2\_dot, theta3\_dot = 0;}
+\DoxyCodeLine{53   \textcolor{keywordtype}{double} X\_COM, X\_dot\_COM = 0;}
+\DoxyCodeLine{54   Eigen::MatrixXd ModelCalculation();}
+\DoxyCodeLine{55   Eigen::MatrixXd CalculateCOM();}
+\DoxyCodeLine{56   \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{57   \textcolor{keywordtype}{int} sign (\textcolor{keyword}{const} T \&val) \{ \textcolor{keywordflow}{return} (val > 0) -\/ (val < 0); \}}
+\DoxyCodeLine{58   Eigen::MatrixXd SMCController(\textcolor{keyword}{const} Eigen::Vector2d\& cop,}
+\DoxyCodeLine{59                                 \textcolor{keyword}{const} Eigen::MatrixXd\& J\_X\_COM,}
+\DoxyCodeLine{60                                 \textcolor{keyword}{const} Eigen::MatrixXd\& J\_X\_COM\_dot);}
+\DoxyCodeLine{61   Eigen::MatrixXd SMCPostureCorrection();}
+\DoxyCodeLine{62   \textcolor{keywordtype}{double} constrainAngle(\textcolor{keywordtype}{double} x);}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64  \textcolor{keyword}{public}:}
+\DoxyCodeLine{65   Eigen::MatrixXd GetTorque(\textcolor{keyword}{const} Eigen::Vector2d\& cop,}
+\DoxyCodeLine{66                             \textcolor{keyword}{const} Eigen::VectorXd\& position,}
+\DoxyCodeLine{67                             \textcolor{keyword}{const} Eigen::VectorXd\& velocity);}
+\DoxyCodeLine{68 \};}
+
+\end{DoxyCode}

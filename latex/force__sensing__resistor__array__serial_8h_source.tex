@@ -1,0 +1,54 @@
+\hypertarget{force__sensing__resistor__array__serial_8h_source}{}\doxysection{force\+\_\+sensing\+\_\+resistor\+\_\+array\+\_\+serial.\+h}
+\label{force__sensing__resistor__array__serial_8h_source}\index{/github/workspace/system/sensors/include/huron/sensors/force\_sensing\_resistor\_array\_serial.h@{/github/workspace/system/sensors/include/huron/sensors/force\_sensing\_resistor\_array\_serial.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include "{}huron/sensors/force\_sensing\_resistor\_array.h"{}}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}huron/driver/serial/serial.h"{}}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacehuron}{huron}} \{}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{19 \textcolor{keyword}{class }\mbox{\hyperlink{classhuron_1_1ForceSensingResistorArraySerial}{ForceSensingResistorArraySerial}} : \textcolor{keyword}{public} \mbox{\hyperlink{classhuron_1_1ForceSensingResistorArray}{ForceSensingResistorArray}} \{}
+\DoxyCodeLine{20  \textcolor{keyword}{public}:}
+\DoxyCodeLine{21   \mbox{\hyperlink{classhuron_1_1ForceSensingResistorArraySerial}{ForceSensingResistorArraySerial}}(}
+\DoxyCodeLine{22     \textcolor{keyword}{const} std::string\& name,}
+\DoxyCodeLine{23     std::weak\_ptr<const multibody::Frame> frame,}
+\DoxyCodeLine{24     \textcolor{keyword}{const} std::vector<std::shared\_ptr<ForceSensingResistor>>\& fsr\_array,}
+\DoxyCodeLine{25     std::shared\_ptr<driver::serial::SerialBase> serial);}
+\DoxyCodeLine{26   \mbox{\hyperlink{classhuron_1_1ForceSensingResistorArraySerial}{ForceSensingResistorArraySerial}}(}
+\DoxyCodeLine{27     \textcolor{keyword}{const} std::string\& name,}
+\DoxyCodeLine{28     std::weak\_ptr<const multibody::Frame> frame,}
+\DoxyCodeLine{29     \textcolor{keyword}{const} std::vector<std::shared\_ptr<ForceSensingResistor>>\& fsr\_array,}
+\DoxyCodeLine{30     std::shared\_ptr<driver::serial::SerialBase> serial,}
+\DoxyCodeLine{31     std::unique\_ptr<Configuration> config);}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33   \mbox{\hyperlink{classhuron_1_1ForceSensingResistorArraySerial}{ForceSensingResistorArraySerial}}(}
+\DoxyCodeLine{34     \textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1ForceSensingResistorArraySerial}{ForceSensingResistorArraySerial}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36   \mbox{\hyperlink{classhuron_1_1ForceSensingResistorArraySerial}{ForceSensingResistorArraySerial}}\&}
+\DoxyCodeLine{37     operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1ForceSensingResistorArraySerial}{ForceSensingResistorArraySerial}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39   \mbox{\hyperlink{classhuron_1_1ForceSensingResistorArraySerial}{\string~ForceSensingResistorArraySerial}}() \textcolor{keyword}{override} = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41   \textcolor{keywordtype}{void} RequestStateUpdate() \textcolor{keyword}{override};}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43   Eigen::VectorXd \mbox{\hyperlink{classhuron_1_1ForceSensingResistorArraySerial_adceb3f95657694ed6fdf90d86fda9c2d}{GetValue}}() \textcolor{keyword}{const override};}
+\DoxyCodeLine{44   Eigen::VectorXd ReloadAndGetValue() \textcolor{keyword}{override};}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46   \textcolor{keywordtype}{void} Initialize() \textcolor{keyword}{override};}
+\DoxyCodeLine{47   \textcolor{keywordtype}{void} SetUp() \textcolor{keyword}{override};}
+\DoxyCodeLine{48   \textcolor{keywordtype}{void} Terminate() \textcolor{keyword}{override};}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50  \textcolor{keyword}{private}:}
+\DoxyCodeLine{51   \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keyword}{const} std::string delimiter = \textcolor{stringliteral}{"{},"{}};}
+\DoxyCodeLine{52   std::shared\_ptr<driver::serial::SerialBase> serial\_;}
+\DoxyCodeLine{53 \};}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55 \}  \textcolor{comment}{// namespace huron}}
+
+\end{DoxyCode}

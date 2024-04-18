@@ -1,0 +1,19 @@
+\hypertarget{time_8h_source}{}\doxysection{time.\+h}
+\label{time_8h_source}\index{/github/workspace/utils/include/huron/utils/time.h@{/github/workspace/utils/include/huron/utils/time.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <chrono>}  \textcolor{comment}{//NOLINT}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{11 \textcolor{keyword}{template} <}
+\DoxyCodeLine{12     \textcolor{keyword}{class }result\_t   = std::chrono::milliseconds,}
+\DoxyCodeLine{13     \textcolor{keyword}{class }clock\_t    = std::chrono::steady\_clock,}
+\DoxyCodeLine{14     \textcolor{keyword}{class }duration\_t = std::chrono::milliseconds}
+\DoxyCodeLine{15 >}
+\DoxyCodeLine{16 \textcolor{keyword}{auto} since(std::chrono::time\_point<clock\_t, duration\_t> \textcolor{keyword}{const}\& start) \{}
+\DoxyCodeLine{17     \textcolor{keywordflow}{return} std::chrono::duration\_cast<result\_t>(clock\_t::now() -\/ start);}
+\DoxyCodeLine{18 \}}
+\DoxyCodeLine{19 }
+
+\end{DoxyCode}

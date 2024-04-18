@@ -1,0 +1,172 @@
+\hypertarget{classhuron_1_1RotaryEncoder}{}\doxysection{huron\+::Rotary\+Encoder Class Reference}
+\label{classhuron_1_1RotaryEncoder}\index{huron::RotaryEncoder@{huron::RotaryEncoder}}
+
+
+{\ttfamily \#include $<$rotary\+\_\+encoder.\+h$>$}
+
+Inheritance diagram for huron\+::Rotary\+Encoder\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{classhuron_1_1RotaryEncoder}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classhuron_1_1RotaryEncoder_a43a087f7fb6c307932f4eb6046281cd0}\label{classhuron_1_1RotaryEncoder_a43a087f7fb6c307932f4eb6046281cd0}} 
+{\bfseries Rotary\+Encoder} (double gear\+\_\+ratio, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classhuron_1_1RotaryEncoderConfiguration}{Rotary\+Encoder\+Configuration}} $>$ config)
+\item 
+\mbox{\Hypertarget{classhuron_1_1RotaryEncoder_a7b7693089c350e307b9c5aecdfef28ab}\label{classhuron_1_1RotaryEncoder_a7b7693089c350e307b9c5aecdfef28ab}} 
+{\bfseries Rotary\+Encoder} (double gear\+\_\+ratio, double cpr)
+\item 
+\mbox{\Hypertarget{classhuron_1_1RotaryEncoder_ab82ae73af7f79a90ff1d6fe5b780a56e}\label{classhuron_1_1RotaryEncoder_ab82ae73af7f79a90ff1d6fe5b780a56e}} 
+{\bfseries Rotary\+Encoder} (double cpr)
+\item 
+\mbox{\Hypertarget{classhuron_1_1RotaryEncoder_a9dc5d045e247a6c2fafc994fcad744a5}\label{classhuron_1_1RotaryEncoder_a9dc5d045e247a6c2fafc994fcad744a5}} 
+{\bfseries Rotary\+Encoder} (const \mbox{\hyperlink{classhuron_1_1RotaryEncoder}{Rotary\+Encoder}} \&)=delete
+\item 
+\mbox{\Hypertarget{classhuron_1_1RotaryEncoder_ac10540e473136f336b01d17445f16281}\label{classhuron_1_1RotaryEncoder_ac10540e473136f336b01d17445f16281}} 
+\mbox{\hyperlink{classhuron_1_1RotaryEncoder}{Rotary\+Encoder}} \& {\bfseries operator=} (const \mbox{\hyperlink{classhuron_1_1RotaryEncoder}{Rotary\+Encoder}} \&)=delete
+\item 
+void \mbox{\hyperlink{classhuron_1_1RotaryEncoder_a74e8e682bbdd13085eb043f545af0493}{Request\+State\+Update}} () final
+\item 
+double \mbox{\hyperlink{classhuron_1_1RotaryEncoder_ae9f03e7a1fd90107f94223d9466bba79}{Get\+Count}} () const
+\item 
+double \mbox{\hyperlink{classhuron_1_1RotaryEncoder_ad19c605c49cc0f500924734df09f051c}{Get\+Velocity\+Count}} () const
+\item 
+double \mbox{\hyperlink{classhuron_1_1RotaryEncoder_ab89834b0af9f932aa06f7319eaa072b5}{Get\+Prev\+Count}} () const
+\item 
+double \mbox{\hyperlink{classhuron_1_1RotaryEncoder_ae9bf9f0df0ee1e437cf63577e9735c7a}{Get\+CPR}} () const
+\item 
+double \mbox{\hyperlink{classhuron_1_1RotaryEncoder_ae54c2e5234f61d96ab755e3266986458}{Get\+Position}} () const override
+\item 
+double \mbox{\hyperlink{classhuron_1_1RotaryEncoder_ae1123b70ed406157df813693e85f5d83}{Get\+Angle\+Degree}} () const
+\item 
+double \mbox{\hyperlink{classhuron_1_1RotaryEncoder_a5e59dc869c35ae1ce537f29e068bf85c}{Get\+Velocity}} () const override
+\item 
+double \mbox{\hyperlink{classhuron_1_1RotaryEncoder_a1e0b3a6e1f1a75b5d81c356c4ed32d35}{Get\+Velocity\+Degree}} () const
+\item 
+void \mbox{\hyperlink{classhuron_1_1RotaryEncoder_a96792dbef952f8268546c0122b5f0dea}{Reset}} () override
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classhuron_1_1RotaryEncoder_af50667666bed70f6b8cb1cd71414b8b5}{Do\+Update\+State}} ()=0
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classhuron_1_1RotaryEncoder_aa8f486343c252496adab86f98cd890f0}\label{classhuron_1_1RotaryEncoder_aa8f486343c252496adab86f98cd890f0}} 
+double {\bfseries velocity\+\_\+} = 0.\+0
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classhuron_1_1Encoder}{Encoder}} velocity in counts per second. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classhuron_1_1RotaryEncoder_a738c45054ceffe55be0d5da48eb5ce02}\label{classhuron_1_1RotaryEncoder_a738c45054ceffe55be0d5da48eb5ce02}} 
+double {\bfseries prev\+\_\+velocity\+\_\+} = 0.\+0
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classhuron_1_1Encoder}{Encoder}} previous velocity in counts per second. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classhuron_1_1RotaryEncoder_a113bdc95d0d1997d7d60e339da2dc0c0}\label{classhuron_1_1RotaryEncoder_a113bdc95d0d1997d7d60e339da2dc0c0}} 
+double {\bfseries count\+\_\+} = 0.\+0
+\item 
+\mbox{\Hypertarget{classhuron_1_1RotaryEncoder_a027c1c68a1e7c3016fdc6ea7718ffdd1}\label{classhuron_1_1RotaryEncoder_a027c1c68a1e7c3016fdc6ea7718ffdd1}} 
+double {\bfseries prev\+\_\+count\+\_\+} = 0.\+0
+\item 
+\mbox{\Hypertarget{classhuron_1_1RotaryEncoder_a06026b41929225bba22b18ddca2389f5}\label{classhuron_1_1RotaryEncoder_a06026b41929225bba22b18ddca2389f5}} 
+double {\bfseries cpr\+\_\+}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstract class for using an encoder. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classhuron_1_1RotaryEncoder_af50667666bed70f6b8cb1cd71414b8b5}\label{classhuron_1_1RotaryEncoder_af50667666bed70f6b8cb1cd71414b8b5}} 
+\index{huron::RotaryEncoder@{huron::RotaryEncoder}!DoUpdateState@{DoUpdateState}}
+\index{DoUpdateState@{DoUpdateState}!huron::RotaryEncoder@{huron::RotaryEncoder}}
+\doxysubsubsection{\texorpdfstring{DoUpdateState()}{DoUpdateState()}}
+{\footnotesize\ttfamily virtual void huron\+::\+Rotary\+Encoder\+::\+Do\+Update\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+
+Classes derived from \mbox{\hyperlink{classhuron_1_1RotaryEncoder}{Rotary\+Encoder}} should override this function instead of directly overriding Request\+Update\+State(). \mbox{\hyperlink{classhuron_1_1RotaryEncoder}{Rotary\+Encoder}} already handled the internal count update for convenience.
+
+This function should update the current count (count\+\_\+) and, if possible, velocity (velocity\+\_\+). 
+
+Implemented in \mbox{\hyperlink{classhuron_1_1odrive_1_1ODriveEncoder_ac60e87724b86b0d24bca55caef666568}{huron\+::odrive\+::\+ODrive\+Encoder}}.
+
+\mbox{\Hypertarget{classhuron_1_1RotaryEncoder_ae1123b70ed406157df813693e85f5d83}\label{classhuron_1_1RotaryEncoder_ae1123b70ed406157df813693e85f5d83}} 
+\index{huron::RotaryEncoder@{huron::RotaryEncoder}!GetAngleDegree@{GetAngleDegree}}
+\index{GetAngleDegree@{GetAngleDegree}!huron::RotaryEncoder@{huron::RotaryEncoder}}
+\doxysubsubsection{\texorpdfstring{GetAngleDegree()}{GetAngleDegree()}}
+{\footnotesize\ttfamily double huron\+::\+Rotary\+Encoder\+::\+Get\+Angle\+Degree (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Gets the current angle in degrees. This takes into account the gear ratio and CPR. \mbox{\Hypertarget{classhuron_1_1RotaryEncoder_ae9f03e7a1fd90107f94223d9466bba79}\label{classhuron_1_1RotaryEncoder_ae9f03e7a1fd90107f94223d9466bba79}} 
+\index{huron::RotaryEncoder@{huron::RotaryEncoder}!GetCount@{GetCount}}
+\index{GetCount@{GetCount}!huron::RotaryEncoder@{huron::RotaryEncoder}}
+\doxysubsubsection{\texorpdfstring{GetCount()}{GetCount()}}
+{\footnotesize\ttfamily double huron\+::\+Rotary\+Encoder\+::\+Get\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Gets the current encoder count. \mbox{\Hypertarget{classhuron_1_1RotaryEncoder_ae9bf9f0df0ee1e437cf63577e9735c7a}\label{classhuron_1_1RotaryEncoder_ae9bf9f0df0ee1e437cf63577e9735c7a}} 
+\index{huron::RotaryEncoder@{huron::RotaryEncoder}!GetCPR@{GetCPR}}
+\index{GetCPR@{GetCPR}!huron::RotaryEncoder@{huron::RotaryEncoder}}
+\doxysubsubsection{\texorpdfstring{GetCPR()}{GetCPR()}}
+{\footnotesize\ttfamily double huron\+::\+Rotary\+Encoder\+::\+Get\+CPR (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Gets the counts per revolution (CPR). \mbox{\Hypertarget{classhuron_1_1RotaryEncoder_ae54c2e5234f61d96ab755e3266986458}\label{classhuron_1_1RotaryEncoder_ae54c2e5234f61d96ab755e3266986458}} 
+\index{huron::RotaryEncoder@{huron::RotaryEncoder}!GetPosition@{GetPosition}}
+\index{GetPosition@{GetPosition}!huron::RotaryEncoder@{huron::RotaryEncoder}}
+\doxysubsubsection{\texorpdfstring{GetPosition()}{GetPosition()}}
+{\footnotesize\ttfamily double huron\+::\+Rotary\+Encoder\+::\+Get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Gets the current angle in radians. This takes into account the gear ratio and CPR. 
+
+Implements \mbox{\hyperlink{classhuron_1_1Encoder}{huron\+::\+Encoder}}.
+
+\mbox{\Hypertarget{classhuron_1_1RotaryEncoder_ab89834b0af9f932aa06f7319eaa072b5}\label{classhuron_1_1RotaryEncoder_ab89834b0af9f932aa06f7319eaa072b5}} 
+\index{huron::RotaryEncoder@{huron::RotaryEncoder}!GetPrevCount@{GetPrevCount}}
+\index{GetPrevCount@{GetPrevCount}!huron::RotaryEncoder@{huron::RotaryEncoder}}
+\doxysubsubsection{\texorpdfstring{GetPrevCount()}{GetPrevCount()}}
+{\footnotesize\ttfamily double huron\+::\+Rotary\+Encoder\+::\+Get\+Prev\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Gets the previous encoder count. \mbox{\Hypertarget{classhuron_1_1RotaryEncoder_a5e59dc869c35ae1ce537f29e068bf85c}\label{classhuron_1_1RotaryEncoder_a5e59dc869c35ae1ce537f29e068bf85c}} 
+\index{huron::RotaryEncoder@{huron::RotaryEncoder}!GetVelocity@{GetVelocity}}
+\index{GetVelocity@{GetVelocity}!huron::RotaryEncoder@{huron::RotaryEncoder}}
+\doxysubsubsection{\texorpdfstring{GetVelocity()}{GetVelocity()}}
+{\footnotesize\ttfamily double huron\+::\+Rotary\+Encoder\+::\+Get\+Velocity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Gets the current velocity in radians/second. This takes into account the gear ratio and CPR. 
+
+Implements \mbox{\hyperlink{classhuron_1_1Encoder}{huron\+::\+Encoder}}.
+
+\mbox{\Hypertarget{classhuron_1_1RotaryEncoder_ad19c605c49cc0f500924734df09f051c}\label{classhuron_1_1RotaryEncoder_ad19c605c49cc0f500924734df09f051c}} 
+\index{huron::RotaryEncoder@{huron::RotaryEncoder}!GetVelocityCount@{GetVelocityCount}}
+\index{GetVelocityCount@{GetVelocityCount}!huron::RotaryEncoder@{huron::RotaryEncoder}}
+\doxysubsubsection{\texorpdfstring{GetVelocityCount()}{GetVelocityCount()}}
+{\footnotesize\ttfamily double huron\+::\+Rotary\+Encoder\+::\+Get\+Velocity\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Gets the current encoder velocity in count. \mbox{\Hypertarget{classhuron_1_1RotaryEncoder_a1e0b3a6e1f1a75b5d81c356c4ed32d35}\label{classhuron_1_1RotaryEncoder_a1e0b3a6e1f1a75b5d81c356c4ed32d35}} 
+\index{huron::RotaryEncoder@{huron::RotaryEncoder}!GetVelocityDegree@{GetVelocityDegree}}
+\index{GetVelocityDegree@{GetVelocityDegree}!huron::RotaryEncoder@{huron::RotaryEncoder}}
+\doxysubsubsection{\texorpdfstring{GetVelocityDegree()}{GetVelocityDegree()}}
+{\footnotesize\ttfamily double huron\+::\+Rotary\+Encoder\+::\+Get\+Velocity\+Degree (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Gets the current velocity in degrees/second. This takes into account the gear ratio and CPR. \mbox{\Hypertarget{classhuron_1_1RotaryEncoder_a74e8e682bbdd13085eb043f545af0493}\label{classhuron_1_1RotaryEncoder_a74e8e682bbdd13085eb043f545af0493}} 
+\index{huron::RotaryEncoder@{huron::RotaryEncoder}!RequestStateUpdate@{RequestStateUpdate}}
+\index{RequestStateUpdate@{RequestStateUpdate}!huron::RotaryEncoder@{huron::RotaryEncoder}}
+\doxysubsubsection{\texorpdfstring{RequestStateUpdate()}{RequestStateUpdate()}}
+{\footnotesize\ttfamily void huron\+::\+Rotary\+Encoder\+::\+Request\+State\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [final]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classhuron_1_1StateProvider}{huron\+::\+State\+Provider}}.
+
+\mbox{\Hypertarget{classhuron_1_1RotaryEncoder_a96792dbef952f8268546c0122b5f0dea}\label{classhuron_1_1RotaryEncoder_a96792dbef952f8268546c0122b5f0dea}} 
+\index{huron::RotaryEncoder@{huron::RotaryEncoder}!Reset@{Reset}}
+\index{Reset@{Reset}!huron::RotaryEncoder@{huron::RotaryEncoder}}
+\doxysubsubsection{\texorpdfstring{Reset()}{Reset()}}
+{\footnotesize\ttfamily void huron\+::\+Rotary\+Encoder\+::\+Reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Resets the encoder count. 
+
+Implements \mbox{\hyperlink{classhuron_1_1Encoder}{huron\+::\+Encoder}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/github/workspace/system/control\+\_\+interfaces/include/huron/control\+\_\+interfaces/rotary\+\_\+encoder.\+h\end{DoxyCompactItemize}

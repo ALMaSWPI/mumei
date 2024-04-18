@@ -1,0 +1,494 @@
+\hypertarget{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl}{}\doxysection{huron\+::multibody\+::internal\+::Pinocchio\+Model\+Impl Class Reference}
+\label{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl}\index{huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}}
+Inheritance diagram for huron\+::multibody\+::internal\+::Pinocchio\+Model\+Impl\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_1_1Impl}{Impl}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_afd3c6cd0119863f89957b3672f89b4cb}\label{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_afd3c6cd0119863f89957b3672f89b4cb}} 
+{\bfseries Pinocchio\+Model\+Impl} (const \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl}{Pinocchio\+Model\+Impl}} \&)=delete
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_ad7bd85d79ae788b92b52a18ea9d46c6e}\label{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_ad7bd85d79ae788b92b52a18ea9d46c6e}} 
+\mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl}{Pinocchio\+Model\+Impl}} \& {\bfseries operator=} (const \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl}{Pinocchio\+Model\+Impl}} \&)=delete
+\item 
+void \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_aebfcaed2f9be072b57d54373f0ae326d}{Build\+From\+Urdf}} (const std\+::string \&urdf\+\_\+path, Joint\+Type root\+\_\+joint\+\_\+type) override
+\item 
+const std\+::vector$<$ std\+::string $>$ \& \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a0c47d9081c7fdd7f3b25da2d2c5b7607}{Get\+Joint\+Names}} () const override
+\item 
+std\+::weak\+\_\+ptr$<$ \mbox{\hyperlink{classhuron_1_1Joint}{Joint}} $>$ \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a05da12f1f182ca40b633fdfaee064f87}{Get\+Joint}} (const std\+::string \&name) const override
+\item 
+std\+::weak\+\_\+ptr$<$ \mbox{\hyperlink{classhuron_1_1Joint}{Joint}} $>$ \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a0b26162483e0bad55345aee43c2edd4c}{Get\+Joint}} (size\+\_\+t joint\+\_\+index) const override
+\item 
+Joint\+Type \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_abaf34fe1612adde380067a04a97df801}{Get\+Joint\+Type}} (size\+\_\+t joint\+\_\+index) const override
+\item 
+Joint\+Index \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_aa9ef977aa2805657608f0ab37b8a9b88}{Get\+Joint\+Index}} (const std\+::string \&joint\+\_\+name) const override
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structhuron_1_1multibody_1_1JointDescription}{Joint\+Description}} $>$ \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_ae963aff43b412e6aaaa0a10aea8cfe29}{Get\+Joint\+Description}} (Joint\+Index joint\+\_\+index) const override
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structhuron_1_1multibody_1_1JointDescription}{Joint\+Description}} $>$ \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_acc7894b42f9e3911a11657c42e550f13}{Get\+Joint\+Description}} (const std\+::string \&joint\+\_\+name) const override
+\item 
+Eigen\+::\+Affine3d \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a9d6f990a5317809e88a428958fbf5317}{Get\+Joint\+Transform\+In\+World}} (size\+\_\+t joint\+\_\+index) const override
+\item 
+Frame\+Index \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a38542263b5830cd749f3a9364479f14c}{Get\+Frame\+Index}} (const std\+::string \&frame\+\_\+name) const override
+\item 
+const std\+::string \& \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a99ed00abed1a099beb7df3e4f9839275}{Get\+Frame\+Name}} (Frame\+Index frame\+\_\+index) const override
+\item 
+Frame\+Type \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a318cfd51db69156df819611ebe5a8f7c}{Get\+Frame\+Type}} (Frame\+Index frame\+\_\+index) const override
+\item 
+Eigen\+::\+Affine3d \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a6d735f5eb1a9966f6ded15b6c6e2e665}{Get\+Frame\+Transform}} (Frame\+Index from\+\_\+frame, Frame\+Index to\+\_\+frame) const override
+\item 
+Eigen\+::\+Affine3d \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_ad161c53482554ca6e31609d016c16446}{Get\+Frame\+Transform\+In\+World}} (Frame\+Index frame) const override
+\item 
+Eigen\+::\+Vector3d \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_ada5681948a49c090eac73b0efb6ccff0}{Eval\+Center\+Of\+Mass\+Position}} () override
+\item 
+Eigen\+::\+Vector3d \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_aea755bda4279b412f63a456c68faad7d}{Get\+Center\+Of\+Mass\+Position}} () const override
+\item 
+Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_aaf7a5197ed087f840228e06d59bae579}{Neutral\+Configuration}} () const override
+\item 
+const Eigen\+::\+Vector\+Xd \& \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a409ac80e81d77da36ddab6ce11d3aeca}{Get\+Accelerations}} () const override
+\begin{DoxyCompactList}\small\item\em Get the generalized accelerations of the model. \end{DoxyCompactList}\item 
+const Eigen\+::\+Vector\+Xd \& \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_ad25e1d1b683dd2ea15c39061a9226044}{Get\+Torques}} () const override
+\begin{DoxyCompactList}\small\item\em Get the joint torques. \end{DoxyCompactList}\item 
+const Eigen\+::\+Matrix\+Xd \& \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a8dfc671faa6b8fb2a6ef47c9296369e8}{Get\+Mass\+Matrix}} () const override
+\begin{DoxyCompactList}\small\item\em Get the mass matrix with the cached value. \end{DoxyCompactList}\item 
+const Eigen\+::\+Matrix\+Xd \& \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a3cbe462e282a2ff626f49d8dd519da24}{Get\+Coriolis\+Matrix}} () const override
+\begin{DoxyCompactList}\small\item\em Get the Coriolis matrix with the cached value. \end{DoxyCompactList}\item 
+const Eigen\+::\+Vector\+Xd \& \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a5dcc63bc6e60173252ff6ed28af3a1ea}{Get\+Nonlinear\+Effects}} () const override
+\begin{DoxyCompactList}\small\item\em Get the nonlinear effects vector. \end{DoxyCompactList}\item 
+const Eigen\+::\+Vector\+Xd \& \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a30a41a59008aa6c4dde6468f09c6f872}{Get\+Gravity}} () const override
+\begin{DoxyCompactList}\small\item\em Get the gravity vector. \end{DoxyCompactList}\item 
+const huron\+::\+Vector6d \& \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a33fe7ebb21e9dfc9a3c92bc00d6f2ab3}{Get\+Spatial\+Momentum}} () const override
+\begin{DoxyCompactList}\small\item\em Get the spatial momentum with respect to the specified frame. \end{DoxyCompactList}\item 
+huron\+::\+Vector6d \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_ab58478de0c9eea414ba2f6d73dc5c3fe}{Get\+Centroidal\+Momentum}} () const override
+\begin{DoxyCompactList}\small\item\em Get the centroidal momentum. \end{DoxyCompactList}\item 
+const huron\+::\+Matrix6\+Xd \& \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_ac18042a534d5575786c8da4ce693ee5a}{Get\+Centroidal\+Matrix}} () const override
+\begin{DoxyCompactList}\small\item\em Get the centroidal momentum matrix with the cached value. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a85f71f326142aa0bbdeada6204a3593f}{Compute\+All}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&q, const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&v) override
+\item 
+void \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a633f12ec66a9486eb45a22ad816913a8}{Forward\+Kinematics}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&q) override
+\item 
+void \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a70e51b94f7cb833a9cc0d78e3f66bfff}{Forward\+Kinematics}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&q, const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&v) override
+\item 
+void \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a6e6a64ee42eb515f1368bf988c0a7a2a}{Forward\+Kinematics}} (const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&q, const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&v, const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&a) override
+\item 
+bool \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_ad3ecf9771e7e60943e575c0a6cc0a81a}{is\+\_\+built}} () const override
+\item 
+size\+\_\+t \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_aa70f43b10d8cc836796384e42be2d5b8}{num\+\_\+positions}} () const override
+\item 
+size\+\_\+t \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_ad4fa14cec517b555c2ee0e3968b4bb0a}{num\+\_\+velocities}} () const override
+\item 
+size\+\_\+t \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a5176f9c7c1f5306caf587894db255c7a}{num\+\_\+joints}} () const override
+\item 
+size\+\_\+t \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a780ba0fc91413b26378e3af49df84da8}{num\+\_\+frames}} () const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_af882cc77fb78f620d580258210d40a4d}\label{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_af882cc77fb78f620d580258210d40a4d}} 
+static bool {\bfseries Is\+Available} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_aebfcaed2f9be072b57d54373f0ae326d}\label{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_aebfcaed2f9be072b57d54373f0ae326d}} 
+\index{huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}!BuildFromUrdf@{BuildFromUrdf}}
+\index{BuildFromUrdf@{BuildFromUrdf}!huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}}
+\doxysubsubsection{\texorpdfstring{BuildFromUrdf()}{BuildFromUrdf()}}
+{\footnotesize\ttfamily void huron\+::multibody\+::internal\+::\+Pinocchio\+Model\+Impl\+::\+Build\+From\+Urdf (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{urdf\+\_\+path,  }\item[{Joint\+Type}]{root\+\_\+joint\+\_\+type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface}{huron\+::multibody\+::internal\+::\+Model\+Impl\+Interface}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a85f71f326142aa0bbdeada6204a3593f}\label{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a85f71f326142aa0bbdeada6204a3593f}} 
+\index{huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}!ComputeAll@{ComputeAll}}
+\index{ComputeAll@{ComputeAll}!huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}}
+\doxysubsubsection{\texorpdfstring{ComputeAll()}{ComputeAll()}}
+{\footnotesize\ttfamily void huron\+::multibody\+::internal\+::\+Pinocchio\+Model\+Impl\+::\+Compute\+All (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{q,  }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface}{huron\+::multibody\+::internal\+::\+Model\+Impl\+Interface}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_ada5681948a49c090eac73b0efb6ccff0}\label{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_ada5681948a49c090eac73b0efb6ccff0}} 
+\index{huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}!EvalCenterOfMassPosition@{EvalCenterOfMassPosition}}
+\index{EvalCenterOfMassPosition@{EvalCenterOfMassPosition}!huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}}
+\doxysubsubsection{\texorpdfstring{EvalCenterOfMassPosition()}{EvalCenterOfMassPosition()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector3d huron\+::multibody\+::internal\+::\+Pinocchio\+Model\+Impl\+::\+Eval\+Center\+Of\+Mass\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface}{huron\+::multibody\+::internal\+::\+Model\+Impl\+Interface}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a633f12ec66a9486eb45a22ad816913a8}\label{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a633f12ec66a9486eb45a22ad816913a8}} 
+\index{huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}!ForwardKinematics@{ForwardKinematics}}
+\index{ForwardKinematics@{ForwardKinematics}!huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}}
+\doxysubsubsection{\texorpdfstring{ForwardKinematics()}{ForwardKinematics()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily void huron\+::multibody\+::internal\+::\+Pinocchio\+Model\+Impl\+::\+Forward\+Kinematics (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{q }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface}{huron\+::multibody\+::internal\+::\+Model\+Impl\+Interface}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a70e51b94f7cb833a9cc0d78e3f66bfff}\label{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a70e51b94f7cb833a9cc0d78e3f66bfff}} 
+\index{huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}!ForwardKinematics@{ForwardKinematics}}
+\index{ForwardKinematics@{ForwardKinematics}!huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}}
+\doxysubsubsection{\texorpdfstring{ForwardKinematics()}{ForwardKinematics()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily void huron\+::multibody\+::internal\+::\+Pinocchio\+Model\+Impl\+::\+Forward\+Kinematics (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{q,  }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface}{huron\+::multibody\+::internal\+::\+Model\+Impl\+Interface}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a6e6a64ee42eb515f1368bf988c0a7a2a}\label{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a6e6a64ee42eb515f1368bf988c0a7a2a}} 
+\index{huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}!ForwardKinematics@{ForwardKinematics}}
+\index{ForwardKinematics@{ForwardKinematics}!huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}}
+\doxysubsubsection{\texorpdfstring{ForwardKinematics()}{ForwardKinematics()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily void huron\+::multibody\+::internal\+::\+Pinocchio\+Model\+Impl\+::\+Forward\+Kinematics (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{q,  }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{v,  }\item[{const Eigen\+::\+Ref$<$ const Eigen\+::\+Vector\+Xd $>$ \&}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface}{huron\+::multibody\+::internal\+::\+Model\+Impl\+Interface}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a409ac80e81d77da36ddab6ce11d3aeca}\label{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a409ac80e81d77da36ddab6ce11d3aeca}} 
+\index{huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}!GetAccelerations@{GetAccelerations}}
+\index{GetAccelerations@{GetAccelerations}!huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}}
+\doxysubsubsection{\texorpdfstring{GetAccelerations()}{GetAccelerations()}}
+{\footnotesize\ttfamily const Eigen\+::\+Vector\+Xd \& huron\+::multibody\+::internal\+::\+Pinocchio\+Model\+Impl\+::\+Get\+Accelerations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get the generalized accelerations of the model. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface_ac393c3194f2ffe16b76901cec7ef3a2d}{huron\+::multibody\+::internal\+::\+Model\+Impl\+Interface}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_aea755bda4279b412f63a456c68faad7d}\label{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_aea755bda4279b412f63a456c68faad7d}} 
+\index{huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}!GetCenterOfMassPosition@{GetCenterOfMassPosition}}
+\index{GetCenterOfMassPosition@{GetCenterOfMassPosition}!huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}}
+\doxysubsubsection{\texorpdfstring{GetCenterOfMassPosition()}{GetCenterOfMassPosition()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector3d huron\+::multibody\+::internal\+::\+Pinocchio\+Model\+Impl\+::\+Get\+Center\+Of\+Mass\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface}{huron\+::multibody\+::internal\+::\+Model\+Impl\+Interface}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_ac18042a534d5575786c8da4ce693ee5a}\label{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_ac18042a534d5575786c8da4ce693ee5a}} 
+\index{huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}!GetCentroidalMatrix@{GetCentroidalMatrix}}
+\index{GetCentroidalMatrix@{GetCentroidalMatrix}!huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}}
+\doxysubsubsection{\texorpdfstring{GetCentroidalMatrix()}{GetCentroidalMatrix()}}
+{\footnotesize\ttfamily const huron\+::\+Matrix6\+Xd \& huron\+::multibody\+::internal\+::\+Pinocchio\+Model\+Impl\+::\+Get\+Centroidal\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get the centroidal momentum matrix with the cached value. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface_afb2356e18bc972af819c70a57c1c02e7}{huron\+::multibody\+::internal\+::\+Model\+Impl\+Interface}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_ab58478de0c9eea414ba2f6d73dc5c3fe}\label{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_ab58478de0c9eea414ba2f6d73dc5c3fe}} 
+\index{huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}!GetCentroidalMomentum@{GetCentroidalMomentum}}
+\index{GetCentroidalMomentum@{GetCentroidalMomentum}!huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}}
+\doxysubsubsection{\texorpdfstring{GetCentroidalMomentum()}{GetCentroidalMomentum()}}
+{\footnotesize\ttfamily huron\+::\+Vector6d huron\+::multibody\+::internal\+::\+Pinocchio\+Model\+Impl\+::\+Get\+Centroidal\+Momentum (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get the centroidal momentum. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface_a7461c668e1c80f31bbf691a503256321}{huron\+::multibody\+::internal\+::\+Model\+Impl\+Interface}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a3cbe462e282a2ff626f49d8dd519da24}\label{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a3cbe462e282a2ff626f49d8dd519da24}} 
+\index{huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}!GetCoriolisMatrix@{GetCoriolisMatrix}}
+\index{GetCoriolisMatrix@{GetCoriolisMatrix}!huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}}
+\doxysubsubsection{\texorpdfstring{GetCoriolisMatrix()}{GetCoriolisMatrix()}}
+{\footnotesize\ttfamily const Eigen\+::\+Matrix\+Xd \& huron\+::multibody\+::internal\+::\+Pinocchio\+Model\+Impl\+::\+Get\+Coriolis\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get the Coriolis matrix with the cached value. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface_aa3c2896e185330de17cd5594704e6ff5}{huron\+::multibody\+::internal\+::\+Model\+Impl\+Interface}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a38542263b5830cd749f3a9364479f14c}\label{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a38542263b5830cd749f3a9364479f14c}} 
+\index{huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}!GetFrameIndex@{GetFrameIndex}}
+\index{GetFrameIndex@{GetFrameIndex}!huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}}
+\doxysubsubsection{\texorpdfstring{GetFrameIndex()}{GetFrameIndex()}}
+{\footnotesize\ttfamily Frame\+Index huron\+::multibody\+::internal\+::\+Pinocchio\+Model\+Impl\+::\+Get\+Frame\+Index (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{frame\+\_\+name }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface}{huron\+::multibody\+::internal\+::\+Model\+Impl\+Interface}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a99ed00abed1a099beb7df3e4f9839275}\label{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a99ed00abed1a099beb7df3e4f9839275}} 
+\index{huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}!GetFrameName@{GetFrameName}}
+\index{GetFrameName@{GetFrameName}!huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}}
+\doxysubsubsection{\texorpdfstring{GetFrameName()}{GetFrameName()}}
+{\footnotesize\ttfamily const std\+::string \& huron\+::multibody\+::internal\+::\+Pinocchio\+Model\+Impl\+::\+Get\+Frame\+Name (\begin{DoxyParamCaption}\item[{Frame\+Index}]{frame\+\_\+index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface}{huron\+::multibody\+::internal\+::\+Model\+Impl\+Interface}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a6d735f5eb1a9966f6ded15b6c6e2e665}\label{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a6d735f5eb1a9966f6ded15b6c6e2e665}} 
+\index{huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}!GetFrameTransform@{GetFrameTransform}}
+\index{GetFrameTransform@{GetFrameTransform}!huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}}
+\doxysubsubsection{\texorpdfstring{GetFrameTransform()}{GetFrameTransform()}}
+{\footnotesize\ttfamily Eigen\+::\+Affine3d huron\+::multibody\+::internal\+::\+Pinocchio\+Model\+Impl\+::\+Get\+Frame\+Transform (\begin{DoxyParamCaption}\item[{Frame\+Index}]{from\+\_\+frame,  }\item[{Frame\+Index}]{to\+\_\+frame }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface}{huron\+::multibody\+::internal\+::\+Model\+Impl\+Interface}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_ad161c53482554ca6e31609d016c16446}\label{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_ad161c53482554ca6e31609d016c16446}} 
+\index{huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}!GetFrameTransformInWorld@{GetFrameTransformInWorld}}
+\index{GetFrameTransformInWorld@{GetFrameTransformInWorld}!huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}}
+\doxysubsubsection{\texorpdfstring{GetFrameTransformInWorld()}{GetFrameTransformInWorld()}}
+{\footnotesize\ttfamily Eigen\+::\+Affine3d huron\+::multibody\+::internal\+::\+Pinocchio\+Model\+Impl\+::\+Get\+Frame\+Transform\+In\+World (\begin{DoxyParamCaption}\item[{Frame\+Index}]{frame }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface}{huron\+::multibody\+::internal\+::\+Model\+Impl\+Interface}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a318cfd51db69156df819611ebe5a8f7c}\label{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a318cfd51db69156df819611ebe5a8f7c}} 
+\index{huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}!GetFrameType@{GetFrameType}}
+\index{GetFrameType@{GetFrameType}!huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}}
+\doxysubsubsection{\texorpdfstring{GetFrameType()}{GetFrameType()}}
+{\footnotesize\ttfamily Frame\+Type huron\+::multibody\+::internal\+::\+Pinocchio\+Model\+Impl\+::\+Get\+Frame\+Type (\begin{DoxyParamCaption}\item[{Frame\+Index}]{frame\+\_\+index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface}{huron\+::multibody\+::internal\+::\+Model\+Impl\+Interface}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a30a41a59008aa6c4dde6468f09c6f872}\label{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a30a41a59008aa6c4dde6468f09c6f872}} 
+\index{huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}!GetGravity@{GetGravity}}
+\index{GetGravity@{GetGravity}!huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}}
+\doxysubsubsection{\texorpdfstring{GetGravity()}{GetGravity()}}
+{\footnotesize\ttfamily const Eigen\+::\+Vector\+Xd \& huron\+::multibody\+::internal\+::\+Pinocchio\+Model\+Impl\+::\+Get\+Gravity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get the gravity vector. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface_af8058c721ad2a6f8b6cd17a131eb8f31}{huron\+::multibody\+::internal\+::\+Model\+Impl\+Interface}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a05da12f1f182ca40b633fdfaee064f87}\label{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a05da12f1f182ca40b633fdfaee064f87}} 
+\index{huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}!GetJoint@{GetJoint}}
+\index{GetJoint@{GetJoint}!huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}}
+\doxysubsubsection{\texorpdfstring{GetJoint()}{GetJoint()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::weak\+\_\+ptr$<$ \mbox{\hyperlink{classhuron_1_1Joint}{Joint}} $>$ huron\+::multibody\+::internal\+::\+Pinocchio\+Model\+Impl\+::\+Get\+Joint (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface}{huron\+::multibody\+::internal\+::\+Model\+Impl\+Interface}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a0b26162483e0bad55345aee43c2edd4c}\label{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a0b26162483e0bad55345aee43c2edd4c}} 
+\index{huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}!GetJoint@{GetJoint}}
+\index{GetJoint@{GetJoint}!huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}}
+\doxysubsubsection{\texorpdfstring{GetJoint()}{GetJoint()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily std\+::weak\+\_\+ptr$<$ \mbox{\hyperlink{classhuron_1_1Joint}{Joint}} $>$ huron\+::multibody\+::internal\+::\+Pinocchio\+Model\+Impl\+::\+Get\+Joint (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{joint\+\_\+index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface}{huron\+::multibody\+::internal\+::\+Model\+Impl\+Interface}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_acc7894b42f9e3911a11657c42e550f13}\label{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_acc7894b42f9e3911a11657c42e550f13}} 
+\index{huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}!GetJointDescription@{GetJointDescription}}
+\index{GetJointDescription@{GetJointDescription}!huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}}
+\doxysubsubsection{\texorpdfstring{GetJointDescription()}{GetJointDescription()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structhuron_1_1multibody_1_1JointDescription}{Joint\+Description}} $>$ huron\+::multibody\+::internal\+::\+Pinocchio\+Model\+Impl\+::\+Get\+Joint\+Description (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{joint\+\_\+name }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface}{huron\+::multibody\+::internal\+::\+Model\+Impl\+Interface}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_ae963aff43b412e6aaaa0a10aea8cfe29}\label{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_ae963aff43b412e6aaaa0a10aea8cfe29}} 
+\index{huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}!GetJointDescription@{GetJointDescription}}
+\index{GetJointDescription@{GetJointDescription}!huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}}
+\doxysubsubsection{\texorpdfstring{GetJointDescription()}{GetJointDescription()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structhuron_1_1multibody_1_1JointDescription}{Joint\+Description}} $>$ huron\+::multibody\+::internal\+::\+Pinocchio\+Model\+Impl\+::\+Get\+Joint\+Description (\begin{DoxyParamCaption}\item[{Joint\+Index}]{joint\+\_\+index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface}{huron\+::multibody\+::internal\+::\+Model\+Impl\+Interface}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_aa9ef977aa2805657608f0ab37b8a9b88}\label{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_aa9ef977aa2805657608f0ab37b8a9b88}} 
+\index{huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}!GetJointIndex@{GetJointIndex}}
+\index{GetJointIndex@{GetJointIndex}!huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}}
+\doxysubsubsection{\texorpdfstring{GetJointIndex()}{GetJointIndex()}}
+{\footnotesize\ttfamily Joint\+Index huron\+::multibody\+::internal\+::\+Pinocchio\+Model\+Impl\+::\+Get\+Joint\+Index (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{joint\+\_\+name }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface}{huron\+::multibody\+::internal\+::\+Model\+Impl\+Interface}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a0c47d9081c7fdd7f3b25da2d2c5b7607}\label{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a0c47d9081c7fdd7f3b25da2d2c5b7607}} 
+\index{huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}!GetJointNames@{GetJointNames}}
+\index{GetJointNames@{GetJointNames}!huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}}
+\doxysubsubsection{\texorpdfstring{GetJointNames()}{GetJointNames()}}
+{\footnotesize\ttfamily const std\+::vector$<$ std\+::string $>$ \& huron\+::multibody\+::internal\+::\+Pinocchio\+Model\+Impl\+::\+Get\+Joint\+Names (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface}{huron\+::multibody\+::internal\+::\+Model\+Impl\+Interface}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a9d6f990a5317809e88a428958fbf5317}\label{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a9d6f990a5317809e88a428958fbf5317}} 
+\index{huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}!GetJointTransformInWorld@{GetJointTransformInWorld}}
+\index{GetJointTransformInWorld@{GetJointTransformInWorld}!huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}}
+\doxysubsubsection{\texorpdfstring{GetJointTransformInWorld()}{GetJointTransformInWorld()}}
+{\footnotesize\ttfamily Eigen\+::\+Affine3d huron\+::multibody\+::internal\+::\+Pinocchio\+Model\+Impl\+::\+Get\+Joint\+Transform\+In\+World (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{joint\+\_\+index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface}{huron\+::multibody\+::internal\+::\+Model\+Impl\+Interface}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_abaf34fe1612adde380067a04a97df801}\label{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_abaf34fe1612adde380067a04a97df801}} 
+\index{huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}!GetJointType@{GetJointType}}
+\index{GetJointType@{GetJointType}!huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}}
+\doxysubsubsection{\texorpdfstring{GetJointType()}{GetJointType()}}
+{\footnotesize\ttfamily Joint\+Type huron\+::multibody\+::internal\+::\+Pinocchio\+Model\+Impl\+::\+Get\+Joint\+Type (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{joint\+\_\+index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface}{huron\+::multibody\+::internal\+::\+Model\+Impl\+Interface}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a8dfc671faa6b8fb2a6ef47c9296369e8}\label{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a8dfc671faa6b8fb2a6ef47c9296369e8}} 
+\index{huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}!GetMassMatrix@{GetMassMatrix}}
+\index{GetMassMatrix@{GetMassMatrix}!huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}}
+\doxysubsubsection{\texorpdfstring{GetMassMatrix()}{GetMassMatrix()}}
+{\footnotesize\ttfamily const Eigen\+::\+Matrix\+Xd \& huron\+::multibody\+::internal\+::\+Pinocchio\+Model\+Impl\+::\+Get\+Mass\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get the mass matrix with the cached value. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface_a7351d3d610a85d88b4b5e6a438f29fad}{huron\+::multibody\+::internal\+::\+Model\+Impl\+Interface}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a5dcc63bc6e60173252ff6ed28af3a1ea}\label{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a5dcc63bc6e60173252ff6ed28af3a1ea}} 
+\index{huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}!GetNonlinearEffects@{GetNonlinearEffects}}
+\index{GetNonlinearEffects@{GetNonlinearEffects}!huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}}
+\doxysubsubsection{\texorpdfstring{GetNonlinearEffects()}{GetNonlinearEffects()}}
+{\footnotesize\ttfamily const Eigen\+::\+Vector\+Xd \& huron\+::multibody\+::internal\+::\+Pinocchio\+Model\+Impl\+::\+Get\+Nonlinear\+Effects (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get the nonlinear effects vector. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface_a719ae9c93bf247ec1c2822fa19466650}{huron\+::multibody\+::internal\+::\+Model\+Impl\+Interface}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a33fe7ebb21e9dfc9a3c92bc00d6f2ab3}\label{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a33fe7ebb21e9dfc9a3c92bc00d6f2ab3}} 
+\index{huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}!GetSpatialMomentum@{GetSpatialMomentum}}
+\index{GetSpatialMomentum@{GetSpatialMomentum}!huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}}
+\doxysubsubsection{\texorpdfstring{GetSpatialMomentum()}{GetSpatialMomentum()}}
+{\footnotesize\ttfamily const huron\+::\+Vector6d \& huron\+::multibody\+::internal\+::\+Pinocchio\+Model\+Impl\+::\+Get\+Spatial\+Momentum (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get the spatial momentum with respect to the specified frame. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface_a62d1d0b769187e99655e4e0bd6f81189}{huron\+::multibody\+::internal\+::\+Model\+Impl\+Interface}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_ad25e1d1b683dd2ea15c39061a9226044}\label{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_ad25e1d1b683dd2ea15c39061a9226044}} 
+\index{huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}!GetTorques@{GetTorques}}
+\index{GetTorques@{GetTorques}!huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}}
+\doxysubsubsection{\texorpdfstring{GetTorques()}{GetTorques()}}
+{\footnotesize\ttfamily const Eigen\+::\+Vector\+Xd \& huron\+::multibody\+::internal\+::\+Pinocchio\+Model\+Impl\+::\+Get\+Torques (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get the joint torques. 
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface_a84558580167121a55d5d5e56c60bc44f}{huron\+::multibody\+::internal\+::\+Model\+Impl\+Interface}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_ad3ecf9771e7e60943e575c0a6cc0a81a}\label{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_ad3ecf9771e7e60943e575c0a6cc0a81a}} 
+\index{huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}!is\_built@{is\_built}}
+\index{is\_built@{is\_built}!huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}}
+\doxysubsubsection{\texorpdfstring{is\_built()}{is\_built()}}
+{\footnotesize\ttfamily bool huron\+::multibody\+::internal\+::\+Pinocchio\+Model\+Impl\+::is\+\_\+built (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface}{huron\+::multibody\+::internal\+::\+Model\+Impl\+Interface}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_aaf7a5197ed087f840228e06d59bae579}\label{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_aaf7a5197ed087f840228e06d59bae579}} 
+\index{huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}!NeutralConfiguration@{NeutralConfiguration}}
+\index{NeutralConfiguration@{NeutralConfiguration}!huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}}
+\doxysubsubsection{\texorpdfstring{NeutralConfiguration()}{NeutralConfiguration()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd huron\+::multibody\+::internal\+::\+Pinocchio\+Model\+Impl\+::\+Neutral\+Configuration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface}{huron\+::multibody\+::internal\+::\+Model\+Impl\+Interface}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a780ba0fc91413b26378e3af49df84da8}\label{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a780ba0fc91413b26378e3af49df84da8}} 
+\index{huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}!num\_frames@{num\_frames}}
+\index{num\_frames@{num\_frames}!huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}}
+\doxysubsubsection{\texorpdfstring{num\_frames()}{num\_frames()}}
+{\footnotesize\ttfamily size\+\_\+t huron\+::multibody\+::internal\+::\+Pinocchio\+Model\+Impl\+::num\+\_\+frames (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface}{huron\+::multibody\+::internal\+::\+Model\+Impl\+Interface}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a5176f9c7c1f5306caf587894db255c7a}\label{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a5176f9c7c1f5306caf587894db255c7a}} 
+\index{huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}!num\_joints@{num\_joints}}
+\index{num\_joints@{num\_joints}!huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}}
+\doxysubsubsection{\texorpdfstring{num\_joints()}{num\_joints()}}
+{\footnotesize\ttfamily size\+\_\+t huron\+::multibody\+::internal\+::\+Pinocchio\+Model\+Impl\+::num\+\_\+joints (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface}{huron\+::multibody\+::internal\+::\+Model\+Impl\+Interface}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_aa70f43b10d8cc836796384e42be2d5b8}\label{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_aa70f43b10d8cc836796384e42be2d5b8}} 
+\index{huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}!num\_positions@{num\_positions}}
+\index{num\_positions@{num\_positions}!huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}}
+\doxysubsubsection{\texorpdfstring{num\_positions()}{num\_positions()}}
+{\footnotesize\ttfamily size\+\_\+t huron\+::multibody\+::internal\+::\+Pinocchio\+Model\+Impl\+::num\+\_\+positions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface}{huron\+::multibody\+::internal\+::\+Model\+Impl\+Interface}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_ad4fa14cec517b555c2ee0e3968b4bb0a}\label{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_ad4fa14cec517b555c2ee0e3968b4bb0a}} 
+\index{huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}!num\_velocities@{num\_velocities}}
+\index{num\_velocities@{num\_velocities}!huron::multibody::internal::PinocchioModelImpl@{huron::multibody::internal::PinocchioModelImpl}}
+\doxysubsubsection{\texorpdfstring{num\_velocities()}{num\_velocities()}}
+{\footnotesize\ttfamily size\+\_\+t huron\+::multibody\+::internal\+::\+Pinocchio\+Model\+Impl\+::num\+\_\+velocities (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface}{huron\+::multibody\+::internal\+::\+Model\+Impl\+Interface}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/github/workspace/multibody/include/huron/multibody/pinocchio\+\_\+model\+\_\+impl.\+h\item 
+/github/workspace/multibody/src/no\+\_\+pinocchio\+\_\+model\+\_\+impl.\+cc\item 
+/github/workspace/multibody/src/pinocchio\+\_\+model\+\_\+impl.\+cc\end{DoxyCompactItemize}

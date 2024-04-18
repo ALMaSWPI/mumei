@@ -1,0 +1,101 @@
+\hypertarget{model__impl__interface_8h_source}{}\doxysection{model\+\_\+impl\+\_\+interface.\+h}
+\label{model__impl__interface_8h_source}\index{/github/workspace/multibody/include/huron/multibody/model\_impl\_interface.h@{/github/workspace/multibody/include/huron/multibody/model\_impl\_interface.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include "{}huron/types.h"{}}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}huron/control\_interfaces/joint.h"{}}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}joint\_common.h"{}}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacehuron}{huron}} \{}
+\DoxyCodeLine{12 \textcolor{keyword}{namespace }multibody \{}
+\DoxyCodeLine{13 \textcolor{keyword}{namespace }internal \{}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{keyword}{class }\mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface}{ModelImplInterface}} \{}
+\DoxyCodeLine{16  \textcolor{keyword}{public}:}
+\DoxyCodeLine{17   \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface}{ModelImplInterface}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{18   \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface}{ModelImplInterface}}(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface}{ModelImplInterface}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{19   \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface}{ModelImplInterface}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface}{ModelImplInterface}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{20   \textcolor{keyword}{virtual} \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface}{\string~ModelImplInterface}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22   \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} BuildFromUrdf(\textcolor{keyword}{const} std::string\& urdf\_path,}
+\DoxyCodeLine{23                              JointType root\_joint\_type);}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25   \textcolor{keyword}{virtual} \textcolor{keyword}{const} std::vector<std::string>\& GetJointNames() \textcolor{keyword}{const};}
+\DoxyCodeLine{26   \textcolor{keyword}{virtual} std::weak\_ptr<Joint> GetJoint(\textcolor{keyword}{const} std::string\& name) \textcolor{keyword}{const};}
+\DoxyCodeLine{27   \textcolor{keyword}{virtual} std::weak\_ptr<Joint> GetJoint(\textcolor{keywordtype}{size\_t} joint\_index) \textcolor{keyword}{const};}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29   \textcolor{keyword}{virtual} JointType GetJointType(\textcolor{keywordtype}{size\_t} joint\_index) \textcolor{keyword}{const};}
+\DoxyCodeLine{30   \textcolor{keyword}{virtual} JointIndex GetJointIndex(\textcolor{keyword}{const} std::string\& joint\_name) \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32   \textcolor{keyword}{virtual} std::unique\_ptr<JointDescription> GetJointDescription(}
+\DoxyCodeLine{33     JointIndex joint\_index) \textcolor{keyword}{const};}
+\DoxyCodeLine{34   \textcolor{keyword}{virtual} std::unique\_ptr<JointDescription> GetJointDescription(}
+\DoxyCodeLine{35     \textcolor{keyword}{const} std::string\& joint\_name) \textcolor{keyword}{const};}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37   \textcolor{keyword}{virtual} Eigen::Affine3d}
+\DoxyCodeLine{38   GetJointTransformInWorld(\textcolor{keywordtype}{size\_t} joint\_index) \textcolor{keyword}{const};}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40   \textcolor{keyword}{virtual} FrameIndex GetFrameIndex(}
+\DoxyCodeLine{41     \textcolor{keyword}{const} std::string\& frame\_name) \textcolor{keyword}{const};}
+\DoxyCodeLine{42   \textcolor{keyword}{virtual} \textcolor{keyword}{const} std::string\& GetFrameName(FrameIndex frame\_index) \textcolor{keyword}{const};}
+\DoxyCodeLine{43   \textcolor{keyword}{virtual} FrameType GetFrameType(FrameIndex frame\_index) \textcolor{keyword}{const};}
+\DoxyCodeLine{44   \textcolor{keyword}{virtual} Eigen::Affine3d GetFrameTransform(FrameIndex from\_frame,}
+\DoxyCodeLine{45                                             FrameIndex to\_frame) \textcolor{keyword}{const};}
+\DoxyCodeLine{46   \textcolor{keyword}{virtual} Eigen::Affine3d GetFrameTransformInWorld(FrameIndex frame) \textcolor{keyword}{const};}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48   \textcolor{keyword}{virtual} Eigen::Vector3d EvalCenterOfMassPosition();}
+\DoxyCodeLine{49   \textcolor{keyword}{virtual} Eigen::Vector3d GetCenterOfMassPosition() \textcolor{keyword}{const};}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51   \textcolor{keyword}{virtual} Eigen::VectorXd NeutralConfiguration() \textcolor{keyword}{const};}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{56   \textcolor{keyword}{virtual} \textcolor{keyword}{const} Eigen::VectorXd\& \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface_ac393c3194f2ffe16b76901cec7ef3a2d}{GetAccelerations}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{61   \textcolor{keyword}{virtual} \textcolor{keyword}{const} Eigen::VectorXd\& \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface_a84558580167121a55d5d5e56c60bc44f}{GetTorques}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{66   \textcolor{keyword}{virtual} \textcolor{keyword}{const} Eigen::MatrixXd\& \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface_a7351d3d610a85d88b4b5e6a438f29fad}{GetMassMatrix}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{71   \textcolor{keyword}{virtual} \textcolor{keyword}{const} Eigen::MatrixXd\& \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface_aa3c2896e185330de17cd5594704e6ff5}{GetCoriolisMatrix}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{76   \textcolor{keyword}{virtual} \textcolor{keyword}{const} Eigen::VectorXd\& \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface_a719ae9c93bf247ec1c2822fa19466650}{GetNonlinearEffects}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{81   \textcolor{keyword}{virtual} \textcolor{keyword}{const} Eigen::VectorXd\& \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface_af8058c721ad2a6f8b6cd17a131eb8f31}{GetGravity}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{86   \textcolor{keyword}{virtual} \textcolor{keyword}{const} huron::Vector6d\& \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface_a62d1d0b769187e99655e4e0bd6f81189}{GetSpatialMomentum}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{91   \textcolor{keyword}{virtual} huron::Vector6d \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface_a7461c668e1c80f31bbf691a503256321}{GetCentroidalMomentum}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{96   \textcolor{keyword}{virtual} \textcolor{keyword}{const} huron::Matrix6Xd\& \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface_afb2356e18bc972af819c70a57c1c02e7}{GetCentroidalMatrix}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98   \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} ComputeAll(}
+\DoxyCodeLine{99     \textcolor{keyword}{const} Eigen::Ref<const Eigen::VectorXd>\& q,}
+\DoxyCodeLine{100     \textcolor{keyword}{const} Eigen::Ref<const Eigen::VectorXd>\& v);}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102   \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} ForwardKinematics(}
+\DoxyCodeLine{103     \textcolor{keyword}{const} Eigen::Ref<const Eigen::VectorXd>\& q);}
+\DoxyCodeLine{104   \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} ForwardKinematics(}
+\DoxyCodeLine{105     \textcolor{keyword}{const} Eigen::Ref<const Eigen::VectorXd>\& q,}
+\DoxyCodeLine{106     \textcolor{keyword}{const} Eigen::Ref<const Eigen::VectorXd>\& v);}
+\DoxyCodeLine{107   \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} ForwardKinematics(}
+\DoxyCodeLine{108     \textcolor{keyword}{const} Eigen::Ref<const Eigen::VectorXd>\& q,}
+\DoxyCodeLine{109     \textcolor{keyword}{const} Eigen::Ref<const Eigen::VectorXd>\& v,}
+\DoxyCodeLine{110     \textcolor{keyword}{const} Eigen::Ref<const Eigen::VectorXd>\& a);}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{112   \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} is\_built() \textcolor{keyword}{const};}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114   \textcolor{keyword}{virtual} \textcolor{keywordtype}{size\_t} num\_positions() \textcolor{keyword}{const};}
+\DoxyCodeLine{115   \textcolor{keyword}{virtual} \textcolor{keywordtype}{size\_t} num\_velocities() \textcolor{keyword}{const};}
+\DoxyCodeLine{116   \textcolor{keyword}{virtual} \textcolor{keywordtype}{size\_t} num\_joints() \textcolor{keyword}{const};}
+\DoxyCodeLine{117   \textcolor{keyword}{virtual} \textcolor{keywordtype}{size\_t} num\_frames() \textcolor{keyword}{const};}
+\DoxyCodeLine{118 \};}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120 \}  \textcolor{comment}{// namespace internal}}
+\DoxyCodeLine{121 \}  \textcolor{comment}{// namespace multibody}}
+\DoxyCodeLine{122 \}  \textcolor{comment}{// namespace huron}}
+
+\end{DoxyCode}

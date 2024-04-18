@@ -1,0 +1,58 @@
+\hypertarget{classhuron_1_1Sensor}{}\doxysection{huron\+::Sensor Class Reference}
+\label{classhuron_1_1Sensor}\index{huron::Sensor@{huron::Sensor}}
+Inheritance diagram for huron\+::Sensor\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.811245cm]{classhuron_1_1Sensor}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classhuron_1_1Sensor_ab7fd0e37049eb47d8029c5eb6bb2ae97}\label{classhuron_1_1Sensor_ab7fd0e37049eb47d8029c5eb6bb2ae97}} 
+{\bfseries Sensor} (const Eigen\+::\+Vector2i \&dim, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classhuron_1_1Configuration}{Configuration}} $>$ config)
+\item 
+\mbox{\Hypertarget{classhuron_1_1Sensor_afdd0dee0626279f029cd50df412eb6d9}\label{classhuron_1_1Sensor_afdd0dee0626279f029cd50df412eb6d9}} 
+{\bfseries Sensor} (const Eigen\+::\+Vector2i \&dim)
+\item 
+\mbox{\Hypertarget{classhuron_1_1Sensor_a3136ef415388f4212b11aeeb1a267ff3}\label{classhuron_1_1Sensor_a3136ef415388f4212b11aeeb1a267ff3}} 
+{\bfseries Sensor} (int rows, int cols, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classhuron_1_1Configuration}{Configuration}} $>$ config)
+\item 
+\mbox{\Hypertarget{classhuron_1_1Sensor_a8bd08a62011c45d1c7dc698ffd8e84ff}\label{classhuron_1_1Sensor_a8bd08a62011c45d1c7dc698ffd8e84ff}} 
+{\bfseries Sensor} (int rows, int cols)
+\item 
+\mbox{\Hypertarget{classhuron_1_1Sensor_a475b6a5f80d1b64daf03772b972ac1fd}\label{classhuron_1_1Sensor_a475b6a5f80d1b64daf03772b972ac1fd}} 
+{\bfseries Sensor} (const \mbox{\hyperlink{classhuron_1_1Sensor}{Sensor}} \&)=delete
+\item 
+\mbox{\Hypertarget{classhuron_1_1Sensor_a05ad339d8436f58de3d0e29f16014fe6}\label{classhuron_1_1Sensor_a05ad339d8436f58de3d0e29f16014fe6}} 
+\mbox{\hyperlink{classhuron_1_1Sensor}{Sensor}} \& {\bfseries operator=} (const \mbox{\hyperlink{classhuron_1_1Sensor}{Sensor}} \&)=delete
+\item 
+virtual Eigen\+::\+Vector\+Xd \mbox{\hyperlink{classhuron_1_1Sensor_ac51483e40634aea85c75bb772f817e78}{Get\+Value}} () const
+\begin{DoxyCompactList}\small\item\em Get the sensor value. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classhuron_1_1Sensor_a70cf4c16b971fc3aa6c929b7cded9ff2}\label{classhuron_1_1Sensor_a70cf4c16b971fc3aa6c929b7cded9ff2}} 
+virtual Eigen\+::\+Vector\+Xd {\bfseries Reload\+And\+Get\+Value} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classhuron_1_1Sensor_ac51483e40634aea85c75bb772f817e78}\label{classhuron_1_1Sensor_ac51483e40634aea85c75bb772f817e78}} 
+\index{huron::Sensor@{huron::Sensor}!GetValue@{GetValue}}
+\index{GetValue@{GetValue}!huron::Sensor@{huron::Sensor}}
+\doxysubsubsection{\texorpdfstring{GetValue()}{GetValue()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd huron\+::\+Sensor\+::\+Get\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Get the sensor value. 
+
+
+
+Reimplemented in \mbox{\hyperlink{classhuron_1_1ForceSensingResistorArraySerial_adceb3f95657694ed6fdf90d86fda9c2d}{huron\+::\+Force\+Sensing\+Resistor\+Array\+Serial}}, and \mbox{\hyperlink{classhuron_1_1ForceTorqueSensor_af673900b89593ebeae572ff2b3c07cd5}{huron\+::\+Force\+Torque\+Sensor}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/github/workspace/system/control\+\_\+interfaces/include/huron/control\+\_\+interfaces/sensor.\+h\item 
+/github/workspace/system/control\+\_\+interfaces/src/sensor.\+cc\end{DoxyCompactItemize}

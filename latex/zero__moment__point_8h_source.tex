@@ -1,0 +1,40 @@
+\hypertarget{zero__moment__point_8h_source}{}\doxysection{zero\+\_\+moment\+\_\+point.\+h}
+\label{zero__moment__point_8h_source}\index{/github/workspace/system/locomotion/include/huron/locomotion/zero\_moment\_point.h@{/github/workspace/system/locomotion/include/huron/locomotion/zero\_moment\_point.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <eigen3/Eigen/Dense>}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include "{}huron/sensors/force\_torque\_sensor.h"{}}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}huron/sensors/force\_sensing\_resistor\_array.h"{}}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}huron/multibody/logical\_frame.h"{}}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacehuron}{huron}} \{}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{keyword}{class }\mbox{\hyperlink{classhuron_1_1ZeroMomentPoint}{ZeroMomentPoint}} \{}
+\DoxyCodeLine{14  \textcolor{keyword}{public}:}
+\DoxyCodeLine{15   \mbox{\hyperlink{classhuron_1_1ZeroMomentPoint}{ZeroMomentPoint}}(std::weak\_ptr<const multibody::Frame> zmp\_frame,}
+\DoxyCodeLine{16                   \textcolor{keywordtype}{double} normal\_force\_threshold);}
+\DoxyCodeLine{17   \mbox{\hyperlink{classhuron_1_1ZeroMomentPoint}{ZeroMomentPoint}}(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1ZeroMomentPoint}{ZeroMomentPoint}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{18   \mbox{\hyperlink{classhuron_1_1ZeroMomentPoint}{ZeroMomentPoint}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1ZeroMomentPoint}{ZeroMomentPoint}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{19   \textcolor{keyword}{virtual} \mbox{\hyperlink{classhuron_1_1ZeroMomentPoint}{\string~ZeroMomentPoint}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{28   \textcolor{keyword}{virtual} Eigen::Vector2d \mbox{\hyperlink{classhuron_1_1ZeroMomentPoint_ae865e74073742f92ce6ba6f4983415af}{Eval}}(\textcolor{keywordtype}{double}\& fz) = 0;}
+\DoxyCodeLine{29   Eigen::Vector2d \mbox{\hyperlink{classhuron_1_1ZeroMomentPoint_ae865e74073742f92ce6ba6f4983415af}{Eval}}() \{}
+\DoxyCodeLine{30     \textcolor{keywordtype}{double} fz;}
+\DoxyCodeLine{31     \textcolor{keywordflow}{return} \mbox{\hyperlink{classhuron_1_1ZeroMomentPoint_ae865e74073742f92ce6ba6f4983415af}{Eval}}(fz);}
+\DoxyCodeLine{32   \}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{40   Eigen::Affine3d \mbox{\hyperlink{classhuron_1_1ZeroMomentPoint_ac0a511e9543fc59de06b0b45cbaebdae}{ZmpToWorld}}(\textcolor{keyword}{const} Eigen::Vector2d\& zmp) \textcolor{keyword}{const};}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42  \textcolor{keyword}{protected}:}
+\DoxyCodeLine{43   std::weak\_ptr<const multibody::Frame> zmp\_frame\_;}
+\DoxyCodeLine{44   \textcolor{keywordtype}{double} normal\_force\_threshold\_;}
+\DoxyCodeLine{45 \};}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47 \}  \textcolor{comment}{// namespace huron}}
+
+\end{DoxyCode}

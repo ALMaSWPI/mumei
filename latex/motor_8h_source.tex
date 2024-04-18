@@ -1,0 +1,57 @@
+\hypertarget{motor_8h_source}{}\doxysection{motor.\+h}
+\label{motor_8h_source}\index{/github/workspace/system/control\_interfaces/include/huron/control\_interfaces/motor.h@{/github/workspace/system/control\_interfaces/include/huron/control\_interfaces/motor.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <set>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <utility>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}huron/control\_interfaces/actuator.h"{}}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacehuron}{huron}} \{}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{keyword}{class }\mbox{\hyperlink{classhuron_1_1MotorConfiguration}{MotorConfiguration}} : \textcolor{keyword}{public} \mbox{\hyperlink{classhuron_1_1ActuatorConfiguration}{ActuatorConfiguration}} \{}
+\DoxyCodeLine{14  \textcolor{keyword}{private}:}
+\DoxyCodeLine{15   \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{inline} std::set<std::string> kMotorValidKeys\{\};}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17  \textcolor{keyword}{public}:}
+\DoxyCodeLine{18   \mbox{\hyperlink{classhuron_1_1MotorConfiguration}{MotorConfiguration}}(ConfigMap config\_map,}
+\DoxyCodeLine{19                      std::set<std::string> valid\_keys)}
+\DoxyCodeLine{20       : \mbox{\hyperlink{classhuron_1_1ActuatorConfiguration}{ActuatorConfiguration}}(config\_map, [\&valid\_keys]() \{}
+\DoxyCodeLine{21                         std::set<std::string> tmp(kMotorValidKeys);}
+\DoxyCodeLine{22                         tmp.merge(valid\_keys);}
+\DoxyCodeLine{23                         \textcolor{keywordflow}{return} tmp;}
+\DoxyCodeLine{24                       \}()) \{\}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26   \textcolor{keyword}{explicit} \mbox{\hyperlink{classhuron_1_1MotorConfiguration}{MotorConfiguration}}(ConfigMap config\_map)}
+\DoxyCodeLine{27       : \mbox{\hyperlink{classhuron_1_1MotorConfiguration}{MotorConfiguration}}(config\_map, \{\}) \{\}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29   \mbox{\hyperlink{classhuron_1_1MotorConfiguration}{MotorConfiguration}}()}
+\DoxyCodeLine{30       : \mbox{\hyperlink{classhuron_1_1MotorConfiguration}{MotorConfiguration}}(\{\}, \{\}) \{\}}
+\DoxyCodeLine{31 \};}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 \textcolor{keyword}{class }\mbox{\hyperlink{classhuron_1_1Motor}{Motor}} : \textcolor{keyword}{public} \mbox{\hyperlink{classhuron_1_1Actuator}{Actuator}} \{}
+\DoxyCodeLine{34  \textcolor{keyword}{public}:}
+\DoxyCodeLine{35   \textcolor{keyword}{explicit} \mbox{\hyperlink{classhuron_1_1Motor}{Motor}}(std::unique\_ptr<MotorConfiguration> config,}
+\DoxyCodeLine{36                  \textcolor{keywordtype}{double} gear\_ratio = 1.0)}
+\DoxyCodeLine{37     : \mbox{\hyperlink{classhuron_1_1Actuator}{Actuator}}(1, std::move(config)) \{\}}
+\DoxyCodeLine{38   \textcolor{keyword}{explicit} \mbox{\hyperlink{classhuron_1_1Motor}{Motor}}(\textcolor{keywordtype}{double} gear\_ratio)}
+\DoxyCodeLine{39     : \mbox{\hyperlink{classhuron_1_1Motor}{Motor}}(std::make\_unique<MotorConfiguration>(), gear\_ratio) \{\}}
+\DoxyCodeLine{40   \mbox{\hyperlink{classhuron_1_1Motor}{Motor}}() : \mbox{\hyperlink{classhuron_1_1Motor}{Motor}}(1.0) \{\}}
+\DoxyCodeLine{41   \mbox{\hyperlink{classhuron_1_1Motor}{Motor}}(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1Motor}{Motor}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{42   \mbox{\hyperlink{classhuron_1_1Motor}{Motor}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1Motor}{Motor}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{43   \mbox{\hyperlink{classhuron_1_1Motor}{\string~Motor}}() \textcolor{keyword}{override} = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45   \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} Move(\textcolor{keywordtype}{double} value) = 0;}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47  \textcolor{keyword}{private}:}
+\DoxyCodeLine{48   \textcolor{keywordtype}{double} gear\_ratio\_;}
+\DoxyCodeLine{49 \};}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51 \}  \textcolor{comment}{// namespace huron}}
+
+\end{DoxyCode}

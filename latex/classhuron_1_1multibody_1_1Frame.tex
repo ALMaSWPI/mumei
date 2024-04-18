@@ -1,0 +1,81 @@
+\hypertarget{classhuron_1_1multibody_1_1Frame}{}\doxysection{huron\+::multibody\+::Frame Class Reference}
+\label{classhuron_1_1multibody_1_1Frame}\index{huron::multibody::Frame@{huron::multibody::Frame}}
+Inheritance diagram for huron\+::multibody\+::Frame\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.809365cm]{classhuron_1_1multibody_1_1Frame}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Frame_ad14edd71f7718b91c2215d11b3074600}\label{classhuron_1_1multibody_1_1Frame_ad14edd71f7718b91c2215d11b3074600}} 
+{\bfseries Frame} (const \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{Frame}} \&)=delete
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Frame_a79be5b809c8e72194f6cae8765893c4d}\label{classhuron_1_1multibody_1_1Frame_a79be5b809c8e72194f6cae8765893c4d}} 
+\mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{Frame}} \& {\bfseries operator=} (const \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{Frame}} \&)=delete
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Frame_ad4c006155375480e5c71e9ef1ce168db}\label{classhuron_1_1multibody_1_1Frame_ad4c006155375480e5c71e9ef1ce168db}} 
+virtual Eigen\+::\+Affine3d {\bfseries Get\+Transform\+In\+World} () const
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Frame_a8cc572bb1f31fda94143ef1e9a3c9dca}\label{classhuron_1_1multibody_1_1Frame_a8cc572bb1f31fda94143ef1e9a3c9dca}} 
+virtual Eigen\+::\+Affine3d {\bfseries Get\+Transform\+From\+Frame} (const \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{Frame}} \&other) const
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Frame_a5a1e39dcfbd6fb17c541102dfe957a6d}\label{classhuron_1_1multibody_1_1Frame_a5a1e39dcfbd6fb17c541102dfe957a6d}} 
+virtual Eigen\+::\+Affine3d {\bfseries Get\+Transform\+From\+Frame} (Frame\+Index other) const
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Frame_aa008242e9b5418ac735fb3bc95a4b863}\label{classhuron_1_1multibody_1_1Frame_aa008242e9b5418ac735fb3bc95a4b863}} 
+virtual Eigen\+::\+Affine3d {\bfseries Get\+Transform\+To\+Frame} (const \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{Frame}} \&other) const
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Frame_aaa3e0968bf8682488e78eb685e8922fc}\label{classhuron_1_1multibody_1_1Frame_aaa3e0968bf8682488e78eb685e8922fc}} 
+virtual Eigen\+::\+Affine3d {\bfseries Get\+Transform\+To\+Frame} (Frame\+Index other) const
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Frame_a4a52607fd2ba1ac6e049f0ada49c1a64}\label{classhuron_1_1multibody_1_1Frame_a4a52607fd2ba1ac6e049f0ada49c1a64}} 
+const std\+::string \& {\bfseries name} () const
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Frame_abd4692d46ce8fc085998b620c363bc98}\label{classhuron_1_1multibody_1_1Frame_abd4692d46ce8fc085998b620c363bc98}} 
+Frame\+Index {\bfseries index} () const
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Frame_ac49edbb88f91b06c38cbb7a439f6f7ea}\label{classhuron_1_1multibody_1_1Frame_ac49edbb88f91b06c38cbb7a439f6f7ea}} 
+Frame\+Type {\bfseries type} () const
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Frame_a5971a1529549d156fb85939dc21514fe}\label{classhuron_1_1multibody_1_1Frame_a5971a1529549d156fb85939dc21514fe}} 
+bool {\bfseries is\+\_\+user\+\_\+defined} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Frame_a7cb0fbda8e85f3f6d850e581950bbfdb}\label{classhuron_1_1multibody_1_1Frame_a7cb0fbda8e85f3f6d850e581950bbfdb}} 
+{\bfseries Frame} (Frame\+Index index, const std\+::string \&name, Frame\+Type type, bool is\+\_\+user\+\_\+defined, std\+::weak\+\_\+ptr$<$ const \mbox{\hyperlink{classhuron_1_1multibody_1_1Model}{Model}} $>$ model)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Frame_a5adf5a88e65e2b25e53d077a142cf621}\label{classhuron_1_1multibody_1_1Frame_a5adf5a88e65e2b25e53d077a142cf621}} 
+const Frame\+Index {\bfseries index\+\_\+}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{Frame}} name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Frame_a8f4eddfea066ace953bba2fd8388a38e}\label{classhuron_1_1multibody_1_1Frame_a8f4eddfea066ace953bba2fd8388a38e}} 
+const std\+::string {\bfseries name\+\_\+}
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Frame_a49792358626794154dd204987773633f}\label{classhuron_1_1multibody_1_1Frame_a49792358626794154dd204987773633f}} 
+const Frame\+Type {\bfseries type\+\_\+}
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Frame_a8f59bef5aa40ef18a6e91190d067fb5f}\label{classhuron_1_1multibody_1_1Frame_a8f59bef5aa40ef18a6e91190d067fb5f}} 
+bool {\bfseries is\+\_\+user\+\_\+defined\+\_\+}
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Frame_a27b27a0340ac25ee5132268b15c1650f}\label{classhuron_1_1multibody_1_1Frame_a27b27a0340ac25ee5132268b15c1650f}} 
+const std\+::weak\+\_\+ptr$<$ const \mbox{\hyperlink{classhuron_1_1multibody_1_1Model}{Model}} $>$ {\bfseries model\+\_\+}
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Frame_a2bf2a0e9b454c55aa5dcb5aa4698697b}\label{classhuron_1_1multibody_1_1Frame_a2bf2a0e9b454c55aa5dcb5aa4698697b}} 
+class {\bfseries Model}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/github/workspace/multibody/include/huron/multibody/frame.\+h\item 
+/github/workspace/multibody/src/frame.\+cc\end{DoxyCompactItemize}

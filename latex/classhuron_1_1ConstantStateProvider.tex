@@ -1,0 +1,55 @@
+\hypertarget{classhuron_1_1ConstantStateProvider}{}\doxysection{huron\+::Constant\+State\+Provider Class Reference}
+\label{classhuron_1_1ConstantStateProvider}\index{huron::ConstantStateProvider@{huron::ConstantStateProvider}}
+Inheritance diagram for huron\+::Constant\+State\+Provider\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classhuron_1_1ConstantStateProvider}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classhuron_1_1ConstantStateProvider_a9da393f2e1523e98aa6c6df8261f16c8}\label{classhuron_1_1ConstantStateProvider_a9da393f2e1523e98aa6c6df8261f16c8}} 
+{\bfseries Constant\+State\+Provider} (const Eigen\+::\+Matrix\+Xd \&state)
+\item 
+\mbox{\Hypertarget{classhuron_1_1ConstantStateProvider_a01c3c6062987d0292e6a5db050c0720d}\label{classhuron_1_1ConstantStateProvider_a01c3c6062987d0292e6a5db050c0720d}} 
+{\bfseries Constant\+State\+Provider} (const \mbox{\hyperlink{classhuron_1_1ConstantStateProvider}{Constant\+State\+Provider}} \&)=delete
+\item 
+\mbox{\Hypertarget{classhuron_1_1ConstantStateProvider_a7e8e87d906d635e780f2b5e2e9a301b2}\label{classhuron_1_1ConstantStateProvider_a7e8e87d906d635e780f2b5e2e9a301b2}} 
+\mbox{\hyperlink{classhuron_1_1ConstantStateProvider}{Constant\+State\+Provider}} \& {\bfseries operator=} (const \mbox{\hyperlink{classhuron_1_1ConstantStateProvider}{Constant\+State\+Provider}} \&)=delete
+\item 
+void \mbox{\hyperlink{classhuron_1_1ConstantStateProvider_a79f6748d501eac8678285b725771cfd9}{Request\+State\+Update}} () override
+\item 
+void \mbox{\hyperlink{classhuron_1_1ConstantStateProvider_a6ad640b7c1beadfe8c5eda626f24a9e4}{Get\+New\+State}} (Eigen\+::\+Ref$<$ Eigen\+::\+Matrix\+Xd $>$ new\+\_\+state) const override
+\item 
+\mbox{\Hypertarget{classhuron_1_1ConstantStateProvider_a269411805de3e541276a553778588b1d}\label{classhuron_1_1ConstantStateProvider_a269411805de3e541276a553778588b1d}} 
+void {\bfseries Set\+State} (const Eigen\+::\+Matrix\+Xd \&state)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classhuron_1_1ConstantStateProvider_a6ad640b7c1beadfe8c5eda626f24a9e4}\label{classhuron_1_1ConstantStateProvider_a6ad640b7c1beadfe8c5eda626f24a9e4}} 
+\index{huron::ConstantStateProvider@{huron::ConstantStateProvider}!GetNewState@{GetNewState}}
+\index{GetNewState@{GetNewState}!huron::ConstantStateProvider@{huron::ConstantStateProvider}}
+\doxysubsubsection{\texorpdfstring{GetNewState()}{GetNewState()}}
+{\footnotesize\ttfamily void huron\+::\+Constant\+State\+Provider\+::\+Get\+New\+State (\begin{DoxyParamCaption}\item[{Eigen\+::\+Ref$<$ Eigen\+::\+Matrix\+Xd $>$}]{new\+\_\+state }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classhuron_1_1StateProvider}{huron\+::\+State\+Provider}}.
+
+\mbox{\Hypertarget{classhuron_1_1ConstantStateProvider_a79f6748d501eac8678285b725771cfd9}\label{classhuron_1_1ConstantStateProvider_a79f6748d501eac8678285b725771cfd9}} 
+\index{huron::ConstantStateProvider@{huron::ConstantStateProvider}!RequestStateUpdate@{RequestStateUpdate}}
+\index{RequestStateUpdate@{RequestStateUpdate}!huron::ConstantStateProvider@{huron::ConstantStateProvider}}
+\doxysubsubsection{\texorpdfstring{RequestStateUpdate()}{RequestStateUpdate()}}
+{\footnotesize\ttfamily void huron\+::\+Constant\+State\+Provider\+::\+Request\+State\+Update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classhuron_1_1StateProvider}{huron\+::\+State\+Provider}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/github/workspace/system/control\+\_\+interfaces/include/huron/control\+\_\+interfaces/constant\+\_\+state\+\_\+provider.\+h\end{DoxyCompactItemize}

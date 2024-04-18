@@ -1,0 +1,31 @@
+\hypertarget{zero__moment__point__fsr__array_8h_source}{}\doxysection{zero\+\_\+moment\+\_\+point\+\_\+fsr\+\_\+array.\+h}
+\label{zero__moment__point__fsr__array_8h_source}\index{/github/workspace/system/locomotion/include/huron/locomotion/zero\_moment\_point\_fsr\_array.h@{/github/workspace/system/locomotion/include/huron/locomotion/zero\_moment\_point\_fsr\_array.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}huron/locomotion/zero\_moment\_point.h"{}}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacehuron}{huron}} \{}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{keyword}{class }\mbox{\hyperlink{classhuron_1_1ZeroMomentPointFSRArray}{ZeroMomentPointFSRArray}} : \textcolor{keyword}{public} \mbox{\hyperlink{classhuron_1_1ZeroMomentPoint}{ZeroMomentPoint}} \{}
+\DoxyCodeLine{10  \textcolor{keyword}{public}:}
+\DoxyCodeLine{11   \mbox{\hyperlink{classhuron_1_1ZeroMomentPointFSRArray}{ZeroMomentPointFSRArray}}(}
+\DoxyCodeLine{12     std::weak\_ptr<const multibody::Frame> zmp\_frame,}
+\DoxyCodeLine{13     \textcolor{keywordtype}{double} normal\_force\_threshold,}
+\DoxyCodeLine{14     std::shared\_ptr<ForceSensingResistorArray> fsr\_array);}
+\DoxyCodeLine{15   \mbox{\hyperlink{classhuron_1_1ZeroMomentPointFSRArray}{ZeroMomentPointFSRArray}}(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1ZeroMomentPointFSRArray}{ZeroMomentPointFSRArray}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{16   \mbox{\hyperlink{classhuron_1_1ZeroMomentPointFSRArray}{ZeroMomentPointFSRArray}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1ZeroMomentPointFSRArray}{ZeroMomentPointFSRArray}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{17   \mbox{\hyperlink{classhuron_1_1ZeroMomentPointFSRArray}{\string~ZeroMomentPointFSRArray}}() \textcolor{keyword}{override} = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19   Eigen::Vector2d \mbox{\hyperlink{classhuron_1_1ZeroMomentPointFSRArray_a79438ddc6bc3b24b2cf5694892818fd7}{Eval}}(\textcolor{keywordtype}{double}\& fz) \textcolor{keyword}{override};}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21  \textcolor{keyword}{private}:}
+\DoxyCodeLine{22   std::shared\_ptr<ForceSensingResistorArray> fsr\_array\_;}
+\DoxyCodeLine{23 \};}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \}  \textcolor{comment}{// namespace huron}}
+
+\end{DoxyCode}

@@ -1,0 +1,89 @@
+\hypertarget{classhuron_1_1odrive_1_1ODriveEncoder}{}\doxysection{huron\+::odrive\+::ODrive\+Encoder Class Reference}
+\label{classhuron_1_1odrive_1_1ODriveEncoder}\index{huron::odrive::ODriveEncoder@{huron::odrive::ODriveEncoder}}
+Inheritance diagram for huron\+::odrive\+::ODrive\+Encoder\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{classhuron_1_1odrive_1_1ODriveEncoder}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classhuron_1_1odrive_1_1ODriveEncoder_a7c0f50217e6926270131c062216dbf74}\label{classhuron_1_1odrive_1_1ODriveEncoder_a7c0f50217e6926270131c062216dbf74}} 
+{\bfseries ODrive\+Encoder} (double gear\+\_\+ratio, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classhuron_1_1RotaryEncoderConfiguration}{Rotary\+Encoder\+Configuration}} $>$ config, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classhuron_1_1odrive_1_1ODrive}{ODrive}} $>$ odrive)
+\item 
+\mbox{\Hypertarget{classhuron_1_1odrive_1_1ODriveEncoder_a5ec5b05a1e0f7a3502446d2c8fb4d822}\label{classhuron_1_1odrive_1_1ODriveEncoder_a5ec5b05a1e0f7a3502446d2c8fb4d822}} 
+{\bfseries ODrive\+Encoder} (double gear\+\_\+ratio, double cpr, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classhuron_1_1odrive_1_1ODrive}{ODrive}} $>$ odrive)
+\item 
+\mbox{\Hypertarget{classhuron_1_1odrive_1_1ODriveEncoder_a6967937fad1ebadd15bdf3a77d5e3b97}\label{classhuron_1_1odrive_1_1ODriveEncoder_a6967937fad1ebadd15bdf3a77d5e3b97}} 
+{\bfseries ODrive\+Encoder} (double cpr, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classhuron_1_1odrive_1_1ODrive}{ODrive}} $>$ odrive)
+\item 
+\mbox{\Hypertarget{classhuron_1_1odrive_1_1ODriveEncoder_a5acec2e45083903bb37790144b4c0d8b}\label{classhuron_1_1odrive_1_1ODriveEncoder_a5acec2e45083903bb37790144b4c0d8b}} 
+{\bfseries ODrive\+Encoder} (const \mbox{\hyperlink{classhuron_1_1odrive_1_1ODriveEncoder}{ODrive\+Encoder}} \&)=delete
+\item 
+\mbox{\Hypertarget{classhuron_1_1odrive_1_1ODriveEncoder_a7084e40c431a9c42f3838ac4ad101482}\label{classhuron_1_1odrive_1_1ODriveEncoder_a7084e40c431a9c42f3838ac4ad101482}} 
+\mbox{\hyperlink{classhuron_1_1odrive_1_1ODriveEncoder}{ODrive\+Encoder}} \& {\bfseries operator=} (const \mbox{\hyperlink{classhuron_1_1odrive_1_1ODriveEncoder}{ODrive\+Encoder}} \&)=delete
+\item 
+void \mbox{\hyperlink{classhuron_1_1odrive_1_1ODriveEncoder_a9640ae237db400d10a559d1237134210}{Initialize}} () override
+\item 
+void \mbox{\hyperlink{classhuron_1_1odrive_1_1ODriveEncoder_a829f947be527a961b01bc1d6f1a62af2}{Set\+Up}} () override
+\item 
+void \mbox{\hyperlink{classhuron_1_1odrive_1_1ODriveEncoder_a497476d0fe51e503208393dc728b7bfb}{Terminate}} () override
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classhuron_1_1odrive_1_1ODriveEncoder_ac60e87724b86b0d24bca55caef666568}{Do\+Update\+State}} () override
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classhuron_1_1odrive_1_1ODriveEncoder_ac60e87724b86b0d24bca55caef666568}\label{classhuron_1_1odrive_1_1ODriveEncoder_ac60e87724b86b0d24bca55caef666568}} 
+\index{huron::odrive::ODriveEncoder@{huron::odrive::ODriveEncoder}!DoUpdateState@{DoUpdateState}}
+\index{DoUpdateState@{DoUpdateState}!huron::odrive::ODriveEncoder@{huron::odrive::ODriveEncoder}}
+\doxysubsubsection{\texorpdfstring{DoUpdateState()}{DoUpdateState()}}
+{\footnotesize\ttfamily void huron\+::odrive\+::\+ODrive\+Encoder\+::\+Do\+Update\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Classes derived from \mbox{\hyperlink{classhuron_1_1RotaryEncoder}{Rotary\+Encoder}} should override this function instead of directly overriding Request\+Update\+State(). \mbox{\hyperlink{classhuron_1_1RotaryEncoder}{Rotary\+Encoder}} already handled the internal count update for convenience.
+
+This function should update the current count (count\+\_\+) and, if possible, velocity (velocity\+\_\+). 
+
+Implements \mbox{\hyperlink{classhuron_1_1RotaryEncoder_af50667666bed70f6b8cb1cd71414b8b5}{huron\+::\+Rotary\+Encoder}}.
+
+\mbox{\Hypertarget{classhuron_1_1odrive_1_1ODriveEncoder_a9640ae237db400d10a559d1237134210}\label{classhuron_1_1odrive_1_1ODriveEncoder_a9640ae237db400d10a559d1237134210}} 
+\index{huron::odrive::ODriveEncoder@{huron::odrive::ODriveEncoder}!Initialize@{Initialize}}
+\index{Initialize@{Initialize}!huron::odrive::ODriveEncoder@{huron::odrive::ODriveEncoder}}
+\doxysubsubsection{\texorpdfstring{Initialize()}{Initialize()}}
+{\footnotesize\ttfamily void huron\+::odrive\+::\+ODrive\+Encoder\+::\+Initialize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classhuron_1_1GenericComponent}{huron\+::\+Generic\+Component}}.
+
+\mbox{\Hypertarget{classhuron_1_1odrive_1_1ODriveEncoder_a829f947be527a961b01bc1d6f1a62af2}\label{classhuron_1_1odrive_1_1ODriveEncoder_a829f947be527a961b01bc1d6f1a62af2}} 
+\index{huron::odrive::ODriveEncoder@{huron::odrive::ODriveEncoder}!SetUp@{SetUp}}
+\index{SetUp@{SetUp}!huron::odrive::ODriveEncoder@{huron::odrive::ODriveEncoder}}
+\doxysubsubsection{\texorpdfstring{SetUp()}{SetUp()}}
+{\footnotesize\ttfamily void huron\+::odrive\+::\+ODrive\+Encoder\+::\+Set\+Up (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classhuron_1_1GenericComponent}{huron\+::\+Generic\+Component}}.
+
+\mbox{\Hypertarget{classhuron_1_1odrive_1_1ODriveEncoder_a497476d0fe51e503208393dc728b7bfb}\label{classhuron_1_1odrive_1_1ODriveEncoder_a497476d0fe51e503208393dc728b7bfb}} 
+\index{huron::odrive::ODriveEncoder@{huron::odrive::ODriveEncoder}!Terminate@{Terminate}}
+\index{Terminate@{Terminate}!huron::odrive::ODriveEncoder@{huron::odrive::ODriveEncoder}}
+\doxysubsubsection{\texorpdfstring{Terminate()}{Terminate()}}
+{\footnotesize\ttfamily void huron\+::odrive\+::\+ODrive\+Encoder\+::\+Terminate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classhuron_1_1GenericComponent}{huron\+::\+Generic\+Component}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/github/workspace/system/odrive/include/huron/odrive/odrive\+\_\+rotary\+\_\+encoder.\+h\item 
+/github/workspace/system/odrive/src/odrive\+\_\+rotary\+\_\+encoder.\+cc\end{DoxyCompactItemize}

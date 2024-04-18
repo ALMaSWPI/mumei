@@ -1,0 +1,78 @@
+\hypertarget{classhuron_1_1Robot}{}\doxysection{huron\+::Robot Class Reference}
+\label{classhuron_1_1Robot}\index{huron::Robot@{huron::Robot}}
+Inheritance diagram for huron\+::Robot\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{classhuron_1_1Robot}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classhuron_1_1Robot_a2a40b11b8db4e335f5059662a118769c}\label{classhuron_1_1Robot_a2a40b11b8db4e335f5059662a118769c}} 
+{\bfseries Robot} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classhuron_1_1RobotConfiguration}{Robot\+Configuration}} $>$ config)
+\item 
+\mbox{\Hypertarget{classhuron_1_1Robot_ac56f1ef26847df01009279b44d1d32ae}\label{classhuron_1_1Robot_ac56f1ef26847df01009279b44d1d32ae}} 
+{\bfseries Robot} (const \mbox{\hyperlink{classhuron_1_1Robot}{Robot}} \&)=delete
+\item 
+\mbox{\Hypertarget{classhuron_1_1Robot_aab36545ea9771c92b9788a89a3751523}\label{classhuron_1_1Robot_aab36545ea9771c92b9788a89a3751523}} 
+\mbox{\hyperlink{classhuron_1_1Robot}{Robot}} \& {\bfseries operator=} (const \mbox{\hyperlink{classhuron_1_1Robot}{Robot}} \&)=delete
+\item 
+\mbox{\Hypertarget{classhuron_1_1Robot_a0dfaee54bd9ca5ee103c6337b4021210}\label{classhuron_1_1Robot_a0dfaee54bd9ca5ee103c6337b4021210}} 
+\mbox{\hyperlink{classhuron_1_1multibody_1_1Model}{Model}} $\ast$const {\bfseries Get\+Model} ()
+\item 
+\mbox{\Hypertarget{classhuron_1_1Robot_a107792942d9eb121834c6ea7dad24fc0}\label{classhuron_1_1Robot_a107792942d9eb121834c6ea7dad24fc0}} 
+void {\bfseries Register\+State\+Provider} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classhuron_1_1StateProvider}{State\+Provider}} $>$ state\+\_\+provider, bool is\+\_\+joint\+\_\+state\+\_\+provider=false)
+\item 
+void \mbox{\hyperlink{classhuron_1_1Robot_ae03218e281937b7b5e8d728111c3071e}{Update\+All\+States}} ()
+\item 
+void \mbox{\hyperlink{classhuron_1_1Robot_a045c06f85f97f190535d6a697ec98b34}{Update\+Joint\+States}} ()
+\item 
+\mbox{\Hypertarget{classhuron_1_1Robot_ad7135267547f50f173e44670dc5a4ff0}\label{classhuron_1_1Robot_ad7135267547f50f173e44670dc5a4ff0}} 
+const Eigen\+::\+Vector\+Block$<$ const Eigen\+::\+Vector\+Xd $>$ {\bfseries Get\+Joint\+Positions} () const
+\item 
+\mbox{\Hypertarget{classhuron_1_1Robot_afed58f37b5e0b0ddb16867f41bd0feb3}\label{classhuron_1_1Robot_afed58f37b5e0b0ddb16867f41bd0feb3}} 
+const Eigen\+::\+Vector\+Block$<$ const Eigen\+::\+Vector\+Xd $>$ {\bfseries Get\+Joint\+Velocities} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classhuron_1_1Robot_aff74e687c8bae96dd0140281d8280bb4}\label{classhuron_1_1Robot_aff74e687c8bae96dd0140281d8280bb4}} 
+{\bfseries Robot} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classhuron_1_1RobotConfiguration}{Robot\+Configuration}} $>$ config, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classhuron_1_1multibody_1_1Model}{Model}} $>$ model)
+\item 
+\mbox{\Hypertarget{classhuron_1_1Robot_a1cee6c85d24dd949b50edaf24d1511b2}\label{classhuron_1_1Robot_a1cee6c85d24dd949b50edaf24d1511b2}} 
+{\bfseries Robot} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classhuron_1_1multibody_1_1Model}{Model}} $>$ model)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classhuron_1_1Robot_a5b2b7837a7649159a2f191d387809d77}\label{classhuron_1_1Robot_a5b2b7837a7649159a2f191d387809d77}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classhuron_1_1multibody_1_1Model}{Model}} $>$ {\bfseries model\+\_\+}
+\item 
+\mbox{\Hypertarget{classhuron_1_1Robot_a7fc8a10aeddd98ea81709aeab38d52e2}\label{classhuron_1_1Robot_a7fc8a10aeddd98ea81709aeab38d52e2}} 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classhuron_1_1StateProvider}{State\+Provider}} $>$ $>$ {\bfseries non\+\_\+joint\+\_\+state\+\_\+providers\+\_\+}
+\item 
+\mbox{\Hypertarget{classhuron_1_1Robot_a694c15b0156ae07b6872ea794547dbce}\label{classhuron_1_1Robot_a694c15b0156ae07b6872ea794547dbce}} 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classhuron_1_1StateProvider}{State\+Provider}} $>$ $>$ {\bfseries joint\+\_\+state\+\_\+providers\+\_\+}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classhuron_1_1Robot_ae03218e281937b7b5e8d728111c3071e}\label{classhuron_1_1Robot_ae03218e281937b7b5e8d728111c3071e}} 
+\index{huron::Robot@{huron::Robot}!UpdateAllStates@{UpdateAllStates}}
+\index{UpdateAllStates@{UpdateAllStates}!huron::Robot@{huron::Robot}}
+\doxysubsubsection{\texorpdfstring{UpdateAllStates()}{UpdateAllStates()}}
+{\footnotesize\ttfamily void huron\+::\+Robot\+::\+Update\+All\+States (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Calls Request\+State\+Update() on all the registered state providers. \mbox{\Hypertarget{classhuron_1_1Robot_a045c06f85f97f190535d6a697ec98b34}\label{classhuron_1_1Robot_a045c06f85f97f190535d6a697ec98b34}} 
+\index{huron::Robot@{huron::Robot}!UpdateJointStates@{UpdateJointStates}}
+\index{UpdateJointStates@{UpdateJointStates}!huron::Robot@{huron::Robot}}
+\doxysubsubsection{\texorpdfstring{UpdateJointStates()}{UpdateJointStates()}}
+{\footnotesize\ttfamily void huron\+::\+Robot\+::\+Update\+Joint\+States (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Calls Request\+State\+Update() on all the registered state providers for joints. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/github/workspace/system/control\+\_\+interfaces/include/huron/control\+\_\+interfaces/robot.\+h\item 
+/github/workspace/system/control\+\_\+interfaces/src/robot.\+cc\end{DoxyCompactItemize}

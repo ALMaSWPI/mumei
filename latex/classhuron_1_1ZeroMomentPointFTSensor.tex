@@ -1,0 +1,51 @@
+\hypertarget{classhuron_1_1ZeroMomentPointFTSensor}{}\doxysection{huron\+::Zero\+Moment\+Point\+FTSensor Class Reference}
+\label{classhuron_1_1ZeroMomentPointFTSensor}\index{huron::ZeroMomentPointFTSensor@{huron::ZeroMomentPointFTSensor}}
+Inheritance diagram for huron\+::Zero\+Moment\+Point\+FTSensor\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classhuron_1_1ZeroMomentPointFTSensor}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classhuron_1_1ZeroMomentPointFTSensor_a1e1797fcc5b2cb13097beaf01a997ba8}\label{classhuron_1_1ZeroMomentPointFTSensor_a1e1797fcc5b2cb13097beaf01a997ba8}} 
+{\bfseries Zero\+Moment\+Point\+FTSensor} (std\+::weak\+\_\+ptr$<$ const \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{multibody\+::\+Frame}} $>$ zmp\+\_\+frame, double normal\+\_\+force\+\_\+threshold, const std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classhuron_1_1ForceTorqueSensor}{Force\+Torque\+Sensor}} $>$ $>$ \&ft\+\_\+sensors)
+\item 
+\mbox{\Hypertarget{classhuron_1_1ZeroMomentPointFTSensor_aaa3484b3366c8611e1681d5f83143317}\label{classhuron_1_1ZeroMomentPointFTSensor_aaa3484b3366c8611e1681d5f83143317}} 
+{\bfseries Zero\+Moment\+Point\+FTSensor} (const \mbox{\hyperlink{classhuron_1_1ZeroMomentPointFTSensor}{Zero\+Moment\+Point\+FTSensor}} \&)=delete
+\item 
+\mbox{\Hypertarget{classhuron_1_1ZeroMomentPointFTSensor_a73535be69252b92f9b42e02699988312}\label{classhuron_1_1ZeroMomentPointFTSensor_a73535be69252b92f9b42e02699988312}} 
+\mbox{\hyperlink{classhuron_1_1ZeroMomentPointFTSensor}{Zero\+Moment\+Point\+FTSensor}} \& {\bfseries operator=} (const \mbox{\hyperlink{classhuron_1_1ZeroMomentPointFTSensor}{Zero\+Moment\+Point\+FTSensor}} \&)=delete
+\item 
+Eigen\+::\+Vector2d \mbox{\hyperlink{classhuron_1_1ZeroMomentPointFTSensor_a4ba289c870423bcaa9bf5f708b963a92}{Eval}} (double \&fz) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classhuron_1_1ZeroMomentPointFTSensor_a4ba289c870423bcaa9bf5f708b963a92}\label{classhuron_1_1ZeroMomentPointFTSensor_a4ba289c870423bcaa9bf5f708b963a92}} 
+\index{huron::ZeroMomentPointFTSensor@{huron::ZeroMomentPointFTSensor}!Eval@{Eval}}
+\index{Eval@{Eval}!huron::ZeroMomentPointFTSensor@{huron::ZeroMomentPointFTSensor}}
+\doxysubsubsection{\texorpdfstring{Eval()}{Eval()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector2d huron\+::\+Zero\+Moment\+Point\+FTSensor\+::\+Eval (\begin{DoxyParamCaption}\item[{double \&}]{fz }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Evaluate the zero moment point in the ZMP frame based on the current sensor and joint states.
+
+
+\begin{DoxyParams}{Parameters}
+{\em zmp} & The zero moment point in the ZMP frame. \\
+\hline
+{\em fz} & The normal force. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classhuron_1_1ZeroMomentPoint_ae865e74073742f92ce6ba6f4983415af}{huron\+::\+Zero\+Moment\+Point}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/github/workspace/system/locomotion/include/huron/locomotion/zero\+\_\+moment\+\_\+point\+\_\+ft\+\_\+sensor.\+h\item 
+/github/workspace/system/locomotion/src/zero\+\_\+moment\+\_\+point\+\_\+ft\+\_\+sensor.\+cc\end{DoxyCompactItemize}

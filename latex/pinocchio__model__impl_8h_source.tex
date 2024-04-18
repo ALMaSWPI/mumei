@@ -1,0 +1,105 @@
+\hypertarget{pinocchio__model__impl_8h_source}{}\doxysection{pinocchio\+\_\+model\+\_\+impl.\+h}
+\label{pinocchio__model__impl_8h_source}\index{/github/workspace/multibody/include/huron/multibody/pinocchio\_model\_impl.h@{/github/workspace/multibody/include/huron/multibody/pinocchio\_model\_impl.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <experimental/propagate\_const>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}huron/multibody/model\_impl\_interface.h"{}}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}huron/multibody/joint\_common.h"{}}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}huron/exceptions/not\_implemented\_exception.h"{}}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacehuron}{huron}} \{}
+\DoxyCodeLine{13 \textcolor{keyword}{namespace }multibody \{}
+\DoxyCodeLine{14 \textcolor{keyword}{namespace }internal \{}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{keyword}{class }\mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl}{PinocchioModelImpl}} : \textcolor{keyword}{public} \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface}{ModelImplInterface}} \{}
+\DoxyCodeLine{17  \textcolor{keyword}{public}:}
+\DoxyCodeLine{18   \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl}{PinocchioModelImpl}}();}
+\DoxyCodeLine{19   \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl}{PinocchioModelImpl}}(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl}{PinocchioModelImpl}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{20   \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl}{PinocchioModelImpl}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl}{PinocchioModelImpl}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{21   \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl}{\string~PinocchioModelImpl}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23   \textcolor{keyword}{static} \textcolor{keywordtype}{bool} IsAvailable() \{ \textcolor{keywordflow}{return} \textcolor{keyword}{true}; \}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25   \textcolor{keywordtype}{void} BuildFromUrdf(\textcolor{keyword}{const} std::string\& urdf\_path,}
+\DoxyCodeLine{26                      JointType root\_joint\_type) \textcolor{keyword}{override};}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28   \textcolor{keyword}{const} std::vector<std::string>\& GetJointNames() \textcolor{keyword}{const override};}
+\DoxyCodeLine{29   std::weak\_ptr<Joint> GetJoint(\textcolor{keyword}{const} std::string\& name) \textcolor{keyword}{const override};}
+\DoxyCodeLine{30   std::weak\_ptr<Joint> GetJoint(\textcolor{keywordtype}{size\_t} joint\_index) \textcolor{keyword}{const override};}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32   JointType GetJointType(\textcolor{keywordtype}{size\_t} joint\_index) \textcolor{keyword}{const override};}
+\DoxyCodeLine{33   JointIndex GetJointIndex(\textcolor{keyword}{const} std::string\& joint\_name) \textcolor{keyword}{const override};}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35   std::unique\_ptr<JointDescription> GetJointDescription(}
+\DoxyCodeLine{36     JointIndex joint\_index) \textcolor{keyword}{const override};}
+\DoxyCodeLine{37   std::unique\_ptr<JointDescription> GetJointDescription(}
+\DoxyCodeLine{38     \textcolor{keyword}{const} std::string\& joint\_name) \textcolor{keyword}{const override};}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40   Eigen::Affine3d}
+\DoxyCodeLine{41   GetJointTransformInWorld(\textcolor{keywordtype}{size\_t} joint\_index) \textcolor{keyword}{const override};}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43   FrameIndex GetFrameIndex(\textcolor{keyword}{const} std::string\& frame\_name) \textcolor{keyword}{const override};}
+\DoxyCodeLine{44   \textcolor{keyword}{const} std::string\& GetFrameName(FrameIndex frame\_index) \textcolor{keyword}{const override};}
+\DoxyCodeLine{45   FrameType GetFrameType(FrameIndex frame\_index) \textcolor{keyword}{const override};}
+\DoxyCodeLine{46   Eigen::Affine3d GetFrameTransform(FrameIndex from\_frame,}
+\DoxyCodeLine{47                                     FrameIndex to\_frame) \textcolor{keyword}{const override};}
+\DoxyCodeLine{48   Eigen::Affine3d}
+\DoxyCodeLine{49   GetFrameTransformInWorld(FrameIndex frame) \textcolor{keyword}{const override};}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51   Eigen::Vector3d EvalCenterOfMassPosition() \textcolor{keyword}{override};}
+\DoxyCodeLine{52   Eigen::Vector3d GetCenterOfMassPosition() \textcolor{keyword}{const override};}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54   Eigen::VectorXd NeutralConfiguration() \textcolor{keyword}{const override};}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56   \textcolor{keyword}{const} Eigen::VectorXd\& \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a409ac80e81d77da36ddab6ce11d3aeca}{GetAccelerations}}() \textcolor{keyword}{const override};}
+\DoxyCodeLine{57   \textcolor{keyword}{const} Eigen::VectorXd\& \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_ad25e1d1b683dd2ea15c39061a9226044}{GetTorques}}() \textcolor{keyword}{const override};}
+\DoxyCodeLine{58   \textcolor{keyword}{const} Eigen::MatrixXd\& \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a8dfc671faa6b8fb2a6ef47c9296369e8}{GetMassMatrix}}() \textcolor{keyword}{const override};}
+\DoxyCodeLine{59   \textcolor{keyword}{const} Eigen::MatrixXd\& \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a3cbe462e282a2ff626f49d8dd519da24}{GetCoriolisMatrix}}() \textcolor{keyword}{const override};}
+\DoxyCodeLine{60   \textcolor{keyword}{const} Eigen::VectorXd\& \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a5dcc63bc6e60173252ff6ed28af3a1ea}{GetNonlinearEffects}}() \textcolor{keyword}{const override};}
+\DoxyCodeLine{61   \textcolor{keyword}{const} Eigen::VectorXd\& \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a30a41a59008aa6c4dde6468f09c6f872}{GetGravity}}() \textcolor{keyword}{const override};}
+\DoxyCodeLine{62   \textcolor{keyword}{const} huron::Vector6d\& \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_a33fe7ebb21e9dfc9a3c92bc00d6f2ab3}{GetSpatialMomentum}}() \textcolor{keyword}{const override};}
+\DoxyCodeLine{63   huron::Vector6d \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_ab58478de0c9eea414ba2f6d73dc5c3fe}{GetCentroidalMomentum}}() \textcolor{keyword}{const override};}
+\DoxyCodeLine{64   \textcolor{keyword}{const} huron::Matrix6Xd\& \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_ac18042a534d5575786c8da4ce693ee5a}{GetCentroidalMatrix}}() \textcolor{keyword}{const override};}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66   \textcolor{keywordtype}{void} ComputeAll(}
+\DoxyCodeLine{67     \textcolor{keyword}{const} Eigen::Ref<const Eigen::VectorXd>\& q,}
+\DoxyCodeLine{68     \textcolor{keyword}{const} Eigen::Ref<const Eigen::VectorXd>\& v) \textcolor{keyword}{override};}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70   \textcolor{keywordtype}{void} ForwardKinematics(}
+\DoxyCodeLine{71     \textcolor{keyword}{const} Eigen::Ref<const Eigen::VectorXd>\& q) \textcolor{keyword}{override};}
+\DoxyCodeLine{72   \textcolor{keywordtype}{void} ForwardKinematics(}
+\DoxyCodeLine{73     \textcolor{keyword}{const} Eigen::Ref<const Eigen::VectorXd>\& q,}
+\DoxyCodeLine{74     \textcolor{keyword}{const} Eigen::Ref<const Eigen::VectorXd>\& v) \textcolor{keyword}{override};}
+\DoxyCodeLine{75   \textcolor{keywordtype}{void} ForwardKinematics(}
+\DoxyCodeLine{76     \textcolor{keyword}{const} Eigen::Ref<const Eigen::VectorXd>\& q,}
+\DoxyCodeLine{77     \textcolor{keyword}{const} Eigen::Ref<const Eigen::VectorXd>\& v,}
+\DoxyCodeLine{78     \textcolor{keyword}{const} Eigen::Ref<const Eigen::VectorXd>\& a) \textcolor{keyword}{override};}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80   \textcolor{keywordtype}{bool} is\_built()\textcolor{keyword}{ const override }\{ \textcolor{keywordflow}{return} is\_built\_; \}}
+\DoxyCodeLine{81   \textcolor{keywordtype}{size\_t} num\_positions()\textcolor{keyword}{ const override }\{ \textcolor{keywordflow}{return} num\_positions\_; \}}
+\DoxyCodeLine{82   \textcolor{keywordtype}{size\_t} num\_velocities()\textcolor{keyword}{ const override }\{ \textcolor{keywordflow}{return} num\_velocities\_; \}}
+\DoxyCodeLine{83   \textcolor{keywordtype}{size\_t} num\_joints()\textcolor{keyword}{ const override }\{ \textcolor{keywordflow}{return} num\_joints\_; \}}
+\DoxyCodeLine{84   \textcolor{keywordtype}{size\_t} num\_frames()\textcolor{keyword}{ const override }\{ \textcolor{keywordflow}{return} num\_frames\_; \}}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86  \textcolor{keyword}{private}:}
+\DoxyCodeLine{87   \textcolor{keyword}{struct }\mbox{\hyperlink{structhuron_1_1multibody_1_1internal_1_1PinocchioModelImpl_1_1Impl}{Impl}};}
+\DoxyCodeLine{88   std::experimental::propagate\_const<std::unique\_ptr<Impl>> impl\_;}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90   \textcolor{keywordtype}{bool} is\_built\_ = \textcolor{keyword}{false};}
+\DoxyCodeLine{91   \textcolor{keywordtype}{size\_t} num\_positions\_ = 0;}
+\DoxyCodeLine{92   \textcolor{keywordtype}{size\_t} num\_velocities\_ = 0;}
+\DoxyCodeLine{93   \textcolor{keywordtype}{size\_t} num\_joints\_ = 0;}
+\DoxyCodeLine{94   \textcolor{keywordtype}{size\_t} num\_frames\_ = 0;}
+\DoxyCodeLine{95 \};}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97 \}  \textcolor{comment}{// namespace internal}}
+\DoxyCodeLine{98 \}  \textcolor{comment}{// namespace multibody}}
+\DoxyCodeLine{99 \}  \textcolor{comment}{// namespace huron}}
+
+\end{DoxyCode}

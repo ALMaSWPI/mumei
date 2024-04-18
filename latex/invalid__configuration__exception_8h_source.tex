@@ -1,0 +1,39 @@
+\hypertarget{invalid__configuration__exception_8h_source}{}\doxysection{invalid\+\_\+configuration\+\_\+exception.\+h}
+\label{invalid__configuration__exception_8h_source}\index{/github/workspace/system/exceptions/include/huron/exceptions/invalid\_configuration\_exception.h@{/github/workspace/system/exceptions/include/huron/exceptions/invalid\_configuration\_exception.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <stdexcept>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacehuron}{huron}} \{}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{keyword}{class }\mbox{\hyperlink{classhuron_1_1InvalidConfigurationException}{InvalidConfigurationException}} : \textcolor{keyword}{public} std::logic\_error \{}
+\DoxyCodeLine{12  \textcolor{keyword}{private}:}
+\DoxyCodeLine{13   std::string \_text;}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15   \mbox{\hyperlink{classhuron_1_1InvalidConfigurationException}{InvalidConfigurationException}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* message, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* function)}
+\DoxyCodeLine{16       : std::logic\_error(\textcolor{stringliteral}{"{}Invalid Configuration provided."{}}) \{}
+\DoxyCodeLine{17     \_text = message;}
+\DoxyCodeLine{18     \_text += \textcolor{stringliteral}{"{} : "{}};}
+\DoxyCodeLine{19     \_text += function;}
+\DoxyCodeLine{20   \}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22  \textcolor{keyword}{public}:}
+\DoxyCodeLine{23   \mbox{\hyperlink{classhuron_1_1InvalidConfigurationException}{InvalidConfigurationException}}()}
+\DoxyCodeLine{24       : \mbox{\hyperlink{classhuron_1_1InvalidConfigurationException}{InvalidConfigurationException}}(}
+\DoxyCodeLine{25             \textcolor{stringliteral}{"{}Invalid Configuration provided."{}}, \_\_FUNCTION\_\_) \{\}}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27   \textcolor{keyword}{explicit} \mbox{\hyperlink{classhuron_1_1InvalidConfigurationException}{InvalidConfigurationException}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* message)}
+\DoxyCodeLine{28       : \mbox{\hyperlink{classhuron_1_1InvalidConfigurationException}{InvalidConfigurationException}}(message, \_\_FUNCTION\_\_) \{\}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30   \textcolor{keyword}{virtual} \textcolor{keyword}{const} \textcolor{keywordtype}{char} *what() \textcolor{keyword}{const} \textcolor{keywordflow}{throw}() \{}
+\DoxyCodeLine{31       \textcolor{keywordflow}{return} \_text.c\_str();}
+\DoxyCodeLine{32   \}}
+\DoxyCodeLine{33 \};}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \}  \textcolor{comment}{// namespace huron}}
+
+\end{DoxyCode}

@@ -1,0 +1,129 @@
+\hypertarget{classhuron_1_1multibody_1_1LogicalFrame}{}\doxysection{huron\+::multibody\+::Logical\+Frame Class Reference}
+\label{classhuron_1_1multibody_1_1LogicalFrame}\index{huron::multibody::LogicalFrame@{huron::multibody::LogicalFrame}}
+
+
+A frame that is defined relative to another frame by an affine transformation. This transformation is user-\/defined using a function that takes the parent frame\textquotesingle{}s transform in world coordinates as an argument and returns the transform from the parent frame to this frame.  
+
+
+
+
+{\ttfamily \#include $<$logical\+\_\+frame.\+h$>$}
+
+Inheritance diagram for huron\+::multibody\+::Logical\+Frame\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.470588cm]{classhuron_1_1multibody_1_1LogicalFrame}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1LogicalFrame_a0b0ca8a99f069b917c13b05b19cef167}\label{classhuron_1_1multibody_1_1LogicalFrame_a0b0ca8a99f069b917c13b05b19cef167}} 
+{\bfseries Logical\+Frame} (const \mbox{\hyperlink{classhuron_1_1multibody_1_1LogicalFrame}{Logical\+Frame}} \&)=delete
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1LogicalFrame_a2409ba5f08437919cfc31b0f17e0c21a}\label{classhuron_1_1multibody_1_1LogicalFrame_a2409ba5f08437919cfc31b0f17e0c21a}} 
+\mbox{\hyperlink{classhuron_1_1multibody_1_1LogicalFrame}{Logical\+Frame}} \& {\bfseries operator=} (const \mbox{\hyperlink{classhuron_1_1multibody_1_1LogicalFrame}{Logical\+Frame}} \&)=delete
+\item 
+Eigen\+::\+Affine3d \mbox{\hyperlink{classhuron_1_1multibody_1_1LogicalFrame_ad2aaf15e5ef03994b44e71975691a540}{Get\+Transform\+In\+World}} () const override
+\item 
+Eigen\+::\+Affine3d \mbox{\hyperlink{classhuron_1_1multibody_1_1LogicalFrame_ac33f964107714590782c0eb2996edf94}{Get\+Transform\+From\+Frame}} (const \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{Frame}} \&other) const override
+\item 
+Eigen\+::\+Affine3d \mbox{\hyperlink{classhuron_1_1multibody_1_1LogicalFrame_ade9048c44f3a33ce09eb1aeb58c31d2b}{Get\+Transform\+From\+Frame}} (Frame\+Index other) const override
+\item 
+Eigen\+::\+Affine3d \mbox{\hyperlink{classhuron_1_1multibody_1_1LogicalFrame_a2b95ffcbf3f2e64bb4459346f83c719b}{Get\+Transform\+To\+Frame}} (const \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{Frame}} \&other) const override
+\item 
+Eigen\+::\+Affine3d \mbox{\hyperlink{classhuron_1_1multibody_1_1LogicalFrame_afa5bc4942cc7c8ba6340a564dc0c25c0}{Get\+Transform\+To\+Frame}} (Frame\+Index other) const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1LogicalFrame_aed88e61bd6af9393390deeedc14c4e8c}\label{classhuron_1_1multibody_1_1LogicalFrame_aed88e61bd6af9393390deeedc14c4e8c}} 
+{\bfseries Logical\+Frame} (Frame\+Index index, const std\+::string \&name, bool is\+\_\+user\+\_\+defined, std\+::weak\+\_\+ptr$<$ const \mbox{\hyperlink{classhuron_1_1multibody_1_1Model}{Model}} $>$ model, Frame\+Index parent\+\_\+frame\+\_\+index, std\+::function$<$ Eigen\+::\+Affine3d(const Eigen\+::\+Affine3d \&)$>$ transform\+\_\+function)
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1LogicalFrame_a2bf2a0e9b454c55aa5dcb5aa4698697b}\label{classhuron_1_1multibody_1_1LogicalFrame_a2bf2a0e9b454c55aa5dcb5aa4698697b}} 
+class {\bfseries Model}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+A frame that is defined relative to another frame by an affine transformation. This transformation is user-\/defined using a function that takes the parent frame\textquotesingle{}s transform in world coordinates as an argument and returns the transform from the parent frame to this frame. 
+
+\begin{DoxyNote}{Note}
+This class can only be instantiated by the \mbox{\hyperlink{classhuron_1_1multibody_1_1Model}{Model}} class using Add\+Logical\+Frame().
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The index of this frame. \\
+\hline
+{\em name} & The name of this frame. \\
+\hline
+{\em model} & The model that this frame is a part of. \\
+\hline
+{\em parent\+\_\+frame\+\_\+index} & The index of the frame that this frame is defined relative to. \\
+\hline
+{\em transform\+\_\+function} & The function that defines the transformation from the parent frame to this frame. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1LogicalFrame_ac33f964107714590782c0eb2996edf94}\label{classhuron_1_1multibody_1_1LogicalFrame_ac33f964107714590782c0eb2996edf94}} 
+\index{huron::multibody::LogicalFrame@{huron::multibody::LogicalFrame}!GetTransformFromFrame@{GetTransformFromFrame}}
+\index{GetTransformFromFrame@{GetTransformFromFrame}!huron::multibody::LogicalFrame@{huron::multibody::LogicalFrame}}
+\doxysubsubsection{\texorpdfstring{GetTransformFromFrame()}{GetTransformFromFrame()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Eigen\+::\+Affine3d huron\+::multibody\+::\+Logical\+Frame\+::\+Get\+Transform\+From\+Frame (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{Frame}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{huron\+::multibody\+::\+Frame}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1LogicalFrame_ade9048c44f3a33ce09eb1aeb58c31d2b}\label{classhuron_1_1multibody_1_1LogicalFrame_ade9048c44f3a33ce09eb1aeb58c31d2b}} 
+\index{huron::multibody::LogicalFrame@{huron::multibody::LogicalFrame}!GetTransformFromFrame@{GetTransformFromFrame}}
+\index{GetTransformFromFrame@{GetTransformFromFrame}!huron::multibody::LogicalFrame@{huron::multibody::LogicalFrame}}
+\doxysubsubsection{\texorpdfstring{GetTransformFromFrame()}{GetTransformFromFrame()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Eigen\+::\+Affine3d huron\+::multibody\+::\+Logical\+Frame\+::\+Get\+Transform\+From\+Frame (\begin{DoxyParamCaption}\item[{Frame\+Index}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{huron\+::multibody\+::\+Frame}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1LogicalFrame_ad2aaf15e5ef03994b44e71975691a540}\label{classhuron_1_1multibody_1_1LogicalFrame_ad2aaf15e5ef03994b44e71975691a540}} 
+\index{huron::multibody::LogicalFrame@{huron::multibody::LogicalFrame}!GetTransformInWorld@{GetTransformInWorld}}
+\index{GetTransformInWorld@{GetTransformInWorld}!huron::multibody::LogicalFrame@{huron::multibody::LogicalFrame}}
+\doxysubsubsection{\texorpdfstring{GetTransformInWorld()}{GetTransformInWorld()}}
+{\footnotesize\ttfamily Eigen\+::\+Affine3d huron\+::multibody\+::\+Logical\+Frame\+::\+Get\+Transform\+In\+World (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{huron\+::multibody\+::\+Frame}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1LogicalFrame_a2b95ffcbf3f2e64bb4459346f83c719b}\label{classhuron_1_1multibody_1_1LogicalFrame_a2b95ffcbf3f2e64bb4459346f83c719b}} 
+\index{huron::multibody::LogicalFrame@{huron::multibody::LogicalFrame}!GetTransformToFrame@{GetTransformToFrame}}
+\index{GetTransformToFrame@{GetTransformToFrame}!huron::multibody::LogicalFrame@{huron::multibody::LogicalFrame}}
+\doxysubsubsection{\texorpdfstring{GetTransformToFrame()}{GetTransformToFrame()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Eigen\+::\+Affine3d huron\+::multibody\+::\+Logical\+Frame\+::\+Get\+Transform\+To\+Frame (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{Frame}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{huron\+::multibody\+::\+Frame}}.
+
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1LogicalFrame_afa5bc4942cc7c8ba6340a564dc0c25c0}\label{classhuron_1_1multibody_1_1LogicalFrame_afa5bc4942cc7c8ba6340a564dc0c25c0}} 
+\index{huron::multibody::LogicalFrame@{huron::multibody::LogicalFrame}!GetTransformToFrame@{GetTransformToFrame}}
+\index{GetTransformToFrame@{GetTransformToFrame}!huron::multibody::LogicalFrame@{huron::multibody::LogicalFrame}}
+\doxysubsubsection{\texorpdfstring{GetTransformToFrame()}{GetTransformToFrame()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Eigen\+::\+Affine3d huron\+::multibody\+::\+Logical\+Frame\+::\+Get\+Transform\+To\+Frame (\begin{DoxyParamCaption}\item[{Frame\+Index}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{huron\+::multibody\+::\+Frame}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/github/workspace/multibody/include/huron/multibody/logical\+\_\+frame.\+h\item 
+/github/workspace/multibody/src/logical\+\_\+frame.\+cc\end{DoxyCompactItemize}

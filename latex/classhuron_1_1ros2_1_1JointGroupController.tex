@@ -1,0 +1,89 @@
+\hypertarget{classhuron_1_1ros2_1_1JointGroupController}{}\doxysection{huron\+::ros2\+::Joint\+Group\+Controller Class Reference}
+\label{classhuron_1_1ros2_1_1JointGroupController}\index{huron::ros2::JointGroupController@{huron::ros2::JointGroupController}}
+Inheritance diagram for huron\+::ros2\+::Joint\+Group\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classhuron_1_1ros2_1_1JointGroupController}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classhuron_1_1ros2_1_1JointGroupController_a8aeeb2850054136ad644213f8e527228}\label{classhuron_1_1ros2_1_1JointGroupController_a8aeeb2850054136ad644213f8e527228}} 
+{\bfseries Joint\+Group\+Controller} (size\+\_\+t dim)
+\item 
+\mbox{\Hypertarget{classhuron_1_1ros2_1_1JointGroupController_aec91f769482d7d71a7c0a317822f532f}\label{classhuron_1_1ros2_1_1JointGroupController_aec91f769482d7d71a7c0a317822f532f}} 
+{\bfseries Joint\+Group\+Controller} (const \mbox{\hyperlink{classhuron_1_1ros2_1_1JointGroupController}{Joint\+Group\+Controller}} \&)=delete
+\item 
+\mbox{\Hypertarget{classhuron_1_1ros2_1_1JointGroupController_ae48e0dd9ac6e1d1a7ff7c380415206c3}\label{classhuron_1_1ros2_1_1JointGroupController_ae48e0dd9ac6e1d1a7ff7c380415206c3}} 
+\mbox{\hyperlink{classhuron_1_1ros2_1_1JointGroupController}{Joint\+Group\+Controller}} \& {\bfseries operator=} (const \mbox{\hyperlink{classhuron_1_1ros2_1_1JointGroupController}{Joint\+Group\+Controller}} \&)=delete
+\item 
+bool \mbox{\hyperlink{classhuron_1_1ros2_1_1JointGroupController_ad9831afe510c035aa66773b7f0038834}{Move}} (const std\+::vector$<$ double $>$ \&values) override
+\item 
+bool \mbox{\hyperlink{classhuron_1_1ros2_1_1JointGroupController_a7344a5e08cd419436ae78d74ad2ead3d}{Move}} (const Eigen\+::\+Vector\+Xd \&values) override
+\item 
+bool \mbox{\hyperlink{classhuron_1_1ros2_1_1JointGroupController_a468127249962d6e9e8ddb2c1c083aa38}{Stop}} () override
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classhuron_1_1ros2_1_1JointGroupController_a0fe3591cfabe0776a860dda8f93caa72}\label{classhuron_1_1ros2_1_1JointGroupController_a0fe3591cfabe0776a860dda8f93caa72}} 
+class {\bfseries Huron\+Node}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classhuron_1_1ros2_1_1JointGroupController_a7344a5e08cd419436ae78d74ad2ead3d}\label{classhuron_1_1ros2_1_1JointGroupController_a7344a5e08cd419436ae78d74ad2ead3d}} 
+\index{huron::ros2::JointGroupController@{huron::ros2::JointGroupController}!Move@{Move}}
+\index{Move@{Move}!huron::ros2::JointGroupController@{huron::ros2::JointGroupController}}
+\doxysubsubsection{\texorpdfstring{Move()}{Move()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool huron\+::ros2\+::\+Joint\+Group\+Controller\+::\+Move (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{values }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classhuron_1_1MovingInterface}{huron\+::\+Moving\+Interface}}.
+
+\mbox{\Hypertarget{classhuron_1_1ros2_1_1JointGroupController_ad9831afe510c035aa66773b7f0038834}\label{classhuron_1_1ros2_1_1JointGroupController_ad9831afe510c035aa66773b7f0038834}} 
+\index{huron::ros2::JointGroupController@{huron::ros2::JointGroupController}!Move@{Move}}
+\index{Move@{Move}!huron::ros2::JointGroupController@{huron::ros2::JointGroupController}}
+\doxysubsubsection{\texorpdfstring{Move()}{Move()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool huron\+::ros2\+::\+Joint\+Group\+Controller\+::\+Move (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{values }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Moves the component by the specified input vector.
+
+This method can be used if the component needs more than one input. For example, a position controlled motor needs position input, velocity feedforward, and current feedforward.
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Input value vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the operation is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classhuron_1_1MovingInterface_a499e82e23fad6173d1b5f1b2052b6fe7}{huron\+::\+Moving\+Interface}}.
+
+\mbox{\Hypertarget{classhuron_1_1ros2_1_1JointGroupController_a468127249962d6e9e8ddb2c1c083aa38}\label{classhuron_1_1ros2_1_1JointGroupController_a468127249962d6e9e8ddb2c1c083aa38}} 
+\index{huron::ros2::JointGroupController@{huron::ros2::JointGroupController}!Stop@{Stop}}
+\index{Stop@{Stop}!huron::ros2::JointGroupController@{huron::ros2::JointGroupController}}
+\doxysubsubsection{\texorpdfstring{Stop()}{Stop()}}
+{\footnotesize\ttfamily bool huron\+::ros2\+::\+Joint\+Group\+Controller\+::\+Stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Stops the component from moving.
+
+\begin{DoxyReturn}{Returns}
+true if the operation is successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classhuron_1_1MovingInterface_ad5150f9feda61d0fc2314e40c8e17dd6}{huron\+::\+Moving\+Interface}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/github/workspace/ros2/src/huron\+\_\+ros2/include/huron\+\_\+ros2/joint\+\_\+group\+\_\+controller.\+h\item 
+/github/workspace/ros2/src/huron\+\_\+ros2/src/joint\+\_\+group\+\_\+controller.\+cc\end{DoxyCompactItemize}

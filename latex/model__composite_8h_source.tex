@@ -1,0 +1,28 @@
+\hypertarget{model__composite_8h_source}{}\doxysection{model\+\_\+composite.\+h}
+\label{model__composite_8h_source}\index{/github/workspace/multibody/include/huron/multibody/model\_composite.h@{/github/workspace/multibody/include/huron/multibody/model\_composite.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include "{}model.h"{}}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacehuron}{huron}} \{}
+\DoxyCodeLine{9 \textcolor{keyword}{namespace }multibody \{}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{keyword}{class }\mbox{\hyperlink{classhuron_1_1multibody_1_1ModelComposite}{ModelComposite}} final : \textcolor{keyword}{public} class \mbox{\hyperlink{classhuron_1_1multibody_1_1Model}{Model}} \{}
+\DoxyCodeLine{12  \textcolor{keyword}{public}:}
+\DoxyCodeLine{13   \mbox{\hyperlink{classhuron_1_1multibody_1_1ModelComposite}{ModelComposite}}();}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15   \textcolor{keywordtype}{void} RegisterModel(std::unique\_ptr<Model> model);}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17  \textcolor{keyword}{private}:}
+\DoxyCodeLine{18   std::vector<std::unique\_ptr<Model>> models\_;}
+\DoxyCodeLine{19 \};}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \}  \textcolor{comment}{// namespace multibody}}
+\DoxyCodeLine{22 \}  \textcolor{comment}{// namespace huron}}
+
+\end{DoxyCode}

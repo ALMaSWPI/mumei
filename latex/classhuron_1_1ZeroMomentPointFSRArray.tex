@@ -1,0 +1,51 @@
+\hypertarget{classhuron_1_1ZeroMomentPointFSRArray}{}\doxysection{huron\+::Zero\+Moment\+Point\+FSRArray Class Reference}
+\label{classhuron_1_1ZeroMomentPointFSRArray}\index{huron::ZeroMomentPointFSRArray@{huron::ZeroMomentPointFSRArray}}
+Inheritance diagram for huron\+::Zero\+Moment\+Point\+FSRArray\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classhuron_1_1ZeroMomentPointFSRArray}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classhuron_1_1ZeroMomentPointFSRArray_a7d182f75f58ee67c3ab9149d700fb3b2}\label{classhuron_1_1ZeroMomentPointFSRArray_a7d182f75f58ee67c3ab9149d700fb3b2}} 
+{\bfseries Zero\+Moment\+Point\+FSRArray} (std\+::weak\+\_\+ptr$<$ const \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{multibody\+::\+Frame}} $>$ zmp\+\_\+frame, double normal\+\_\+force\+\_\+threshold, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classhuron_1_1ForceSensingResistorArray}{Force\+Sensing\+Resistor\+Array}} $>$ fsr\+\_\+array)
+\item 
+\mbox{\Hypertarget{classhuron_1_1ZeroMomentPointFSRArray_aac61f622365777a623764504bd5f779d}\label{classhuron_1_1ZeroMomentPointFSRArray_aac61f622365777a623764504bd5f779d}} 
+{\bfseries Zero\+Moment\+Point\+FSRArray} (const \mbox{\hyperlink{classhuron_1_1ZeroMomentPointFSRArray}{Zero\+Moment\+Point\+FSRArray}} \&)=delete
+\item 
+\mbox{\Hypertarget{classhuron_1_1ZeroMomentPointFSRArray_aa49bc1972d84f9056be451e04f43a6b8}\label{classhuron_1_1ZeroMomentPointFSRArray_aa49bc1972d84f9056be451e04f43a6b8}} 
+\mbox{\hyperlink{classhuron_1_1ZeroMomentPointFSRArray}{Zero\+Moment\+Point\+FSRArray}} \& {\bfseries operator=} (const \mbox{\hyperlink{classhuron_1_1ZeroMomentPointFSRArray}{Zero\+Moment\+Point\+FSRArray}} \&)=delete
+\item 
+Eigen\+::\+Vector2d \mbox{\hyperlink{classhuron_1_1ZeroMomentPointFSRArray_a79438ddc6bc3b24b2cf5694892818fd7}{Eval}} (double \&fz) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classhuron_1_1ZeroMomentPointFSRArray_a79438ddc6bc3b24b2cf5694892818fd7}\label{classhuron_1_1ZeroMomentPointFSRArray_a79438ddc6bc3b24b2cf5694892818fd7}} 
+\index{huron::ZeroMomentPointFSRArray@{huron::ZeroMomentPointFSRArray}!Eval@{Eval}}
+\index{Eval@{Eval}!huron::ZeroMomentPointFSRArray@{huron::ZeroMomentPointFSRArray}}
+\doxysubsubsection{\texorpdfstring{Eval()}{Eval()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector2d huron\+::\+Zero\+Moment\+Point\+FSRArray\+::\+Eval (\begin{DoxyParamCaption}\item[{double \&}]{fz }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Evaluate the zero moment point in the ZMP frame based on the current sensor and joint states.
+
+
+\begin{DoxyParams}{Parameters}
+{\em zmp} & The zero moment point in the ZMP frame. \\
+\hline
+{\em fz} & The normal force. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classhuron_1_1ZeroMomentPoint_ae865e74073742f92ce6ba6f4983415af}{huron\+::\+Zero\+Moment\+Point}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/github/workspace/system/locomotion/include/huron/locomotion/zero\+\_\+moment\+\_\+point\+\_\+fsr\+\_\+array.\+h\item 
+/github/workspace/system/locomotion/src/zero\+\_\+moment\+\_\+point\+\_\+fsr\+\_\+array.\+cc\end{DoxyCompactItemize}

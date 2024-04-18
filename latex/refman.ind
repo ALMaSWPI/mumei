@@ -1,0 +1,829 @@
+\begin{theindex}
+
+  \item {/github/workspace/common/include/huron/enable\_protected\_make\_shared.h}, 
+		\hyperpage{89}
+  \item {/github/workspace/common/include/huron/enable\_protected\_make\_unique.h}, 
+		\hyperpage{89}
+  \item {/github/workspace/common/include/huron/types.h}, 
+		\hyperpage{89}
+  \item {/github/workspace/control/include/huron/control/push\_recovery.h}, 
+		\hyperpage{90}
+  \item {/github/workspace/driver/can/include/huron/driver/can/can\_helpers.h}, 
+		\hyperpage{91}
+  \item {/github/workspace/driver/can/include/huron/driver/can/canbus.h}, 
+		\hyperpage{92}
+  \item {/github/workspace/driver/can/include/huron/driver/can/socket\_can\_bus.h}, 
+		\hyperpage{92}
+  \item {/github/workspace/driver/config/include/huron/driver/config/config.h}, 
+		\hyperpage{93}
+  \item {/github/workspace/driver/config/include/huron/driver/config/odrive\_config.h}, 
+		\hyperpage{93}
+  \item {/github/workspace/driver/serial/include/huron/driver/serial/serial.h}, 
+		\hyperpage{93}
+  \item {/github/workspace/driver/serial/include/huron/driver/serial/wjwwood\_serial.h}, 
+		\hyperpage{95}
+  \item {/github/workspace/math/include/huron/math/rotation.h}, 
+		\hyperpage{96}
+  \item {/github/workspace/multibody/include/huron/multibody/com\_frame.h}, 
+		\hyperpage{96}
+  \item {/github/workspace/multibody/include/huron/multibody/frame.h}, 
+		\hyperpage{96}
+  \item {/github/workspace/multibody/include/huron/multibody/joint\_common.h}, 
+		\hyperpage{97}
+  \item {/github/workspace/multibody/include/huron/multibody/logical\_frame.h}, 
+		\hyperpage{99}
+  \item {/github/workspace/multibody/include/huron/multibody/model.h}, 
+		\hyperpage{100}
+  \item {/github/workspace/multibody/include/huron/multibody/model\_composite.h}, 
+		\hyperpage{102}
+  \item {/github/workspace/multibody/include/huron/multibody/model\_impl\_factory.h}, 
+		\hyperpage{102}
+  \item {/github/workspace/multibody/include/huron/multibody/model\_impl\_interface.h}, 
+		\hyperpage{103}
+  \item {/github/workspace/multibody/include/huron/multibody/model\_impl\_types.h}, 
+		\hyperpage{104}
+  \item {/github/workspace/multibody/include/huron/multibody/pinocchio\_model\_impl.h}, 
+		\hyperpage{104}
+  \item {/github/workspace/ros2/src/huron\_ros2/include/huron\_ros2/force\_torque\_sensor.h}, 
+		\hyperpage{105}
+  \item {/github/workspace/ros2/src/huron\_ros2/include/huron\_ros2/huron.h}, 
+		\hyperpage{106}
+  \item {/github/workspace/ros2/src/huron\_ros2/include/huron\_ros2/huron\_node.h}, 
+		\hyperpage{107}
+  \item {/github/workspace/ros2/src/huron\_ros2/include/huron\_ros2/joint\_group\_controller.h}, 
+		\hyperpage{108}
+  \item {/github/workspace/ros2/src/huron\_ros2/include/huron\_ros2/joint\_state\_provider.h}, 
+		\hyperpage{108}
+  \item {/github/workspace/system/control\_interfaces/include/huron/control\_interfaces/actuator.h}, 
+		\hyperpage{109}
+  \item {/github/workspace/system/control\_interfaces/include/huron/control\_interfaces/configuration.h}, 
+		\hyperpage{109}
+  \item {/github/workspace/system/control\_interfaces/include/huron/control\_interfaces/constant\_state\_provider.h}, 
+		\hyperpage{110}
+  \item {/github/workspace/system/control\_interfaces/include/huron/control\_interfaces/encoder.h}, 
+		\hyperpage{110}
+  \item {/github/workspace/system/control\_interfaces/include/huron/control\_interfaces/generic\_component.h}, 
+		\hyperpage{111}
+  \item {/github/workspace/system/control\_interfaces/include/huron/control\_interfaces/joint.h}, 
+		\hyperpage{112}
+  \item {/github/workspace/system/control\_interfaces/include/huron/control\_interfaces/legged\_robot.h}, 
+		\hyperpage{113}
+  \item {/github/workspace/system/control\_interfaces/include/huron/control\_interfaces/limb.h}, 
+		\hyperpage{113}
+  \item {/github/workspace/system/control\_interfaces/include/huron/control\_interfaces/motor.h}, 
+		\hyperpage{113}
+  \item {/github/workspace/system/control\_interfaces/include/huron/control\_interfaces/moving\_group.h}, 
+		\hyperpage{114}
+  \item {/github/workspace/system/control\_interfaces/include/huron/control\_interfaces/moving\_interface.h}, 
+		\hyperpage{115}
+  \item {/github/workspace/system/control\_interfaces/include/huron/control\_interfaces/position\_motor.h}, 
+		\hyperpage{115}
+  \item {/github/workspace/system/control\_interfaces/include/huron/control\_interfaces/robot.h}, 
+		\hyperpage{115}
+  \item {/github/workspace/system/control\_interfaces/include/huron/control\_interfaces/rotary\_encoder.h}, 
+		\hyperpage{116}
+  \item {/github/workspace/system/control\_interfaces/include/huron/control\_interfaces/sensor.h}, 
+		\hyperpage{118}
+  \item {/github/workspace/system/control\_interfaces/include/huron/control\_interfaces/sensor\_with\_frame.h}, 
+		\hyperpage{118}
+  \item {/github/workspace/system/control\_interfaces/include/huron/control\_interfaces/state\_provider.h}, 
+		\hyperpage{118}
+  \item {/github/workspace/system/control\_interfaces/include/huron/control\_interfaces/torque\_motor.h}, 
+		\hyperpage{119}
+  \item {/github/workspace/system/control\_interfaces/include/huron/control\_interfaces/velocity\_motor.h}, 
+		\hyperpage{119}
+  \item {/github/workspace/system/exceptions/include/huron/exceptions/invalid\_configuration\_exception.h}, 
+		\hyperpage{120}
+  \item {/github/workspace/system/exceptions/include/huron/exceptions/not\_implemented\_exception.h}, 
+		\hyperpage{120}
+  \item {/github/workspace/system/locomotion/include/huron/locomotion/zero\_moment\_point.h}, 
+		\hyperpage{121}
+  \item {/github/workspace/system/locomotion/include/huron/locomotion/zero\_moment\_point\_fsr\_array.h}, 
+		\hyperpage{121}
+  \item {/github/workspace/system/locomotion/include/huron/locomotion/zero\_moment\_point\_ft\_sensor.h}, 
+		\hyperpage{122}
+  \item {/github/workspace/system/locomotion/include/huron/locomotion/zero\_moment\_point\_total.h}, 
+		\hyperpage{122}
+  \item {/github/workspace/system/odrive/include/huron/odrive/odrive.h}, 
+		\hyperpage{122}
+  \item {/github/workspace/system/odrive/include/huron/odrive/odrive\_can.h}, 
+		\hyperpage{124}
+  \item {/github/workspace/system/odrive/include/huron/odrive/odrive\_enums.h}, 
+		\hyperpage{125}
+  \item {/github/workspace/system/odrive/include/huron/odrive/odrive\_rotary\_encoder.h}, 
+		\hyperpage{127}
+  \item {/github/workspace/system/odrive/include/huron/odrive/odrive\_torque\_motor.h}, 
+		\hyperpage{128}
+  \item {/github/workspace/system/sensors/include/huron/sensors/force\_sensing\_resistor.h}, 
+		\hyperpage{128}
+  \item {/github/workspace/system/sensors/include/huron/sensors/force\_sensing\_resistor\_array.h}, 
+		\hyperpage{129}
+  \item {/github/workspace/system/sensors/include/huron/sensors/force\_sensing\_resistor\_array\_serial.h}, 
+		\hyperpage{129}
+  \item {/github/workspace/system/sensors/include/huron/sensors/force\_torque\_sensor.h}, 
+		\hyperpage{106}
+  \item {/github/workspace/utils/include/huron/utils/string.h}, 
+		\hyperpage{130}
+  \item {/github/workspace/utils/include/huron/utils/time.h}, 
+		\hyperpage{130}
+
+  \indexspace
+
+  \item {AddFrame}
+    \subitem {huron::multibody::Model}, \hyperpage{42}
+  \item {AddJoint}
+    \subitem {huron::multibody::Model}, \hyperpage{42}
+  \item {AddModelImpl}
+    \subitem {huron::multibody::Model}, \hyperpage{43}
+  \item {Available}
+    \subitem {huron::driver::serial::Serial}, \hyperpage{74}
+
+  \indexspace
+
+  \item {BuildFromUrdf}
+    \subitem {huron::multibody::internal::PinocchioModelImpl}, 
+		\hyperpage{62}
+
+  \indexspace
+
+  \item {Calibrate}
+    \subitem {huron::odrive::ODrive}, \hyperpage{52}
+  \item {can\_Cyclic\_t}, \hyperpage{17}
+  \item {can\_Message\_t}, \hyperpage{18}
+  \item {can\_Signal\_t}, \hyperpage{18}
+  \item {ClearErrors}
+    \subitem {huron::odrive::ODriveCAN}, \hyperpage{54}
+  \item {Close}
+    \subitem {huron::driver::serial::Serial}, \hyperpage{74}
+  \item {ComputeAll}
+    \subitem {huron::multibody::internal::PinocchioModelImpl}, 
+		\hyperpage{62}
+  \item {Configure}
+    \subitem {huron::GenericComponent}, \hyperpage{31, 32}
+  \item {ConfigureKey}
+    \subitem {huron::GenericComponent}, \hyperpage{32}
+    \subitem {huron::odrive::ODrive}, \hyperpage{52}
+  \item {ConfigureMap}
+    \subitem {huron::GenericComponent}, \hyperpage{32}
+
+  \indexspace
+
+  \item {DoGetWrenchRaw}
+    \subitem {huron::ForceTorqueSensor}, \hyperpage{28}
+    \subitem {huron::ros2::ForceTorqueSensor}, \hyperpage{29}
+  \item {DoUpdateState}
+    \subitem {huron::odrive::ODriveEncoder}, \hyperpage{60}
+    \subitem {huron::RotaryEncoder}, \hyperpage{70}
+
+  \indexspace
+
+  \item {Estop}
+    \subitem {huron::odrive::ODriveCAN}, \hyperpage{55}
+  \item {Eval}
+    \subitem {huron::ZeroMomentPoint}, \hyperpage{85}
+    \subitem {huron::ZeroMomentPointFSRArray}, \hyperpage{86}
+    \subitem {huron::ZeroMomentPointFTSensor}, \hyperpage{87}
+    \subitem {huron::ZeroMomentPointTotal}, \hyperpage{88}
+  \item {EvalCenterOfMassPosition}
+    \subitem {huron::multibody::internal::PinocchioModelImpl}, 
+		\hyperpage{62}
+  \item {EvalZeroMomentPoint}
+    \subitem {huron::LeggedRobot}, \hyperpage{38}
+
+  \indexspace
+
+  \item {Finalize}
+    \subitem {huron::multibody::Model}, \hyperpage{43}
+  \item {Flush}
+    \subitem {huron::driver::serial::Serial}, \hyperpage{74}
+  \item {FlushInput}
+    \subitem {huron::driver::serial::Serial}, \hyperpage{74}
+  \item {FlushOutput}
+    \subitem {huron::driver::serial::Serial}, \hyperpage{74}
+  \item {ForwardKinematics}
+    \subitem {huron::multibody::internal::PinocchioModelImpl}, 
+		\hyperpage{62}
+
+  \indexspace
+
+  \item {Get}
+    \subitem {huron::Configuration}, \hyperpage{20}
+  \item {GetAccelerations}
+    \subitem {huron::multibody::internal::ModelImplInterface}, 
+		\hyperpage{45}
+    \subitem {huron::multibody::internal::PinocchioModelImpl}, 
+		\hyperpage{62}
+  \item {GetAdcVoltage}
+    \subitem {huron::odrive::ODriveCAN}, \hyperpage{55}
+  \item {GetAngleDegree}
+    \subitem {huron::RotaryEncoder}, \hyperpage{70}
+  \item {GetBaudrate}
+    \subitem {huron::driver::serial::Serial}, \hyperpage{74}
+  \item {GetBusVoltageCurrent}
+    \subitem {huron::odrive::ODriveCAN}, \hyperpage{55}
+  \item {GetCenterOfMassPosition}
+    \subitem {huron::multibody::internal::PinocchioModelImpl}, 
+		\hyperpage{62}
+  \item {GetCentroidalMatrix}
+    \subitem {huron::multibody::internal::ModelImplInterface}, 
+		\hyperpage{46}
+    \subitem {huron::multibody::internal::PinocchioModelImpl}, 
+		\hyperpage{63}
+  \item {GetCentroidalMomentum}
+    \subitem {huron::multibody::internal::ModelImplInterface}, 
+		\hyperpage{46}
+    \subitem {huron::multibody::internal::PinocchioModelImpl}, 
+		\hyperpage{63}
+  \item {GetControllerError}
+    \subitem {huron::odrive::ODriveCAN}, \hyperpage{55}
+  \item {GetCoriolisMatrix}
+    \subitem {huron::multibody::internal::ModelImplInterface}, 
+		\hyperpage{46}
+    \subitem {huron::multibody::internal::PinocchioModelImpl}, 
+		\hyperpage{63}
+  \item {GetCount}
+    \subitem {huron::RotaryEncoder}, \hyperpage{70}
+  \item {GetCPR}
+    \subitem {huron::RotaryEncoder}, \hyperpage{70}
+  \item {GetEncoderCount}
+    \subitem {huron::odrive::ODriveCAN}, \hyperpage{55}
+  \item {GetEncoderError}
+    \subitem {huron::odrive::ODriveCAN}, \hyperpage{55}
+  \item {GetEncoderEstimates}
+    \subitem {huron::odrive::ODriveCAN}, \hyperpage{55}
+  \item {GetFlowcontrol}
+    \subitem {huron::driver::serial::Serial}, \hyperpage{75}
+  \item {GetFrameIndex}
+    \subitem {huron::multibody::internal::PinocchioModelImpl}, 
+		\hyperpage{63}
+  \item {GetFrameName}
+    \subitem {huron::multibody::internal::PinocchioModelImpl}, 
+		\hyperpage{63}
+  \item {GetFrameTransform}
+    \subitem {huron::multibody::internal::PinocchioModelImpl}, 
+		\hyperpage{63}
+  \item {GetFrameTransformInWorld}
+    \subitem {huron::multibody::internal::PinocchioModelImpl}, 
+		\hyperpage{63}
+  \item {GetFrameType}
+    \subitem {huron::multibody::internal::PinocchioModelImpl}, 
+		\hyperpage{63}
+  \item {GetFromComponent}
+    \subitem {huron::Configuration}, \hyperpage{20}
+  \item {GetGravity}
+    \subitem {huron::multibody::internal::ModelImplInterface}, 
+		\hyperpage{46}
+    \subitem {huron::multibody::internal::PinocchioModelImpl}, 
+		\hyperpage{64}
+  \item {GetIq}
+    \subitem {huron::odrive::ODriveCAN}, \hyperpage{55}
+  \item {GetJoint}
+    \subitem {huron::multibody::internal::PinocchioModelImpl}, 
+		\hyperpage{64}
+  \item {GetJointDescription}
+    \subitem {huron::multibody::internal::PinocchioModelImpl}, 
+		\hyperpage{64}
+  \item {GetJointIndex}
+    \subitem {huron::multibody::internal::PinocchioModelImpl}, 
+		\hyperpage{64}
+  \item {GetJointNames}
+    \subitem {huron::multibody::internal::PinocchioModelImpl}, 
+		\hyperpage{64}
+  \item {GetJointTransformInWorld}
+    \subitem {huron::multibody::internal::PinocchioModelImpl}, 
+		\hyperpage{64}
+  \item {GetJointType}
+    \subitem {huron::multibody::internal::PinocchioModelImpl}, 
+		\hyperpage{65}
+  \item {GetMassMatrix}
+    \subitem {huron::multibody::internal::ModelImplInterface}, 
+		\hyperpage{46}
+    \subitem {huron::multibody::internal::PinocchioModelImpl}, 
+		\hyperpage{65}
+  \item {GetModelImpl}
+    \subitem {huron::multibody::Model}, \hyperpage{43}
+  \item {GetMotorError}
+    \subitem {huron::odrive::ODriveCAN}, \hyperpage{56}
+  \item {GetNewState}
+    \subitem {huron::ConstantStateProvider}, \hyperpage{21}
+    \subitem {huron::Encoder}, \hyperpage{23}
+    \subitem {huron::ForceSensingResistorArray}, \hyperpage{25}
+    \subitem {huron::ForceTorqueSensor}, \hyperpage{28}
+    \subitem {huron::ros2::JointStateProvider}, \hyperpage{37}
+  \item {GetNonlinearEffects}
+    \subitem {huron::multibody::internal::ModelImplInterface}, 
+		\hyperpage{46}
+    \subitem {huron::multibody::internal::PinocchioModelImpl}, 
+		\hyperpage{65}
+  \item {GetParity}
+    \subitem {huron::driver::serial::Serial}, \hyperpage{75}
+  \item {GetPort}
+    \subitem {huron::driver::serial::Serial}, \hyperpage{75}
+  \item {GetPosition}
+    \subitem {huron::Encoder}, \hyperpage{23}
+    \subitem {huron::RotaryEncoder}, \hyperpage{70}
+  \item {GetPrevCount}
+    \subitem {huron::RotaryEncoder}, \hyperpage{70}
+  \item {GetSensorlessError}
+    \subitem {huron::odrive::ODriveCAN}, \hyperpage{56}
+  \item {GetSensorlessEstimates}
+    \subitem {huron::odrive::ODriveCAN}, \hyperpage{56}
+  \item {GetSpatialMomentum}
+    \subitem {huron::multibody::internal::ModelImplInterface}, 
+		\hyperpage{46}
+    \subitem {huron::multibody::internal::PinocchioModelImpl}, 
+		\hyperpage{65}
+  \item {GetStopbits}
+    \subitem {huron::driver::serial::Serial}, \hyperpage{75}
+  \item {GetTorques}
+    \subitem {huron::multibody::internal::ModelImplInterface}, 
+		\hyperpage{47}
+    \subitem {huron::multibody::internal::PinocchioModelImpl}, 
+		\hyperpage{65}
+  \item {GetTransformFromFrame}
+    \subitem {huron::multibody::ComFrame}, \hyperpage{19}
+    \subitem {huron::multibody::LogicalFrame}, \hyperpage{40}
+  \item {GetTransformInWorld}
+    \subitem {huron::multibody::ComFrame}, \hyperpage{19}
+    \subitem {huron::multibody::LogicalFrame}, \hyperpage{40}
+  \item {GetTransformToFrame}
+    \subitem {huron::multibody::ComFrame}, \hyperpage{19}
+    \subitem {huron::multibody::LogicalFrame}, \hyperpage{40}
+  \item {GetValue}
+    \subitem {huron::ForceSensingResistorArraySerial}, \hyperpage{26}
+    \subitem {huron::ForceTorqueSensor}, \hyperpage{28}
+    \subitem {huron::Sensor}, \hyperpage{72}
+  \item {GetVelocity}
+    \subitem {huron::Encoder}, \hyperpage{23}
+    \subitem {huron::RotaryEncoder}, \hyperpage{70}
+  \item {GetVelocityCount}
+    \subitem {huron::RotaryEncoder}, \hyperpage{71}
+  \item {GetVelocityDegree}
+    \subitem {huron::RotaryEncoder}, \hyperpage{71}
+
+  \indexspace
+
+  \item {huron}, \hyperpage{13}
+  \item {huron::Actuator}, \hyperpage{15}
+  \item {huron::ActuatorConfiguration}, \hyperpage{15}
+  \item {huron::Configuration}, \hyperpage{20}
+    \subitem {Get}, \hyperpage{20}
+    \subitem {GetFromComponent}, \hyperpage{20}
+    \subitem {ValidateKey}, \hyperpage{21}
+  \item {huron::ConstantStateProvider}, \hyperpage{21}
+    \subitem {GetNewState}, \hyperpage{21}
+    \subitem {RequestStateUpdate}, \hyperpage{21}
+  \item {huron::driver::can::BusBase}, \hyperpage{16}
+    \subitem {recv\_message}, \hyperpage{16}
+    \subitem {send\_message}, \hyperpage{17}
+    \subitem {subscribe}, \hyperpage{17}
+    \subitem {unsubscribe}, \hyperpage{17}
+  \item {huron::driver::can::BusBase::CanSubscription}, \hyperpage{18}
+  \item {huron::driver::can::MsgIdFilterSpecs}, \hyperpage{50}
+  \item {huron::driver::can::SocketCanBus}, \hyperpage{79}
+    \subitem {recv\_message}, \hyperpage{79}
+    \subitem {send\_message}, \hyperpage{80}
+    \subitem {subscribe}, \hyperpage{80}
+    \subitem {unsubscribe}, \hyperpage{80}
+  \item {huron::driver::serial::Serial}, \hyperpage{73}
+    \subitem {Available}, \hyperpage{74}
+    \subitem {Close}, \hyperpage{74}
+    \subitem {Flush}, \hyperpage{74}
+    \subitem {FlushInput}, \hyperpage{74}
+    \subitem {FlushOutput}, \hyperpage{74}
+    \subitem {GetBaudrate}, \hyperpage{74}
+    \subitem {GetFlowcontrol}, \hyperpage{75}
+    \subitem {GetParity}, \hyperpage{75}
+    \subitem {GetPort}, \hyperpage{75}
+    \subitem {GetStopbits}, \hyperpage{75}
+    \subitem {IsOpen}, \hyperpage{75}
+    \subitem {Open}, \hyperpage{75}
+    \subitem {Read}, \hyperpage{75, 76}
+    \subitem {ReadLine}, \hyperpage{76}
+    \subitem {ReadLines}, \hyperpage{76}
+    \subitem {SendBreak}, \hyperpage{76}
+    \subitem {SetBaudrate}, \hyperpage{76}
+    \subitem {SetFlowcontrol}, \hyperpage{76}
+    \subitem {SetParity}, \hyperpage{77}
+    \subitem {SetPort}, \hyperpage{77}
+    \subitem {SetStopbits}, \hyperpage{77}
+    \subitem {SetTimeout}, \hyperpage{77}
+    \subitem {WaitReadable}, \hyperpage{77}
+    \subitem {Write}, \hyperpage{77}
+  \item {huron::driver::serial::SerialBase}, \hyperpage{78}
+  \item {huron::enable\_protected\_make\_shared$<$ ClassWithProtectedCtor $>$}, 
+		\hyperpage{21}
+  \item {huron::enable\_protected\_make\_unique$<$ ClassWithProtectedCtor $>$}, 
+		\hyperpage{22}
+  \item {huron::Encoder}, \hyperpage{22}
+    \subitem {GetNewState}, \hyperpage{23}
+    \subitem {GetPosition}, \hyperpage{23}
+    \subitem {GetVelocity}, \hyperpage{23}
+    \subitem {Reset}, \hyperpage{23}
+  \item {huron::EncoderConfiguration}, \hyperpage{24}
+  \item {huron::ForceSensingResistor}, \hyperpage{24}
+  \item {huron::ForceSensingResistorArray}, \hyperpage{25}
+    \subitem {GetNewState}, \hyperpage{25}
+    \subitem {RequestStateUpdate}, \hyperpage{25}
+  \item {huron::ForceSensingResistorArraySerial}, \hyperpage{26}
+    \subitem {GetValue}, \hyperpage{26}
+    \subitem {Initialize}, \hyperpage{27}
+    \subitem {ReloadAndGetValue}, \hyperpage{27}
+    \subitem {RequestStateUpdate}, \hyperpage{27}
+    \subitem {SetUp}, \hyperpage{27}
+    \subitem {Terminate}, \hyperpage{27}
+  \item {huron::ForceTorqueSensor}, \hyperpage{27}
+    \subitem {DoGetWrenchRaw}, \hyperpage{28}
+    \subitem {GetNewState}, \hyperpage{28}
+    \subitem {GetValue}, \hyperpage{28}
+    \subitem {RequestStateUpdate}, \hyperpage{28}
+  \item {huron::GenericComponent}, \hyperpage{31}
+    \subitem {Configure}, \hyperpage{31, 32}
+    \subitem {ConfigureKey}, \hyperpage{32}
+    \subitem {ConfigureMap}, \hyperpage{32}
+    \subitem {Initialize}, \hyperpage{32}
+  \item {huron::InvalidConfigurationException}, \hyperpage{34}
+  \item {huron::Joint}, \hyperpage{35}
+    \subitem {Joint}, \hyperpage{35}
+  \item {huron::LeggedRobot}, \hyperpage{38}
+    \subitem {EvalZeroMomentPoint}, \hyperpage{38}
+  \item {huron::Limb}, \hyperpage{38}
+  \item {huron::Motor}, \hyperpage{47}
+  \item {huron::MotorConfiguration}, \hyperpage{47}
+  \item {huron::MovingGroup}, \hyperpage{48}
+    \subitem {Move}, \hyperpage{48, 49}
+    \subitem {Stop}, \hyperpage{49}
+  \item {huron::MovingInterface}, \hyperpage{49}
+    \subitem {Move}, \hyperpage{50}
+    \subitem {Stop}, \hyperpage{50}
+  \item {huron::multibody::ComFrame}, \hyperpage{18}
+    \subitem {GetTransformFromFrame}, \hyperpage{19}
+    \subitem {GetTransformInWorld}, \hyperpage{19}
+    \subitem {GetTransformToFrame}, \hyperpage{19}
+  \item {huron::multibody::Frame}, \hyperpage{30}
+  \item {huron::multibody::internal::ModelImplFactory}, \hyperpage{44}
+  \item {huron::multibody::internal::ModelImplInterface}, 
+		\hyperpage{44}
+    \subitem {GetAccelerations}, \hyperpage{45}
+    \subitem {GetCentroidalMatrix}, \hyperpage{46}
+    \subitem {GetCentroidalMomentum}, \hyperpage{46}
+    \subitem {GetCoriolisMatrix}, \hyperpage{46}
+    \subitem {GetGravity}, \hyperpage{46}
+    \subitem {GetMassMatrix}, \hyperpage{46}
+    \subitem {GetNonlinearEffects}, \hyperpage{46}
+    \subitem {GetSpatialMomentum}, \hyperpage{46}
+    \subitem {GetTorques}, \hyperpage{47}
+  \item {huron::multibody::internal::PinocchioModelImpl}, 
+		\hyperpage{60}
+    \subitem {BuildFromUrdf}, \hyperpage{62}
+    \subitem {ComputeAll}, \hyperpage{62}
+    \subitem {EvalCenterOfMassPosition}, \hyperpage{62}
+    \subitem {ForwardKinematics}, \hyperpage{62}
+    \subitem {GetAccelerations}, \hyperpage{62}
+    \subitem {GetCenterOfMassPosition}, \hyperpage{62}
+    \subitem {GetCentroidalMatrix}, \hyperpage{63}
+    \subitem {GetCentroidalMomentum}, \hyperpage{63}
+    \subitem {GetCoriolisMatrix}, \hyperpage{63}
+    \subitem {GetFrameIndex}, \hyperpage{63}
+    \subitem {GetFrameName}, \hyperpage{63}
+    \subitem {GetFrameTransform}, \hyperpage{63}
+    \subitem {GetFrameTransformInWorld}, \hyperpage{63}
+    \subitem {GetFrameType}, \hyperpage{63}
+    \subitem {GetGravity}, \hyperpage{64}
+    \subitem {GetJoint}, \hyperpage{64}
+    \subitem {GetJointDescription}, \hyperpage{64}
+    \subitem {GetJointIndex}, \hyperpage{64}
+    \subitem {GetJointNames}, \hyperpage{64}
+    \subitem {GetJointTransformInWorld}, \hyperpage{64}
+    \subitem {GetJointType}, \hyperpage{65}
+    \subitem {GetMassMatrix}, \hyperpage{65}
+    \subitem {GetNonlinearEffects}, \hyperpage{65}
+    \subitem {GetSpatialMomentum}, \hyperpage{65}
+    \subitem {GetTorques}, \hyperpage{65}
+    \subitem {is\_built}, \hyperpage{65}
+    \subitem {NeutralConfiguration}, \hyperpage{65}
+    \subitem {num\_frames}, \hyperpage{65}
+    \subitem {num\_joints}, \hyperpage{66}
+    \subitem {num\_positions}, \hyperpage{66}
+    \subitem {num\_velocities}, \hyperpage{66}
+  \item {huron::multibody::internal::PinocchioModelImpl::Impl}, 
+		\hyperpage{34}
+  \item {huron::multibody::JointDescription}, \hyperpage{35}
+  \item {huron::multibody::LogicalFrame}, \hyperpage{39}
+    \subitem {GetTransformFromFrame}, \hyperpage{40}
+    \subitem {GetTransformInWorld}, \hyperpage{40}
+    \subitem {GetTransformToFrame}, \hyperpage{40}
+  \item {huron::multibody::Model}, \hyperpage{40}
+    \subitem {AddFrame}, \hyperpage{42}
+    \subitem {AddJoint}, \hyperpage{42}
+    \subitem {AddModelImpl}, \hyperpage{43}
+    \subitem {Finalize}, \hyperpage{43}
+    \subitem {GetModelImpl}, \hyperpage{43}
+    \subitem {UpdateJointStates}, \hyperpage{43}
+  \item {huron::multibody::ModelComposite}, \hyperpage{44}
+  \item {huron::NotImplementedException}, \hyperpage{51}
+  \item {huron::odrive::ODrive}, \hyperpage{51}
+    \subitem {Calibrate}, \hyperpage{52}
+    \subitem {ConfigureKey}, \hyperpage{52}
+    \subitem {Initialize}, \hyperpage{52}
+  \item {huron::odrive::ODrive::ODriveConfiguration}, \hyperpage{58}
+    \subitem {ODriveConfiguration}, \hyperpage{59}
+  \item {huron::odrive::ODriveCAN}, \hyperpage{53}
+    \subitem {ClearErrors}, \hyperpage{54}
+    \subitem {Estop}, \hyperpage{55}
+    \subitem {GetAdcVoltage}, \hyperpage{55}
+    \subitem {GetBusVoltageCurrent}, \hyperpage{55}
+    \subitem {GetControllerError}, \hyperpage{55}
+    \subitem {GetEncoderCount}, \hyperpage{55}
+    \subitem {GetEncoderError}, \hyperpage{55}
+    \subitem {GetEncoderEstimates}, \hyperpage{55}
+    \subitem {GetIq}, \hyperpage{55}
+    \subitem {GetMotorError}, \hyperpage{56}
+    \subitem {GetSensorlessError}, \hyperpage{56}
+    \subitem {GetSensorlessEstimates}, \hyperpage{56}
+    \subitem {Nmt}, \hyperpage{56}
+    \subitem {ODriveCAN}, \hyperpage{54}
+    \subitem {SetAxisNodeid}, \hyperpage{56}
+    \subitem {SetAxisRequestedState}, \hyperpage{56}
+    \subitem {SetAxisStartupConfig}, \hyperpage{56}
+    \subitem {SetControllerModes}, \hyperpage{56}
+    \subitem {SetInputPos}, \hyperpage{57}
+    \subitem {SetInputTorque}, \hyperpage{57}
+    \subitem {SetInputVel}, \hyperpage{57}
+    \subitem {SetLimits}, \hyperpage{57}
+    \subitem {SetLinearCount}, \hyperpage{57}
+    \subitem {SetPosGain}, \hyperpage{57}
+    \subitem {SetTrajAccelLimits}, \hyperpage{57}
+    \subitem {SetTrajInertia}, \hyperpage{58}
+    \subitem {SetTrajVelLimit}, \hyperpage{58}
+    \subitem {SetUp}, \hyperpage{58}
+    \subitem {SetVelGains}, \hyperpage{58}
+    \subitem {StartAnticogging}, \hyperpage{58}
+    \subitem {Terminate}, \hyperpage{58}
+  \item {huron::odrive::ODriveEncoder}, \hyperpage{59}
+    \subitem {DoUpdateState}, \hyperpage{60}
+    \subitem {Initialize}, \hyperpage{60}
+    \subitem {SetUp}, \hyperpage{60}
+    \subitem {Terminate}, \hyperpage{60}
+  \item {huron::odrive::TorqueMotor}, \hyperpage{81}
+    \subitem {Initialize}, \hyperpage{82}
+    \subitem {Move}, \hyperpage{82}
+    \subitem {SetUp}, \hyperpage{82}
+    \subitem {Stop}, \hyperpage{82}
+    \subitem {Terminate}, \hyperpage{82}
+  \item {huron::PositionMotor}, \hyperpage{66}
+  \item {huron::PositionMotorConfiguration}, \hyperpage{67}
+    \subitem {PositionMotorConfiguration}, \hyperpage{67}
+  \item {huron::Robot}, \hyperpage{67}
+    \subitem {UpdateAllStates}, \hyperpage{68}
+    \subitem {UpdateJointStates}, \hyperpage{68}
+  \item {huron::RobotConfiguration}, \hyperpage{69}
+  \item {huron::ros2::ForceTorqueSensor}, \hyperpage{29}
+    \subitem {DoGetWrenchRaw}, \hyperpage{29}
+    \subitem {Initialize}, \hyperpage{29}
+    \subitem {SetUp}, \hyperpage{29}
+    \subitem {Terminate}, \hyperpage{29}
+  \item {huron::ros2::Huron}, \hyperpage{32}
+    \subitem {Initialize}, \hyperpage{33}
+    \subitem {SetUp}, \hyperpage{33}
+    \subitem {Terminate}, \hyperpage{33}
+  \item {huron::ros2::HuronNode}, \hyperpage{33}
+  \item {huron::ros2::JointGroupController}, \hyperpage{36}
+    \subitem {Move}, \hyperpage{36}
+    \subitem {Stop}, \hyperpage{37}
+  \item {huron::ros2::JointStateProvider}, \hyperpage{37}
+    \subitem {GetNewState}, \hyperpage{37}
+    \subitem {RequestStateUpdate}, \hyperpage{37}
+  \item {huron::RotaryEncoder}, \hyperpage{69}
+    \subitem {DoUpdateState}, \hyperpage{70}
+    \subitem {GetAngleDegree}, \hyperpage{70}
+    \subitem {GetCount}, \hyperpage{70}
+    \subitem {GetCPR}, \hyperpage{70}
+    \subitem {GetPosition}, \hyperpage{70}
+    \subitem {GetPrevCount}, \hyperpage{70}
+    \subitem {GetVelocity}, \hyperpage{70}
+    \subitem {GetVelocityCount}, \hyperpage{71}
+    \subitem {GetVelocityDegree}, \hyperpage{71}
+    \subitem {RequestStateUpdate}, \hyperpage{71}
+    \subitem {Reset}, \hyperpage{71}
+  \item {huron::RotaryEncoderConfiguration}, \hyperpage{71}
+    \subitem {RotaryEncoderConfiguration}, \hyperpage{71}
+  \item {huron::Sensor}, \hyperpage{72}
+    \subitem {GetValue}, \hyperpage{72}
+  \item {huron::SensorWithFrame}, \hyperpage{72}
+  \item {huron::StateProvider}, \hyperpage{80}
+  \item {huron::TorqueMotor}, \hyperpage{83}
+  \item {huron::TorqueMotorConfiguration}, \hyperpage{83}
+    \subitem {TorqueMotorConfiguration}, \hyperpage{84}
+  \item {huron::VelocityMotor}, \hyperpage{84}
+  \item {huron::VelocityMotorConfiguration}, \hyperpage{84}
+    \subitem {VelocityMotorConfiguration}, \hyperpage{85}
+  \item {huron::ZeroMomentPoint}, \hyperpage{85}
+    \subitem {Eval}, \hyperpage{85}
+    \subitem {ZmpToWorld}, \hyperpage{86}
+  \item {huron::ZeroMomentPointFSRArray}, \hyperpage{86}
+    \subitem {Eval}, \hyperpage{86}
+  \item {huron::ZeroMomentPointFTSensor}, \hyperpage{87}
+    \subitem {Eval}, \hyperpage{87}
+  \item {huron::ZeroMomentPointTotal}, \hyperpage{87}
+    \subitem {Eval}, \hyperpage{88}
+
+  \indexspace
+
+  \item {Initialize}
+    \subitem {huron::ForceSensingResistorArraySerial}, \hyperpage{27}
+    \subitem {huron::GenericComponent}, \hyperpage{32}
+    \subitem {huron::odrive::ODrive}, \hyperpage{52}
+    \subitem {huron::odrive::ODriveEncoder}, \hyperpage{60}
+    \subitem {huron::odrive::TorqueMotor}, \hyperpage{82}
+    \subitem {huron::ros2::ForceTorqueSensor}, \hyperpage{29}
+    \subitem {huron::ros2::Huron}, \hyperpage{33}
+  \item {is\_built}
+    \subitem {huron::multibody::internal::PinocchioModelImpl}, 
+		\hyperpage{65}
+  \item {IsOpen}
+    \subitem {huron::driver::serial::Serial}, \hyperpage{75}
+
+  \indexspace
+
+  \item {Joint}
+    \subitem {huron::Joint}, \hyperpage{35}
+
+  \indexspace
+
+  \item {Move}
+    \subitem {huron::MovingGroup}, \hyperpage{48, 49}
+    \subitem {huron::MovingInterface}, \hyperpage{50}
+    \subitem {huron::odrive::TorqueMotor}, \hyperpage{82}
+    \subitem {huron::ros2::JointGroupController}, \hyperpage{36}
+
+  \indexspace
+
+  \item {NeutralConfiguration}
+    \subitem {huron::multibody::internal::PinocchioModelImpl}, 
+		\hyperpage{65}
+  \item {Nmt}
+    \subitem {huron::odrive::ODriveCAN}, \hyperpage{56}
+  \item {num\_frames}
+    \subitem {huron::multibody::internal::PinocchioModelImpl}, 
+		\hyperpage{65}
+  \item {num\_joints}
+    \subitem {huron::multibody::internal::PinocchioModelImpl}, 
+		\hyperpage{66}
+  \item {num\_positions}
+    \subitem {huron::multibody::internal::PinocchioModelImpl}, 
+		\hyperpage{66}
+  \item {num\_velocities}
+    \subitem {huron::multibody::internal::PinocchioModelImpl}, 
+		\hyperpage{66}
+
+  \indexspace
+
+  \item {ODriveCAN}
+    \subitem {huron::odrive::ODriveCAN}, \hyperpage{54}
+  \item {ODriveConfiguration}
+    \subitem {huron::odrive::ODrive::ODriveConfiguration}, 
+		\hyperpage{59}
+  \item {Open}
+    \subitem {huron::driver::serial::Serial}, \hyperpage{75}
+
+  \indexspace
+
+  \item {PositionMotorConfiguration}
+    \subitem {huron::PositionMotorConfiguration}, \hyperpage{67}
+  \item {PushRecoveryControl}, \hyperpage{67}
+
+  \indexspace
+
+  \item {Read}
+    \subitem {huron::driver::serial::Serial}, \hyperpage{75, 76}
+  \item {ReadLine}
+    \subitem {huron::driver::serial::Serial}, \hyperpage{76}
+  \item {ReadLines}
+    \subitem {huron::driver::serial::Serial}, \hyperpage{76}
+  \item {recv\_message}
+    \subitem {huron::driver::can::BusBase}, \hyperpage{16}
+    \subitem {huron::driver::can::SocketCanBus}, \hyperpage{79}
+  \item {ReloadAndGetValue}
+    \subitem {huron::ForceSensingResistorArraySerial}, \hyperpage{27}
+  \item {RequestStateUpdate}
+    \subitem {huron::ConstantStateProvider}, \hyperpage{21}
+    \subitem {huron::ForceSensingResistorArray}, \hyperpage{25}
+    \subitem {huron::ForceSensingResistorArraySerial}, \hyperpage{27}
+    \subitem {huron::ForceTorqueSensor}, \hyperpage{28}
+    \subitem {huron::ros2::JointStateProvider}, \hyperpage{37}
+    \subitem {huron::RotaryEncoder}, \hyperpage{71}
+  \item {Reset}
+    \subitem {huron::Encoder}, \hyperpage{23}
+    \subitem {huron::RotaryEncoder}, \hyperpage{71}
+  \item {RotaryEncoderConfiguration}
+    \subitem {huron::RotaryEncoderConfiguration}, \hyperpage{71}
+
+  \indexspace
+
+  \item {send\_message}
+    \subitem {huron::driver::can::BusBase}, \hyperpage{17}
+    \subitem {huron::driver::can::SocketCanBus}, \hyperpage{80}
+  \item {SendBreak}
+    \subitem {huron::driver::serial::Serial}, \hyperpage{76}
+  \item {SetAxisNodeid}
+    \subitem {huron::odrive::ODriveCAN}, \hyperpage{56}
+  \item {SetAxisRequestedState}
+    \subitem {huron::odrive::ODriveCAN}, \hyperpage{56}
+  \item {SetAxisStartupConfig}
+    \subitem {huron::odrive::ODriveCAN}, \hyperpage{56}
+  \item {SetBaudrate}
+    \subitem {huron::driver::serial::Serial}, \hyperpage{76}
+  \item {SetControllerModes}
+    \subitem {huron::odrive::ODriveCAN}, \hyperpage{56}
+  \item {SetFlowcontrol}
+    \subitem {huron::driver::serial::Serial}, \hyperpage{76}
+  \item {SetInputPos}
+    \subitem {huron::odrive::ODriveCAN}, \hyperpage{57}
+  \item {SetInputTorque}
+    \subitem {huron::odrive::ODriveCAN}, \hyperpage{57}
+  \item {SetInputVel}
+    \subitem {huron::odrive::ODriveCAN}, \hyperpage{57}
+  \item {SetLimits}
+    \subitem {huron::odrive::ODriveCAN}, \hyperpage{57}
+  \item {SetLinearCount}
+    \subitem {huron::odrive::ODriveCAN}, \hyperpage{57}
+  \item {SetParity}
+    \subitem {huron::driver::serial::Serial}, \hyperpage{77}
+  \item {SetPort}
+    \subitem {huron::driver::serial::Serial}, \hyperpage{77}
+  \item {SetPosGain}
+    \subitem {huron::odrive::ODriveCAN}, \hyperpage{57}
+  \item {SetStopbits}
+    \subitem {huron::driver::serial::Serial}, \hyperpage{77}
+  \item {SetTimeout}
+    \subitem {huron::driver::serial::Serial}, \hyperpage{77}
+  \item {SetTrajAccelLimits}
+    \subitem {huron::odrive::ODriveCAN}, \hyperpage{57}
+  \item {SetTrajInertia}
+    \subitem {huron::odrive::ODriveCAN}, \hyperpage{58}
+  \item {SetTrajVelLimit}
+    \subitem {huron::odrive::ODriveCAN}, \hyperpage{58}
+  \item {SetUp}
+    \subitem {huron::ForceSensingResistorArraySerial}, \hyperpage{27}
+    \subitem {huron::odrive::ODriveCAN}, \hyperpage{58}
+    \subitem {huron::odrive::ODriveEncoder}, \hyperpage{60}
+    \subitem {huron::odrive::TorqueMotor}, \hyperpage{82}
+    \subitem {huron::ros2::ForceTorqueSensor}, \hyperpage{29}
+    \subitem {huron::ros2::Huron}, \hyperpage{33}
+  \item {SetVelGains}
+    \subitem {huron::odrive::ODriveCAN}, \hyperpage{58}
+  \item {StartAnticogging}
+    \subitem {huron::odrive::ODriveCAN}, \hyperpage{58}
+  \item {Stop}
+    \subitem {huron::MovingGroup}, \hyperpage{49}
+    \subitem {huron::MovingInterface}, \hyperpage{50}
+    \subitem {huron::odrive::TorqueMotor}, \hyperpage{82}
+    \subitem {huron::ros2::JointGroupController}, \hyperpage{37}
+  \item {subscribe}
+    \subitem {huron::driver::can::BusBase}, \hyperpage{17}
+    \subitem {huron::driver::can::SocketCanBus}, \hyperpage{80}
+
+  \indexspace
+
+  \item {Terminate}
+    \subitem {huron::ForceSensingResistorArraySerial}, \hyperpage{27}
+    \subitem {huron::odrive::ODriveCAN}, \hyperpage{58}
+    \subitem {huron::odrive::ODriveEncoder}, \hyperpage{60}
+    \subitem {huron::odrive::TorqueMotor}, \hyperpage{82}
+    \subitem {huron::ros2::ForceTorqueSensor}, \hyperpage{29}
+    \subitem {huron::ros2::Huron}, \hyperpage{33}
+  \item {TorqueMotorConfiguration}
+    \subitem {huron::TorqueMotorConfiguration}, \hyperpage{84}
+
+  \indexspace
+
+  \item {unsubscribe}
+    \subitem {huron::driver::can::BusBase}, \hyperpage{17}
+    \subitem {huron::driver::can::SocketCanBus}, \hyperpage{80}
+  \item {UpdateAllStates}
+    \subitem {huron::Robot}, \hyperpage{68}
+  \item {UpdateJointStates}
+    \subitem {huron::multibody::Model}, \hyperpage{43}
+    \subitem {huron::Robot}, \hyperpage{68}
+
+  \indexspace
+
+  \item {ValidateKey}
+    \subitem {huron::Configuration}, \hyperpage{21}
+  \item {VelocityMotorConfiguration}
+    \subitem {huron::VelocityMotorConfiguration}, \hyperpage{85}
+
+  \indexspace
+
+  \item {WaitReadable}
+    \subitem {huron::driver::serial::Serial}, \hyperpage{77}
+  \item {Write}
+    \subitem {huron::driver::serial::Serial}, \hyperpage{77}
+
+  \indexspace
+
+  \item {ZmpToWorld}
+    \subitem {huron::ZeroMomentPoint}, \hyperpage{86}
+
+\end{theindex}

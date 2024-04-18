@@ -1,0 +1,65 @@
+\hypertarget{frame_8h_source}{}\doxysection{frame.\+h}
+\label{frame_8h_source}\index{/github/workspace/multibody/include/huron/multibody/frame.h@{/github/workspace/multibody/include/huron/multibody/frame.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <eigen3/Eigen/Dense>}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}huron/enable\_protected\_make\_shared.h"{}}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacehuron}{huron}} \{}
+\DoxyCodeLine{11 \textcolor{keyword}{namespace }multibody \{}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{keyword}{class }Model;}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{keyword}{using }FrameIndex = size\_t;}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{keyword}{enum class} FrameType \{}
+\DoxyCodeLine{18   kLogical,}
+\DoxyCodeLine{19   kFixed,}
+\DoxyCodeLine{20   kJoint,}
+\DoxyCodeLine{21   kSensor,}
+\DoxyCodeLine{22   kPhysical,}
+\DoxyCodeLine{23 \};}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{keyword}{class }\mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{Frame}} : \textcolor{keyword}{public} \mbox{\hyperlink{classhuron_1_1enable__protected__make__shared}{enable\_protected\_make\_shared}}<Frame> \{}
+\DoxyCodeLine{26  \textcolor{keyword}{public}:}
+\DoxyCodeLine{27   \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{classhuron_1_1multibody_1_1Model}{Model}};}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29   \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{Frame}}(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{Frame}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{30   \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{Frame}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{Frame}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{31   \textcolor{keyword}{virtual} \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{\string~Frame}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33   \textcolor{keyword}{virtual} Eigen::Affine3d GetTransformInWorld() \textcolor{keyword}{const};}
+\DoxyCodeLine{34   \textcolor{keyword}{virtual} Eigen::Affine3d GetTransformFromFrame(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{Frame}}\& other) \textcolor{keyword}{const};}
+\DoxyCodeLine{35   \textcolor{keyword}{virtual} Eigen::Affine3d GetTransformFromFrame(FrameIndex other) \textcolor{keyword}{const};}
+\DoxyCodeLine{36   \textcolor{keyword}{virtual} Eigen::Affine3d GetTransformToFrame(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{Frame}}\& other) \textcolor{keyword}{const};}
+\DoxyCodeLine{37   \textcolor{keyword}{virtual} Eigen::Affine3d GetTransformToFrame(FrameIndex other) \textcolor{keyword}{const};}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39   \textcolor{keyword}{const} std::string\& name()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} name\_; \}}
+\DoxyCodeLine{40   FrameIndex index()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame_a5adf5a88e65e2b25e53d077a142cf621}{index\_}}; \}}
+\DoxyCodeLine{41   FrameType type()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} type\_; \}}
+\DoxyCodeLine{42   \textcolor{keywordtype}{bool} is\_user\_defined()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} is\_user\_defined\_; \}}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44  \textcolor{keyword}{protected}:}
+\DoxyCodeLine{45   \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{Frame}}(FrameIndex index,}
+\DoxyCodeLine{46         \textcolor{keyword}{const} std::string\& name,}
+\DoxyCodeLine{47         FrameType type,}
+\DoxyCodeLine{48         \textcolor{keywordtype}{bool} is\_user\_defined,}
+\DoxyCodeLine{49         std::weak\_ptr<const Model> model);}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{52   \textcolor{keyword}{const} FrameIndex \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame_a5adf5a88e65e2b25e53d077a142cf621}{index\_}};}
+\DoxyCodeLine{53   \textcolor{keyword}{const} std::string name\_;}
+\DoxyCodeLine{54   \textcolor{keyword}{const} FrameType type\_;}
+\DoxyCodeLine{55   \textcolor{keywordtype}{bool} is\_user\_defined\_;}
+\DoxyCodeLine{56   \textcolor{keyword}{const} std::weak\_ptr<const Model> model\_;}
+\DoxyCodeLine{57 \};}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59 \}  \textcolor{comment}{// namespace multibody}}
+\DoxyCodeLine{60 \}  \textcolor{comment}{// namespace huron}}
+
+\end{DoxyCode}

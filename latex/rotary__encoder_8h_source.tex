@@ -1,0 +1,107 @@
+\hypertarget{rotary__encoder_8h_source}{}\doxysection{rotary\+\_\+encoder.\+h}
+\label{rotary__encoder_8h_source}\index{/github/workspace/system/control\_interfaces/include/huron/control\_interfaces/rotary\_encoder.h@{/github/workspace/system/control\_interfaces/include/huron/control\_interfaces/rotary\_encoder.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <cmath>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <set>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <utility>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}encoder.h"{}}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacehuron}{huron}} \{}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{keyword}{class }\mbox{\hyperlink{classhuron_1_1RotaryEncoderConfiguration}{RotaryEncoderConfiguration}} : \textcolor{keyword}{public} \mbox{\hyperlink{classhuron_1_1EncoderConfiguration}{EncoderConfiguration}} \{}
+\DoxyCodeLine{14  \textcolor{keyword}{public}:}
+\DoxyCodeLine{18   \mbox{\hyperlink{classhuron_1_1RotaryEncoderConfiguration_a6e4f23f102f212d268813cc6e5d86236}{RotaryEncoderConfiguration}}(ConfigMap config\_map,}
+\DoxyCodeLine{19                              std::set<std::string> valid\_keys)}
+\DoxyCodeLine{20       : \mbox{\hyperlink{classhuron_1_1EncoderConfiguration}{EncoderConfiguration}}(config\_map,}
+\DoxyCodeLine{21                              [\&valid\_keys]() \{}
+\DoxyCodeLine{22                                std::set<std::string> tmp(kRotEncValidKeys);}
+\DoxyCodeLine{23                                tmp.merge(valid\_keys);}
+\DoxyCodeLine{24                                \textcolor{keywordflow}{return} tmp;}
+\DoxyCodeLine{25                              \}()) \{\}}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27   \textcolor{keyword}{explicit} RotaryEncoderConfiguration(\textcolor{keywordtype}{double} cpr)}
+\DoxyCodeLine{28       : RotaryEncoderConfiguration(}
+\DoxyCodeLine{29           ConfigMap(\{\{\textcolor{stringliteral}{"{}cpr"{}}, cpr\}\}), \{\}) \{\}}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31  \textcolor{keyword}{private}:}
+\DoxyCodeLine{32   \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{inline} std::set<std::string> kRotEncValidKeys\{\textcolor{stringliteral}{"{}cpr"{}}\};}
+\DoxyCodeLine{33 \};}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{40 \textcolor{keyword}{class }\mbox{\hyperlink{classhuron_1_1RotaryEncoder}{RotaryEncoder}} : \textcolor{keyword}{public} \mbox{\hyperlink{classhuron_1_1Encoder}{Encoder}} \{}
+\DoxyCodeLine{41  \textcolor{keyword}{public}:}
+\DoxyCodeLine{42   \mbox{\hyperlink{classhuron_1_1RotaryEncoder}{RotaryEncoder}}(\textcolor{keywordtype}{double} gear\_ratio,}
+\DoxyCodeLine{43                 std::unique\_ptr<RotaryEncoderConfiguration> config)}
+\DoxyCodeLine{44     : \mbox{\hyperlink{classhuron_1_1Encoder}{Encoder}}(gear\_ratio, std::move(config)) \{}
+\DoxyCodeLine{45     cpr\_ = std::any\_cast<double>(config\_.get()-\/>Get(\textcolor{stringliteral}{"{}cpr"{}}));}
+\DoxyCodeLine{46   \}}
+\DoxyCodeLine{47   \mbox{\hyperlink{classhuron_1_1RotaryEncoder}{RotaryEncoder}}(\textcolor{keywordtype}{double} gear\_ratio, \textcolor{keywordtype}{double} cpr)}
+\DoxyCodeLine{48       : \mbox{\hyperlink{classhuron_1_1RotaryEncoder}{RotaryEncoder}}(gear\_ratio,}
+\DoxyCodeLine{49                       std::make\_unique<RotaryEncoderConfiguration>(cpr)) \{\}}
+\DoxyCodeLine{50   \textcolor{keyword}{explicit} \mbox{\hyperlink{classhuron_1_1RotaryEncoder}{RotaryEncoder}}(\textcolor{keywordtype}{double} cpr)}
+\DoxyCodeLine{51       : \mbox{\hyperlink{classhuron_1_1RotaryEncoder}{RotaryEncoder}}(1.0, cpr) \{\}}
+\DoxyCodeLine{52   \mbox{\hyperlink{classhuron_1_1RotaryEncoder}{RotaryEncoder}}(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1RotaryEncoder}{RotaryEncoder}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{53   \mbox{\hyperlink{classhuron_1_1RotaryEncoder}{RotaryEncoder}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1RotaryEncoder}{RotaryEncoder}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{54   \mbox{\hyperlink{classhuron_1_1RotaryEncoder}{\string~RotaryEncoder}}() \textcolor{keyword}{override} = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56   \textcolor{keywordtype}{void} RequestStateUpdate() \textcolor{keyword}{final} \{}
+\DoxyCodeLine{57     prev\_count\_ = count\_;}
+\DoxyCodeLine{58     \mbox{\hyperlink{classhuron_1_1RotaryEncoder_a738c45054ceffe55be0d5da48eb5ce02}{prev\_velocity\_}} = \mbox{\hyperlink{classhuron_1_1RotaryEncoder_aa8f486343c252496adab86f98cd890f0}{velocity\_}};}
+\DoxyCodeLine{59     \mbox{\hyperlink{classhuron_1_1RotaryEncoder_af50667666bed70f6b8cb1cd71414b8b5}{DoUpdateState}}();}
+\DoxyCodeLine{60   \}}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{65   \textcolor{keywordtype}{double} \mbox{\hyperlink{classhuron_1_1RotaryEncoder_ae9f03e7a1fd90107f94223d9466bba79}{GetCount}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{66     \textcolor{keywordflow}{return} count\_;}
+\DoxyCodeLine{67   \}}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{72   \textcolor{keywordtype}{double} \mbox{\hyperlink{classhuron_1_1RotaryEncoder_ad19c605c49cc0f500924734df09f051c}{GetVelocityCount}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{73     \textcolor{keywordflow}{return} \mbox{\hyperlink{classhuron_1_1RotaryEncoder_aa8f486343c252496adab86f98cd890f0}{velocity\_}};}
+\DoxyCodeLine{74   \}}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{79   \textcolor{keywordtype}{double} \mbox{\hyperlink{classhuron_1_1RotaryEncoder_ab89834b0af9f932aa06f7319eaa072b5}{GetPrevCount}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{80     \textcolor{keywordflow}{return} prev\_count\_;}
+\DoxyCodeLine{81   \}}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{86   \textcolor{keywordtype}{double} \mbox{\hyperlink{classhuron_1_1RotaryEncoder_ae9bf9f0df0ee1e437cf63577e9735c7a}{GetCPR}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{87     \textcolor{keywordflow}{return} cpr\_;}
+\DoxyCodeLine{88   \}}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{94   \textcolor{keywordtype}{double} \mbox{\hyperlink{classhuron_1_1RotaryEncoder_ae54c2e5234f61d96ab755e3266986458}{GetPosition}}()\textcolor{keyword}{ const override }\{}
+\DoxyCodeLine{95     \textcolor{keywordflow}{return} count\_ / cpr\_ * 2.0 * M\_PI / gear\_ratio\_;}
+\DoxyCodeLine{96   \}}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{102   \textcolor{keywordtype}{double} \mbox{\hyperlink{classhuron_1_1RotaryEncoder_ae1123b70ed406157df813693e85f5d83}{GetAngleDegree}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{103     \textcolor{keywordflow}{return} count\_ / cpr\_ * 360.0 / gear\_ratio\_;}
+\DoxyCodeLine{104   \}}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{110   \textcolor{keywordtype}{double} \mbox{\hyperlink{classhuron_1_1RotaryEncoder_a5e59dc869c35ae1ce537f29e068bf85c}{GetVelocity}}()\textcolor{keyword}{ const override }\{}
+\DoxyCodeLine{111     \textcolor{keywordflow}{return} \mbox{\hyperlink{classhuron_1_1RotaryEncoder_aa8f486343c252496adab86f98cd890f0}{velocity\_}} / cpr\_ * 2 * M\_PI / gear\_ratio\_;}
+\DoxyCodeLine{112   \}}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{118   \textcolor{keywordtype}{double} \mbox{\hyperlink{classhuron_1_1RotaryEncoder_a1e0b3a6e1f1a75b5d81c356c4ed32d35}{GetVelocityDegree}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{119     \textcolor{keywordflow}{return} \mbox{\hyperlink{classhuron_1_1RotaryEncoder_aa8f486343c252496adab86f98cd890f0}{velocity\_}} / cpr\_ * 360.0 / gear\_ratio\_;}
+\DoxyCodeLine{120   \}}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{125   \textcolor{keywordtype}{void} \mbox{\hyperlink{classhuron_1_1RotaryEncoder_a96792dbef952f8268546c0122b5f0dea}{Reset}}()\textcolor{keyword}{ override }\{}
+\DoxyCodeLine{126     count\_ = 0.0;}
+\DoxyCodeLine{127     prev\_count\_ = 0.0;}
+\DoxyCodeLine{128   \}}
+\DoxyCodeLine{129 }
+\DoxyCodeLine{130  \textcolor{keyword}{protected}:}
+\DoxyCodeLine{139   \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classhuron_1_1RotaryEncoder_af50667666bed70f6b8cb1cd71414b8b5}{DoUpdateState}}() = 0;}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{142   \textcolor{keywordtype}{double} \mbox{\hyperlink{classhuron_1_1RotaryEncoder_aa8f486343c252496adab86f98cd890f0}{velocity\_}} = 0.0;}
+\DoxyCodeLine{144   \textcolor{keywordtype}{double} \mbox{\hyperlink{classhuron_1_1RotaryEncoder_a738c45054ceffe55be0d5da48eb5ce02}{prev\_velocity\_}} = 0.0;}
+\DoxyCodeLine{145   \textcolor{keywordtype}{double} count\_ = 0.0;}
+\DoxyCodeLine{146   \textcolor{keywordtype}{double} prev\_count\_ = 0.0;}
+\DoxyCodeLine{147   \textcolor{keywordtype}{double} cpr\_;}
+\DoxyCodeLine{148 \};}
+\DoxyCodeLine{149 }
+\DoxyCodeLine{150 \}  \textcolor{comment}{// namespace huron}}
+
+\end{DoxyCode}

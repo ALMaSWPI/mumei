@@ -1,0 +1,273 @@
+\hypertarget{classhuron_1_1multibody_1_1Model}{}\doxysection{huron\+::multibody\+::Model Class Reference}
+\label{classhuron_1_1multibody_1_1Model}\index{huron::multibody::Model@{huron::multibody::Model}}
+Inheritance diagram for huron\+::multibody\+::Model\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classhuron_1_1multibody_1_1Model}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_a0a3d79185e592dce91d109e3388ce695}\label{classhuron_1_1multibody_1_1Model_a0a3d79185e592dce91d109e3388ce695}} 
+{\bfseries Model} (const \mbox{\hyperlink{classhuron_1_1multibody_1_1Model}{Model}} \&)=delete
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_aff05af06364091517ff96a70af21b655}\label{classhuron_1_1multibody_1_1Model_aff05af06364091517ff96a70af21b655}} 
+\mbox{\hyperlink{classhuron_1_1multibody_1_1Model}{Model}} \& {\bfseries operator=} (const \mbox{\hyperlink{classhuron_1_1multibody_1_1Model}{Model}} \&)=delete
+\item 
+void \mbox{\hyperlink{classhuron_1_1multibody_1_1Model_a041785cccdbfe069d6fccf2218a41333}{Add\+Model\+Impl}} (Model\+Impl\+Type type, bool set\+\_\+as\+\_\+default=false)
+\item 
+{\footnotesize template$<$typename ... Args$>$ }\\void \mbox{\hyperlink{classhuron_1_1multibody_1_1Model_a8df9e2a9af40c39411af8bfbc782a60c}{Add\+Joint}} (Joint\+Index index, Args \&\&... args)
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_a906562410fc1f9dd34c58179cb572681}\label{classhuron_1_1multibody_1_1Model_a906562410fc1f9dd34c58179cb572681}} 
+\mbox{\hyperlink{classhuron_1_1Joint}{Joint}} $\ast$const {\bfseries Get\+Joint} (Joint\+Index index)
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_a7703d40fa2c9c36017ce7074c79c14fd}\label{classhuron_1_1multibody_1_1Model_a7703d40fa2c9c36017ce7074c79c14fd}} 
+\mbox{\hyperlink{classhuron_1_1Joint}{Joint}} $\ast$const {\bfseries Get\+Joint} (const std\+::string \&name)
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_a25d1dec6dc415fea0ffdf7c440f7e325}\label{classhuron_1_1multibody_1_1Model_a25d1dec6dc415fea0ffdf7c440f7e325}} 
+void {\bfseries Set\+Joint\+State\+Provider} (Joint\+Index index, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classhuron_1_1StateProvider}{State\+Provider}} $>$ state\+\_\+provider)
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_af4c660b2836be67412100894eab433b4}\label{classhuron_1_1multibody_1_1Model_af4c660b2836be67412100894eab433b4}} 
+Joint\+Index {\bfseries Get\+Joint\+Index} (const std\+::string \&joint\+\_\+name) const
+\item 
+{\footnotesize template$<$typename Frame\+Impl , typename ... Args$>$ }\\std\+::weak\+\_\+ptr$<$ const \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{Frame}} $>$ \mbox{\hyperlink{classhuron_1_1multibody_1_1Model_abcb87adec0f790a39fdbb22ace4a5f0d}{Add\+Frame}} (const std\+::string \&name, Args \&\&... args)
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_a65bde8fffdbca00486ac643569b720a3}\label{classhuron_1_1multibody_1_1Model_a65bde8fffdbca00486ac643569b720a3}} 
+std\+::weak\+\_\+ptr$<$ const \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{Frame}} $>$ {\bfseries Get\+Frame} (Frame\+Index index) const
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_aceb6259d585d6489f55571f19ae73cf1}\label{classhuron_1_1multibody_1_1Model_aceb6259d585d6489f55571f19ae73cf1}} 
+std\+::weak\+\_\+ptr$<$ const \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{Frame}} $>$ {\bfseries Get\+Frame} (const std\+::string \&name) const
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_aa76632d9a581adb4d28fbbf5e219b670}\label{classhuron_1_1multibody_1_1Model_aa76632d9a581adb4d28fbbf5e219b670}} 
+void {\bfseries Build\+From\+Urdf} (const std\+::string \&urdf\+\_\+path, Joint\+Type root\+\_\+joint\+\_\+type=Joint\+Type\+::k\+Fixed)
+\item 
+void \mbox{\hyperlink{classhuron_1_1multibody_1_1Model_ac35fad18efb281ebe49b417806ad78d5}{Finalize}} (const Eigen\+::\+Vector\+Xd \&initial\+\_\+state)
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_aac6594a95a163a6c2550f071c119c794}\label{classhuron_1_1multibody_1_1Model_aac6594a95a163a6c2550f071c119c794}} 
+void {\bfseries Finalize} ()
+\item 
+void \mbox{\hyperlink{classhuron_1_1multibody_1_1Model_aaa45684d7dd6c02240842a5d5b422a99}{Update\+Joint\+States}} ()
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_afb670aa31d640757815c8d38b973c1d3}\label{classhuron_1_1multibody_1_1Model_afb670aa31d640757815c8d38b973c1d3}} 
+void {\bfseries Set\+Default\+Model\+Impl} (size\+\_\+t index)
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_a8c44b40eebdac689febb2fd7a7fd3661}\label{classhuron_1_1multibody_1_1Model_a8c44b40eebdac689febb2fd7a7fd3661}} 
+size\+\_\+t {\bfseries Get\+Default\+Model\+Impl} () const
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_a063dce3263b6d2849f032d031f9e95e6}\label{classhuron_1_1multibody_1_1Model_a063dce3263b6d2849f032d031f9e95e6}} 
+Eigen\+::\+Affine3d {\bfseries Get\+Joint\+Transform\+In\+World} (size\+\_\+t joint\+\_\+index) const
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_a19d83db06e073c1cd7e90f51501415e0}\label{classhuron_1_1multibody_1_1Model_a19d83db06e073c1cd7e90f51501415e0}} 
+Frame\+Index {\bfseries Get\+Frame\+Index} (const std\+::string \&frame\+\_\+name) const
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_a2a24b9c4690d1bd38e7c08bfe01c4252}\label{classhuron_1_1multibody_1_1Model_a2a24b9c4690d1bd38e7c08bfe01c4252}} 
+const std\+::string \& {\bfseries Get\+Frame\+Name} (Frame\+Index frame\+\_\+index) const
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_a4033ae74cc4ee42415156a69b97f1c46}\label{classhuron_1_1multibody_1_1Model_a4033ae74cc4ee42415156a69b97f1c46}} 
+Eigen\+::\+Affine3d {\bfseries Get\+Frame\+Transform} (Frame\+Index from\+\_\+frame, Frame\+Index to\+\_\+frame) const
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_a95253bddf248118a714db7976deb9794}\label{classhuron_1_1multibody_1_1Model_a95253bddf248118a714db7976deb9794}} 
+Eigen\+::\+Affine3d {\bfseries Get\+Frame\+Transform\+In\+World} (Frame\+Index frame) const
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_ad36c941f6c4d00662843e92fb41ec460}\label{classhuron_1_1multibody_1_1Model_ad36c941f6c4d00662843e92fb41ec460}} 
+Eigen\+::\+Vector\+Xd {\bfseries Neutral\+Configuration} () const
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_a241101dd1396180d23f88c75dbcf600f}\label{classhuron_1_1multibody_1_1Model_a241101dd1396180d23f88c75dbcf600f}} 
+Eigen\+::\+Vector3d {\bfseries Eval\+Center\+Of\+Mass\+Position} ()
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_a580ed64492bd4436f338a8bfadc35bab}\label{classhuron_1_1multibody_1_1Model_a580ed64492bd4436f338a8bfadc35bab}} 
+Eigen\+::\+Vector3d {\bfseries Get\+Center\+Of\+Mass\+Position} () const
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_a163a82c9dca5a31014fcd3f270685b27}\label{classhuron_1_1multibody_1_1Model_a163a82c9dca5a31014fcd3f270685b27}} 
+const Eigen\+::\+Vector\+Block$<$ const Eigen\+::\+Vector\+Xd $>$ {\bfseries Get\+Positions} () const
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_a841e5fcb40072be30b8093bee92a673e}\label{classhuron_1_1multibody_1_1Model_a841e5fcb40072be30b8093bee92a673e}} 
+const Eigen\+::\+Vector\+Block$<$ const Eigen\+::\+Vector\+Xd $>$ {\bfseries Get\+Velocities} () const
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_a5d788e1c9f5ea4556e23a25f6a917d4e}\label{classhuron_1_1multibody_1_1Model_a5d788e1c9f5ea4556e23a25f6a917d4e}} 
+const Eigen\+::\+Vector\+Xd \& {\bfseries Get\+Accelerations} () const
+\begin{DoxyCompactList}\small\item\em Get the generalized accelerations of the model. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_adedc8fa3ff775c24ea08973747487133}\label{classhuron_1_1multibody_1_1Model_adedc8fa3ff775c24ea08973747487133}} 
+const Eigen\+::\+Vector\+Xd \& {\bfseries Get\+Torques} () const
+\begin{DoxyCompactList}\small\item\em Get the joint torques. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_a9ebd32454dd68827fcfefafc9fb5dd93}\label{classhuron_1_1multibody_1_1Model_a9ebd32454dd68827fcfefafc9fb5dd93}} 
+const Eigen\+::\+Matrix\+Xd \& {\bfseries Get\+Mass\+Matrix} () const
+\begin{DoxyCompactList}\small\item\em Get the mass matrix with the cached value. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_a6ba6c6f116d33655c7f6e9a7c67b60c3}\label{classhuron_1_1multibody_1_1Model_a6ba6c6f116d33655c7f6e9a7c67b60c3}} 
+const Eigen\+::\+Matrix\+Xd \& {\bfseries Get\+Coriolis\+Matrix} () const
+\begin{DoxyCompactList}\small\item\em Get the Coriolis matrix with the cached value. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_a9c3956fc2372e9388bea96ff4b42c667}\label{classhuron_1_1multibody_1_1Model_a9c3956fc2372e9388bea96ff4b42c667}} 
+const Eigen\+::\+Vector\+Xd \& {\bfseries Get\+Nonlinear\+Effects} () const
+\begin{DoxyCompactList}\small\item\em Get the nonlinear effects vector. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_a343a22f4e16df5e2017885c33f7f7212}\label{classhuron_1_1multibody_1_1Model_a343a22f4e16df5e2017885c33f7f7212}} 
+const Eigen\+::\+Vector\+Xd \& {\bfseries Get\+Gravity} () const
+\begin{DoxyCompactList}\small\item\em Get the gravity vector. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_aad747f096a1ca2c9de8aee4141b6fb11}\label{classhuron_1_1multibody_1_1Model_aad747f096a1ca2c9de8aee4141b6fb11}} 
+const huron\+::\+Vector6d \& {\bfseries Get\+Spatial\+Momentum} () const
+\begin{DoxyCompactList}\small\item\em Get the spatial momentum with respect to the specified frame. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_af579f84acaeefcc22a1c3c31da463f1d}\label{classhuron_1_1multibody_1_1Model_af579f84acaeefcc22a1c3c31da463f1d}} 
+huron\+::\+Vector6d {\bfseries Get\+Centroidal\+Momentum} () const
+\begin{DoxyCompactList}\small\item\em Get the centroidal momentum. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_adf423cbc5b810a24abcc759719221791}\label{classhuron_1_1multibody_1_1Model_adf423cbc5b810a24abcc759719221791}} 
+const huron\+::\+Matrix6\+Xd \& {\bfseries Get\+Centroidal\+Matrix} () const
+\begin{DoxyCompactList}\small\item\em Get the centroidal momentum matrix with the cached value. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_a4a0e99dd6dea667cc74771e84176905e}\label{classhuron_1_1multibody_1_1Model_a4a0e99dd6dea667cc74771e84176905e}} 
+void {\bfseries Compute\+All} ()
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_ac160f851a6e518aea29915b4809d7a1d}\label{classhuron_1_1multibody_1_1Model_ac160f851a6e518aea29915b4809d7a1d}} 
+void {\bfseries Forward\+Kinematics} ()
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_a97b9dbe1027db4cc33962eb0db9ef381}\label{classhuron_1_1multibody_1_1Model_a97b9dbe1027db4cc33962eb0db9ef381}} 
+bool {\bfseries is\+\_\+finalized} () const
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_ad2dc62e24ce9ba7ad1d4517360200777}\label{classhuron_1_1multibody_1_1Model_ad2dc62e24ce9ba7ad1d4517360200777}} 
+size\+\_\+t {\bfseries num\+\_\+positions} () const
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_a83d8fb468798fb1e157dc294725b5705}\label{classhuron_1_1multibody_1_1Model_a83d8fb468798fb1e157dc294725b5705}} 
+size\+\_\+t {\bfseries num\+\_\+velocities} () const
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_a259d62e6d8ae64f9c1ba2f193a0cb7e2}\label{classhuron_1_1multibody_1_1Model_a259d62e6d8ae64f9c1ba2f193a0cb7e2}} 
+size\+\_\+t {\bfseries num\+\_\+joints} () const
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_afd75546dd961da23a00e611490acb542}\label{classhuron_1_1multibody_1_1Model_afd75546dd961da23a00e611490acb542}} 
+size\+\_\+t {\bfseries num\+\_\+frames} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface}{Model\+Impl\+Interface}} const $\ast$ \mbox{\hyperlink{classhuron_1_1multibody_1_1Model_aba38ad6497ceb77a56b8148faeaeba1b}{Get\+Model\+Impl}} (size\+\_\+t index) const
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_a480731600f0a2bf3c5f492dd74e4ca26}\label{classhuron_1_1multibody_1_1Model_a480731600f0a2bf3c5f492dd74e4ca26}} 
+{\footnotesize template$<$typename Frame\+Impl , typename ... Args$>$ }\\void {\bfseries Do\+Add\+Frame} (const std\+::string \&name, bool is\+\_\+user\+\_\+defined, Args \&\&... args)
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_adf590e6b10b7ae1d27842b7ec23ee2ce}\label{classhuron_1_1multibody_1_1Model_adf590e6b10b7ae1d27842b7ec23ee2ce}} 
+void {\bfseries Do\+Add\+Frame\+From\+Model\+Description} (Frame\+Index idx, const std\+::string \&name, Frame\+Type type)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_ae7f29e82644050898c5bd829776740f7}\label{classhuron_1_1multibody_1_1Model_ae7f29e82644050898c5bd829776740f7}} 
+size\+\_\+t {\bfseries default\+\_\+impl\+\_\+index\+\_\+} = 0
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_a0e81bd78665a4578da38f6647a8744e8}\label{classhuron_1_1multibody_1_1Model_a0e81bd78665a4578da38f6647a8744e8}} 
+std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface}{Model\+Impl\+Interface}} $>$ $>$ {\bfseries impls\+\_\+}
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_a4903b65ce31f246930dc856bd92782ba}\label{classhuron_1_1multibody_1_1Model_a4903b65ce31f246930dc856bd92782ba}} 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classhuron_1_1Joint}{Joint}} $>$ $>$ {\bfseries joints\+\_\+}
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_a1692692b523ba8133f920ec4c064af09}\label{classhuron_1_1multibody_1_1Model_a1692692b523ba8133f920ec4c064af09}} 
+Eigen\+::\+Vector\+Xd {\bfseries states\+\_\+}
+\begin{DoxyCompactList}\small\item\em The joint states \mbox{[}q, v\mbox{]}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_af3c11a9a3d09b62788866e035f14f092}\label{classhuron_1_1multibody_1_1Model_af3c11a9a3d09b62788866e035f14f092}} 
+size\+\_\+t {\bfseries num\+\_\+positions\+\_\+} = 0
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_af0180a0554044d1cc1a71b59fa9192a3}\label{classhuron_1_1multibody_1_1Model_af0180a0554044d1cc1a71b59fa9192a3}} 
+size\+\_\+t {\bfseries num\+\_\+velocities\+\_\+} = 0
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_a7075e98c8a43f2b9533cb6bed4b941b3}\label{classhuron_1_1multibody_1_1Model_a7075e98c8a43f2b9533cb6bed4b941b3}} 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{Frame}} $>$ $>$ {\bfseries frames\+\_\+}
+\begin{DoxyCompactList}\small\item\em All frames, including those defined by the model description file and user-\/defined ones. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_acd119cd7601925dc1556a2e118980a34}\label{classhuron_1_1multibody_1_1Model_acd119cd7601925dc1556a2e118980a34}} 
+std\+::unordered\+\_\+map$<$ std\+::string, Frame\+Index $>$ {\bfseries frame\+\_\+name\+\_\+to\+\_\+index\+\_\+}
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_a156b139121e038832dc21536f7f78171}\label{classhuron_1_1multibody_1_1Model_a156b139121e038832dc21536f7f78171}} 
+bool {\bfseries is\+\_\+constructed\+\_\+} = false
+\item 
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_a0e73c8dfca7f116ab782c72ce796ac6d}\label{classhuron_1_1multibody_1_1Model_a0e73c8dfca7f116ab782c72ce796ac6d}} 
+bool {\bfseries is\+\_\+finalized\+\_\+} = false
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_abcb87adec0f790a39fdbb22ace4a5f0d}\label{classhuron_1_1multibody_1_1Model_abcb87adec0f790a39fdbb22ace4a5f0d}} 
+\index{huron::multibody::Model@{huron::multibody::Model}!AddFrame@{AddFrame}}
+\index{AddFrame@{AddFrame}!huron::multibody::Model@{huron::multibody::Model}}
+\doxysubsubsection{\texorpdfstring{AddFrame()}{AddFrame()}}
+{\footnotesize\ttfamily template$<$typename Frame\+Impl , typename ... Args$>$ \\
+std\+::weak\+\_\+ptr$<$ const \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{Frame}} $>$ huron\+::multibody\+::\+Model\+::\+Add\+Frame (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{Args \&\&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Adds a frame to the model. Currently supported formats for external users\+:
+\begin{DoxyItemize}
+\item Add\+Frame$<$\+Logical\+Frame$>$(name, parent\+\_\+frame, transform\+\_\+function)
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+As of now, frames can only be added after the model is built from URDF. This will be changed in the future.
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The index of the frame. \\
+\hline
+{\em args} & Arguments to be passed to the constructor of the frame. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_a8df9e2a9af40c39411af8bfbc782a60c}\label{classhuron_1_1multibody_1_1Model_a8df9e2a9af40c39411af8bfbc782a60c}} 
+\index{huron::multibody::Model@{huron::multibody::Model}!AddJoint@{AddJoint}}
+\index{AddJoint@{AddJoint}!huron::multibody::Model@{huron::multibody::Model}}
+\doxysubsubsection{\texorpdfstring{AddJoint()}{AddJoint()}}
+{\footnotesize\ttfamily template$<$typename ... Args$>$ \\
+void huron\+::multibody\+::\+Model\+::\+Add\+Joint (\begin{DoxyParamCaption}\item[{Joint\+Index}]{index,  }\item[{Args \&\&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Adds a joint to the model.
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The index of the joint. \\
+\hline
+{\em args} & Arguments to be passed to the constructor of the joint. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_a041785cccdbfe069d6fccf2218a41333}\label{classhuron_1_1multibody_1_1Model_a041785cccdbfe069d6fccf2218a41333}} 
+\index{huron::multibody::Model@{huron::multibody::Model}!AddModelImpl@{AddModelImpl}}
+\index{AddModelImpl@{AddModelImpl}!huron::multibody::Model@{huron::multibody::Model}}
+\doxysubsubsection{\texorpdfstring{AddModelImpl()}{AddModelImpl()}}
+{\footnotesize\ttfamily void huron\+::multibody\+::\+Model\+::\+Add\+Model\+Impl (\begin{DoxyParamCaption}\item[{Model\+Impl\+Type}]{type,  }\item[{bool}]{set\+\_\+as\+\_\+default = {\ttfamily false} }\end{DoxyParamCaption})}
+
+Adds a model implementation to the model.
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type of the model implementation. \\
+\hline
+{\em set\+\_\+as\+\_\+default} & If true, the model implementation will be set as the default model implementation. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & if the model implementation is not available. \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_ac35fad18efb281ebe49b417806ad78d5}\label{classhuron_1_1multibody_1_1Model_ac35fad18efb281ebe49b417806ad78d5}} 
+\index{huron::multibody::Model@{huron::multibody::Model}!Finalize@{Finalize}}
+\index{Finalize@{Finalize}!huron::multibody::Model@{huron::multibody::Model}}
+\doxysubsubsection{\texorpdfstring{Finalize()}{Finalize()}}
+{\footnotesize\ttfamily void huron\+::multibody\+::\+Model\+::\+Finalize (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{initial\+\_\+state }\end{DoxyParamCaption})}
+
+Performs final configuration and checks the validity of the model\+:
+\begin{DoxyItemize}
+\item Checks if all joints are added to the model.
+\item Adjusts the joint state indices in the states vector. This method also sets the initial state \mbox{[}q, v\mbox{]} of the model. 
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & if the model is not valid. \\
+\hline
+\end{DoxyExceptions}
+
+\end{DoxyItemize}\mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_aba38ad6497ceb77a56b8148faeaeba1b}\label{classhuron_1_1multibody_1_1Model_aba38ad6497ceb77a56b8148faeaeba1b}} 
+\index{huron::multibody::Model@{huron::multibody::Model}!GetModelImpl@{GetModelImpl}}
+\index{GetModelImpl@{GetModelImpl}!huron::multibody::Model@{huron::multibody::Model}}
+\doxysubsubsection{\texorpdfstring{GetModelImpl()}{GetModelImpl()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classhuron_1_1multibody_1_1internal_1_1ModelImplInterface}{internal\+::\+Model\+Impl\+Interface}} const  $\ast$ huron\+::multibody\+::\+Model\+::\+Get\+Model\+Impl (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}}
+
+Returns the model implementation at the given index. This function is provided for testing subclasses only. \mbox{\Hypertarget{classhuron_1_1multibody_1_1Model_aaa45684d7dd6c02240842a5d5b422a99}\label{classhuron_1_1multibody_1_1Model_aaa45684d7dd6c02240842a5d5b422a99}} 
+\index{huron::multibody::Model@{huron::multibody::Model}!UpdateJointStates@{UpdateJointStates}}
+\index{UpdateJointStates@{UpdateJointStates}!huron::multibody::Model@{huron::multibody::Model}}
+\doxysubsubsection{\texorpdfstring{UpdateJointStates()}{UpdateJointStates()}}
+{\footnotesize\ttfamily void huron\+::multibody\+::\+Model\+::\+Update\+Joint\+States (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Updates the joint states \mbox{[}q, v\mbox{]} of the model. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/github/workspace/multibody/include/huron/multibody/model.\+h\item 
+/github/workspace/multibody/src/model.\+cc\end{DoxyCompactItemize}

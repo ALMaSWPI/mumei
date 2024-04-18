@@ -1,0 +1,51 @@
+\hypertarget{actuator_8h_source}{}\doxysection{actuator.\+h}
+\label{actuator_8h_source}\index{/github/workspace/system/control\_interfaces/include/huron/control\_interfaces/actuator.h@{/github/workspace/system/control\_interfaces/include/huron/control\_interfaces/actuator.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <set>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <utility>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}huron/control\_interfaces/moving\_interface.h"{}}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}huron/control\_interfaces/generic\_component.h"{}}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacehuron}{huron}} \{}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{keyword}{class }\mbox{\hyperlink{classhuron_1_1ActuatorConfiguration}{ActuatorConfiguration}} : \textcolor{keyword}{public} \mbox{\hyperlink{classhuron_1_1Configuration}{Configuration}} \{}
+\DoxyCodeLine{15  \textcolor{keyword}{private}:}
+\DoxyCodeLine{16   \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{inline} std::set<std::string> kActuatorValidKeys\{\};}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18  \textcolor{keyword}{public}:}
+\DoxyCodeLine{19   \mbox{\hyperlink{classhuron_1_1ActuatorConfiguration}{ActuatorConfiguration}}(ConfigMap config\_map,}
+\DoxyCodeLine{20                      std::set<std::string> valid\_keys)}
+\DoxyCodeLine{21       : \mbox{\hyperlink{classhuron_1_1Configuration}{Configuration}}(config\_map, [\&valid\_keys]() \{}
+\DoxyCodeLine{22                         std::set<std::string> tmp(kActuatorValidKeys);}
+\DoxyCodeLine{23                         tmp.merge(valid\_keys);}
+\DoxyCodeLine{24                         \textcolor{keywordflow}{return} tmp;}
+\DoxyCodeLine{25                       \}()) \{\}}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27   \textcolor{keyword}{explicit} \mbox{\hyperlink{classhuron_1_1ActuatorConfiguration}{ActuatorConfiguration}}(ConfigMap config\_map)}
+\DoxyCodeLine{28       : \mbox{\hyperlink{classhuron_1_1ActuatorConfiguration}{ActuatorConfiguration}}(config\_map, \{\}) \{\}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30   \mbox{\hyperlink{classhuron_1_1ActuatorConfiguration}{ActuatorConfiguration}}()}
+\DoxyCodeLine{31       : \mbox{\hyperlink{classhuron_1_1ActuatorConfiguration}{ActuatorConfiguration}}(\{\}, \{\}) \{\}}
+\DoxyCodeLine{32 \};}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{keyword}{class }\mbox{\hyperlink{classhuron_1_1Actuator}{Actuator}} : \textcolor{keyword}{public} \mbox{\hyperlink{classhuron_1_1GenericComponent}{GenericComponent}}, \textcolor{keyword}{public} \mbox{\hyperlink{classhuron_1_1MovingInterface}{MovingInterface}} \{}
+\DoxyCodeLine{35  \textcolor{keyword}{public}:}
+\DoxyCodeLine{36   \mbox{\hyperlink{classhuron_1_1Actuator}{Actuator}}(\textcolor{keywordtype}{size\_t} dim, std::unique\_ptr<ActuatorConfiguration> config)}
+\DoxyCodeLine{37     : \mbox{\hyperlink{classhuron_1_1GenericComponent}{GenericComponent}}(std::move(config)), \mbox{\hyperlink{classhuron_1_1MovingInterface}{MovingInterface}}(dim) \{\}}
+\DoxyCodeLine{38   \textcolor{keyword}{explicit} \mbox{\hyperlink{classhuron_1_1Actuator}{Actuator}}(\textcolor{keywordtype}{size\_t} dim)}
+\DoxyCodeLine{39     : \mbox{\hyperlink{classhuron_1_1Actuator}{Actuator}}(dim, std::make\_unique<ActuatorConfiguration>()) \{\}}
+\DoxyCodeLine{40   \mbox{\hyperlink{classhuron_1_1Actuator}{Actuator}}(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1Actuator}{Actuator}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{41   \mbox{\hyperlink{classhuron_1_1Actuator}{Actuator}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1Actuator}{Actuator}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{42   \mbox{\hyperlink{classhuron_1_1Actuator}{\string~Actuator}}() \textcolor{keyword}{override} = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{43 \};}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 \}  \textcolor{comment}{// namespace huron}}
+
+\end{DoxyCode}

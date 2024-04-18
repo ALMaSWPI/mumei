@@ -1,0 +1,44 @@
+\hypertarget{sensor__with__frame_8h_source}{}\doxysection{sensor\+\_\+with\+\_\+frame.\+h}
+\label{sensor__with__frame_8h_source}\index{/github/workspace/system/control\_interfaces/include/huron/control\_interfaces/sensor\_with\_frame.h@{/github/workspace/system/control\_interfaces/include/huron/control\_interfaces/sensor\_with\_frame.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <eigen3/Eigen/Core>}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include "{}huron/control\_interfaces/sensor.h"{}}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}huron/multibody/frame.h"{}}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacehuron}{huron}} \{}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{keyword}{class }\mbox{\hyperlink{classhuron_1_1SensorWithFrame}{SensorWithFrame}} : \textcolor{keyword}{public} \mbox{\hyperlink{classhuron_1_1Sensor}{Sensor}} \{}
+\DoxyCodeLine{13   \textcolor{keyword}{using }\mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{Frame}} = \mbox{\hyperlink{classhuron_1_1multibody_1_1Frame}{multibody::Frame}};}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15  \textcolor{keyword}{public}:}
+\DoxyCodeLine{16   \mbox{\hyperlink{classhuron_1_1SensorWithFrame}{SensorWithFrame}}(\textcolor{keyword}{const} Eigen::Vector2i\& dim,}
+\DoxyCodeLine{17                   std::weak\_ptr<const Frame> frame);}
+\DoxyCodeLine{18   \mbox{\hyperlink{classhuron_1_1SensorWithFrame}{SensorWithFrame}}(\textcolor{keyword}{const} Eigen::Vector2i\& dim,}
+\DoxyCodeLine{19                   std::weak\_ptr<const Frame> frame,}
+\DoxyCodeLine{20                   std::unique\_ptr<Configuration> config);}
+\DoxyCodeLine{21   \mbox{\hyperlink{classhuron_1_1SensorWithFrame}{SensorWithFrame}}(\textcolor{keywordtype}{int} rows, \textcolor{keywordtype}{int} cols,}
+\DoxyCodeLine{22                   std::weak\_ptr<const Frame> frame);}
+\DoxyCodeLine{23   \mbox{\hyperlink{classhuron_1_1SensorWithFrame}{SensorWithFrame}}(\textcolor{keywordtype}{int} rows, \textcolor{keywordtype}{int} cols,}
+\DoxyCodeLine{24                   std::weak\_ptr<const Frame> frame,}
+\DoxyCodeLine{25                   std::unique\_ptr<Configuration> config);}
+\DoxyCodeLine{26   \mbox{\hyperlink{classhuron_1_1SensorWithFrame}{SensorWithFrame}}(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1SensorWithFrame}{SensorWithFrame}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{27   \mbox{\hyperlink{classhuron_1_1SensorWithFrame}{SensorWithFrame}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1SensorWithFrame}{SensorWithFrame}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{28   \mbox{\hyperlink{classhuron_1_1SensorWithFrame}{\string~SensorWithFrame}}() \textcolor{keyword}{override} = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{33   std::weak\_ptr<const Frame> \mbox{\hyperlink{classhuron_1_1SensorWithFrame_a0677fee945c71e8ee86e71965c14cdef}{GetSensorFrame}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{34     \textcolor{keywordflow}{return} frame\_;}
+\DoxyCodeLine{35   \}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37  \textcolor{keyword}{private}:}
+\DoxyCodeLine{38   std::weak\_ptr<const Frame> frame\_;}
+\DoxyCodeLine{39 \};}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 \}  \textcolor{comment}{// namespace huron}}
+
+\end{DoxyCode}

@@ -1,0 +1,39 @@
+\hypertarget{odrive__rotary__encoder_8h_source}{}\doxysection{odrive\+\_\+rotary\+\_\+encoder.\+h}
+\label{odrive__rotary__encoder_8h_source}\index{/github/workspace/system/odrive/include/huron/odrive/odrive\_rotary\_encoder.h@{/github/workspace/system/odrive/include/huron/odrive/odrive\_rotary\_encoder.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}huron/control\_interfaces/rotary\_encoder.h"{}}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}huron/odrive/odrive.h"{}}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacehuron}{huron}} \{}
+\DoxyCodeLine{8 \textcolor{keyword}{namespace }odrive \{}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{keyword}{class }\mbox{\hyperlink{classhuron_1_1odrive_1_1ODriveEncoder}{ODriveEncoder}} final : \textcolor{keyword}{public} \mbox{\hyperlink{classhuron_1_1RotaryEncoder}{huron::RotaryEncoder}} \{}
+\DoxyCodeLine{11  \textcolor{keyword}{public}:}
+\DoxyCodeLine{12   \mbox{\hyperlink{classhuron_1_1odrive_1_1ODriveEncoder}{ODriveEncoder}}(\textcolor{keywordtype}{double} gear\_ratio,}
+\DoxyCodeLine{13                 std::unique\_ptr<RotaryEncoderConfiguration> config,}
+\DoxyCodeLine{14                 std::shared\_ptr<ODrive> odrive);}
+\DoxyCodeLine{15   \mbox{\hyperlink{classhuron_1_1odrive_1_1ODriveEncoder}{ODriveEncoder}}(\textcolor{keywordtype}{double} gear\_ratio, \textcolor{keywordtype}{double} cpr, std::shared\_ptr<ODrive> odrive);}
+\DoxyCodeLine{16   \mbox{\hyperlink{classhuron_1_1odrive_1_1ODriveEncoder}{ODriveEncoder}}(\textcolor{keywordtype}{double} cpr, std::shared\_ptr<ODrive> odrive);}
+\DoxyCodeLine{17   \mbox{\hyperlink{classhuron_1_1odrive_1_1ODriveEncoder}{ODriveEncoder}}(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1odrive_1_1ODriveEncoder}{ODriveEncoder}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{18   \mbox{\hyperlink{classhuron_1_1odrive_1_1ODriveEncoder}{ODriveEncoder}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1odrive_1_1ODriveEncoder}{ODriveEncoder}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{19   \mbox{\hyperlink{classhuron_1_1odrive_1_1ODriveEncoder}{\string~ODriveEncoder}}() \textcolor{keyword}{override} = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21   \textcolor{keywordtype}{void} Initialize() \textcolor{keyword}{override};}
+\DoxyCodeLine{22   \textcolor{keywordtype}{void} SetUp() \textcolor{keyword}{override};}
+\DoxyCodeLine{23   \textcolor{keywordtype}{void} Terminate() \textcolor{keyword}{override};}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25  \textcolor{keyword}{protected}:}
+\DoxyCodeLine{26   \textcolor{keywordtype}{void} \mbox{\hyperlink{classhuron_1_1odrive_1_1ODriveEncoder_ac60e87724b86b0d24bca55caef666568}{DoUpdateState}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28  \textcolor{keyword}{private}:}
+\DoxyCodeLine{29   std::shared\_ptr<ODrive> odrive\_;}
+\DoxyCodeLine{30 \};}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \}  \textcolor{comment}{// namespace odrive}}
+\DoxyCodeLine{33 \}  \textcolor{comment}{// namespace huron}}
+
+\end{DoxyCode}

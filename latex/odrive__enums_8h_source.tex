@@ -1,0 +1,209 @@
+\hypertarget{odrive__enums_8h_source}{}\doxysection{odrive\+\_\+enums.\+h}
+\label{odrive__enums_8h_source}\index{/github/workspace/system/odrive/include/huron/odrive/odrive\_enums.h@{/github/workspace/system/odrive/include/huron/odrive/odrive\_enums.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Original source from: https://github.com/odriverobotics/ODrive/tree/master}}
+\DoxyCodeLine{3 \textcolor{comment}{ * */}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{comment}{/* TODO: This file is dangerous because the enums could potentially change between API versions. Should transmit as part of the JSON.}}
+\DoxyCodeLine{7 \textcolor{comment}{** To regenerate this file, nagivate to the top level of the ODrive repository and run:}}
+\DoxyCodeLine{8 \textcolor{comment}{** python Firmware/interface\_generator\_stub.py -\/-\/definitions Firmware/odrive-\/interface.yaml -\/-\/template tools/arduino\_enums\_template.j2 -\/-\/output Arduino/ODriveArduino/ODriveEnums.h}}
+\DoxyCodeLine{9 \textcolor{comment}{*/}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{comment}{// ODrive.GpioMode}}
+\DoxyCodeLine{12 \textcolor{keyword}{enum} GpioMode \{}
+\DoxyCodeLine{13   GPIO\_MODE\_DIGITAL                        = 0,}
+\DoxyCodeLine{14   GPIO\_MODE\_DIGITAL\_PULL\_UP                = 1,}
+\DoxyCodeLine{15   GPIO\_MODE\_DIGITAL\_PULL\_DOWN              = 2,}
+\DoxyCodeLine{16   GPIO\_MODE\_ANALOG\_IN                      = 3,}
+\DoxyCodeLine{17   GPIO\_MODE\_UART\_A                         = 4,}
+\DoxyCodeLine{18   GPIO\_MODE\_UART\_B                         = 5,}
+\DoxyCodeLine{19   GPIO\_MODE\_UART\_C                         = 6,}
+\DoxyCodeLine{20   GPIO\_MODE\_CAN\_A                          = 7,}
+\DoxyCodeLine{21   GPIO\_MODE\_I2C\_A                          = 8,}
+\DoxyCodeLine{22   GPIO\_MODE\_SPI\_A                          = 9,}
+\DoxyCodeLine{23   GPIO\_MODE\_PWM                            = 10,}
+\DoxyCodeLine{24   GPIO\_MODE\_ENC0                           = 11,}
+\DoxyCodeLine{25   GPIO\_MODE\_ENC1                           = 12,}
+\DoxyCodeLine{26   GPIO\_MODE\_ENC2                           = 13,}
+\DoxyCodeLine{27   GPIO\_MODE\_MECH\_BRAKE                     = 14,}
+\DoxyCodeLine{28   GPIO\_MODE\_STATUS                         = 15,}
+\DoxyCodeLine{29 \};}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 \textcolor{comment}{// ODrive.StreamProtocolType}}
+\DoxyCodeLine{32 \textcolor{keyword}{enum} StreamProtocolType \{}
+\DoxyCodeLine{33   STREAM\_PROTOCOL\_TYPE\_FIBRE               = 0,}
+\DoxyCodeLine{34   STREAM\_PROTOCOL\_TYPE\_ASCII               = 1,}
+\DoxyCodeLine{35   STREAM\_PROTOCOL\_TYPE\_STDOUT              = 2,}
+\DoxyCodeLine{36   STREAM\_PROTOCOL\_TYPE\_ASCII\_AND\_STDOUT    = 3,}
+\DoxyCodeLine{37 \};}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 \textcolor{comment}{// ODrive.Can.Protocol}}
+\DoxyCodeLine{40 \textcolor{keyword}{enum} Protocol \{}
+\DoxyCodeLine{41   PROTOCOL\_SIMPLE                          = 0x00000001,}
+\DoxyCodeLine{42 \};}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44 \textcolor{comment}{// ODrive.Axis.AxisState}}
+\DoxyCodeLine{45 \textcolor{keyword}{enum} AxisState \{}
+\DoxyCodeLine{46   AXIS\_STATE\_UNDEFINED                     = 0,}
+\DoxyCodeLine{47   AXIS\_STATE\_IDLE                          = 1,}
+\DoxyCodeLine{48   AXIS\_STATE\_STARTUP\_SEQUENCE              = 2,}
+\DoxyCodeLine{49   AXIS\_STATE\_FULL\_CALIBRATION\_SEQUENCE     = 3,}
+\DoxyCodeLine{50   AXIS\_STATE\_MOTOR\_CALIBRATION             = 4,}
+\DoxyCodeLine{51   AXIS\_STATE\_ENCODER\_INDEX\_SEARCH          = 6,}
+\DoxyCodeLine{52   AXIS\_STATE\_ENCODER\_OFFSET\_CALIBRATION    = 7,}
+\DoxyCodeLine{53   AXIS\_STATE\_CLOSED\_LOOP\_CONTROL           = 8,}
+\DoxyCodeLine{54   AXIS\_STATE\_LOCKIN\_SPIN                   = 9,}
+\DoxyCodeLine{55   AXIS\_STATE\_ENCODER\_DIR\_FIND              = 10,}
+\DoxyCodeLine{56   AXIS\_STATE\_HOMING                        = 11,}
+\DoxyCodeLine{57   AXIS\_STATE\_ENCODER\_HALL\_POLARITY\_CALIBRATION = 12,}
+\DoxyCodeLine{58   AXIS\_STATE\_ENCODER\_HALL\_PHASE\_CALIBRATION = 13,}
+\DoxyCodeLine{59 \};}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61 \textcolor{comment}{// ODrive.Encoder.Mode}}
+\DoxyCodeLine{62 \textcolor{keyword}{enum} EncoderMode \{}
+\DoxyCodeLine{63   ENCODER\_MODE\_INCREMENTAL                 = 0,}
+\DoxyCodeLine{64   ENCODER\_MODE\_HALL                        = 1,}
+\DoxyCodeLine{65   ENCODER\_MODE\_SINCOS                      = 2,}
+\DoxyCodeLine{66   ENCODER\_MODE\_SPI\_ABS\_CUI                 = 256,}
+\DoxyCodeLine{67   ENCODER\_MODE\_SPI\_ABS\_AMS                 = 257,}
+\DoxyCodeLine{68   ENCODER\_MODE\_SPI\_ABS\_AEAT                = 258,}
+\DoxyCodeLine{69   ENCODER\_MODE\_SPI\_ABS\_RLS                 = 259,}
+\DoxyCodeLine{70   ENCODER\_MODE\_SPI\_ABS\_MA732               = 260,}
+\DoxyCodeLine{71 \};}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73 \textcolor{comment}{// ODrive.Controller.ControlMode}}
+\DoxyCodeLine{74 \textcolor{keyword}{enum} ControlMode \{}
+\DoxyCodeLine{75   CONTROL\_MODE\_VOLTAGE\_CONTROL             = 0,}
+\DoxyCodeLine{76   CONTROL\_MODE\_TORQUE\_CONTROL              = 1,}
+\DoxyCodeLine{77   CONTROL\_MODE\_VELOCITY\_CONTROL            = 2,}
+\DoxyCodeLine{78   CONTROL\_MODE\_POSITION\_CONTROL            = 3,}
+\DoxyCodeLine{79 \};}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81 \textcolor{comment}{// ODrive.Controller.InputMode}}
+\DoxyCodeLine{82 \textcolor{keyword}{enum} InputMode \{}
+\DoxyCodeLine{83   INPUT\_MODE\_INACTIVE                      = 0,}
+\DoxyCodeLine{84   INPUT\_MODE\_PASSTHROUGH                   = 1,}
+\DoxyCodeLine{85   INPUT\_MODE\_VEL\_RAMP                      = 2,}
+\DoxyCodeLine{86   INPUT\_MODE\_POS\_FILTER                    = 3,}
+\DoxyCodeLine{87   INPUT\_MODE\_MIX\_CHANNELS                  = 4,}
+\DoxyCodeLine{88   INPUT\_MODE\_TRAP\_TRAJ                     = 5,}
+\DoxyCodeLine{89   INPUT\_MODE\_TORQUE\_RAMP                   = 6,}
+\DoxyCodeLine{90   INPUT\_MODE\_MIRROR                        = 7,}
+\DoxyCodeLine{91   INPUT\_MODE\_TUNING                        = 8,}
+\DoxyCodeLine{92 \};}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94 \textcolor{comment}{// ODrive.Motor.MotorType}}
+\DoxyCodeLine{95 \textcolor{keyword}{enum} MotorType \{}
+\DoxyCodeLine{96   MOTOR\_TYPE\_HIGH\_CURRENT                  = 0,}
+\DoxyCodeLine{97   MOTOR\_TYPE\_GIMBAL                        = 2,}
+\DoxyCodeLine{98   MOTOR\_TYPE\_ACIM                          = 3,}
+\DoxyCodeLine{99 \};}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101 \textcolor{comment}{// ODrive.Error}}
+\DoxyCodeLine{102 \textcolor{keyword}{enum} ODriveError \{}
+\DoxyCodeLine{103   ODRIVE\_ERROR\_NONE                        = 0x00000000,}
+\DoxyCodeLine{104   ODRIVE\_ERROR\_CONTROL\_ITERATION\_MISSED    = 0x00000001,}
+\DoxyCodeLine{105   ODRIVE\_ERROR\_DC\_BUS\_UNDER\_VOLTAGE        = 0x00000002,}
+\DoxyCodeLine{106   ODRIVE\_ERROR\_DC\_BUS\_OVER\_VOLTAGE         = 0x00000004,}
+\DoxyCodeLine{107   ODRIVE\_ERROR\_DC\_BUS\_OVER\_REGEN\_CURRENT   = 0x00000008,}
+\DoxyCodeLine{108   ODRIVE\_ERROR\_DC\_BUS\_OVER\_CURRENT         = 0x00000010,}
+\DoxyCodeLine{109   ODRIVE\_ERROR\_BRAKE\_DEADTIME\_VIOLATION    = 0x00000020,}
+\DoxyCodeLine{110   ODRIVE\_ERROR\_BRAKE\_DUTY\_CYCLE\_NAN        = 0x00000040,}
+\DoxyCodeLine{111   ODRIVE\_ERROR\_INVALID\_BRAKE\_RESISTANCE    = 0x00000080,}
+\DoxyCodeLine{112 \};}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114 \textcolor{comment}{// ODrive.Can.Error}}
+\DoxyCodeLine{115 \textcolor{keyword}{enum} CanError \{}
+\DoxyCodeLine{116   CAN\_ERROR\_NONE                           = 0x00000000,}
+\DoxyCodeLine{117   CAN\_ERROR\_DUPLICATE\_CAN\_IDS              = 0x00000001,}
+\DoxyCodeLine{118 \};}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120 \textcolor{comment}{// ODrive.Axis.Error}}
+\DoxyCodeLine{121 \textcolor{keyword}{enum} AxisError \{}
+\DoxyCodeLine{122   AXIS\_ERROR\_NONE                          = 0x00000000,}
+\DoxyCodeLine{123   AXIS\_ERROR\_INVALID\_STATE                 = 0x00000001,}
+\DoxyCodeLine{124   AXIS\_ERROR\_MOTOR\_FAILED                  = 0x00000040,}
+\DoxyCodeLine{125   AXIS\_ERROR\_SENSORLESS\_ESTIMATOR\_FAILED   = 0x00000080,}
+\DoxyCodeLine{126   AXIS\_ERROR\_ENCODER\_FAILED                = 0x00000100,}
+\DoxyCodeLine{127   AXIS\_ERROR\_CONTROLLER\_FAILED             = 0x00000200,}
+\DoxyCodeLine{128   AXIS\_ERROR\_WATCHDOG\_TIMER\_EXPIRED        = 0x00000800,}
+\DoxyCodeLine{129   AXIS\_ERROR\_MIN\_ENDSTOP\_PRESSED           = 0x00001000,}
+\DoxyCodeLine{130   AXIS\_ERROR\_MAX\_ENDSTOP\_PRESSED           = 0x00002000,}
+\DoxyCodeLine{131   AXIS\_ERROR\_ESTOP\_REQUESTED               = 0x00004000,}
+\DoxyCodeLine{132   AXIS\_ERROR\_HOMING\_WITHOUT\_ENDSTOP        = 0x00020000,}
+\DoxyCodeLine{133   AXIS\_ERROR\_OVER\_TEMP                     = 0x00040000,}
+\DoxyCodeLine{134   AXIS\_ERROR\_UNKNOWN\_POSITION              = 0x00080000,}
+\DoxyCodeLine{135 \};}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{137 \textcolor{comment}{// ODrive.Motor.Error}}
+\DoxyCodeLine{138 \textcolor{keyword}{enum} MotorError \{}
+\DoxyCodeLine{139   MOTOR\_ERROR\_NONE                         = 0x00000000,}
+\DoxyCodeLine{140   MOTOR\_ERROR\_PHASE\_RESISTANCE\_OUT\_OF\_RANGE = 0x00000001,}
+\DoxyCodeLine{141   MOTOR\_ERROR\_PHASE\_INDUCTANCE\_OUT\_OF\_RANGE = 0x00000002,}
+\DoxyCodeLine{142   MOTOR\_ERROR\_DRV\_FAULT                    = 0x00000008,}
+\DoxyCodeLine{143   MOTOR\_ERROR\_CONTROL\_DEADLINE\_MISSED      = 0x00000010,}
+\DoxyCodeLine{144   MOTOR\_ERROR\_MODULATION\_MAGNITUDE         = 0x00000080,}
+\DoxyCodeLine{145   MOTOR\_ERROR\_CURRENT\_SENSE\_SATURATION     = 0x00000400,}
+\DoxyCodeLine{146   MOTOR\_ERROR\_CURRENT\_LIMIT\_VIOLATION      = 0x00001000,}
+\DoxyCodeLine{147   MOTOR\_ERROR\_MODULATION\_IS\_NAN            = 0x00010000,}
+\DoxyCodeLine{148   MOTOR\_ERROR\_MOTOR\_THERMISTOR\_OVER\_TEMP   = 0x00020000,}
+\DoxyCodeLine{149   MOTOR\_ERROR\_FET\_THERMISTOR\_OVER\_TEMP     = 0x00040000,}
+\DoxyCodeLine{150   MOTOR\_ERROR\_TIMER\_UPDATE\_MISSED          = 0x00080000,}
+\DoxyCodeLine{151   MOTOR\_ERROR\_CURRENT\_MEASUREMENT\_UNAVAILABLE = 0x00100000,}
+\DoxyCodeLine{152   MOTOR\_ERROR\_CONTROLLER\_FAILED            = 0x00200000,}
+\DoxyCodeLine{153   MOTOR\_ERROR\_I\_BUS\_OUT\_OF\_RANGE           = 0x00400000,}
+\DoxyCodeLine{154   MOTOR\_ERROR\_BRAKE\_RESISTOR\_DISARMED      = 0x00800000,}
+\DoxyCodeLine{155   MOTOR\_ERROR\_SYSTEM\_LEVEL                 = 0x01000000,}
+\DoxyCodeLine{156   MOTOR\_ERROR\_BAD\_TIMING                   = 0x02000000,}
+\DoxyCodeLine{157   MOTOR\_ERROR\_UNKNOWN\_PHASE\_ESTIMATE       = 0x04000000,}
+\DoxyCodeLine{158   MOTOR\_ERROR\_UNKNOWN\_PHASE\_VEL            = 0x08000000,}
+\DoxyCodeLine{159   MOTOR\_ERROR\_UNKNOWN\_TORQUE               = 0x10000000,}
+\DoxyCodeLine{160   MOTOR\_ERROR\_UNKNOWN\_CURRENT\_COMMAND      = 0x20000000,}
+\DoxyCodeLine{161   MOTOR\_ERROR\_UNKNOWN\_CURRENT\_MEASUREMENT  = 0x40000000,}
+\DoxyCodeLine{162   MOTOR\_ERROR\_UNKNOWN\_VBUS\_VOLTAGE         = 0x80000000,}
+\DoxyCodeLine{163   MOTOR\_ERROR\_UNKNOWN\_VOLTAGE\_COMMAND      = 0x100000000,}
+\DoxyCodeLine{164   MOTOR\_ERROR\_UNKNOWN\_GAINS                = 0x200000000,}
+\DoxyCodeLine{165   MOTOR\_ERROR\_CONTROLLER\_INITIALIZING      = 0x400000000,}
+\DoxyCodeLine{166   MOTOR\_ERROR\_UNBALANCED\_PHASES            = 0x800000000,}
+\DoxyCodeLine{167 \};}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169 \textcolor{comment}{// ODrive.Controller.Error}}
+\DoxyCodeLine{170 \textcolor{keyword}{enum} ControllerError \{}
+\DoxyCodeLine{171   CONTROLLER\_ERROR\_NONE                    = 0x00000000,}
+\DoxyCodeLine{172   CONTROLLER\_ERROR\_OVERSPEED               = 0x00000001,}
+\DoxyCodeLine{173   CONTROLLER\_ERROR\_INVALID\_INPUT\_MODE      = 0x00000002,}
+\DoxyCodeLine{174   CONTROLLER\_ERROR\_UNSTABLE\_GAIN           = 0x00000004,}
+\DoxyCodeLine{175   CONTROLLER\_ERROR\_INVALID\_MIRROR\_AXIS     = 0x00000008,}
+\DoxyCodeLine{176   CONTROLLER\_ERROR\_INVALID\_LOAD\_ENCODER    = 0x00000010,}
+\DoxyCodeLine{177   CONTROLLER\_ERROR\_INVALID\_ESTIMATE        = 0x00000020,}
+\DoxyCodeLine{178   CONTROLLER\_ERROR\_INVALID\_CIRCULAR\_RANGE  = 0x00000040,}
+\DoxyCodeLine{179   CONTROLLER\_ERROR\_SPINOUT\_DETECTED        = 0x00000080,}
+\DoxyCodeLine{180 \};}
+\DoxyCodeLine{181 }
+\DoxyCodeLine{182 \textcolor{comment}{// ODrive.Encoder.Error}}
+\DoxyCodeLine{183 \textcolor{keyword}{enum} EncoderError \{}
+\DoxyCodeLine{184   ENCODER\_ERROR\_NONE                       = 0x00000000,}
+\DoxyCodeLine{185   ENCODER\_ERROR\_UNSTABLE\_GAIN              = 0x00000001,}
+\DoxyCodeLine{186   ENCODER\_ERROR\_CPR\_POLEPAIRS\_MISMATCH     = 0x00000002,}
+\DoxyCodeLine{187   ENCODER\_ERROR\_NO\_RESPONSE                = 0x00000004,}
+\DoxyCodeLine{188   ENCODER\_ERROR\_UNSUPPORTED\_ENCODER\_MODE   = 0x00000008,}
+\DoxyCodeLine{189   ENCODER\_ERROR\_ILLEGAL\_HALL\_STATE         = 0x00000010,}
+\DoxyCodeLine{190   ENCODER\_ERROR\_INDEX\_NOT\_FOUND\_YET        = 0x00000020,}
+\DoxyCodeLine{191   ENCODER\_ERROR\_ABS\_SPI\_TIMEOUT            = 0x00000040,}
+\DoxyCodeLine{192   ENCODER\_ERROR\_ABS\_SPI\_COM\_FAIL           = 0x00000080,}
+\DoxyCodeLine{193   ENCODER\_ERROR\_ABS\_SPI\_NOT\_READY          = 0x00000100,}
+\DoxyCodeLine{194   ENCODER\_ERROR\_HALL\_NOT\_CALIBRATED\_YET    = 0x00000200,}
+\DoxyCodeLine{195 \};}
+\DoxyCodeLine{196 }
+\DoxyCodeLine{197 \textcolor{comment}{// ODrive.SensorlessEstimator.Error}}
+\DoxyCodeLine{198 \textcolor{keyword}{enum} SensorlessEstimatorError \{}
+\DoxyCodeLine{199   SENSORLESS\_ESTIMATOR\_ERROR\_NONE          = 0x00000000,}
+\DoxyCodeLine{200   SENSORLESS\_ESTIMATOR\_ERROR\_UNSTABLE\_GAIN = 0x00000001,}
+\DoxyCodeLine{201   SENSORLESS\_ESTIMATOR\_ERROR\_UNKNOWN\_CURRENT\_MEASUREMENT = 0x00000002,}
+\DoxyCodeLine{202 \};}
+\DoxyCodeLine{203 }
+
+\end{DoxyCode}

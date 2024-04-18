@@ -1,0 +1,64 @@
+\hypertarget{encoder_8h_source}{}\doxysection{encoder.\+h}
+\label{encoder_8h_source}\index{/github/workspace/system/control\_interfaces/include/huron/control\_interfaces/encoder.h@{/github/workspace/system/control\_interfaces/include/huron/control\_interfaces/encoder.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <set>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <utility>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}huron/control\_interfaces/sensor.h"{}}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacehuron}{huron}} \{}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{keyword}{class }\mbox{\hyperlink{classhuron_1_1EncoderConfiguration}{EncoderConfiguration}} : \textcolor{keyword}{public} \mbox{\hyperlink{classhuron_1_1Configuration}{Configuration}} \{}
+\DoxyCodeLine{13  \textcolor{keyword}{private}:}
+\DoxyCodeLine{14   \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keyword}{inline} std::set<std::string> kEncoderValidKeys\{\};}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16  \textcolor{keyword}{public}:}
+\DoxyCodeLine{17   \mbox{\hyperlink{classhuron_1_1EncoderConfiguration}{EncoderConfiguration}}(ConfigMap config\_map,}
+\DoxyCodeLine{18                        std::set<std::string> valid\_keys)}
+\DoxyCodeLine{19       : \mbox{\hyperlink{classhuron_1_1Configuration}{Configuration}}(config\_map, [\&valid\_keys]() \{}
+\DoxyCodeLine{20                         std::set<std::string> tmp(kEncoderValidKeys);}
+\DoxyCodeLine{21                         tmp.merge(valid\_keys);}
+\DoxyCodeLine{22                         \textcolor{keywordflow}{return} tmp;}
+\DoxyCodeLine{23                       \}()) \{\}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25   \textcolor{keyword}{explicit} \mbox{\hyperlink{classhuron_1_1EncoderConfiguration}{EncoderConfiguration}}(ConfigMap config\_map)}
+\DoxyCodeLine{26       : \mbox{\hyperlink{classhuron_1_1EncoderConfiguration}{EncoderConfiguration}}(config\_map, \{\}) \{\}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28   \mbox{\hyperlink{classhuron_1_1EncoderConfiguration}{EncoderConfiguration}}()}
+\DoxyCodeLine{29       : \mbox{\hyperlink{classhuron_1_1EncoderConfiguration}{EncoderConfiguration}}(\{\}, \{\}) \{\}}
+\DoxyCodeLine{30 \};}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{38 \textcolor{keyword}{class }\mbox{\hyperlink{classhuron_1_1Encoder}{Encoder}} : \textcolor{keyword}{public} \mbox{\hyperlink{classhuron_1_1Sensor}{Sensor}} \{}
+\DoxyCodeLine{39  \textcolor{keyword}{public}:}
+\DoxyCodeLine{40   \mbox{\hyperlink{classhuron_1_1Encoder}{Encoder}}(\textcolor{keywordtype}{double} gear\_ratio, std::unique\_ptr<EncoderConfiguration> config)}
+\DoxyCodeLine{41     : \mbox{\hyperlink{classhuron_1_1Sensor}{Sensor}}(2, 1, std::move(config)), gear\_ratio\_(gear\_ratio) \{\}}
+\DoxyCodeLine{42   \textcolor{keyword}{explicit} \mbox{\hyperlink{classhuron_1_1Encoder}{Encoder}}(\textcolor{keywordtype}{double} gear\_ratio)}
+\DoxyCodeLine{43     : \mbox{\hyperlink{classhuron_1_1Encoder}{Encoder}}(gear\_ratio, std::make\_unique<EncoderConfiguration>()) \{\}}
+\DoxyCodeLine{44   \textcolor{keyword}{explicit} \mbox{\hyperlink{classhuron_1_1Encoder}{Encoder}}(std::unique\_ptr<EncoderConfiguration> config)}
+\DoxyCodeLine{45     : \mbox{\hyperlink{classhuron_1_1Encoder}{Encoder}}(1.0, std::move(config)) \{\}}
+\DoxyCodeLine{46   \mbox{\hyperlink{classhuron_1_1Encoder}{Encoder}}() : \mbox{\hyperlink{classhuron_1_1Encoder}{Encoder}}(1.0) \{\}}
+\DoxyCodeLine{47   \mbox{\hyperlink{classhuron_1_1Encoder}{Encoder}}(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1Encoder}{Encoder}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{48   \mbox{\hyperlink{classhuron_1_1Encoder}{Encoder}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1Encoder}{Encoder}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{49   \textcolor{keyword}{virtual} \mbox{\hyperlink{classhuron_1_1Encoder}{\string~Encoder}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51   \textcolor{keywordtype}{void} GetNewState(Eigen::Ref<Eigen::MatrixXd> new\_state)\textcolor{keyword}{ const override }\{}
+\DoxyCodeLine{52     new\_state = Eigen::Vector2d(GetPosition(), GetVelocity());}
+\DoxyCodeLine{53   \}}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55   \textcolor{keyword}{virtual} \textcolor{keywordtype}{double} GetPosition() \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{56   \textcolor{keyword}{virtual} \textcolor{keywordtype}{double} GetVelocity() \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58   \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} Reset() = 0;}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60  \textcolor{keyword}{protected}:}
+\DoxyCodeLine{61   \textcolor{keywordtype}{double} gear\_ratio\_;}
+\DoxyCodeLine{62 \};}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64 \}  \textcolor{comment}{// namespace huron}}
+
+\end{DoxyCode}

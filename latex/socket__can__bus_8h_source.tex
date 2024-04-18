@@ -1,0 +1,65 @@
+\hypertarget{socket__can__bus_8h_source}{}\doxysection{socket\+\_\+can\+\_\+bus.\+h}
+\label{socket__can__bus_8h_source}\index{/github/workspace/driver/can/include/huron/driver/can/socket\_can\_bus.h@{/github/workspace/driver/can/include/huron/driver/can/socket\_can\_bus.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <sockcanpp/CanDriver.hpp>}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include "{}canbus.h"{}}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#define CAN\_CLK\_HZ (16000000)}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#define CAN\_CLK\_MHZ (16)}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacehuron}{huron}} \{}
+\DoxyCodeLine{12 \textcolor{keyword}{namespace }driver \{}
+\DoxyCodeLine{13 \textcolor{keyword}{namespace }can \{}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{comment}{// Anonymous enum for defining the most common CAN baud rates}}
+\DoxyCodeLine{16 \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{17   CAN\_BAUD\_125K = 125000,}
+\DoxyCodeLine{18   CAN\_BAUD\_250K = 250000,}
+\DoxyCodeLine{19   CAN\_BAUD\_500K = 500000,}
+\DoxyCodeLine{20   CAN\_BAUD\_1000K = 1000000,}
+\DoxyCodeLine{21   CAN\_BAUD\_1M = 1000000}
+\DoxyCodeLine{22 \};}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{keyword}{class }\mbox{\hyperlink{classhuron_1_1driver_1_1can_1_1SocketCanBus}{SocketCanBus}} : \textcolor{keyword}{public} \mbox{\hyperlink{classhuron_1_1driver_1_1can_1_1BusBase}{BusBase}} \{}
+\DoxyCodeLine{25  \textcolor{keyword}{public}:}
+\DoxyCodeLine{26   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} sockcanpp::milliseconds kRecvTimeout\{1000\};}
+\DoxyCodeLine{27   \textcolor{comment}{// struct Config\_t \{}}
+\DoxyCodeLine{28   \textcolor{comment}{//    uint32\_t baud\_rate = CAN\_BAUD\_250K;}}
+\DoxyCodeLine{29   \textcolor{comment}{//    Protocol protocol = PROTOCOL\_SIMPLE;}}
+\DoxyCodeLine{30   \textcolor{comment}{//}}
+\DoxyCodeLine{31   \textcolor{comment}{//    Bus* parent = nullptr; // set in apply\_config()}}
+\DoxyCodeLine{32   \textcolor{comment}{//    void set\_baud\_rate(uint32\_t value) \{ parent-\/>set\_baud\_rate(value); \}}}
+\DoxyCodeLine{33   \textcolor{comment}{// \};}}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35   \mbox{\hyperlink{classhuron_1_1driver_1_1can_1_1SocketCanBus}{SocketCanBus}}(std::string can\_if, uint32\_t axis\_id)}
+\DoxyCodeLine{36     : can\_if\_(can\_if), axis\_id\_(axis\_id), recv\_timeout\_(kRecvTimeout) \{\}}
+\DoxyCodeLine{37   \mbox{\hyperlink{classhuron_1_1driver_1_1can_1_1SocketCanBus}{SocketCanBus}}(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1driver_1_1can_1_1SocketCanBus}{SocketCanBus}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{38   \mbox{\hyperlink{classhuron_1_1driver_1_1can_1_1SocketCanBus}{SocketCanBus}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classhuron_1_1driver_1_1can_1_1SocketCanBus}{SocketCanBus}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{39   \mbox{\hyperlink{classhuron_1_1driver_1_1can_1_1SocketCanBus}{\string~SocketCanBus}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41   std::string can\_if\_;}
+\DoxyCodeLine{42   uint32\_t axis\_id\_;}
+\DoxyCodeLine{43   sockcanpp::milliseconds recv\_timeout\_;}
+\DoxyCodeLine{44   sockcanpp::CanDriver can\_driver\_\{can\_if\_, CAN\_RAW\};}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46   \textcolor{keyword}{static} \textcolor{keyword}{const} uint8\_t kCanFifoNone = 0xff;}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48   \textcolor{keywordtype}{bool} \mbox{\hyperlink{classhuron_1_1driver_1_1can_1_1SocketCanBus_abf70c2a3992b00ff82e5c9040de91365}{send\_message}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcan__Message__t}{can\_Message\_t}}\& message) \textcolor{keyword}{final};}
+\DoxyCodeLine{49   \textcolor{keywordtype}{bool} \mbox{\hyperlink{classhuron_1_1driver_1_1can_1_1SocketCanBus_a64aed240f64652ed3402b6b52f9c889b}{recv\_message}}(\mbox{\hyperlink{structcan__Message__t}{can\_Message\_t}}\& message,}
+\DoxyCodeLine{50             uint32\_t timeout = UINT32\_MAX) \textcolor{keyword}{final};}
+\DoxyCodeLine{51   \textcolor{keywordtype}{bool} \mbox{\hyperlink{classhuron_1_1driver_1_1can_1_1SocketCanBus_a81fe148e7bd96151fe8e3a9c9bc789e9}{subscribe}}(\textcolor{keyword}{const} \mbox{\hyperlink{structhuron_1_1driver_1_1can_1_1MsgIdFilterSpecs}{MsgIdFilterSpecs}}\& filter,}
+\DoxyCodeLine{52          on\_can\_message\_cb\_t callback, \textcolor{keywordtype}{void}* ctx,}
+\DoxyCodeLine{53          \mbox{\hyperlink{structhuron_1_1driver_1_1can_1_1BusBase_1_1CanSubscription}{CanSubscription}}** handle) \textcolor{keyword}{final};}
+\DoxyCodeLine{54   \textcolor{keywordtype}{bool} \mbox{\hyperlink{classhuron_1_1driver_1_1can_1_1SocketCanBus_a97a139c4de588cb683e0d22a6811f821}{unsubscribe}}(\mbox{\hyperlink{structhuron_1_1driver_1_1can_1_1BusBase_1_1CanSubscription}{CanSubscription}}* handle) \textcolor{keyword}{final};}
+\DoxyCodeLine{55 \};}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57 \}  \textcolor{comment}{// namespace can}}
+\DoxyCodeLine{58 \}  \textcolor{comment}{// namespace driver}}
+\DoxyCodeLine{59 \}  \textcolor{comment}{// namespace huron}}
+
+\end{DoxyCode}
