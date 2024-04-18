@@ -1,0 +1,38 @@
+name: Doxygen on GitHub Pages
+
+on:
+  push:
+    branches:
+      # - main  # Set a branch name to trigger deployment
+      - 6-add-documentation-page
+  pull_request:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+          fetch-depth: 0
+
+      - name: Build doxygen
+        uses: mattnotmitt/doxygen-action@v1.9.5
+        with:
+            working-directory: 'doc'
+            doxyfile-path: './Doxyfile'
+            enable-latex: true
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
+        # If you're changing the branch from main,
+        # also change the `main` in `refs/heads/main`
+        # below accordingly.
+        if: github.ref == 'refs/heads/main'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./doc
