@@ -1,16 +1,7 @@
-# include "huron_ros2/huron.h"
+# include "huron_mujoco/huron.h"
 
 namespace huron {
-namespace ros2 {
-
-Huron::Huron(std::shared_ptr<HuronNode> node,
-             std::unique_ptr<huron::RobotConfiguration> config)
-  : huron::LeggedRobot(std::move(config)),
-    node_(std::move(node)) {}
-
-Huron::Huron(std::shared_ptr<HuronNode> node)
-  : Huron(std::move(node),
-          std::make_unique<huron::RobotConfiguration>()) {}
+namespace mujoco {
 
 void Huron::Initialize() {
 }
@@ -22,16 +13,29 @@ void Huron::Terminate() {
 }
 
 bool Huron::Move(const std::vector<double>& values) {
-  node_->PublishJointEffort(values);
   return true;
 }
 
 bool Huron::Stop() {
-  return Move(std::vector<double>(12));
+//  return Move(std::vector<double>(12));
+return true;
 }
 
-void Huron::Loop() {
-  rclcpp::spin_some(node_);
+void BuildFromXml(const char* xml_path) {
+
+  // Load model
+  char error[1000] = "Could not load binary model";
+  if (std::strlen(xml_path)>4 && !std::strcmp(argv[1]+std::strlen(argv[1])-4, ".mjb")) {
+    this->m_ = mj_loadModel(xml_path[1], 0);
+  } else {
+    this->m_ = mj_loadXML(xml_path, 0, error, 1000);
+  }
+  if (!this->m_) {
+    mju_error("Load model error: %s", error);
+  }
+
+  // Load data
+  this->d_ = mj_makeData(m);
 }
 
 }  // namespace ros2

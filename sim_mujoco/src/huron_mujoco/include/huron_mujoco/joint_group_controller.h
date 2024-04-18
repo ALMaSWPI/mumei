@@ -6,7 +6,7 @@
 #include "huron/control_interfaces/moving_interface.h"
 
 namespace huron {
-namespace ros2 {
+namespace mujoco {
 
 class HuronNode;
 

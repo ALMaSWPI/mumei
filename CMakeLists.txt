@@ -34,6 +34,13 @@ if (DEFINED USE_PINOCCHIO)
   message(pinocchio_INCLUDE_DIRS="${pinocchio_INCLUDE_DIRS}")
 endif()
 
+# Find mujoco
+if (DEFINED USE_MUJOCO)
+    find_package(mujoco REQUIRED)
+    find_package(glfw3 REQUIRED)
+endif()
+
+
 # Find sockcanpp
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR})
 find_package(sockcanpp REQUIRED)
@@ -73,6 +80,8 @@ add_subdirectory(utils)
 add_subdirectory(system)
 add_subdirectory(control)
 add_subdirectory(multibody)
+add_subdirectory(sim_mujoco)
+
 # add_subdirectory(third_party)
 
 target_link_libraries(huron
@@ -92,6 +101,15 @@ if (DEFINED USE_PINOCCHIO)
       pinocchio::pinocchio)
     target_compile_definitions(huron PUBLIC HURON_USE_PINOCCHIO=1)
 endif()
+
+if (DEFINED USE_MUJOCO)
+    target_link_libraries(huron
+            PUBLIC
+            mujoco
+            glfw)
+    target_compile_definitions(huron PUBLIC HURON_USE_MUJOCO=1)
+endif()
+
 
 # Copy urdf files to build directory
 add_custom_command(TARGET huron PRE_BUILD
@@ -147,7 +165,6 @@ endif()
 
 # Build examples
 # add_subdirectory(examples)
-add_subdirectory(sim_mujoco)
 target_link_libraries(
   huron_tests
   huron
