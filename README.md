@@ -22,6 +22,8 @@ On the other hand, our full-stack framework also benefits the robotics open-sour
 
 ## Features
 
+Modularity and abstraction are at the core of this framework. Our API ensures that the application code is stable while the underlying implementation/external library can be switched flexibly. 
+
 - 🚄 Fast and convenient with just a Docker image
 - 🌈 Clean with automated CI/CD process
 - 🚀 Can be integrated with any rigid-body robots
