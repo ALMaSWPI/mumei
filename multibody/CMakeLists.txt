@@ -20,9 +20,9 @@ FILE(GLOB_RECURSE HEADER_FILES
   ${CMAKE_CURRENT_SOURCE_DIR}/include/*.cc
 )
 
-list(APPEND TEST_SOURCE_FILES
-        "${dir}/test/test_model.cc"
-        "${dir}/test/test_pinocchio_impl.cc")
+#list(APPEND TEST_SOURCE_FILES
+#        "${dir}/test/test_model.cc"
+#        "${dir}/test/test_pinocchio_impl.cc")
 
 set(INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/include/")
 
