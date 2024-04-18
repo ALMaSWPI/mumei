@@ -1,14 +1,15 @@
+# 
 There are two ways to run `huron`: using the prebuilt Docker image or building from source.
 
 ---
 
-# 1. Running with Docker:
+## 1. Running with Docker:
 
-## Prerequisites:
+### Prerequisites:
 - Docker Engine/Desktop
 - Computer with amd64 or arm64 chip
 
-## Steps:
+### Steps:
 1. Pull the image:
 ```
 sudo docker pull wpihuron/huron:<tag>
@@ -35,14 +36,14 @@ If everything is correct, the binary will be built in `build` folder, which is r
 
 ---
 
-# 2. Building from source:
+## 2. Building from source:
 
 Clone the main repo and all submodules: 
 ```
 git clone git@github.com:wpi-huron/huron.git --recurse-submodules
 ```
 
-## Prerequisites:
+### Prerequisites:
 
 1. ARM toolchains:
 ```
