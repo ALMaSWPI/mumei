@@ -2,7 +2,7 @@
 Modular Universal Middleware for Enhanced Integration
 
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/ALMaSWPI/huron)](https://github.com/ALMaSWPI/huron/releases/latest)
-[![GitHub](https://img.shields.io/github/license/ALMaSWPI/huron)](ODrive.LICENSE.md)
+[![GitHub](https://img.shields.io/badge/License-MIT-red.svg)](LICENSE)
 ![GitHub Repo stars](https://img.shields.io/github/stars/ALMaSWPI/huron)
 
 <div class="title_screenshot">
