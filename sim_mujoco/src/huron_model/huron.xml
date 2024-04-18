@@ -40,7 +40,7 @@
 
     <body name="base_link" pos="0 0 1.1230">
       <inertial pos="-6.33363e-08 2.36375e-07 0.0603496" quat="0.707107 3.08471e-06 -1.73643e-06 0.707107" mass="7.3081" diaginertia="0.0305051 0.0292027 0.0211015"/>
-      <joint name="dummy_joint" type="free"/>
+      <freejoint name="dummy_joint" />
       <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" mesh="base_link"/>
       <geom type="mesh" mesh="base_link"/>
       <geom size="0.0325 0.094 0.0755" pos="0 0 0.0895" type="box" contype="0" conaffinity="0" group="1" density="0" rgba="0 0 0.8 1"/>
@@ -105,11 +105,6 @@
               <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.75294 0.75294 0.75294 1" mesh="l_knee_pitch_link"/>
               <geom type="mesh" rgba="0.75294 0.75294 0.75294 1" mesh="l_knee_pitch_link"/>
               <body name="l_ankle_pitch_link" pos="0.37 0 0">
-                <body name="dummy body" pos="0 0 -0.1">
-                  <inertial pos="0 0 0" mass="0.0001" diaginertia="0 0 0" />
-                  <geom type="box" pos="0 0 0" size="0.1 0.1 0.1" rgba="0 1 0 1"/>
-                  <site name="site_l_ft" pos="0 0 0" rgba="1 0 0 0" size="0.01 0.01 0.01" type="box"/>
-                </body>
                 <inertial pos="-0.029808 0.001045 3.1134e-08" quat="-0.0443964 0.705712 0.0443977 0.705712" mass="2.4242" diaginertia="0.0049235 0.0045449 0.0024819"/>
                 <joint name="l_ankle_pitch_joint" pos="0 0 0" axis="0 0 1" range="-0.5236 0.1745" damping="5" frictionloss="1"/>
                 <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.89804 0.91765 0.92941 1" mesh="l_ankle_pitch_link"/>
@@ -119,12 +114,19 @@
                   <joint name="l_ankle_roll_joint" pos="0 0 0" axis="0 0 1" range="-0.3491 0.3491" damping="5" frictionloss="1"/>
                   <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.77647 0.75686 0.73725 1" mesh="l_ankle_roll_link"/>
                   <geom type="mesh" rgba="0.77647 0.75686 0.73725 1" mesh="l_ankle_roll_link"/>
+<!--                  <body name="dummy body" pos="0 0 0">-->
+<!--                    <inertial pos="0 0 0" mass="0.0000001" diaginertia="0 0 0"/>-->
+                    <geom type="box" pos="0 0 0" size="0.01 0.01 0.01" rgba="0 1 0 1"/>
+<!--                    <site name="site_l_ft" pos="0 0 0" rgba="1 0 0 0" size="0.01 0.01 0.01" type="box"/>-->
+                  <site name="site_l_ft" group="3"/>
+
                 </body>
               </body>
             </body>
           </body>
         </body>
-      </body>
+      </body>                  <!--                  </body>-->
+
     </body>
   </worldbody>
 

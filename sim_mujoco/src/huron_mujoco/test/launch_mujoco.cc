@@ -89,6 +89,7 @@ void scroll(GLFWwindow* window, double xoffset, double yoffset) {
 void mycontroller(const mjModel* m, mjData* d)
 {
   //TODO: Clean code later
+  static int printed = 0;
 
 int l_hip_yaw_actuator_id = mj_name2id(m, mjOBJ_ACTUATOR, "l_hip_yaw_joint");
 int l_hip_roll_actuator_id = mj_name2id(m, mjOBJ_ACTUATOR, "l_hip_roll_joint");
@@ -102,10 +103,51 @@ int r_hip_pitch_actuator_id = mj_name2id(m, mjOBJ_ACTUATOR, "r_hip_pitch_joint")
 int r_knee_pitch_actuator_id = mj_name2id(m, mjOBJ_ACTUATOR, "r_knee_pitch_joint");
 int r_ankle_pitch_actuator_id = mj_name2id(m, mjOBJ_ACTUATOR, "r_ankle_pitch_joint");
 int r_ankle_roll_joint_id = mj_name2id(m, mjOBJ_ACTUATOR, "r_ankle_roll_joint");
-for (int i = 0; i < sizeof d->sensordata; i++){
-       printf("id %d : value %lf \n",i,d->sensordata[i]);
-    }
-    printf("\n");
+
+int sensorId = mj_name2id(m, mjOBJ_SENSOR, "l_force_ft_sensor");
+//if( sensorId>=0 )
+//  printf("(%f, %f)\n", m->jnt_range[2*sensorId], m->jnt_range[2*sensorId+1]);
+
+int adr = m->sensor_adr[sensorId];
+int dim = m->sensor_dim[sensorId];
+mjtNum sensor_data[dim];
+mju_copy(sensor_data, &d->sensordata[adr], dim);
+
+if (printed < 10) {
+  printf("numer of sensor %d:\n", m->nsensor);
+  printf("data numer of sensor %d:\n", m->nsensordata);
+  for(int i =0; i < m->nsensor; i++) {
+    std::cout << "i: " << i << '\t' << "adr: " << m->sensor_adr[i] <<  "dim: " << m->sensor_dim[i] << std::endl;
+  }
+  for(int i =0; i < m->nsensordata; i++) {
+    std::cout << ' ' <<  d->sensordata[i];
+  }
+  std::cout << std::endl;
+  ++printed;
+}
+
+
+//// Access sensor data
+//const mjtNum* sensor_data = d->sensordata;
+
+// Print out force sensor data
+int num_sensors = m->nsensor; // Assuming force sensors are actuated by controls
+//int force_dim = mj_option(m, mjOPTION_SENSOR_DIM);
+//
+//for (int i = 0; i < num_sensors; ++i) {
+//  std::cout << "Force sensor " << i << ": ";
+//  for (int j = 0; j < 3; ++j) {
+//    std::cout << sensor_data[i * force_dim + j] << " ";
+//  }
+//  std::cout << std::endl;
+//  std::cout << "Torque sensor " << i << ": ";
+//  for (int j = 0; j < 3; ++j) {
+//    std::cout << sensor_data[i * force_dim + 3 + j] << " ";
+//  }
+//  std::cout << std::endl;
+//}
+
+
 // 7 first from nq
 // 6 first from nv
 // =>> Odom
@@ -114,7 +156,7 @@ for (int i = 0; i < sizeof d->sensordata; i++){
 //  cop, d->qpos, d->qvel);
 //
 ////Order based on joints name of ROS2
-//d->ctrl[l_hip_yaw_actuator_id] = 0;
+d->ctrl[r_ankle_roll_joint_id] = 10;
 //d->ctrl[l_hip_roll_actuator_id] = 0;
 //d->ctrl[l_knee_pitch_actuator_id] = torque(2, 0);
 //d->ctrl[l_ankle_pitch_actuator_id] = torque(1, 0);
@@ -178,7 +220,7 @@ int main(int argc, const char** argv) {
   glfwSetMouseButtonCallback(window, mouse_button);
   glfwSetScrollCallback(window, scroll);
   mjcb_control = mycontroller;
-  // run main loop, target real-time simulation and 60 fps rendering
+  // run main loop, target real-time simulation and 60 fps renderingcondim
   while (!glfwWindowShouldClose(window)) {
     // advance interactive simulation for 1/60 sec
     //  Assuming MuJoCo can simulate faster than real-time, which it usually can,
@@ -188,6 +230,7 @@ int main(int argc, const char** argv) {
     while (d->time - simstart < 1.0/60.0) {
       mj_step(m, d);
     }
+
 
 //
 //    for (int i = 0; i < m->njnt; i++){

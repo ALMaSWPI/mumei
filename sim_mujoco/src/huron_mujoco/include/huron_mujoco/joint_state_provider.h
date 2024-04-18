@@ -6,7 +6,7 @@
 #include "huron_node.h"
 
 namespace huron {
-namespace ros2 {
+namespace mujoco {
 
 class JointStateProvider : public huron::StateProvider {
  public:

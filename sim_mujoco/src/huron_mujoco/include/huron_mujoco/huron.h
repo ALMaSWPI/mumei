@@ -1,25 +1,24 @@
 #pragma once
-
-#include "huron_node.h"
-
 #include <string>
 #include <vector>
 #include <memory>
 
 #include "huron/control_interfaces/legged_robot.h"
+#include <mujoco/mujoco.h>
+
 
 namespace huron {
-namespace ros2 {
+namespace mujoco {
 
 class Huron : public huron::LeggedRobot {
  public:
-  Huron(std::shared_ptr<HuronNode> node,
-        std::unique_ptr<huron::RobotConfiguration> config);
-  explicit Huron(std::shared_ptr<HuronNode> node);
+  Huron(std::unique_ptr<huron::RobotConfiguration> config);
+  explicit Huron();
 
   Huron(const Huron&) = delete;
   Huron& operator=(const Huron&) = delete;
   ~Huron() override = default;
+
 
   // GenericComponent interface
   void Initialize() override;
@@ -30,11 +29,12 @@ class Huron : public huron::LeggedRobot {
   bool Move(const std::vector<double>& values) override;
   bool Stop() override;
 
-  // ROS-specific
-  void Loop();
+  // Mujoco-specific
+  void BuildFromXml(const char* xml_path);
 
  private:
-  std::shared_ptr<HuronNode> node_;
+  mjModel* m_;                  // MuJoCo model
+  mjData* d_;                   // MuJoCo data
 };
 
 }  // namespace ros2

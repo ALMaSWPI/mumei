@@ -3,7 +3,7 @@
 #include "huron/control_interfaces/revolute_joint.h"
 
 namespace huron {
-namespace ros2 {
+namespace mujoco {
 
 
 }  // namespace ros2
