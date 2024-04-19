@@ -2,12 +2,12 @@
 Modular Universal Middleware for Enhanced Integration
 
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/ALMaSWPI/huron)](https://github.com/ALMaSWPI/huron/releases/latest)
-[![GitHub](https://img.shields.io/badge/License-MIT-red.svg)](LICENSE)
+![GitHub](https://img.shields.io/badge/License-MIT-red.svg)
 ![GitHub Repo stars](https://img.shields.io/github/stars/ALMaSWPI/huron)
 
 <div class="title_screenshot">
 
-![Screen_shot_of_Mumei_Documentation_Page](img/MUMEIDocFile.png)
+![Screen_shot_of_Mumei_Documentation_Page](doc/img/MUMEIDocFile.png)
 
 </div>
 
