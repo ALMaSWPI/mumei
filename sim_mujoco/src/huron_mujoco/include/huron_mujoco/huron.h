@@ -12,32 +12,16 @@ namespace mujoco {
 
 class Huron : public huron::LeggedRobot {
  public:
-  Huron(std::unique_ptr<huron::RobotConfiguration> config);
-  explicit Huron();
-
+  explicit Huron(std::unique_ptr<huron::RobotConfiguration> config);
+  Huron();
   Huron(const Huron&) = delete;
   Huron& operator=(const Huron&) = delete;
   ~Huron() override = default;
-
 
   // GenericComponent interface
   void Initialize() override;
   void SetUp() override;
   void Terminate() override;
-
-  // MovingGroupComponent interface
-  bool Move(const std::vector<double> values);
-  bool Stop() override;
-
-  // Mujoco-specific
-  void BuildFromXml(char* xml_path, std::vector<char*> joint_list);
-  void Loop();
-  void Controller(const mjModel* m_, mjData* d_);
- private:
-  mjModel* m_;                  // MuJoCo model
-  mjData* d_;                   // MuJoCo data
-  std::vector<char*> joint_list_; // List of joints
-
 };
 
 }  // namespace ros2
