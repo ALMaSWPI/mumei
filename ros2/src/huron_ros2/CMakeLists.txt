@@ -22,6 +22,7 @@ add_library(${PROJECT_NAME}
   SHARED
   src/huron.cc
   src/huron_node.cc
+  src/ros_env.cc
   src/joint_state_provider.cc
   src/force_torque_sensor.cc
   src/joint_group_controller.cc
