@@ -22,7 +22,7 @@ jobs:
         with:
           working-directory: 'doc'
           doxyfile-path: './Doxyfile'
-          enable-latex: true
+          enable-latex: false
 
       - name: Deploy under current release version folder
         uses: peaceiris/actions-gh-pages@v4
