@@ -13,10 +13,8 @@ namespace ros2 {
 
 class Huron : public huron::LeggedRobot {
  public:
-  Huron(std::shared_ptr<HuronNode> node,
-        std::unique_ptr<huron::RobotConfiguration> config);
-  explicit Huron(std::shared_ptr<HuronNode> node);
-
+  explicit Huron(std::unique_ptr<huron::RobotConfiguration> config);
+  Huron();
   Huron(const Huron&) = delete;
   Huron& operator=(const Huron&) = delete;
   ~Huron() override = default;
@@ -25,12 +23,6 @@ class Huron : public huron::LeggedRobot {
   void Initialize() override;
   void SetUp() override;
   void Terminate() override;
-
-  // ROS-specific
-  void Loop();
-
- private:
-  std::shared_ptr<HuronNode> node_;
 };
 
 }  // namespace ros2

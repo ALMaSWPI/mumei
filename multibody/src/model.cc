@@ -59,6 +59,7 @@ void Model::BuildFromUrdf(const std::string& urdf_path,
 }
 
 void Model::Finalize(const Eigen::VectorXd& initial_state) {
+  // TODO(dtbpkmte): is this logic good?
   assert(is_constructed_);
   // Check if all joints are added to the model, and set the joint indices.
   for (auto& joint : joints_) {
