@@ -19,6 +19,8 @@ Our framework saves time for researchers/students on researching how to use a ne
 By providing guidelines, libraries, and toolkits, the framework ensures that developers do not need to 'reinvent the wheel' for common tasks. This not only improves the efficiency and quality of development but also ensures that different projects can easily share and integrate each other's work.
 On the other hand, our full-stack framework also benefits the robotics open-source community and provide educational value for students, researchers and roboticists.
 
+To give you a glimpse of the framework, here is an overview:
+![A Glimpse of Mumei](doc/img/OverviewChart.png)
 
 ## Features
 
@@ -45,6 +47,7 @@ Here is a simple example that used our framework on a humanoid called HURON.
 After the controller are implemented on the user's side, they can easily set up the framework and choose whatever simulation environment they want.
 
 # Getting Started
+
 In order to use our framework, there are two ways to run `mumei`: using the prebuilt Docker image or building from source.
 
 ---
