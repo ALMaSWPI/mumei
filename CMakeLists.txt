@@ -83,7 +83,9 @@ add_subdirectory(utils)
 add_subdirectory(system)
 add_subdirectory(control)
 add_subdirectory(multibody)
+if (DEFINED USE_MUJOCO)
 add_subdirectory(sim_mujoco)
+endif()
 
 # add_subdirectory(third_party)
 
