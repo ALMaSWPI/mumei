@@ -1,3 +1,8 @@
+#pragma once
+
+#include <string>
+#include <memory>
+
 #include "huron/environment.h"
 #include "huron/control_interfaces/state_provider.h"
 #include "huron/control_interfaces/moving_interface.h"

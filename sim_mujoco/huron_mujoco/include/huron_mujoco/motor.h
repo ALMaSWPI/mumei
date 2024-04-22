@@ -1,5 +1,9 @@
 #pragma once
 
+#include <vector>
+#include <string>
+#include <memory>
+
 #include "huron/control_interfaces/motor.h"
 #include "huron/enable_protected_make_shared.h"
 
