@@ -1,1 +1,1 @@
-add_subdirectory(src/huron_mujoco)
+add_subdirectory(huron_mujoco)
