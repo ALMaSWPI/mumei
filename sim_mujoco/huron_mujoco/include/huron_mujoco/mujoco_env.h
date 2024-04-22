@@ -1,8 +1,14 @@
+#pragma once
+
+#include <mujoco/mujoco.h>
+#include <GLFW/glfw3.h>
+
+#include <memory>
+#include <string>
+
 #include "huron/environment.h"
 #include "huron/control_interfaces/motor.h"
 #include "huron/control_interfaces/encoder.h"
-#include <mujoco/mujoco.h>
-#include <GLFW/glfw3.h>
 
 namespace huron {
 namespace mujoco {
@@ -49,5 +55,5 @@ class MujocoEnvironment
 };
 
 
-}  // namespace ros2
+}  // namespace mujoco
 }  // namespace huron

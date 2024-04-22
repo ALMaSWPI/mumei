@@ -21,7 +21,7 @@ class Environment {
  protected:
   virtual void LoopPrologue();
   virtual void LoopEpilogue();
-  
+
   std::function<void(void)> loop_func_;
   std::function<void(void)> exit_func_;
 };

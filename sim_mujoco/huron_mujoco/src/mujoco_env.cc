@@ -29,7 +29,7 @@ static std::function<void(void)> user_loop_func;  // user-defined
 // keyboard callback
 void keyboard(GLFWwindow* window, int key, int scancode, int act, int mods) {
   // backspace: reset simulation
-  if (act==GLFW_PRESS && key==GLFW_KEY_BACKSPACE) {
+  if (act == GLFW_PRESS && key == GLFW_KEY_BACKSPACE) {
     mj_resetData(m, d);
     mj_forward(m, d);
   }
@@ -38,9 +38,12 @@ void keyboard(GLFWwindow* window, int key, int scancode, int act, int mods) {
 // mouse button callback
 void mouse_button(GLFWwindow* window, int button, int act, int mods) {
   // update button state
-  button_left = (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT)==GLFW_PRESS);
-  button_middle = (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_MIDDLE)==GLFW_PRESS);
-  button_right = (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT)==GLFW_PRESS);
+  button_left = (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) ==
+    GLFW_PRESS);
+  button_middle = (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_MIDDLE) ==
+    GLFW_PRESS);
+  button_right = (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) ==
+    GLFW_PRESS);
 
   // update mouse position
   glfwGetCursorPos(window, &lastx, &lasty);
@@ -65,8 +68,8 @@ void mouse_move(GLFWwindow* window, double xpos, double ypos) {
   glfwGetWindowSize(window, &width, &height);
 
   // get shift key state
-  bool mod_shift = (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT)==GLFW_PRESS ||
-                    glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT)==GLFW_PRESS);
+  bool mod_shift = (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS ||
+                    glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS);
 
   // determine action based on mouse button
   mjtMouse action;
@@ -107,13 +110,14 @@ void mjcontroller(const mjModel* m, mjData* d) {
 
 void MujocoEnvironment::Initialize(int argc, char* argv[]) {
   // check command-line arguments
-  if (argc!=2) {
+  if (argc != 2) {
     std::printf(" USAGE:  basic modelfile\n");
   }
 
   // load and compile model
   char error[1000] = "Could not load binary model";
-  if (std::strlen(argv[1])>4 && !std::strcmp(argv[1]+std::strlen(argv[1])-4, ".mjb")) {
+  if (std::strlen(argv[1]) > 4 &&
+      !std::strcmp(argv[1] + std::strlen(argv[1]) - 4, ".mjb")) {
     m = mj_loadModel(argv[1], 0);
   } else {
     m = mj_loadXML(argv[1], 0, error, 1000);
@@ -274,5 +278,5 @@ void MujocoEnvironment::PrintStates() const {
   std::cout << std::endl;
 }
 
-}  // namespace ros2
+}  // namespace mujoco
 }  // namespace huron

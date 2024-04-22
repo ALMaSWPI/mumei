@@ -6,7 +6,7 @@
 
 using namespace huron;  //NOLINT
 
-void setup();
+void setup(std::string urdf_path);
 void loop();
 
 // Create an environment
@@ -20,15 +20,13 @@ huron::mujoco::Huron robot;
 auto start = std::chrono::steady_clock::now();
 bool moved = false;
 
-std::string urdf_path;
-
 int main(int argc, char* argv[]) {
   // Usage: ./test_mujoco <path_to_xml> <path_to_urdf>
   env.Initialize(argc, argv);
-  urdf_path = std::string(argv[2]);
+  std::string urdf_path = std::string(argv[2]);
   std::cout << "URDF path: " << urdf_path << std::endl;
 
-  setup();
+  setup(urdf_path);
   env.Finalize();
 
   start = std::chrono::steady_clock::now();
@@ -39,7 +37,7 @@ int main(int argc, char* argv[]) {
   return 0;
 }
 
-void setup() {
+void setup(std::string urdf_path) {
   // Environment setup
   robot.GetModel()->AddModelImpl(multibody::ModelImplType::kPinocchio);
   robot.GetModel()->BuildFromUrdf(
@@ -84,7 +82,8 @@ void loop() {
     moved = true;
   }
   if (moved) {
-    Eigen::VectorXd cmd = 100 * Eigen::VectorXd::Random(robot.GetModel()->num_joints() - 2);
+    Eigen::VectorXd cmd = 100 * Eigen::VectorXd::Random(
+        robot.GetModel()->num_joints() - 2);
     std::cout << "Command:\n" << cmd.transpose() << std::endl;
     robot.Move(cmd);
   }

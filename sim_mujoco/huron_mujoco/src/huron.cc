@@ -18,5 +18,5 @@ void Huron::SetUp() {
 void Huron::Terminate() {
 }
 
-}  // namespace ros2
+}  // namespace mujoco
 }  // namespace huron

@@ -1,5 +1,8 @@
 #pragma once
 
+#include <string>
+#include <memory>
+
 #include "huron/control_interfaces/state_provider.h"
 #include "huron/enable_protected_make_shared.h"
 
@@ -20,7 +23,9 @@ class FloatingBase : public huron::StateProvider,
   void GetNewState(Eigen::Ref<Eigen::MatrixXd> new_state) const override;
 
  protected:
-  FloatingBase(const std::string& name, int id, std::weak_ptr<MujocoEnvironment> env);
+  FloatingBase(const std::string& name,
+               int id,
+               std::weak_ptr<MujocoEnvironment> env);
 
  private:
   std::string name_;

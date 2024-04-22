@@ -1,10 +1,12 @@
 #pragma once
+
+#include <mujoco/mujoco.h>
+
 #include <string>
 #include <vector>
 #include <memory>
 
 #include "huron/control_interfaces/legged_robot.h"
-#include <mujoco/mujoco.h>
 
 
 namespace huron {
@@ -24,5 +26,5 @@ class Huron : public huron::LeggedRobot {
   void Terminate() override;
 };
 
-}  // namespace ros2
+}  // namespace mujoco
 }  // namespace huron

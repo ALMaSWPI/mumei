@@ -1,5 +1,8 @@
 #pragma once
 
+#include <string>
+#include <memory>
+
 #include "huron/control_interfaces/encoder.h"
 #include "huron/enable_protected_make_shared.h"
 
