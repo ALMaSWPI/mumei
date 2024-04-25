@@ -17,6 +17,78 @@ Robot::Robot(std::unique_ptr<RobotConfiguration> config,
 Robot::Robot(std::shared_ptr<multibody::Model> model)
   : Robot::Robot(std::make_unique<RobotConfiguration>(), std::move(model)) {}
 
+void Robot::Initialize() {
+  // Initialize all motors
+  for (auto& component : moving_components_) {
+    auto motor = std::dynamic_pointer_cast<GenericComponent>(
+      component);
+    if (motor != nullptr) {
+      motor->Initialize();
+    }
+  }
+  // Initialize all sensors
+  for (auto& sp : non_joint_state_providers_) {
+    auto sensor = std::dynamic_pointer_cast<GenericComponent>(sp);
+    if (sensor != nullptr) {
+      sensor->Initialize();
+    }
+  }
+  for (auto& sp : joint_state_providers_) {
+    auto sensor = std::dynamic_pointer_cast<GenericComponent>(sp);
+    if (sensor != nullptr) {
+      sensor->Initialize();
+    }
+  }
+}
+
+void Robot::SetUp() {
+  // Initialize all motors
+  for (auto& component : moving_components_) {
+    auto motor = std::dynamic_pointer_cast<GenericComponent>(
+      component);
+    if (motor != nullptr) {
+      motor->SetUp();
+    }
+  }
+  // Initialize all sensors
+  for (auto& sp : non_joint_state_providers_) {
+    auto sensor = std::dynamic_pointer_cast<GenericComponent>(sp);
+    if (sensor != nullptr) {
+      sensor->SetUp();
+    }
+  }
+  for (auto& sp : joint_state_providers_) {
+    auto sensor = std::dynamic_pointer_cast<GenericComponent>(sp);
+    if (sensor != nullptr) {
+      sensor->SetUp();
+    }
+  }
+}
+
+void Robot::Terminate() {
+  // Initialize all motors
+  for (auto& component : moving_components_) {
+    auto motor = std::dynamic_pointer_cast<GenericComponent>(
+      component);
+    if (motor != nullptr) {
+      motor->Terminate();
+    }
+  }
+  // Initialize all sensors
+  for (auto& sp : non_joint_state_providers_) {
+    auto sensor = std::dynamic_pointer_cast<GenericComponent>(sp);
+    if (sensor != nullptr) {
+      sensor->Terminate();
+    }
+  }
+  for (auto& sp : joint_state_providers_) {
+    auto sensor = std::dynamic_pointer_cast<GenericComponent>(sp);
+    if (sensor != nullptr) {
+      sensor->Terminate();
+    }
+  }
+}
+
 void Robot::RegisterStateProvider(
   std::shared_ptr<StateProvider> state_provider,
   bool is_joint_state_provider) {

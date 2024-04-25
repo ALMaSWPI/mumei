@@ -20,7 +20,6 @@ find_package(huron REQUIRED)
 
 add_library(${PROJECT_NAME}
   SHARED
-  src/huron.cc
   src/huron_node.cc
   src/ros_env.cc
   src/joint_state_provider.cc

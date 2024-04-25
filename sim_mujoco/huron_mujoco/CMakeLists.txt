@@ -1,7 +1,6 @@
 set(dir "${CMAKE_CURRENT_SOURCE_DIR}")
 
 list(APPEND SOURCE_FILES
-        "${dir}/src/huron.cc"
         "${dir}/src/mujoco_env.cc"
         "${dir}/src/encoder.cc"
         "${dir}/src/floating_base.cc"

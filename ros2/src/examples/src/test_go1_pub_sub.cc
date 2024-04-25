@@ -2,7 +2,7 @@
 #include <ament_index_cpp/get_package_share_directory.hpp>
 #include "huron/utils/time.h"
 #include "huron/locomotion/zero_moment_point_ft_sensor.h"
-#include "huron_ros2/huron.h"
+#include "huron/control_interfaces/legged_robot.h"
 #include "huron_ros2/ros_env.h"
 #include "huron_ros2/force_torque_sensor.h"
 #include "huron_ros2/joint_state_provider.h"
@@ -34,7 +34,7 @@ huron::ros2::Ros2Environment env(
   std::bind(loop));
 
 // Create a robot
-huron::ros2::Huron robot;
+huron::LeggedRobot robot;
 
 // Misc variables
 auto start = std::chrono::steady_clock::now();

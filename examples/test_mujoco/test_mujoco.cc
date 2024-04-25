@@ -1,7 +1,7 @@
 #include <iostream>
 #include "huron/utils/time.h"
 
-#include "huron_mujoco/huron.h"
+#include "huron/control_interfaces/robot.h"
 #include "huron_mujoco/mujoco_env.h"
 
 using namespace huron;  //NOLINT
@@ -14,7 +14,7 @@ huron::mujoco::MujocoEnvironment env(
   std::bind(loop));
 
 // Create a robot
-huron::mujoco::Huron robot;
+huron::Robot robot;
 
 // Misc variables
 auto start = std::chrono::steady_clock::now();

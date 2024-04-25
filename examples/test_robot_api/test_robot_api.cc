@@ -31,86 +31,8 @@ void PrintVector(const std::vector<T>& vec) {
   std::cout << '\n';
 }
 
-class Huron : public huron::LeggedRobot {
- public:
-  Huron() = default;
-  Huron(const Huron&) = delete;
-  Huron& operator=(const Huron&) = delete;
-  ~Huron() override = default;
-
-  void Initialize() override {
-    // Initialize all motors
-    for (auto& component : moving_components_) {
-      auto motor = std::dynamic_pointer_cast<huron::TorqueMotor>(
-        component);
-      if (motor != nullptr) {
-        motor->Initialize();
-      }
-    }
-    // Initialize all sensors
-    for (auto& sp : non_joint_state_providers_) {
-      auto sensor = std::dynamic_pointer_cast<huron::Sensor>(sp);
-      if (sensor != nullptr) {
-        sensor->Initialize();
-      }
-    }
-    for (auto& sp : joint_state_providers_) {
-      auto sensor = std::dynamic_pointer_cast<huron::Sensor>(sp);
-      if (sensor != nullptr) {
-        sensor->Initialize();
-      }
-    }
-  }
-  void SetUp() override {
-    // Initialize all motors
-    for (auto& component : moving_components_) {
-      auto motor = std::dynamic_pointer_cast<huron::TorqueMotor>(
-        component);
-      if (motor != nullptr) {
-        motor->SetUp();
-      }
-    }
-    // Initialize all sensors
-    for (auto& sp : non_joint_state_providers_) {
-      auto sensor = std::dynamic_pointer_cast<huron::Sensor>(sp);
-      if (sensor != nullptr) {
-        sensor->SetUp();
-      }
-    }
-    for (auto& sp : joint_state_providers_) {
-      auto sensor = std::dynamic_pointer_cast<huron::Sensor>(sp);
-      if (sensor != nullptr) {
-        sensor->SetUp();
-      }
-    }
-  }
-  void Terminate() override {
-    // Initialize all motors
-    for (auto& component : moving_components_) {
-      auto motor = std::dynamic_pointer_cast<huron::TorqueMotor>(
-        component);
-      if (motor != nullptr) {
-        motor->Terminate();
-      }
-    }
-    // Initialize all sensors
-    for (auto& sp : non_joint_state_providers_) {
-      auto sensor = std::dynamic_pointer_cast<huron::Sensor>(sp);
-      if (sensor != nullptr) {
-        sensor->Terminate();
-      }
-    }
-    for (auto& sp : joint_state_providers_) {
-      auto sensor = std::dynamic_pointer_cast<huron::Sensor>(sp);
-      if (sensor != nullptr) {
-        sensor->Terminate();
-      }
-    }
-  }
-};
-
 int main(int argc, char* argv[]) {
-  Huron robot;
+  huron::LeggedRobot robot;
 
   huron::driver::can::SocketCanBus hcb0{"can0", 0};
   huron::driver::can::SocketCanBus hcb1{"can0", 1};
