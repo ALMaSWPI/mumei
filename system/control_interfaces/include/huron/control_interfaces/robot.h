@@ -45,6 +45,11 @@ class Robot : public MovingGroup, public GenericComponent {
   Robot& operator=(const Robot&) = delete;
   ~Robot() override = default;
 
+  // GenericComponent
+  void Initialize() override;
+  void SetUp() override;
+  void Terminate() override;
+
   Model* const GetModel() { return model_.get(); }
 
   void RegisterStateProvider(std::shared_ptr<StateProvider> state_provider,
