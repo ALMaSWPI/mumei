@@ -24,7 +24,7 @@ jobs:
         with:
           # list of Docker images to use as base name for tags
           images: |
-            wpihuron/huron
+            almaswpi/mumei
           # generate Docker tags based on the following events/attributes
           tags: |
             type=ref,event=pr
@@ -78,7 +78,7 @@ jobs:
           cmake --toolchain ../../tools/x86_64-toolchain.cmake -DBUILD_SHARED_LIBS=ON -Bbuild
           sudo cmake --build build --parallel --target install
           cd -
-      - name: Build, test, and install huron
+      - name: Build, test, and install mumei
         run: |
           export LD_LIBRARY_PATH=/usr/local/lib:/usr/lib:$LD_LIBRARY_PATH
           cmake -DBUILD_TYPE=x86_64 -DUSE_PINOCCHIO=1  -DCMAKE_PREFIX_PATH=/opt/ros/humble -Bbuild
