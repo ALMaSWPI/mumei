@@ -10,7 +10,7 @@ const Index kInvalidIndex = -1;
 
 class Indexable {
  public:
-  Indexable(const std::string& name)
+  explicit Indexable(const std::string& name)
       : name_(name), index_(kInvalidIndex) {}
   virtual ~Indexable() = default;
 

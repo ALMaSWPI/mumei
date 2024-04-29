@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <utility>
+#include <string>
 
 #include "huron/sensors/force_torque_sensor.h"
 
