@@ -3,7 +3,7 @@
 include(CMakeFindDependencyMacro)
 
 set(mumei_INCLUDE_DIRS @CMAKE_INSTALL_PREFIX@/include)
-set(mumei_LIBRARIES mumei::huron)
+set(mumei_LIBRARIES mumei::mumei)
 
 # Create an imported target for "mumei"
 # add_library(mumei::mumei INTERFACE IMPORTED)
