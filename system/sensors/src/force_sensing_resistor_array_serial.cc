@@ -1,7 +1,7 @@
-#include "huron/sensors/force_sensing_resistor_array_serial.h"
-#include "huron/utils/string.h"
+#include "mumei/sensors/force_sensing_resistor_array_serial.h"
+#include "mumei/utils/string.h"
 
-namespace huron {
+namespace mumei {
 
 ForceSensingResistorArraySerial::ForceSensingResistorArraySerial(
   const std::string& name,
@@ -52,4 +52,4 @@ void ForceSensingResistorArraySerial::Terminate() {
   serial_->Close();
 }
 
-}  // namespace huron
+}  // namespace mumei

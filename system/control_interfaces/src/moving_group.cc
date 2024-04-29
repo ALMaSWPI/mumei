@@ -1,6 +1,6 @@
-#include "huron/control_interfaces/moving_group.h"
+#include "mumei/control_interfaces/moving_group.h"
 
-namespace huron {
+namespace mumei {
 
 MovingGroup::MovingGroup()
   : MovingInterface(0) {}
@@ -56,4 +56,4 @@ bool MovingGroup::Stop() {
   return true;
 }
 
-}  // namespace huron
+}  // namespace mumei

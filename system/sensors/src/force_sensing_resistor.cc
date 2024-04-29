@@ -1,6 +1,6 @@
-#include "huron/sensors/force_sensing_resistor.h"
+#include "mumei/sensors/force_sensing_resistor.h"
 
-namespace huron {
+namespace mumei {
 
 ForceSensingResistor::ForceSensingResistor(
   const std::string& name,
@@ -13,4 +13,4 @@ ForceSensingResistor::ForceSensingResistor(
   std::unique_ptr<Configuration> config)
   : SensorWithFrame(name, 1, 1, std::move(frame), std::move(config)) {}
 
-}  // namespace huron
+}  // namespace mumei

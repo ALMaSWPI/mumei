@@ -1,7 +1,7 @@
-#include "huron/multibody/com_frame.h"
-#include "huron/multibody/model.h"
+#include "mumei/multibody/com_frame.h"
+#include "mumei/multibody/model.h"
 
-namespace huron {
+namespace mumei {
 namespace multibody {
 
 ComFrame::ComFrame(
@@ -50,4 +50,4 @@ Eigen::Affine3d ComFrame::ParentToThisTransform() const {
 }
 
 }  // namespace multibody
-}  // namespace huron
+}  // namespace mumei

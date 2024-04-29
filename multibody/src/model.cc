@@ -1,7 +1,7 @@
-#include "huron/multibody/model.h"
-#include "huron/multibody/model_impl_factory.h"
+#include "mumei/multibody/model.h"
+#include "mumei/multibody/model_impl_factory.h"
 
-namespace huron {
+namespace mumei {
 namespace multibody {
 
 Model::Model() = default;
@@ -212,17 +212,17 @@ const Eigen::VectorXd& Model::GetGravity() const {
   return impls_[default_impl_index_]->GetGravity();
 }
 
-const huron::Vector6d& Model::GetSpatialMomentum() const {
+const mumei::Vector6d& Model::GetSpatialMomentum() const {
   assert(is_finalized_);
   return impls_[default_impl_index_]->GetSpatialMomentum();
 }
 
-huron::Vector6d Model::GetCentroidalMomentum() const {
+mumei::Vector6d Model::GetCentroidalMomentum() const {
   assert(is_finalized_);
   return impls_[default_impl_index_]->GetCentroidalMomentum();
 }
 
-const huron::Matrix6Xd& Model::GetCentroidalMatrix() const {
+const mumei::Matrix6Xd& Model::GetCentroidalMatrix() const {
   assert(is_finalized_);
   return impls_[default_impl_index_]->GetCentroidalMatrix();
 }
@@ -242,4 +242,4 @@ void Model::ForwardKinematics() {
 }
 
 }  // namespace multibody
-}  // namespace huron
+}  // namespace mumei

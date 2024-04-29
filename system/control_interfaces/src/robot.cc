@@ -1,6 +1,6 @@
-#include "huron/control_interfaces/robot.h"
+#include "mumei/control_interfaces/robot.h"
 
-namespace huron {
+namespace mumei {
 
 Robot::Robot(std::unique_ptr<RobotConfiguration> config)
   : GenericComponent(std::move(config)), MovingGroup(),
@@ -133,4 +133,4 @@ std::weak_ptr<Indexable> Robot::GetComponent(Index id) const {
   return registered_components_[id];
 }
 
-}  // namespace huron
+}  // namespace mumei

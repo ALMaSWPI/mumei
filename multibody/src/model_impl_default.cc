@@ -1,6 +1,6 @@
-#include "huron/multibody/model_impl_interface.h"
+#include "mumei/multibody/model_impl_interface.h"
 
-namespace huron {
+namespace mumei {
 namespace multibody {
 namespace internal {
 
@@ -107,15 +107,15 @@ const Eigen::VectorXd& ModelImplInterface::GetGravity() const {
   throw NotImplementedException();
 }
 
-const huron::Vector6d& ModelImplInterface::GetSpatialMomentum() const {
+const mumei::Vector6d& ModelImplInterface::GetSpatialMomentum() const {
   throw NotImplementedException();
 }
 
-huron::Vector6d ModelImplInterface::GetCentroidalMomentum() const {
+mumei::Vector6d ModelImplInterface::GetCentroidalMomentum() const {
   throw NotImplementedException();
 }
 
-const huron::Matrix6Xd& ModelImplInterface::GetCentroidalMatrix() const {
+const mumei::Matrix6Xd& ModelImplInterface::GetCentroidalMatrix() const {
   throw NotImplementedException();
 }
 
@@ -160,4 +160,4 @@ size_t ModelImplInterface::num_frames() const {
 
 }  // namespace internal
 }  // namespace multibody
-}  // namespace huron
+}  // namespace mumei

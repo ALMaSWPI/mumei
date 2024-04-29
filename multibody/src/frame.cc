@@ -1,7 +1,7 @@
-#include "huron/multibody/frame.h"
-#include "huron/multibody/model.h"
+#include "mumei/multibody/frame.h"
+#include "mumei/multibody/model.h"
 
-namespace huron {
+namespace mumei {
 namespace multibody {
 
 Frame::Frame(FrameIndex index,
@@ -36,4 +36,4 @@ Eigen::Affine3d Frame::GetTransformToFrame(FrameIndex other) const {
 }
 
 }  // namespace multibody
-}  // namespace huron
+}  // namespace mumei

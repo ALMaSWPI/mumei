@@ -1,8 +1,8 @@
-#include "huron/driver/serial/wjwwood_serial.h"
+#include "mumei/driver/serial/wjwwood_serial.h"
 #include <utility>
 #include "serial/serial.h"
 
-namespace huron {
+namespace mumei {
 namespace driver {
 namespace serial {
 
@@ -159,4 +159,4 @@ void Serial::SendBreak(int duration) {
 
 }  // namespace serial
 }  // namespace driver
-}  // namespace huron
+}  // namespace mumei

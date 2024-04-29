@@ -4,15 +4,15 @@ add_executable(read_encoder_est read_encoder_est.cc)
 
 target_link_libraries(move_motor
     PUBLIC
-    huron::huron
+    mumei::mumei
 )
 
 target_link_libraries(read_encoder
     PUBLIC
-    huron::huron
+    mumei::mumei
 )
 
 target_link_libraries(read_encoder_est
     PUBLIC
-    huron::huron
+    mumei::mumei
 )

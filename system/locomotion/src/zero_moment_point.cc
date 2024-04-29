@@ -1,7 +1,7 @@
-#include "huron/locomotion/zero_moment_point.h"
-#include "huron/sensors/force_sensing_resistor_array.h"
-#include "huron/types.h"
-namespace huron {
+#include "mumei/locomotion/zero_moment_point.h"
+#include "mumei/sensors/force_sensing_resistor_array.h"
+#include "mumei/types.h"
+namespace mumei {
 
 ZeroMomentPoint::ZeroMomentPoint(
   std::weak_ptr<const multibody::Frame> zmp_frame,
@@ -16,4 +16,4 @@ Eigen::Affine3d ZeroMomentPoint::ZmpToWorld(const Eigen::Vector2d& zmp) const {
   return ret;
 }
 
-}  // namespace huron
+}  // namespace mumei

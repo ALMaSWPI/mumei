@@ -1,6 +1,6 @@
-#include "huron/multibody/joint_common.h"
+#include "mumei/multibody/joint_common.h"
 
-namespace huron {
+namespace mumei {
 namespace multibody {
 
 std::ostream& operator<<(std::ostream &os, const JointDescription &jd) {
@@ -25,4 +25,4 @@ std::ostream& operator<<(std::ostream &os, const JointDescription &jd) {
 }
 
 }  // namespace multibody
-}  // namespace huron
+}  // namespace mumei

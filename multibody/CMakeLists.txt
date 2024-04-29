@@ -26,23 +26,23 @@ FILE(GLOB_RECURSE HEADER_FILES
 
 set(INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/include/")
 
-target_sources(huron
+target_sources(mumei
     PRIVATE
     ${SOURCE_FILES}
     # PUBLIC
     # ${HEADER_FILES}
 )
-target_include_directories(huron
+target_include_directories(mumei
     PUBLIC
     $<BUILD_INTERFACE:${INCLUDE_DIRS}>
     $<INSTALL_INTERFACE:include> 
 )
 
-target_sources(huron_tests
+target_sources(mumei_tests
   PRIVATE
   ${TEST_SOURCE_FILES}
 )
-target_include_directories(huron_tests
+target_include_directories(mumei_tests
         PUBLIC
         $<BUILD_INTERFACE:${INCLUDE_DIRS}>
         $<INSTALL_INTERFACE:include>

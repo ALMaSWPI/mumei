@@ -1,6 +1,6 @@
-#include "huron/control_interfaces/legged_robot.h"
+#include "mumei/control_interfaces/legged_robot.h"
 
-namespace huron {
+namespace mumei {
 
 LeggedRobot::LeggedRobot(std::unique_ptr<RobotConfiguration> config)
   : Robot(std::move(config)) {}
@@ -16,4 +16,4 @@ Eigen::Vector2d LeggedRobot::EvalZeroMomentPoint() {
   return zmp_->Eval();
 }
 
-}  // namespace huron
+}  // namespace mumei

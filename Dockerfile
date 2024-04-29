@@ -1,9 +1,9 @@
-FROM wpihuron/base-images:latest
+FROM wpimumei/base-images:latest
 
 ARG TARGETPLATFORM
 
-COPY . /huron
-RUN chmod u+x /huron/tools/build_huron.sh
+COPY . /mumei
+RUN chmod u+x /mumei/tools/build_mumei.sh
 
 
 RUN case ${TARGETPLATFORM} in \
@@ -12,5 +12,5 @@ RUN case ${TARGETPLATFORM} in \
          "linux/arm/v7") TOOLCHAIN_PREFIX=armv7l  ;; \
          "linux/arm/v6") TOOLCHAIN_PREFIX=armel  ;; \
     esac \
-    && /bin/bash /huron/tools/build_huron.sh "${TOOLCHAIN_PREFIX}"
+    && /bin/bash /mumei/tools/build_mumei.sh "${TOOLCHAIN_PREFIX}"
 

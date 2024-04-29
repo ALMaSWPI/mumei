@@ -28,7 +28,7 @@ else()
     message(FATAL_ERROR "Invalid build type. Use -DBUILD_TYPE=x86_64 or -DBUILD_TYPE=armv7l")
 endif()
 
-project(huron)
+project(mumei)
 
 # Find pinocchio
 if (DEFINED USE_PINOCCHIO)
@@ -66,14 +66,14 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-# libhuron
-add_library(huron SHARED huron.cc)
-set_target_properties(huron PROPERTIES LINKER_LANGUAGE CXX)
+# libmumei
+add_library(mumei SHARED mumei.cc)
+set_target_properties(mumei PROPERTIES LINKER_LANGUAGE CXX)
 
 # Test target
 enable_testing()
 
-add_executable(huron_tests huron.cc)
+add_executable(mumei_tests mumei.cc)
 
 # Add subpackages
 add_subdirectory(common)
@@ -84,76 +84,76 @@ add_subdirectory(system)
 add_subdirectory(control)
 add_subdirectory(multibody)
 if (DEFINED USE_MUJOCO)
-add_subdirectory(sim_mujoco)
+add_subdirectory(mujoco)
 endif()
 
 # add_subdirectory(third_party)
 
-target_link_libraries(huron
+target_link_libraries(mumei
   PUBLIC
     sockcanpp
     serial
 )
-target_include_directories(huron
+target_include_directories(mumei
     PUBLIC
     ${sockcanpp_INCLUDE_DIRS}/..
     ${serial_INCLUDE_DIRS}/..
     ${EIGEN3_INCLUDE_DIR}/..)
 
 if (DEFINED USE_PINOCCHIO)
-  target_link_libraries(huron
+  target_link_libraries(mumei
     PUBLIC
       pinocchio::pinocchio)
-    target_compile_definitions(huron PUBLIC HURON_USE_PINOCCHIO=1)
+    target_compile_definitions(mumei PUBLIC MUMEI_USE_PINOCCHIO=1)
 endif()
 
 if (DEFINED USE_MUJOCO)
-    target_link_libraries(huron
+    target_link_libraries(mumei
             PUBLIC
             mujoco
             glfw)
-    target_compile_definitions(huron PUBLIC HURON_USE_MUJOCO=1)
+    target_compile_definitions(mumei PUBLIC MUMEI_USE_MUJOCO=1)
 endif()
 
 
 # Copy urdf files to build directory
-add_custom_command(TARGET huron PRE_BUILD
+add_custom_command(TARGET mumei PRE_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy
-                       ${CMAKE_SOURCE_DIR}/multibody/test/*.urdf $<TARGET_FILE_DIR:huron>)
+                       ${CMAKE_SOURCE_DIR}/multibody/test/*.urdf $<TARGET_FILE_DIR:mumei>)
 
-# Install the "huronConfig.cmake" file and export the target
-install(TARGETS huron
-  EXPORT huronTargets
+# Install the "mumeiConfig.cmake" file and export the target
+install(TARGETS mumei
+  EXPORT mumeiTargets
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION bin
   # FILE_SET HEADERS DESTINATION include
 )
 
-# Generate and install the export targets for "huron"
-install(EXPORT huronTargets
-  FILE huronTargets.cmake
-  NAMESPACE huron::
-  DESTINATION lib/cmake/huron
+# Generate and install the export targets for "mumei"
+install(EXPORT mumeiTargets
+  FILE mumeiTargets.cmake
+  NAMESPACE mumei::
+  DESTINATION lib/cmake/mumei
 )
 
-# Generate and install huronConfig.cmake
+# Generate and install mumeiConfig.cmake
 include(CMakePackageConfigHelpers)
 
 # Generate ${PROJECT_NAME}Config.cmake
 configure_package_config_file(
-  huronConfig.cmake.in
-  ${CMAKE_CURRENT_BINARY_DIR}/huronConfig.cmake
-  INSTALL_DESTINATION lib/cmake/huron
+  mumeiConfig.cmake.in
+  ${CMAKE_CURRENT_BINARY_DIR}/mumeiConfig.cmake
+  INSTALL_DESTINATION lib/cmake/mumei
 )
-# Install the generated "huronConfig.cmake" file
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/huronConfig.cmake
-    DESTINATION lib/cmake/huron
+# Install the generated "mumeiConfig.cmake" file
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/mumeiConfig.cmake
+    DESTINATION lib/cmake/mumei
 )
 # Also install Findsockcanpp.cmake
 install(
   FILES Findsockcanpp.cmake Findserial.cmake
-  DESTINATION lib/cmake/huron/Modules
+  DESTINATION lib/cmake/mumei/Modules
 )
 
 # Uninstall target
@@ -171,12 +171,12 @@ endif()
 # Build examples
 # add_subdirectory(examples)
 target_link_libraries(
-  huron_tests
-  huron
+  mumei_tests
+  mumei
   sockcanpp
   serial
   GTest::gtest_main
 )
 
 include(GoogleTest)
-gtest_discover_tests(huron_tests)
+gtest_discover_tests(mumei_tests)

@@ -1,6 +1,6 @@
-#include "huron/math/rotation.h"
+#include "mumei/math/rotation.h"
 
-namespace huron {
+namespace mumei {
 namespace math {
 
 Eigen::Vector3d ZyxToRpy(
@@ -59,4 +59,4 @@ Eigen::Vector3d RotationMatrixToRpy(
 
 
 }  // namespace math
-}  // namespace huron
+}  // namespace mumei

@@ -1,7 +1,7 @@
-#include "huron/multibody/logical_frame.h"
-#include "huron/multibody/model.h"
+#include "mumei/multibody/logical_frame.h"
+#include "mumei/multibody/model.h"
 
-namespace huron {
+namespace mumei {
 namespace multibody {
 
 LogicalFrame::LogicalFrame(
@@ -46,4 +46,4 @@ Eigen::Affine3d LogicalFrame::GetTransformToFrame(FrameIndex other) const {
 }
 
 }  // namespace multibody
-}  // namespace huron
+}  // namespace mumei

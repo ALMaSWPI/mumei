@@ -1,6 +1,6 @@
-#include "huron/sensors/force_torque_sensor.h"
+#include "mumei/sensors/force_torque_sensor.h"
 
-namespace huron {
+namespace mumei {
 
 ForceTorqueSensor::ForceTorqueSensor(
   const std::string& name,
@@ -32,4 +32,4 @@ Eigen::VectorXd ForceTorqueSensor::GetValue() const {
   return wrench_;
 }
 
-}  // namespace huron
+}  // namespace mumei

@@ -1,6 +1,6 @@
-#include "huron/locomotion/zero_moment_point_ft_sensor.h"
+#include "mumei/locomotion/zero_moment_point_ft_sensor.h"
 
-namespace huron {
+namespace mumei {
 
 ZeroMomentPointFTSensor::ZeroMomentPointFTSensor(
   std::weak_ptr<const multibody::Frame> zmp_frame,
@@ -41,4 +41,4 @@ Eigen::Vector2d ZeroMomentPointFTSensor::Eval(double& fz) {
   return zmp;
 }
 
-}  // namespace huron
+}  // namespace mumei

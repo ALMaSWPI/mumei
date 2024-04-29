@@ -6,11 +6,11 @@ FILE(GLOB_RECURSE HEADER_FILES
 
 set(INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/include/")
 
-# target_sources(huron
+# target_sources(mumei
 #     PUBLIC
 #     ${HEADER_FILES}
 # )
-target_include_directories(huron
+target_include_directories(mumei
     PUBLIC
     $<BUILD_INTERFACE:${INCLUDE_DIRS}>
     $<INSTALL_INTERFACE:include> 

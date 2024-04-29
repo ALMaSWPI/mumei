@@ -1,15 +1,15 @@
 #include <rclcpp/rclcpp.hpp>
 #include <ament_index_cpp/get_package_share_directory.hpp>
-#include "huron/utils/time.h"
-#include "huron/locomotion/zero_moment_point_ft_sensor.h"
-#include "huron/control_interfaces/legged_robot.h"
-#include "huron_ros2/ros_env.h"
-#include "huron_ros2/force_torque_sensor.h"
-#include "huron_ros2/joint_state_provider.h"
-#include "huron_ros2/joint_group_controller.h"
-#include "huron/control/push_recovery.h"
+#include "mumei/utils/time.h"
+#include "mumei/locomotion/zero_moment_point_ft_sensor.h"
+#include "mumei/control_interfaces/legged_robot.h"
+#include "ros2_driver/ros_env.h"
+#include "ros2_driver/force_torque_sensor.h"
+#include "ros2_driver/joint_state_provider.h"
+#include "ros2_driver/joint_group_controller.h"
+#include "mumei/control/push_recovery.h"
 
-using namespace huron;  //NOLINT
+using namespace mumei;  //NOLINT
 
 // Joint names order from ROS2
 const std::array<std::string, 12> joint_names = {
@@ -31,11 +31,11 @@ void setup();
 void loop();
 
 // Create an environment
-huron::ros2::Ros2Environment env(
+mumei::ros2::Ros2Environment env(
   std::bind(loop));
 
 // Create a robot
-huron::LeggedRobot robot;
+mumei::LeggedRobot robot;
 
 // Misc variables
 auto start = std::chrono::steady_clock::now();
@@ -63,7 +63,7 @@ void setup() {
                                                     "/p3d/odom", 0, 7, 0, 6,
                                                     true);
 
-  std::vector<std::shared_ptr<huron::StateProvider>> joint_sp_list;
+  std::vector<std::shared_ptr<mumei::StateProvider>> joint_sp_list;
   for (size_t i = 0; i < joint_names.size(); ++i) {
     joint_sp_list.push_back(env.CreateJointStateProvider(
         "jsp_" + std::to_string(i),
@@ -112,7 +112,7 @@ void setup() {
   robot.RegisterStateProvider(r_ft_sensor);
 
   // Initialize ZMP
-  std::vector<std::shared_ptr<huron::ForceTorqueSensor>> ft_sensor_list;
+  std::vector<std::shared_ptr<mumei::ForceTorqueSensor>> ft_sensor_list;
   ft_sensor_list.push_back(l_ft_sensor);
   ft_sensor_list.push_back(r_ft_sensor);
   std::shared_ptr<ZeroMomentPoint> zmp =

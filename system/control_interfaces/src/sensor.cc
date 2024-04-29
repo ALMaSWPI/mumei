@@ -1,6 +1,6 @@
-#include "huron/control_interfaces/sensor.h"
+#include "mumei/control_interfaces/sensor.h"
 
-namespace huron {
+namespace mumei {
 
 Sensor::Sensor(const std::string& name,
                const Eigen::Vector2i& dim,
@@ -34,4 +34,4 @@ Eigen::VectorXd Sensor::ReloadAndGetValue() {
   return GetValue();
 }
 
-}  // namespace huron
+}  // namespace mumei

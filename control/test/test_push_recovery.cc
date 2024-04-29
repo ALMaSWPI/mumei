@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 #include <eigen3/Eigen/Core>
-#include "huron/control/push_recovery.h"
+#include "mumei/control/push_recovery.h"
 
 // Some basic methods testing
 TEST(PushRecoveryTest, ZeroConfiguration) {
