@@ -15,14 +15,14 @@ find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(nav_msgs REQUIRED)
 find_package(ros2_driver REQUIRED)
-find_package(huron REQUIRED)
+find_package(mumei REQUIRED)
 
 add_executable(test_pub_sub src/test_pub_sub.cc)
 add_executable(test_go1_pub_sub src/test_go1_pub_sub.cc)
 add_executable(test_push_recovery src/test_push_recovery.cc)
 ament_target_dependencies(test_pub_sub rclcpp sensor_msgs nav_msgs ros2_driver)
 ament_target_dependencies(test_go1_pub_sub rclcpp sensor_msgs nav_msgs ros2_driver)
-ament_target_dependencies(test_push_recovery huron rclcpp sensor_msgs nav_msgs ros2_driver)
+ament_target_dependencies(test_push_recovery mumei rclcpp sensor_msgs nav_msgs ros2_driver)
 
 
 install(TARGETS
