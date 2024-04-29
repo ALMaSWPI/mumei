@@ -3,6 +3,7 @@
 #include <eigen3/Eigen/Core>
 
 #include <memory>
+#include <string>
 
 #include "huron/control_interfaces/sensor_with_frame.h"
 #include "huron/types.h"

@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <utility>
+#include <string>
 
 #include "huron/control_interfaces/state_provider.h"
 
