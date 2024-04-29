@@ -1,6 +1,6 @@
-#include "huron/locomotion/zero_moment_point_fsr_array.h"
+#include "mumei/locomotion/zero_moment_point_fsr_array.h"
 
-namespace huron {
+namespace mumei {
 
 ZeroMomentPointFSRArray::ZeroMomentPointFSRArray(
   std::weak_ptr<const multibody::Frame> zmp_frame,
@@ -29,4 +29,4 @@ Eigen::Vector2d ZeroMomentPointFSRArray::Eval(double& fz) {
   return zmp;
 }
 
-}  // namespace huron
+}  // namespace mumei

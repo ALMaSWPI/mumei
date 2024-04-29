@@ -1,6 +1,6 @@
-#include "huron/control_interfaces/sensor_with_frame.h"
+#include "mumei/control_interfaces/sensor_with_frame.h"
 
-namespace huron {
+namespace mumei {
 
 SensorWithFrame::SensorWithFrame(const std::string& name,
                                  const Eigen::Vector2i& dim,
@@ -26,4 +26,4 @@ SensorWithFrame::SensorWithFrame(const std::string& name,
                                  std::unique_ptr<Configuration> config)
   : Sensor(name, rows, cols, std::move(config)), frame_(std::move(frame)) {}
 
-}  // namespace huron
+}  // namespace mumei

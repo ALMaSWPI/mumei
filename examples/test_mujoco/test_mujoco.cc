@@ -1,20 +1,20 @@
 #include <iostream>
-#include "huron/utils/time.h"
+#include "mumei/utils/time.h"
 
-#include "huron/control_interfaces/robot.h"
-#include "huron_mujoco/mujoco_env.h"
+#include "mumei/control_interfaces/robot.h"
+#include "mumei/mujoco/mujoco_env.h"
 
-using namespace huron;  //NOLINT
+using namespace mumei;  //NOLINT
 
 void setup(std::string urdf_path);
 void loop();
 
 // Create an environment
-huron::mujoco::MujocoEnvironment env(
+mumei::mujoco::MujocoEnvironment env(
   std::bind(loop));
 
 // Create a robot
-huron::Robot robot;
+mumei::Robot robot;
 
 // Misc variables
 auto start = std::chrono::steady_clock::now();

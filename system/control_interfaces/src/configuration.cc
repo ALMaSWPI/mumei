@@ -1,7 +1,7 @@
-#include "huron/control_interfaces/configuration.h"
-#include "huron/exceptions/invalid_configuration_exception.h"
+#include "mumei/control_interfaces/configuration.h"
+#include "mumei/exceptions/invalid_configuration_exception.h"
 
-namespace huron {
+namespace mumei {
 
 Configuration::Configuration(ConfigMap config_map,
                              std::set<std::string> valid_keys)
@@ -53,4 +53,4 @@ bool Configuration::Set(ConfigMap config_map) {
   return true;
 }
 
-}  // namespace huron
+}  // namespace mumei

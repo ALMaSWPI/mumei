@@ -4,12 +4,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 project(test_robot_api)
 
-find_package(huron REQUIRED)
+find_package(mumei REQUIRED)
 
 add_executable(test_robot_api test_robot_api.cc)
 
 target_link_libraries(test_robot_api
         PUBLIC
-        huron::huron
+        mumei::mumei
 )
 

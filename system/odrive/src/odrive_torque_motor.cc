@@ -1,11 +1,11 @@
 #include <chrono>
 #include <thread>
 
-#include "huron/odrive/odrive_enums.h"
-#include "huron/exceptions/not_implemented_exception.h"
-#include "huron/odrive/odrive_torque_motor.h"
+#include "mumei/odrive/odrive_enums.h"
+#include "mumei/exceptions/not_implemented_exception.h"
+#include "mumei/odrive/odrive_torque_motor.h"
 
-namespace huron {
+namespace mumei {
 namespace odrive {
 
 TorqueMotor::TorqueMotor(
@@ -13,20 +13,20 @@ TorqueMotor::TorqueMotor(
   std::unique_ptr<TorqueMotorConfiguration> config,
   std::shared_ptr<ODrive> odrive,
   double gear_ratio)
-  : huron::TorqueMotor(name, std::move(config), gear_ratio),
+  : mumei::TorqueMotor(name, std::move(config), gear_ratio),
     odrive_(std::move(odrive)) {}
 
 TorqueMotor::TorqueMotor(
   const std::string& name,
   std::shared_ptr<ODrive> odrive,
   double gear_ratio)
-  : huron::TorqueMotor(name, gear_ratio),
+  : mumei::TorqueMotor(name, gear_ratio),
     odrive_(std::move(odrive)) {}
 
 TorqueMotor::TorqueMotor(
   const std::string& name,
   std::shared_ptr<ODrive> odrive)
-  : huron::TorqueMotor(name),
+  : mumei::TorqueMotor(name),
     odrive_(std::move(odrive)) {}
 
 void TorqueMotor::Initialize() {
@@ -68,4 +68,4 @@ bool TorqueMotor::Stop() {
 }
 
 }  // namespace odrive
-}  // namespace huron
+}  // namespace mumei

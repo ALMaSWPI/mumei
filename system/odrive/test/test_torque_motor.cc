@@ -2,15 +2,15 @@
 #include <iostream>
 #include <memory>
 #include <thread>
-#include "huron/driver/can/socket_can_bus.h"
-#include "huron/odrive/odrive_torque_motor.h"
+#include "mumei/driver/can/socket_can_bus.h"
+#include "mumei/odrive/odrive_torque_motor.h"
 
 int main(int argc, char* argv[]) {
   // TODO(dtbpkmte): make pointer to hcb unique_ptr
-  huron::driver::can::SocketCanBus hcb{"can0", 0};
-  auto left_knee_odrive = std::make_shared<huron::odrive::ODriveCAN>(
-    &hcb, 0, std::make_unique<huron::odrive::ODrive::ODriveConfiguration>());
-  huron::odrive::TorqueMotor left_knee_motor{left_knee_odrive};
+  mumei::driver::can::SocketCanBus hcb{"can0", 0};
+  auto left_knee_odrive = std::make_shared<mumei::odrive::ODriveCAN>(
+    &hcb, 0, std::make_unique<mumei::odrive::ODrive::ODriveConfiguration>());
+  mumei::odrive::TorqueMotor left_knee_motor{left_knee_odrive};
 
   std::cout << "Initializing..." << std::endl;
   left_knee_motor.Initialize();

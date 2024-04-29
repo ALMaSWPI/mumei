@@ -1,11 +1,11 @@
 #include <gtest/gtest.h>
 #include <eigen3/Eigen/Core>
-#include "huron/control_interfaces/legged_robot.h"
-#include "huron/sensors/force_torque_sensor.h"
-#include "huron/control_interfaces/constant_state_provider.h"
-#include "huron/locomotion/zero_moment_point_ft_sensor.h"
+#include "mumei/control_interfaces/legged_robot.h"
+#include "mumei/sensors/force_torque_sensor.h"
+#include "mumei/control_interfaces/constant_state_provider.h"
+#include "mumei/locomotion/zero_moment_point_ft_sensor.h"
 
-using namespace huron;  //NOLINT
+using namespace mumei;  //NOLINT
 
 class TestLeggedRobot : public LeggedRobot {
  public:
@@ -51,7 +51,7 @@ class FakeForceTorqueSensor : public ForceTorqueSensor {
 class TestLeggedZmp : public testing::Test {
  protected:
   void SetUp() override {
-#ifdef HURON_USE_PINOCCHIO
+#ifdef MUMEI_USE_PINOCCHIO
     multibody::ModelImplType model_impl_type =
       multibody::ModelImplType::kPinocchio;
 #endif

@@ -1,6 +1,6 @@
-#include "huron/sensors/force_sensing_resistor_array.h"
+#include "mumei/sensors/force_sensing_resistor_array.h"
 
-namespace huron {
+namespace mumei {
 
 ForceSensingResistorArray::ForceSensingResistorArray(
   const std::string& name,
@@ -38,4 +38,4 @@ Eigen::Affine3d ForceSensingResistorArray::GetSensorPose(size_t index) const {
   return fsr_array_[index]->GetSensorFrame().lock()->GetTransformInWorld();
 }
 
-}  // namespace huron
+}  // namespace mumei

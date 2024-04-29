@@ -1,7 +1,7 @@
-#include "huron/driver/can/socket_can_bus.h"
-#include "huron/utils/time.h"
+#include "mumei/driver/can/socket_can_bus.h"
+#include "mumei/utils/time.h"
 
-namespace huron {
+namespace mumei {
 namespace driver {
 namespace can {
 
@@ -55,4 +55,4 @@ bool SocketCanBus::unsubscribe(CanSubscription* handle) {
 
 }  // namespace can
 }  // namespace driver
-}  // namespace huron
+}  // namespace mumei

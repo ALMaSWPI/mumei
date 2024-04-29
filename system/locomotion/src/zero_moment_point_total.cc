@@ -1,6 +1,6 @@
-#include "huron/locomotion/zero_moment_point_total.h"
+#include "mumei/locomotion/zero_moment_point_total.h"
 
-namespace huron {
+namespace mumei {
 
 ZeroMomentPointTotal::ZeroMomentPointTotal(
   std::weak_ptr<const multibody::Frame> zmp_frame,
@@ -28,4 +28,4 @@ Eigen::Vector2d ZeroMomentPointTotal::Eval(double& fz) {
   return zmp;
 }
 
-}  // namespace huron
+}  // namespace mumei

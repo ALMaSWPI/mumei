@@ -1,0 +1,23 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+
+set(mumei_INCLUDE_DIRS @CMAKE_INSTALL_PREFIX@/include)
+set(mumei_LIBRARIES mumei::huron)
+
+# Create an imported target for "mumei"
+# add_library(mumei::mumei INTERFACE IMPORTED)
+# set_target_properties(mumei::mumei PROPERTIES
+#     INTERFACE_INCLUDE_DIRECTORIES "${mumei_INCLUDE_DIRS}"
+# )
+
+# Find dependencies (if any)
+# list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/Modules/")
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_LIST_DIR}/Modules/")
+find_dependency(sockcanpp)
+find_dependency(serial)
+
+find_package(pinocchio)
+
+include("${CMAKE_CURRENT_LIST_DIR}/mumeiTargets.cmake")
+

@@ -1,9 +1,9 @@
 #include <chrono>
 #include <thread>
 
-#include "huron/odrive/odrive.h"
+#include "mumei/odrive/odrive.h"
 
-namespace huron {
+namespace mumei {
 namespace odrive {
 
 void ODrive::Initialize() {
@@ -45,4 +45,4 @@ void ODrive::ConfigureKey(std::string config_key, std::any config_value) {
 }
 
 }  // namespace odrive
-}  // namespace huron
+}  // namespace mumei

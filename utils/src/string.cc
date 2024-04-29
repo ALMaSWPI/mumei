@@ -1,6 +1,6 @@
-#include "huron/utils/string.h"
+#include "mumei/utils/string.h"
 
-namespace huron {
+namespace mumei {
 namespace utils {
 
 std::vector<std::string> split(const std::string& str,
@@ -16,4 +16,4 @@ std::vector<std::string> split(const std::string& str,
 }
 
 }  // namespace utils
-}  // namespace huron
+}  // namespace mumei

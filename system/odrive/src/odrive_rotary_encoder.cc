@@ -1,13 +1,13 @@
-#include "huron/odrive/odrive_rotary_encoder.h"
+#include "mumei/odrive/odrive_rotary_encoder.h"
 
-namespace huron {
+namespace mumei {
 namespace odrive {
 
 ODriveEncoder::ODriveEncoder(const std::string& name,
                              double gear_ratio,
                              std::unique_ptr<RotaryEncoderConfiguration> config,
                              std::shared_ptr<ODrive> odrive)
-    : huron::RotaryEncoder(name, gear_ratio,
+    : mumei::RotaryEncoder(name, gear_ratio,
                            std::move(config)),
       odrive_(std::move(odrive)) {}
 
@@ -15,7 +15,7 @@ ODriveEncoder::ODriveEncoder(const std::string& name,
                              double gear_ratio,
                              double cpr,
                              std::shared_ptr<ODrive> odrive)
-    : huron::RotaryEncoder(name, gear_ratio, cpr),
+    : mumei::RotaryEncoder(name, gear_ratio, cpr),
       odrive_(std::move(odrive)) {}
 
 ODriveEncoder::ODriveEncoder(const std::string& name,
@@ -41,4 +41,4 @@ void ODriveEncoder::DoUpdateState() {
 }
 
 }  // namespace odrive
-}  // namespace huron
+}  // namespace mumei

@@ -2,16 +2,16 @@
 #include <iostream>
 #include <thread>//NOLINT
 
-#include "huron/driver/can/socket_can_bus.h"
-#include "huron/odrive/odrive_can.h"
-#include "huron/odrive/odrive_enums.h"
+#include "mumei/driver/can/socket_can_bus.h"
+#include "mumei/odrive/odrive_can.h"
+#include "mumei/odrive/odrive_enums.h"
 
 using namespace std::chrono_literals;  //NOLINT
 
 int main(int argc, char* argv[]) {
-  huron::driver::can::SocketCanBus hcb{"can0", 0};
-  huron::odrive::ODriveCAN hoc{&hcb, 0,
-    std::make_unique<huron::odrive::ODrive::ODriveConfiguration>()};
+  mumei::driver::can::SocketCanBus hcb{"can0", 0};
+  mumei::odrive::ODriveCAN hoc{&hcb, 0,
+    std::make_unique<mumei::odrive::ODrive::ODriveConfiguration>()};
 
   hoc.SetAxisRequestedState(AXIS_STATE_CLOSED_LOOP_CONTROL);
 

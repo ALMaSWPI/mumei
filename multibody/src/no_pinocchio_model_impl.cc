@@ -1,7 +1,7 @@
-#include "huron/multibody/pinocchio_model_impl.h"
-#include "huron/exceptions/not_implemented_exception.h"
+#include "mumei/multibody/pinocchio_model_impl.h"
+#include "mumei/exceptions/not_implemented_exception.h"
 
-namespace huron {
+namespace mumei {
 namespace multibody {
 namespace internal {
 
@@ -17,4 +17,4 @@ PinocchioModelImpl::~PinocchioModelImpl() = default;
 
 }  // namespace internal
 }  // namespace multibody
-}  // namespace huron
+}  // namespace mumei

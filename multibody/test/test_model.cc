@@ -1,9 +1,9 @@
 #include <gtest/gtest.h>
-#include "huron/control_interfaces/robot.h"
-#include "huron/multibody/model.h"
-#include "huron/control_interfaces/constant_state_provider.h"
+#include "mumei/control_interfaces/robot.h"
+#include "mumei/multibody/model.h"
+#include "mumei/control_interfaces/constant_state_provider.h"
 
-using namespace huron;  //NOLINT
+using namespace mumei;  //NOLINT
 
 class TestRobot : public Robot {
  public:
@@ -19,12 +19,12 @@ class TestRobot : public Robot {
   void Terminate() override {}
 };
 
-#ifdef HURON_USE_PINOCCHIO
+#ifdef MUMEI_USE_PINOCCHIO
 class TestModelPinocchio : public testing::Test {
  protected:
   void SetUp() override {
     robot.GetModel()->AddModelImpl(
-      huron::multibody::ModelImplType::kPinocchio, true);
+      mumei::multibody::ModelImplType::kPinocchio, true);
     robot.GetModel()->BuildFromUrdf("rrbot.urdf");
     robot.GetModel()->SetJointStateProvider(
         1,
@@ -83,4 +83,4 @@ TEST(TestModelPinocchio, TestDepNotExist) {
   EXPECT_THROW(robot.GetModel()->AddModel(ModelImplType::kPinocchio),
                std::runtime_error));
 }
-#endif  // HURON_USE_PINOCCHIO
+#endif  // MUMEI_USE_PINOCCHIO

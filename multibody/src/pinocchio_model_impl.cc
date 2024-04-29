@@ -1,7 +1,7 @@
-#include "huron/multibody/pinocchio_model_impl.h"
-#include "huron/multibody/joint_common.h"
-#include "huron/multibody/model_impl_types.h"
-#include "huron/exceptions/not_implemented_exception.h"
+#include "mumei/multibody/pinocchio_model_impl.h"
+#include "mumei/multibody/joint_common.h"
+#include "mumei/multibody/model_impl_types.h"
+#include "mumei/exceptions/not_implemented_exception.h"
 
 #include "pinocchio/multibody/model.hpp"
 #include "pinocchio/multibody/data.hpp"
@@ -12,7 +12,7 @@
 #include "pinocchio/algorithm/frames.hpp"
 #include "pinocchio/algorithm/center-of-mass.hpp"
 
-namespace huron {
+namespace mumei {
 namespace multibody {
 namespace internal {
 
@@ -203,13 +203,13 @@ const Eigen::VectorXd& PinocchioModelImpl::GetNonlinearEffects() const {
 const Eigen::VectorXd& PinocchioModelImpl::GetGravity() const {
   return impl_->data_.g;
 }
-const huron::Vector6d& PinocchioModelImpl::GetSpatialMomentum() const {
+const mumei::Vector6d& PinocchioModelImpl::GetSpatialMomentum() const {
   throw NotImplementedException();
 }
-huron::Vector6d PinocchioModelImpl::GetCentroidalMomentum() const {
+mumei::Vector6d PinocchioModelImpl::GetCentroidalMomentum() const {
   return impl_->data_.hg;
 }
-const huron::Matrix6Xd& PinocchioModelImpl::GetCentroidalMatrix() const {
+const mumei::Matrix6Xd& PinocchioModelImpl::GetCentroidalMatrix() const {
   return impl_->data_.Ag;
 }
 
@@ -263,4 +263,4 @@ JointType PinocchioModelImpl::GetJointType(size_t joint_index) const {
 
 }  // namespace internal
 }  // namespace multibody
-}  // namespace huron
+}  // namespace mumei

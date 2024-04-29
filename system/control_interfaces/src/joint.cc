@@ -1,6 +1,6 @@
-#include "huron/control_interfaces/joint.h"
+#include "mumei/control_interfaces/joint.h"
 
-namespace huron {
+namespace mumei {
 
 Joint::Joint(std::unique_ptr<JointDescription> joint_desc,
              std::shared_ptr<StateProvider> state_provider)
@@ -26,4 +26,4 @@ void Joint::UpdateState() {
   velocities_ = tmp.segment(jd_->num_positions(), jd_->num_velocities());
 }
 
-}  // namespace huron
+}  // namespace mumei

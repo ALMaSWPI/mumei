@@ -1,10 +1,10 @@
 #include <functional>
-#include "huron/odrive/odrive_can.h"
+#include "mumei/odrive/odrive_can.h"
 
-namespace huron {
+namespace mumei {
 namespace odrive {
 
-ODriveCAN::ODriveCAN(huron::driver::can::BusBase* canbus,
+ODriveCAN::ODriveCAN(mumei::driver::can::BusBase* canbus,
                      uint32_t axis_id,
                      std::unique_ptr<ODriveConfiguration> config,
                      uint32_t get_timeout)
@@ -357,4 +357,4 @@ bool ODriveCAN::StartAnticogging() {
 }
 
 }  // namespace odrive
-}  // namespace huron
+}  // namespace mumei

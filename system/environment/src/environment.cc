@@ -1,6 +1,6 @@
-#include "huron/environment.h"
+#include "mumei/environment.h"
 
-namespace huron {
+namespace mumei {
 
 Environment::Environment(std::function<void(void)> loop_func,
                          std::function<void(void)> exit_func)
@@ -31,4 +31,4 @@ void Environment::LoopPrologue() {}
 
 void Environment::LoopEpilogue() {}
 
-}  // namespace huron
+}  // namespace mumei

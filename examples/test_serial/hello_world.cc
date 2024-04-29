@@ -2,11 +2,11 @@
 #include <chrono>
 #include <thread>
 
-#include "huron/utils/time.h"
-#include "huron/driver/serial/wjwwood_serial.h"
+#include "mumei/utils/time.h"
+#include "mumei/driver/serial/wjwwood_serial.h"
 
 int main(int argc, char* argv[]) {
-  using namespace huron::driver::serial; //NOLINT
+  using namespace mumei::driver::serial; //NOLINT
   Serial serial("/dev/ttyACM0", 115200, Parity::None, StopBits::One,
                 FlowControl::None);
   std::cout << "Serial port status: ";
