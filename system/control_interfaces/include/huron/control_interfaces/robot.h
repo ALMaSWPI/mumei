@@ -5,6 +5,7 @@
 #include <string>
 #include <utility>
 #include <memory>
+#include <unordered_map>
 
 #include "huron/control_interfaces/configuration.h"
 #include "huron/control_interfaces/generic_component.h"
@@ -70,6 +71,9 @@ class Robot : public MovingGroup, public GenericComponent {
 
   const Eigen::VectorBlock<const Eigen::VectorXd> GetJointVelocities() const;
 
+  std::weak_ptr<Indexable> GetComponent(const std::string& name) const;
+  std::weak_ptr<Indexable> GetComponent(Index id) const;
+
  protected:
   Robot(std::unique_ptr<RobotConfiguration> config,
         std::shared_ptr<Model> model);
@@ -78,6 +82,9 @@ class Robot : public MovingGroup, public GenericComponent {
   std::shared_ptr<Model> model_;
   std::vector<std::shared_ptr<StateProvider>> non_joint_state_providers_;
   std::vector<std::shared_ptr<StateProvider>> joint_state_providers_;
+
+  std::unordered_map<std::string, Index> name_to_index_;
+  std::vector<std::weak_ptr<Indexable>> registered_components_;
 };
 
 }  // namespace huron

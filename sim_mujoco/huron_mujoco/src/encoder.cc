@@ -4,9 +4,9 @@
 namespace huron {
 namespace mujoco {
 
-Encoder::Encoder(const std::string& name, int id,
+Encoder::Encoder(const std::string& name, int mj_id,
              std::weak_ptr<MujocoEnvironment> env, double gear_ratio)
-    : huron::Encoder(gear_ratio), name_(name), id_(id), env_(env) {}
+    : huron::Encoder(name, gear_ratio), mj_id_(mj_id), env_(env) {}
 
 void Encoder::Initialize() {
 }
@@ -18,7 +18,7 @@ void Encoder::Terminate() {
 }
 
 void Encoder::RequestStateUpdate() {
-  Eigen::Vector2d tmp = env_.lock()->GetEncoderValues(id_);
+  Eigen::Vector2d tmp = env_.lock()->GetEncoderValues(mj_id_);
   position_ = tmp(0);
   velocity_ = tmp(1);
 }

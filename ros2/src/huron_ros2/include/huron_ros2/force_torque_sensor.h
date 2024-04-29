@@ -13,7 +13,8 @@ class HuronNode;
 class ForceTorqueSensor : public huron::ForceTorqueSensor {
   friend class HuronNode;
  public:
-  ForceTorqueSensor(bool reverse_wrench_direction,
+  ForceTorqueSensor(const std::string& name,
+                    bool reverse_wrench_direction,
                     std::weak_ptr<const multibody::Frame> frame);
   ForceTorqueSensor(const ForceTorqueSensor&) = delete;
   ForceTorqueSensor& operator=(const ForceTorqueSensor&) = delete;

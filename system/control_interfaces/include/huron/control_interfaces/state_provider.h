@@ -1,15 +1,17 @@
 #pragma once
 
 #include <eigen3/Eigen/Dense>
+#include <string>
+#include "huron/control_interfaces/indexable.h"
 
 namespace huron {
 
-class StateProvider {
+class StateProvider : public Indexable {
  public:
-  explicit StateProvider(const Eigen::Vector2i& dim)
-    : dim_(dim) {}
-  StateProvider(int rows, int cols)
-    : dim_(rows, cols) {}
+  StateProvider(const std::string& name, const Eigen::Vector2i& dim)
+    : Indexable(name), dim_(dim) {}
+  StateProvider(const std::string& name, int rows, int cols)
+    : Indexable(name), dim_(rows, cols) {}
   StateProvider(const StateProvider&) = delete;
   StateProvider& operator=(const StateProvider&) = delete;
   virtual ~StateProvider() = default;

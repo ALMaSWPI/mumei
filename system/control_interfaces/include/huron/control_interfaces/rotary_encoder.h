@@ -39,16 +39,20 @@ class RotaryEncoderConfiguration : public EncoderConfiguration {
  */
 class RotaryEncoder : public Encoder {
  public:
-  RotaryEncoder(double gear_ratio,
+  RotaryEncoder(const std::string& name,
+                double gear_ratio,
                 std::unique_ptr<RotaryEncoderConfiguration> config)
-    : Encoder(gear_ratio, std::move(config)) {
+    : Encoder(name, gear_ratio, std::move(config)) {
     cpr_ = std::any_cast<double>(config_.get()->Get("cpr"));
   }
-  RotaryEncoder(double gear_ratio, double cpr)
-      : RotaryEncoder(gear_ratio,
+  RotaryEncoder(const std::string& name,
+                double gear_ratio,
+                double cpr)
+      : RotaryEncoder(name,
+                      gear_ratio,
                       std::make_unique<RotaryEncoderConfiguration>(cpr)) {}
-  explicit RotaryEncoder(double cpr)
-      : RotaryEncoder(1.0, cpr) {}
+  RotaryEncoder(const std::string& name, double cpr)
+      : RotaryEncoder(name, 1.0, cpr) {}
   RotaryEncoder(const RotaryEncoder&) = delete;
   RotaryEncoder& operator=(const RotaryEncoder&) = delete;
   ~RotaryEncoder() override = default;

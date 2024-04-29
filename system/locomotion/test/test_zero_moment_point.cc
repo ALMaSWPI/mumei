@@ -23,10 +23,11 @@ class TestRobot : public Robot {
 
 class FakeForceTorqueSensor : public ForceTorqueSensor {
  public:
-  FakeForceTorqueSensor(bool reverse_wrench_direction,
+  FakeForceTorqueSensor(const std::string& name,
+                        bool reverse_wrench_direction,
                         std::weak_ptr<const multibody::Frame> frame,
                         const Vector6d& fake_wrench)
-    : ForceTorqueSensor(reverse_wrench_direction, std::move(frame)),
+    : ForceTorqueSensor(name, reverse_wrench_direction, std::move(frame)),
       fake_wrench_(fake_wrench) {}
 
   void SetFakeWrench(const Vector6d& fake_wrench) {
@@ -62,13 +63,15 @@ class TestZeroMomentPointFt : public testing::Test {
     robot.GetModel()->BuildFromUrdf("huron.urdf",
                                     multibody::JointType::kFreeFlyer);
     auto floating_joint_sp =
-      std::make_shared<ConstantStateProvider>(initial_state);
+      std::make_shared<ConstantStateProvider>(
+        "floating_joint_sp", initial_state);
     robot.RegisterStateProvider(floating_joint_sp, true);
     robot.GetModel()->SetJointStateProvider(1, floating_joint_sp);
     // Fake joint states
     for (size_t joint_index = 2; joint_index <= 13; ++joint_index) {
       auto sp =
-        std::make_shared<ConstantStateProvider>(Eigen::Vector2d::Zero());
+        std::make_shared<ConstantStateProvider>(
+          "jsp" + std::to_string(joint_index), Eigen::Vector2d::Zero());
       robot.RegisterStateProvider(sp, true);
       robot.GetModel()->SetJointStateProvider(
           joint_index,
@@ -76,11 +79,13 @@ class TestZeroMomentPointFt : public testing::Test {
     }
     // Fake FT sensors
     l_ft_sensor = std::make_shared<FakeForceTorqueSensor>(
+        "l_ft_sensor",
         false,  // reverse wrench direction
         robot.GetModel()->GetFrame("l_ankle_roll_joint"),
         (Vector6d() << 0.0, 0.0, 0.0, 0.0, 0.0, 0.0).finished());
     robot.RegisterStateProvider(l_ft_sensor);
     r_ft_sensor = std::make_shared<FakeForceTorqueSensor>(
+        "r_ft_sensor",
         false,  // reverse wrench direction
         robot.GetModel()->GetFrame("r_ankle_roll_joint"),
         (Vector6d() << 0.0, 0.0, 0.0, 0.0, 0.0, 0.0).finished());

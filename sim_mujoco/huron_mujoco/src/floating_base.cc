@@ -4,12 +4,13 @@
 namespace huron {
 namespace mujoco {
 
-FloatingBase::FloatingBase(const std::string& name, int id,
+FloatingBase::FloatingBase(const std::string& name,
+                           int mj_id,
                            std::weak_ptr<MujocoEnvironment> env)
-    : StateProvider(13, 1), name_(name), id_(id), env_(env) {}
+    : StateProvider(name, 13, 1), mj_id_(mj_id), env_(env) {}
 
 void FloatingBase::RequestStateUpdate() {
-  states_ = env_.lock()->GetFloatingBaseStates(id_);
+  states_ = env_.lock()->GetFloatingBaseStates(mj_id_);
 }
 
 void FloatingBase::GetNewState(Eigen::Ref<Eigen::MatrixXd> new_state) const {

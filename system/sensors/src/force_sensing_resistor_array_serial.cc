@@ -25,7 +25,7 @@ void ForceSensingResistorArraySerial::RequestStateUpdate() {
   std::string msg;
   serial_->ReadLine(msg);
   std::vector<std::string> str_values = utils::split(msg, delimiter);
-  if (str_values[0] == name_) {
+  if (str_values[0] == name()) {
     for (size_t i = 1; i < str_values.size(); ++i) {
       values_[i-1] = std::stod(str_values[i]);
     }

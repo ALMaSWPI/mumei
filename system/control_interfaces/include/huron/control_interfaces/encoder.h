@@ -37,13 +37,16 @@ class EncoderConfiguration : public Configuration {
  */
 class Encoder : public Sensor {
  public:
-  Encoder(double gear_ratio, std::unique_ptr<EncoderConfiguration> config)
-    : Sensor(2, 1, std::move(config)), gear_ratio_(gear_ratio) {}
-  explicit Encoder(double gear_ratio)
-    : Encoder(gear_ratio, std::make_unique<EncoderConfiguration>()) {}
-  explicit Encoder(std::unique_ptr<EncoderConfiguration> config)
-    : Encoder(1.0, std::move(config)) {}
-  Encoder() : Encoder(1.0) {}
+  Encoder(const std::string& name,
+          double gear_ratio,
+          std::unique_ptr<EncoderConfiguration> config)
+    : Sensor(name, 2, 1, std::move(config)), gear_ratio_(gear_ratio) {}
+  Encoder(const std::string& name, double gear_ratio)
+    : Encoder(name, gear_ratio, std::make_unique<EncoderConfiguration>()) {}
+  Encoder(const std::string& name,
+          std::unique_ptr<EncoderConfiguration> config)
+    : Encoder(name, 1.0, std::move(config)) {}
+  explicit Encoder(const std::string& name) : Encoder(name, 1.0) {}
   Encoder(const Encoder&) = delete;
   Encoder& operator=(const Encoder&) = delete;
   virtual ~Encoder() = default;

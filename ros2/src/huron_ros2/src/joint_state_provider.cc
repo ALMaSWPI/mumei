@@ -5,8 +5,9 @@ namespace huron {
 namespace ros2 {
 
 JointStateProvider::JointStateProvider(
+  const std::string& name,
   size_t id_q, size_t nq, size_t id_v, size_t nv)
-  : StateProvider(nq + nv, 1),
+  : StateProvider(name, nq + nv, 1),
     nq_(nq),
     nv_(nv),
     id_q_(id_q),

@@ -32,12 +32,13 @@ class VelocityMotorConfiguration : public MotorConfiguration {
 
 class VelocityMotor : public Motor {
  public:
-  VelocityMotor(std::unique_ptr<VelocityMotorConfiguration> config,
+  VelocityMotor(const std::string& name,
+                std::unique_ptr<VelocityMotorConfiguration> config,
                 double gear_ratio)
-    : Motor(std::move(config), gear_ratio) {}
-  explicit VelocityMotor(double gear_ratio)
-    : Motor(gear_ratio) {}
-  VelocityMotor() : Motor() {}
+    : Motor(name, std::move(config), gear_ratio) {}
+  VelocityMotor(const std::string& name, double gear_ratio)
+    : Motor(name, gear_ratio) {}
+  explicit VelocityMotor(const std::string& name) : Motor(name) {}
   VelocityMotor(const VelocityMotor&) = delete;
   VelocityMotor& operator=(const VelocityMotor&) = delete;
   ~VelocityMotor() override = default;

@@ -32,12 +32,13 @@ class PositionMotorConfiguration : public MotorConfiguration {
 
 class PositionMotor : public Motor {
  public:
-  explicit PositionMotor(std::unique_ptr<PositionMotorConfiguration> config,
-                       double gear_ratio)
-    : Motor(std::move(config), gear_ratio) {}
-  explicit PositionMotor(double gear_ratio)
-    : Motor(gear_ratio) {}
-  PositionMotor() : Motor() {}
+  PositionMotor(const std::string& name,
+                std::unique_ptr<PositionMotorConfiguration> config,
+                double gear_ratio)
+    : Motor(name, std::move(config), gear_ratio) {}
+  PositionMotor(const std::string& name, double gear_ratio)
+    : Motor(name, gear_ratio) {}
+  explicit PositionMotor(const std::string& name) : Motor(name) {}
   PositionMotor(const PositionMotor&) = delete;
   PositionMotor& operator=(const PositionMotor&) = delete;
   virtual ~PositionMotor() = default;

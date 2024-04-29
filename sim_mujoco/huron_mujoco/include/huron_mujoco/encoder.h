@@ -32,12 +32,14 @@ class Encoder : public huron::Encoder,
 
 
  protected:
-  Encoder(const std::string& name, int id, std::weak_ptr<MujocoEnvironment> env,
-        double gear_ratio = 1.0);
+  Encoder(const std::string& name,
+          int mj_id,
+          std::weak_ptr<MujocoEnvironment> env,
+          double gear_ratio = 1.0);
 
  private:
   std::string name_;
-  int id_;
+  int mj_id_;
   std::weak_ptr<MujocoEnvironment> env_;
 
   double position_;

@@ -9,21 +9,24 @@ namespace huron {
 namespace odrive {
 
 TorqueMotor::TorqueMotor(
+  const std::string& name,
   std::unique_ptr<TorqueMotorConfiguration> config,
   std::shared_ptr<ODrive> odrive,
   double gear_ratio)
-  : huron::TorqueMotor(std::move(config), gear_ratio),
+  : huron::TorqueMotor(name, std::move(config), gear_ratio),
     odrive_(std::move(odrive)) {}
 
 TorqueMotor::TorqueMotor(
+  const std::string& name,
   std::shared_ptr<ODrive> odrive,
   double gear_ratio)
-  : huron::TorqueMotor(gear_ratio),
+  : huron::TorqueMotor(name, gear_ratio),
     odrive_(std::move(odrive)) {}
 
 TorqueMotor::TorqueMotor(
+  const std::string& name,
   std::shared_ptr<ODrive> odrive)
-  : huron::TorqueMotor(),
+  : huron::TorqueMotor(name),
     odrive_(std::move(odrive)) {}
 
 void TorqueMotor::Initialize() {

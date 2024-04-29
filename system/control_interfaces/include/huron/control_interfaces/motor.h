@@ -32,12 +32,13 @@ class MotorConfiguration : public ActuatorConfiguration {
 
 class Motor : public Actuator {
  public:
-  explicit Motor(std::unique_ptr<MotorConfiguration> config,
+  explicit Motor(const std::string& name,
+                 std::unique_ptr<MotorConfiguration> config,
                  double gear_ratio = 1.0)
-    : Actuator(1, std::move(config)) {}
-  explicit Motor(double gear_ratio)
-    : Motor(std::make_unique<MotorConfiguration>(), gear_ratio) {}
-  Motor() : Motor(1.0) {}
+    : Actuator(name, 1, std::move(config)) {}
+  Motor(const std::string& name, double gear_ratio)
+    : Motor(name, std::make_unique<MotorConfiguration>(), gear_ratio) {}
+  explicit Motor(const std::string& name) : Motor(name, 1.0) {}
   Motor(const Motor&) = delete;
   Motor& operator=(const Motor&) = delete;
   ~Motor() override = default;

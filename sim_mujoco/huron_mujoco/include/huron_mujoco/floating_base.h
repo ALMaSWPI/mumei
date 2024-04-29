@@ -24,12 +24,11 @@ class FloatingBase : public huron::StateProvider,
 
  protected:
   FloatingBase(const std::string& name,
-               int id,
+               int mj_id,
                std::weak_ptr<MujocoEnvironment> env);
 
  private:
-  std::string name_;
-  int id_;
+  int mj_id_;
   std::weak_ptr<MujocoEnvironment> env_;
 
   Eigen::Vector<double, 13> states_;

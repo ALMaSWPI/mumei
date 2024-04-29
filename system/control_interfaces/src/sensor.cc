@@ -1,25 +1,27 @@
 #include "huron/control_interfaces/sensor.h"
-#include <memory>
 
 namespace huron {
 
-Sensor::Sensor(const Eigen::Vector2i& dim,
+Sensor::Sensor(const std::string& name,
+               const Eigen::Vector2i& dim,
                std::unique_ptr<Configuration> config)
     : GenericComponent(std::move(config)),
-      StateProvider(dim) {}
+      StateProvider(name, dim) {}
 
-Sensor::Sensor(const Eigen::Vector2i& dim)
+Sensor::Sensor(const std::string& name,
+               const Eigen::Vector2i& dim)
   : GenericComponent(),
-    StateProvider(dim) {}
+    StateProvider(name, dim) {}
 
-Sensor::Sensor(int rows, int cols,
+Sensor::Sensor(const std::string& name,
+               int rows, int cols,
                std::unique_ptr<Configuration> config)
     : GenericComponent(std::move(config)),
-      StateProvider(rows, cols) {}
+      StateProvider(name, rows, cols) {}
 
-Sensor::Sensor(int rows, int cols)
+Sensor::Sensor(const std::string& name, int rows, int cols)
   : GenericComponent(),
-    StateProvider(rows, cols) {}
+    StateProvider(name, rows, cols) {}
 
 Eigen::VectorXd Sensor::GetValue() const {
   Eigen::VectorXd tmp;
