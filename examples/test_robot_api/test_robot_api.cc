@@ -58,19 +58,20 @@ int main(int argc, char* argv[]) {
   floating_base_state << 0.0, 0.0, 1.123, 0.0, 0.0, 0.0, 1.0,  // positions
                          0.0, 0.0, 0.0, 0.0, 0.0, 0.0;  // velocities
   auto floating_joint_sp =
-    std::make_shared<huron::ConstantStateProvider>(floating_base_state);
+    std::make_shared<huron::ConstantStateProvider>(
+      "root_jsp", floating_base_state);
   robot.RegisterStateProvider(floating_joint_sp, true);
   robot.GetModel()->SetJointStateProvider(1, floating_joint_sp);
 
   // 4 encoders
   auto left_knee_encoder = std::make_shared<huron::odrive::ODriveEncoder>(
-    kGearRatio, kCPR, left_knee_odrive);
+    "l_knee_enc", kGearRatio, kCPR, left_knee_odrive);
   auto left_hip_pitch_encoder = std::make_shared<huron::odrive::ODriveEncoder>(
-    kGearRatio, kCPR, left_hip_pitch_odrive);
+    "l_hip_enc", kGearRatio, kCPR, left_hip_pitch_odrive);
   auto right_knee_encoder = std::make_shared<huron::odrive::ODriveEncoder>(
-    kGearRatio, kCPR, right_knee_odrive);
+    "r_knee_enc", kGearRatio, kCPR, right_knee_odrive);
   auto right_hip_pitch_encoder = std::make_shared<huron::odrive::ODriveEncoder>(
-    kGearRatio, kCPR, right_hip_pitch_odrive);
+    "r_hip_enc", kGearRatio, kCPR, right_hip_pitch_odrive);
 
   robot.RegisterStateProvider(left_knee_encoder, true);
   robot.GetModel()->SetJointStateProvider(
@@ -92,7 +93,8 @@ int main(int argc, char* argv[]) {
   // Use constant state provider for the remaining joints
   for (const auto& joint_name : joints_without_encoder) {
     auto sp =
-      std::make_shared<huron::ConstantStateProvider>(Eigen::Vector2d::Zero());
+      std::make_shared<huron::ConstantStateProvider>(
+        joint_name + "_enc", Eigen::Vector2d::Zero());
     robot.RegisterStateProvider(sp, true);
     robot.GetModel()->SetJointStateProvider(
       robot.GetModel()->GetJointIndex(joint_name),
@@ -104,15 +106,19 @@ int main(int argc, char* argv[]) {
   // 4 motors
   robot.AddToGroup(
     std::make_shared<huron::odrive::TorqueMotor>(
+      "l_knee_motor",
       left_knee_odrive));
   robot.AddToGroup(
     std::make_shared<huron::odrive::TorqueMotor>(
+      "l_hip_motor",
       left_hip_pitch_odrive));
   robot.AddToGroup(
     std::make_shared<huron::odrive::TorqueMotor>(
+      "r_knee_motor",
       right_knee_odrive));
   robot.AddToGroup(
     std::make_shared<huron::odrive::TorqueMotor>(
+      "r_hip_motor",
       right_hip_pitch_odrive));
 
   // Initialize

@@ -2,24 +2,28 @@
 
 namespace huron {
 
-SensorWithFrame::SensorWithFrame(const Eigen::Vector2i& dim,
+SensorWithFrame::SensorWithFrame(const std::string& name,
+                                 const Eigen::Vector2i& dim,
                                  std::weak_ptr<const multibody::Frame> frame)
-  : Sensor(dim),
+  : Sensor(name, dim),
     frame_(std::move(frame)) {}
 
-SensorWithFrame::SensorWithFrame(const Eigen::Vector2i& dim,
+SensorWithFrame::SensorWithFrame(const std::string& name,
+                                 const Eigen::Vector2i& dim,
                                  std::weak_ptr<const multibody::Frame> frame,
                                  std::unique_ptr<Configuration> config)
-  : Sensor(dim, std::move(config)), frame_(std::move(frame)) {}
+  : Sensor(name, dim, std::move(config)), frame_(std::move(frame)) {}
 
-SensorWithFrame::SensorWithFrame(int rows, int cols,
+SensorWithFrame::SensorWithFrame(const std::string& name,
+                                 int rows, int cols,
                                  std::weak_ptr<const multibody::Frame> frame)
-  : Sensor(rows, cols),
+  : Sensor(name, rows, cols),
     frame_(std::move(frame)) {}
 
-SensorWithFrame::SensorWithFrame(int rows, int cols,
+SensorWithFrame::SensorWithFrame(const std::string& name,
+                                 int rows, int cols,
                                  std::weak_ptr<const multibody::Frame> frame,
                                  std::unique_ptr<Configuration> config)
-  : Sensor(rows, cols, std::move(config)), frame_(std::move(frame)) {}
+  : Sensor(name, rows, cols, std::move(config)), frame_(std::move(frame)) {}
 
 }  // namespace huron

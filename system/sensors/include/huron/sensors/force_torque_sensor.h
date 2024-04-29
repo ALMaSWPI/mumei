@@ -11,9 +11,11 @@ namespace huron {
 
 class ForceTorqueSensor : public SensorWithFrame {
  public:
-  ForceTorqueSensor(bool reverse_wrench_direction,
+  ForceTorqueSensor(const std::string& name,
+                    bool reverse_wrench_direction,
                     std::weak_ptr<const multibody::Frame> frame);
-  ForceTorqueSensor(bool reverse_wrench_direction,
+  ForceTorqueSensor(const std::string& name,
+                    bool reverse_wrench_direction,
                     std::weak_ptr<const multibody::Frame> frame,
                     std::unique_ptr<Configuration> config);
   ForceTorqueSensor(const ForceTorqueSensor&) = delete;

@@ -26,12 +26,14 @@ class Ros2Environment : public Environment {
   void Exit() override;
 
   std::shared_ptr<huron::StateProvider> CreateJointStateProvider(
+    const std::string& name,
     const std::string& topic,
     size_t id_q, size_t nq,
     size_t id_v, size_t nv,
     bool is_odom = false);
 
   std::shared_ptr<huron::ForceTorqueSensor> CreateForceTorqueSensor(
+    const std::string& name,
     const std::string& topic,
     bool reverse_wrench_direction,
     std::weak_ptr<const multibody::Frame> frame);

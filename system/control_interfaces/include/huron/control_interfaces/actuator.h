@@ -8,6 +8,7 @@
 
 #include "huron/control_interfaces/moving_interface.h"
 #include "huron/control_interfaces/generic_component.h"
+#include "huron/control_interfaces/indexable.h"
 
 namespace huron {
 
@@ -31,12 +32,18 @@ class ActuatorConfiguration : public Configuration {
       : ActuatorConfiguration({}, {}) {}
 };
 
-class Actuator : public GenericComponent, public MovingInterface {
+class Actuator : public GenericComponent,
+                 public MovingInterface,
+                 public Indexable {
  public:
-  Actuator(size_t dim, std::unique_ptr<ActuatorConfiguration> config)
-    : GenericComponent(std::move(config)), MovingInterface(dim) {}
-  explicit Actuator(size_t dim)
-    : Actuator(dim, std::make_unique<ActuatorConfiguration>()) {}
+  Actuator(const std::string& name,
+           size_t dim,
+           std::unique_ptr<ActuatorConfiguration> config)
+    : GenericComponent(std::move(config)),
+      MovingInterface(dim),
+      Indexable(name) {}
+  Actuator(const std::string& name, size_t dim)
+    : Actuator(name, dim, std::make_unique<ActuatorConfiguration>()) {}
   Actuator(const Actuator&) = delete;
   Actuator& operator=(const Actuator&) = delete;
   ~Actuator() override = default;

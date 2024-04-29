@@ -36,22 +36,26 @@ void Ros2Environment::Exit() {
 }
 
 std::shared_ptr<huron::StateProvider> Ros2Environment::CreateJointStateProvider(
+  const std::string& name,
   const std::string& topic,
   size_t id_q, size_t nq,
   size_t id_v, size_t nv,
   bool is_odom) {
-  auto jsp = std::make_shared<ros2::JointStateProvider>(id_q, nq, id_v, nv);
+  auto jsp = std::make_shared<ros2::JointStateProvider>(name,
+                                                        id_q, nq,
+                                                        id_v, nv);
   huron_node_->AddJointStateProvider(jsp, topic, nq, nv, is_odom);
   return jsp;
 }
 
 std::shared_ptr<huron::ForceTorqueSensor>
 Ros2Environment::CreateForceTorqueSensor(
+  const std::string& name,
   const std::string& topic,
   bool reverse_wrench_direction,
   std::weak_ptr<const multibody::Frame> frame) {
   auto fts = std::make_shared<ros2::ForceTorqueSensor>(
-      reverse_wrench_direction, frame);
+      name, reverse_wrench_direction, frame);
   huron_node_->AddForceTorqueSensor(fts, topic);
   return fts;
 }

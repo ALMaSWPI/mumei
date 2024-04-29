@@ -3,6 +3,7 @@
 #include <eigen3/Eigen/Core>
 
 #include <memory>
+#include <string>
 
 #include "huron/control_interfaces/sensor.h"
 #include "huron/multibody/frame.h"
@@ -13,14 +14,18 @@ class SensorWithFrame : public Sensor {
   using Frame = multibody::Frame;
 
  public:
-  SensorWithFrame(const Eigen::Vector2i& dim,
+  SensorWithFrame(const std::string& name,
+                  const Eigen::Vector2i& dim,
                   std::weak_ptr<const Frame> frame);
-  SensorWithFrame(const Eigen::Vector2i& dim,
+  SensorWithFrame(const std::string& name,
+                  const Eigen::Vector2i& dim,
                   std::weak_ptr<const Frame> frame,
                   std::unique_ptr<Configuration> config);
-  SensorWithFrame(int rows, int cols,
+  SensorWithFrame(const std::string& name,
+                  int rows, int cols,
                   std::weak_ptr<const Frame> frame);
-  SensorWithFrame(int rows, int cols,
+  SensorWithFrame(const std::string& name,
+                  int rows, int cols,
                   std::weak_ptr<const Frame> frame,
                   std::unique_ptr<Configuration> config);
   SensorWithFrame(const SensorWithFrame&) = delete;

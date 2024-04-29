@@ -4,9 +4,9 @@
 namespace huron {
 namespace mujoco {
 
-Motor::Motor(const std::string& name, int id,
+Motor::Motor(const std::string& name, int mj_id,
              std::weak_ptr<MujocoEnvironment> env, double gear_ratio)
-    : huron::Motor(gear_ratio), name_(name), id_(id), env_(env) {}
+    : huron::Motor(name, gear_ratio), mj_id_(mj_id), env_(env) {}
 
 void Motor::Initialize() {
 }
@@ -30,7 +30,7 @@ bool Motor::Stop() {
 }
 
 bool Motor::Move(double value) {
-  env_.lock()->SetMotorValue(id_, value);
+  env_.lock()->SetMotorValue(mj_id_, value);
   return true;
 }
 

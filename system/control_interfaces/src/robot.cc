@@ -92,11 +92,16 @@ void Robot::Terminate() {
 void Robot::RegisterStateProvider(
   std::shared_ptr<StateProvider> state_provider,
   bool is_joint_state_provider) {
+  assert(!state_provider->IsRegistered());
   if (!is_joint_state_provider) {
     non_joint_state_providers_.push_back(state_provider);
   } else {
     joint_state_providers_.push_back(state_provider);
   }
+  // register the index
+  registered_components_.push_back(state_provider);
+  name_to_index_[state_provider->name()] = registered_components_.size() - 1;
+  state_provider->SetIndex(registered_components_.size() - 1);
 }
 
 void Robot::UpdateAllStates() {
@@ -118,6 +123,14 @@ Robot::GetJointPositions() const {
 const Eigen::VectorBlock<const Eigen::VectorXd>
 Robot::GetJointVelocities() const {
   return model_->GetVelocities();
+}
+
+std::weak_ptr<Indexable> Robot::GetComponent(const std::string& name) const {
+  return registered_components_[name_to_index_.at(name)];
+}
+
+std::weak_ptr<Indexable> Robot::GetComponent(Index id) const {
+  return registered_components_[id];
 }
 
 }  // namespace huron

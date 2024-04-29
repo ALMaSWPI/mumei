@@ -56,12 +56,14 @@ int main(int argc, char* argv[]) {
 
 void setup() {
   // Environment setup
-  auto root_joint_sp = env.CreateJointStateProvider("/p3d/odom", 0, 7, 0, 6,
+  auto root_joint_sp = env.CreateJointStateProvider("root_jsp",
+                                                    "/p3d/odom", 0, 7, 0, 6,
                                                     true);
 
   std::vector<std::shared_ptr<huron::StateProvider>> joint_sp_list;
   for (size_t i = 0; i < joint_names.size(); ++i) {
     joint_sp_list.push_back(env.CreateJointStateProvider(
+        "jsp_" + std::to_string(i),
         "joint_states",
         i + 7, 1,
         i + 6, 1));
@@ -88,10 +90,12 @@ void setup() {
 
   // Register force torque sensors
   auto l_ft_sensor = env.CreateForceTorqueSensor(
+      "l_ft_sensor",
       "huron/sensor/l1_ft_sensor",
       false,  // reverse wrench direction
       robot.GetModel()->GetFrame("l_ankle_roll_joint"));
   auto r_ft_sensor = env.CreateForceTorqueSensor(
+      "r_ft_sensor",
       "huron/sensor/r1_ft_sensor",
       false,  // reverse wrench direction
       robot.GetModel()->GetFrame("r_ankle_roll_joint"));

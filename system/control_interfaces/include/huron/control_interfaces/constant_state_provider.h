@@ -1,13 +1,16 @@
 #pragma once
 
+#include <string>
+
 #include "state_provider.h"
 
 namespace huron {
 
 class ConstantStateProvider : public StateProvider {
  public:
-  explicit ConstantStateProvider(const Eigen::MatrixXd& state)
-    : StateProvider(state.rows(), state.cols()),
+  ConstantStateProvider(const std::string& name,
+                                 const Eigen::MatrixXd& state)
+    : StateProvider(name, state.rows(), state.cols()),
       state_(state) {}
   ConstantStateProvider(const ConstantStateProvider&) = delete;
   ConstantStateProvider& operator=(const ConstantStateProvider&) = delete;

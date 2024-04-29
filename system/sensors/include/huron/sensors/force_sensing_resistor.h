@@ -2,14 +2,17 @@
 
 #include <eigen3/Eigen/Core>
 #include <memory>
+#include <string>
 #include "huron/control_interfaces/sensor_with_frame.h"
 
 namespace huron {
 
 class ForceSensingResistor : public SensorWithFrame {
  public:
-  explicit ForceSensingResistor(std::weak_ptr<const multibody::Frame> frame);
-  ForceSensingResistor(std::weak_ptr<const multibody::Frame> frame,
+  ForceSensingResistor(const std::string& name,
+                                std::weak_ptr<const multibody::Frame> frame);
+  ForceSensingResistor(const std::string& name,
+                       std::weak_ptr<const multibody::Frame> frame,
                        std::unique_ptr<Configuration> config);
   ForceSensingResistor(const ForceSensingResistor&) = delete;
   ForceSensingResistor& operator=(const ForceSensingResistor&) = delete;

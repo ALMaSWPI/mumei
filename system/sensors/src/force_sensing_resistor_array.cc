@@ -6,8 +6,7 @@ ForceSensingResistorArray::ForceSensingResistorArray(
   const std::string& name,
   std::weak_ptr<const multibody::Frame> frame,
   const std::vector<std::shared_ptr<ForceSensingResistor>>& fsr_array)
-  : SensorWithFrame(fsr_array.size(), 1, std::move(frame)),
-    name_(name),
+  : SensorWithFrame(name, fsr_array.size(), 1, std::move(frame)),
     values_(Eigen::VectorXd::Zero(fsr_array.size())),
     fsr_array_(fsr_array) {}
 
@@ -16,8 +15,11 @@ ForceSensingResistorArray::ForceSensingResistorArray(
   std::weak_ptr<const multibody::Frame> frame,
   const std::vector<std::shared_ptr<ForceSensingResistor>>& fsr_array,
   std::unique_ptr<Configuration> config)
-  : SensorWithFrame(fsr_array.size(), 1, std::move(frame), std::move(config)),
-    name_(name),
+  : SensorWithFrame(name,
+                    fsr_array.size(),
+                    1,
+                    std::move(frame),
+                    std::move(config)),
     values_(Eigen::VectorXd::Zero(fsr_array.size())),
     fsr_array_(fsr_array) {}
 

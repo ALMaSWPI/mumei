@@ -13,7 +13,9 @@ class HuronNode;
 class JointStateProvider : public huron::StateProvider {
   friend class HuronNode;
  public:
-  JointStateProvider(size_t id_q, size_t nq, size_t id_v, size_t nv);
+  JointStateProvider(const std::string& name,
+                     size_t id_q, size_t nq,
+                     size_t id_v, size_t nv);
 
   void RequestStateUpdate() override;
   void GetNewState(Eigen::Ref<Eigen::MatrixXd> new_state) const override;

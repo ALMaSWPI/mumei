@@ -37,7 +37,6 @@ class ForceSensingResistorArray : public SensorWithFrame {
   size_t num_sensors() const { return fsr_array_.size(); }
 
  protected:
-  std::string name_;
   Eigen::VectorXd values_;
   std::vector<std::shared_ptr<ForceSensingResistor>> fsr_array_;
 };
